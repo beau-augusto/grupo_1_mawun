@@ -144,5 +144,5 @@ Colores oscuros, ágil, buena distribución de elementos
 
 
 Porque elegimos estos sitios?
-Luego de leer e investigar y de hacer una busqueda exhaustiva, elegimos estos 5 sitios de referencia por el impacto visual que causa su pagina, por la interfaz clara y precisa de su sitio, por la referencia de la gente sobre el vendedor, por los productos y ofertas que ofrecen, diseño moderno, buen equilibrio visual, elementos organizados de forma adecuada, tiempo de carga aceptable. Ofrecen metodos de pago con tarjeta y estan asociados a la plataforma de Mercado Pago.
+Luego de leer e investigar y de hacer una busqueda exhaustiva, elegimos estos 5 sitios de referencia por el diseño adaptativo a los distintos "dispositivos moviels, por el impacto visual que causa su pagina, por la interfaz clara y precisa de su sitio, por la referencia de la gente sobre el vendedor, por los productos y ofertas que ofrecen, diseño moderno, buen equilibrio visual, elementos organizados de forma adecuada, tiempo de carga aceptable. Ofrecen metodos de pago con tarjeta y estan asociados a la plataforma de Mercado Pago."
 
