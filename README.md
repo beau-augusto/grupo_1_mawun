@@ -1,9 +1,3 @@
-Creación del Repo.
-
-Augusto!
-
-MIGUEL!
-
 Antes de describir nuestro producto y los detalles mas importantes del e-commerce, vamos a profundizar un poco en algunos conceptos importantes, por ejemplo a que nos referimos cuando decimos "vinos orgánicos, naturales y biodinámicos".
 
 Los vinos orgánicos se elaboran con uvas que provienen de viñedos libres de pesticidas, herbicidas y fertilizantes, así las uvas y la tierra están protegidas de químicos que intervengan en los procesos naturales, que durante la creación del vino sean usados métodos más naturales que garanticen su calidad. En etapa de elaboración se utilizan cantidades mínimas de sulfitos. 
@@ -27,6 +21,8 @@ Augusto está aprendiendo a codear por primera vez. Le gusta tocar el piano en s
 
 Miguel esta en proceso de aprendizaje, nunca vio Js ni html, es su primera experencia con la 
 programacion. En tiempos de ocio disfruta de la compañia de sus amigos y familia. Desde chico disfruta de la práctida de padel. En estos últimos años, estudió Administracion de Empresas Agropecuarias y Cocteleria, se recibio de Bartenders. 
+
+Peter ya tuvo un pequeño acercamiento a lenguajes como html y css, buscando en esta etapa aumentar sus conocimentos. Vivió su infancia en Bariloche, le gusta practicar deportes como Ski y KiteSurf.
 
 
 
