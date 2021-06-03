@@ -26,6 +26,8 @@ Presentación del Grupo
     programacion. En tiempos de ocio disfruta de la compañia de sus amigos y familia. Desde chico disfruta de la práctida de padel. En estos últimos años, estudió Administracion de Empresas Agropecuarias y Cocteleria, se recibio de Bartenders. 
 
     Peter ya tuvo un pequeño acercamiento a lenguajes como html y css, buscando en esta etapa aumentar sus conocimentos. Vivió su infancia en Bariloche, le gusta practicar deportes como Ski y KiteSurf.
+    
+    Mateo está dando sus primeros pasos en la programación, siempre le encantó el mundo de las computadoras. Le gusta jugar al futbol y al padel. También estudia en paralelo kinesiología.
 
 
 
