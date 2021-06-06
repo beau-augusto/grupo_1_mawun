@@ -1,0 +1,18 @@
+/*
+Colors
+Backgroung color:#faeeed | Title colors: #412838 | Subtitle color: #55394a | Title colors: #412838 | Text color: #666666
+Fonts
+font-family: 'Montserrat', sans-serif;
+font-family: 'DM Serif Display', serif;
+*/
+
+body {
+    display: block;
+    background-color: #faeeed;
+    font-family: 'Montserrat', sans-serif;
+    color: #666666;
+    font-size: 13px;
+    line-height: 21px;
+    margin: 0px;
+    min-height: 100%;
+}
