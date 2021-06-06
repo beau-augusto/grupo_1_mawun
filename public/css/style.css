@@ -1,7 +1,7 @@
 /*
-Colors
+//Colors//
 Backgroung color:#faeeed | Title colors: #412838 | Subtitle color: #55394a | Title colors: #412838 | Text color: #666666
-Fonts
+//Fonts//
 font-family: 'Montserrat', sans-serif;
 font-family: 'DM Serif Display', serif;
 */
@@ -15,4 +15,64 @@ body {
     line-height: 21px;
     margin: 0px;
     min-height: 100%;
+}
+
+nav{
+    background-color: #412838;
+    padding: 12px 0;
+}
+
+.hero-top {
+    display: flex;
+    align-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    padding: 10px 0;
+    margin: auto;
+}
+.hero-search{
+    display: flex;
+    height: 30px;
+    margin-bottom: 0px;
+}
+
+.hero-search__field {
+    width: 250px;
+    height: 30px;
+    margin-right: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #412838;
+    padding-left: 5px;
+}
+
+.hero-search__field:focus {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #412838;
+}
+
+.hero-search__submit{
+    background-color: #412838;
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 0px;
+}
+.hero-search__submit:hover{
+    background-color: #55394a;
+}
+
+.hero-menu{
+    display: flex;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.hero-logo{
+    width: 250px;
 }
