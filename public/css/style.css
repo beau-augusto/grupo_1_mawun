@@ -17,9 +17,9 @@ body {
     min-height: 100%;
 }
 
-nav{
-    background-color: #412838;
-    padding: 12px 0;
+.container {
+    margin: auto;
+    max-width: 1100px;
 }
 
 .hero-top {
@@ -31,6 +31,7 @@ nav{
     padding: 10px 0;
     margin: auto;
 }
+
 .hero-search{
     display: flex;
     height: 30px;
@@ -59,23 +60,65 @@ nav{
     color: #ffffff;
     border: none;
     cursor: pointer;
-    height: 34px;
-    padding: 0 12px;
+    height: 30px;
+    padding: 0 8px;
     border-radius: 0px;
 }
 .hero-search__submit:hover{
     background-color: #55394a;
 }
+.hero-menu-fw {
+    background-color: #412838;
+}
 
-.hero-menu{
+.hero-menu-wrapper{
     display: flex;
-    max-width: 1100px;
-    margin: auto;
+	justify-content: flex-end;
+	align-items: center;
+	align-content: center;
+    
+}
+ul.hero-menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul.hero-menu li {
+    float: left;
+}
+
+ul.hero-menu li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+ul.hero-menu li a:hover {
+    background-color: #55394a;
+}
+
+.hero-cart{
+    padding-left: 25px;
+}
+
+.hero-cart-link {
+    color: #ffffff;
+    padding: 10px;
+}
+
+.hero-cart-link:hover {
+    color: #faeeed;
 }
 
 .hero-logo{
     width: 250px;
 }
+
 .menu {
 position: relative;
 display: inline-block;
