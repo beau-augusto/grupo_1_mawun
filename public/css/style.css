@@ -17,9 +17,13 @@ body {
     min-height: 100%;
 }
 
-nav{
+.container {
+    margin: auto;
+    max-width: 1100px;
+}
+
+.bgc-fw {
     background-color: #412838;
-    padding: 12px 0;
 }
 
 .hero-top {
@@ -31,6 +35,7 @@ nav{
     padding: 10px 0;
     margin: auto;
 }
+
 .hero-search{
     display: flex;
     height: 30px;
@@ -59,24 +64,98 @@ nav{
     color: #ffffff;
     border: none;
     cursor: pointer;
-    height: 34px;
-    padding: 0 12px;
+    height: 30px;
+    padding: 0 8px;
     border-radius: 0px;
 }
 .hero-search__submit:hover{
     background-color: #55394a;
 }
 
-.hero-menu{
+.hero-menu-wrapper{
     display: flex;
-    max-width: 1100px;
-    margin: auto;
+	justify-content: flex-end;
+	align-items: center;
+	align-content: center;
+    
+}
+ul.hero-menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul.hero-menu li {
+    float: left;
+}
+
+ul.hero-menu li a {
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    padding: 14px 22px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+ul.hero-menu li a:hover {
+    background-color: #55394a;
+}
+
+.hero-cart{
+    padding-left: 35px;
+}
+
+.hero-cart-link {
+    color: #ffffff;
+    padding: 12px;
+    font-size: 18px;
+}
+
+.hero-cart-link:hover {
+    color: #faeeed;
 }
 
 .hero-logo{
     width: 250px;
 }
-.menu {
+
+.altura{
+    height: 350px;
+}
+
+.footer-wapper{
+    margin-top: 60px;
+    padding: 20px 0;
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+}
+.footer-contact{
+    padding: 20px;
+}
+.footer-logo {
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.footer-link{
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+	align-items: center;
+}
+.footer-link p{
+    margin: 0 0 3px 10px;
+    padding-top: 3px;
+}
+
+/* .menu {
 position: relative;
 display: inline-block;
 vertical-align: top;
@@ -86,7 +165,7 @@ padding: 20px;
 text-align: left;
 margin-left: auto;
 margin-right: auto;
-}
+} */
 
 
 /* Estilos para detalleProducto.html*/
@@ -146,13 +225,10 @@ margin-right: auto;
 }
 
 .sumador {
-    background-color:;
+    background-color: white;
 }
 
 .agregarCarrito {
     background-color: rgb(0, 0, 0, 0.8);
     color: white;
-
 }
-
-
