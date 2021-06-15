@@ -1,6 +1,6 @@
 /*
 //Colors//
-Backgroung color:#faeeed | Title colors: #412838 | Subtitle color: #55394a | Title colors: #412838 | Text color: #666666
+Backgroung color:#faeeed | Title colors: #412838 | Subtitle color: #55394a | Title colors: #412838 | Text color: #666666 | fondo de sumador en detalle de producto: #C4C4C4 | 
 //Fonts//
 font-family: 'Montserrat', sans-serif;
 font-family: 'DM Serif Display', serif;
@@ -87,3 +87,72 @@ text-align: left;
 margin-left: auto;
 margin-right: auto;
 }
+
+
+/* Estilos para detalleProducto.html*/
+
+.detalleProducto {
+    display: flex;
+}
+
+
+/* Imágenes de producto en detalle de compra */
+
+.imagenesProducto {
+    display: flex;
+}
+
+.imagenesCostado {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.imagenesCostado img {
+    width: 177px;
+    height: 194px;
+}
+
+
+.imagenPrincipal img {
+    width: 493px;
+    height: 603px;
+}
+
+
+/* texto de producto en detalle de compra */
+
+
+.tituloProducto {
+    font-family: 'DM Serif Display', serif;
+    font-weight: normal;
+    font-size: 55px;
+    line-height: 75px;
+}
+
+.precioDP {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+}
+
+
+/* Íconos en el texto de detalle de compra */
+
+
+.iconosProducto {
+    display: flex;
+}
+
+.sumador {
+    background-color:;
+}
+
+.agregarCarrito {
+    background-color: rgb(0, 0, 0, 0.8);
+    color: white;
+
+}
+
+

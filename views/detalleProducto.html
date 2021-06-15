@@ -16,15 +16,22 @@
 <body>
     <header>
         <div class="hero-top">
-            <div><a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="hero-logo"></a></div>
-            <div class="hero-search"><input type="text" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field"><button class="hero-search__submit"><i class="fa fa-search"></i></button></div>
+            <div>
+                <a href="/index.html"><img src="/images/mawun-logo.svg" alt="MAWUN" class="hero-logo"></a>
+            </div>
+            <div class="hero-search">
+                <form action="" method="POST">
+                    <input type="search" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
+                    <button class="hero-search__submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
         </div>
         <nav>
             <div>
                 <ul class="hero-menu">
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Tienda</a></li>
-                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="/detalleProducto.html">Tienda</a></li>
+                    <li><a href="/carrito.html">Nosotros</a></li>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Contacto</a></li>
                 </ul>
@@ -32,7 +39,36 @@
             <div></div>
         </nav>
     </header>
-    <main>
+    <main class="detalleProducto">
+        <article class="imagenesProducto">
+            <div class="imagenesCostado">
+                <img src="\images\roselargarde2.webp" alt="">
+                <img src="\images\roselargarde3.webp" alt="">
+                <img src="/images\roselargarde4.webp" alt="">
+            </div>
+
+            <div class="imagenPrincipal">
+                <img src="\images\roselargade1.webp" alt="Rose">
+            </div>
+
+
+        </article>
+
+
+        <article class="contenedorTexto">
+            <div class="textoProducto">
+                <h2 class="tituloProducto">Malbec Pinot Noir Rosé</h2> <!--https://http2.mlstatic.com/D_NQ_NP_2X_866051-MLA42009582848_052020-F.webp-->
+            <span>Lagarde</span> <span>Goes Pink</span>
+            <p class="precioDP">$1,200.-</p>   
+            <p>Este vino está inspirado en el sol mendocino y en los colores de su atardecer, que prolonga con calidez las tardes de verano. Nació para acompañar las vacaciones, los almuerzos interminables con los amigos, la siesta bajo la sombra de los árboles y la frescura del mar.</p>
+            </div>
+            
+            <div class="iconosProducto">
+                <div class="cajaSumador">
+                    <input type="tel" value="1" name="sumador" class="sumador" maxlength="1">
+                </div>
+                <div class="agregarCarrito">Agregar al carrito</div>
+        </article>
 
     </main>
     <footer>

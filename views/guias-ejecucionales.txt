@@ -1,0 +1,6 @@
+Colores:
+
+
+
+#C4C4C4   <fondo de sumador en detalle de producto>
+
