@@ -19,7 +19,7 @@ app.get('/index.html', (req, res) => {
 });
 
 app.get('/detalleProducto.html', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './views/detalleProducto.html'));
+    res.sendFile(path.resolve(__dirname, './views/detalle-Producto.html'));
 });
 
 app.get('/carrito.html', (req, res) => {
