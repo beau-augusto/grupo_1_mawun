@@ -18,8 +18,8 @@ app.get('/index.html', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/index.html'));
 });
 
-app.get('/detalleProducto.html', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './views/detalle-Producto.html'));
+app.get('/detalle-producto.html', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './views/detalle-producto.html'));
 });
 
 app.get('/carrito.html', (req, res) => {

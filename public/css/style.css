@@ -173,17 +173,11 @@ ul.hero-menu li a:hover {
     text-decoration: none;
 }
 
-/* .menu {
-position: relative;
-display: inline-block;
-vertical-align: top;
-text-decoration: none;
-color: #222222;
-padding: 20px;
-text-align: left;
-margin-left: auto;
-margin-right: auto;
-} */
+.footer-legal{
+    display: flex;
+    align-items: center;
+
+}
 
 
 /* Estilos para detalleProducto.html*/
