@@ -190,6 +190,8 @@ margin-right: auto;
 
 .detalleProducto {
     display: flex;
+    justify-content: center;
+    margin-top: 35px;
 }
 
 
@@ -202,41 +204,61 @@ margin-right: auto;
 .imagenesCostado {
     display: flex;
     flex-direction: column;
+    margin: 30px;
 
 }
 
 .imagenesCostado img {
-    width: 177px;
-    height: 194px;
+    width: 182px;
+    height: auto;
+    border-radius: 8px;
+    margin: 3px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
 }
 
 
 .imagenPrincipal img {
-    width: 493px;
-    height: 603px;
+    width: 300px;
+    height: auto;
+    margin: 30px;
+    padding: 0px;
+    border-radius: 8px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
 }
 
 
 /* texto de producto en detalle de compra */
 
+.contenedorTexto {
+    width: 25%;
+    height: auto;
+
+}
+
 
 .tituloProducto {
     font-family: 'DM Serif Display', serif;
     font-weight: normal;
-    font-size: 55px;
-    line-height: 75px;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px
+}
+
+.marcaLinea {
+    font-size: 19px;
 }
 
 .precioDP {
     font-style: normal;
     font-weight: 500;
-    font-size: 38px;
+    font-size: 25px;
     line-height: 46px;
 }
 
 .descripcionDP {
+    width: 75%;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
 }
 
@@ -245,6 +267,7 @@ margin-right: auto;
 
 .iconosProducto {
     display: flex;
+    margin-top: 50px;
 }
 
 .sumador {
