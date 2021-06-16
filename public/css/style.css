@@ -235,7 +235,7 @@ ul.hero-menu li a:hover {
     font-weight: normal;
     font-size: 30px;
     margin-top: 40px;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .marcaLinea {
@@ -313,6 +313,132 @@ ul.hero-menu li a:hover {
     transition: all 100ms;
 }
 
-/* Capilla del Monte */
 
 
+/* Carrito de compras */
+
+
+.contenedorBarraSuperiorCarrito {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+.tituloCarrito {
+    font-family: 'DM Serif Display', serif;
+    font-weight: normal;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.barraSuperiorCarrito {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+}
+
+.columnaProducto {
+    align-items: center;
+    display: flex;
+
+}
+
+
+.columnasDerecha {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+
+}
+
+.columnasDerecha p {
+    padding: 0px 10px 0px 10px;
+
+}
+
+.barra1HR {
+    margin: auto;
+}
+
+
+/* Flex del producto Carrito de Compras, lado izquierdo */
+
+.producto1CarritoContenedorTotal {
+    display: flex;
+}
+
+.producto1CarritoContenedor {
+    width: 25%;
+    margin-left: 25%;
+}
+
+.producto1Carrito {
+    display: flex;
+    margin: 30px 30px 30px 5px;
+}
+
+.imagenProductoCarrito {
+    width: 35%;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+
+.nombreProductoCarrito {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.nombreProductoCarrito a {
+    display: flex;
+
+}
+
+.vinoLineaCarrito {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: -6px
+
+}
+
+
+/* Flex del producto Carrito de Compras, lado derecho */
+
+.producto1Derecho {
+    display: flex;
+    width: 40%;
+    justify-content: flex-start;
+    margin-left: 6%;
+
+}
+
+.precioCarrito {
+    display: flex;
+    align-items: center;
+}
+
+.cajaSumadoraCarrito {
+    display: flex;
+    width: 11%;
+    justify-content: center;
+    font-size: 13px;
+    align-items: center;
+    padding: 34px;
+
+}
+
+.fa-trash-alt {
+
+    margin-left: 6px;
+}
+
+.barraSuperiorCarrito  .barra2HR {
+    margin: auto;
+}
