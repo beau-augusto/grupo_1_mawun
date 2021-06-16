@@ -16,12 +16,24 @@ body {
     margin: 0px;
     min-height: 100%;
 }
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 h4{
     color: #ffffff;
     font-size: 18px;
     font-weight: 600;
+    font-style: italic;
+    padding-top: 30px;
 }
+
+input:focus {
+    outline: none;
+}
+
 .container {
     margin: auto;
     max-width: 1100px;
@@ -49,7 +61,7 @@ h4{
 
 .hero-search__field {
     width: 250px;
-    height: 30px;
+    height: 40px;
     margin-right: 5px;
     border-style: solid;
     border-width: 1px;
@@ -69,10 +81,11 @@ h4{
     color: #ffffff;
     border: none;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
     padding: 0 8px;
     border-radius: 0px;
 }
+
 .hero-search__submit:hover{
     background-color: #55394a;
 }
@@ -160,23 +173,71 @@ ul.hero-menu li a:hover {
     padding-top: 3px;
 }
 
+.footer-social-wrapper {
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
 .footer-social{
     color: #ffffff;
     font-size: 28px;
     text-decoration: none;
     display: flex;
 	align-items: center;
+    padding: 0 20px;
 }
 
 .footer-social a{
     color: #ffffff;
     text-decoration: none;
+    margin: 15px 0 0 10px;
 }
 
-.footer-legal{
+.footer-news-wrapper {
     display: flex;
-    align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	align-content: space-between;
+}
+.footer-news {
+    display: flex;
+	align-items: center;
+}
 
+.footer-news a{
+    color: #ffffff;
+    text-decoration: none;
+    margin: 15px 0 0 10px;
+}
+
+.footer-news__field {
+    width: 250px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.footer-news__field:focus {
+    background-color: #ffffff;
+    color: #412838;
+}
+
+.footer-news__submit{
+    background-color: #faeeed;
+    font-size: 13px;
+    font-weight: normal;
+    color: #412838;
+    border: none;
+    height: 38px;
+    padding: 0 10px;
+    margin: 0;
+    border-radius: 0px;
+}
+
+.footer-news__submit:hover{
+    color: #55394a;
 }
 
 
