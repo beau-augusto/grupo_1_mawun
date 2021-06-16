@@ -493,6 +493,12 @@ ul.hero-menu li a:hover {
     font-size: 13px;
 }
 
+.agregarCarrito:hover {
+    background-color: #04b6a4;
+    transition: all 100ms;
+
+}
+
 .agregarCarrito {
     background-color: rgb(65 40 56);
     color: white;
@@ -501,14 +507,18 @@ ul.hero-menu li a:hover {
     border: none;
     border-radius: 7px;
 
-.agregarCarrito:hover {
-    background-color: #04b6a4;
-    transition: all 100ms;
-}
+
 
 
 
 /* Carrito de compras */
+
+/*.flexCorrection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+
+}*/
 
 .flexCorrection {
     display: flex;
@@ -516,6 +526,8 @@ ul.hero-menu li a:hover {
     margin-top: 60px;
 
 }
+
+
 
 .contenedorBarraSuperiorCarrito {
     width: 70%;
