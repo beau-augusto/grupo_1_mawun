@@ -23,6 +23,13 @@ body {
     box-sizing: border-box;
 }
 
+h2 {
+    color: #412838;
+    font-size: 26px;
+    text-align: center;
+    font-weight: 300;
+}
+
 h4{
     color: #ffffff;
     font-size: 18px;
@@ -182,25 +189,46 @@ ul.hero-menu li a:hover {
     letter-spacing: 1px;
 }
 
-#cultivos{
+#cultivos {
     display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.cultivo-wrapper {
+.cultivos-wrapper {
     position: relative;
+    width: 320px;
+    height: 320px;
+    background-color: #55394a;
+    text-align:center
 
+}
+.cultivos-img {
+    object-fit: cover;
+    width: 320px;
+    height: auto;
 }
 
 .cultivos-title{
+    width: 320px;
+    position: absolute;
     font-family: 'DM Serif Display', serif;
     color: #ffffff;
     font-size: 22px;
     line-height: 30px;
     letter-spacing: 1px;
     font-weight: 400;
+    left: 50%;
+    margin-left: -160px;
+    bottom: 40px;
+}
+
+#recomendados {
+    margin: 40px;
+}
+.recomendados-grid{
+    display: grid;
+
 }
 
 .footer-wapper{
@@ -212,7 +240,7 @@ ul.hero-menu li a:hover {
 
 }
 .footer-contact{
-    padding: 20px;
+    padding: 20px 0px;
 }
 .footer-logo {
     width: 250px;
