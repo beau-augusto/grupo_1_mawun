@@ -27,14 +27,13 @@ h2 {
     color: #412838;
     font-size: 26px;
     text-align: center;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 h3{
-    font-family: 'DM Serif Display', serif;
     color: #faeeed;
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 22px;
+    line-height: 30px;
     letter-spacing: 1px;
 }
 h4{
@@ -60,7 +59,7 @@ input:focus {
 }
 
 .bgc-fw {
-    background-color: #412838;
+    background-color: #55394a;
 }
 
 .hero-top {
@@ -139,11 +138,11 @@ ul.hero-menu li a {
     text-decoration: none;
     text-transform: uppercase;
     transition: background-color 0.5s ease;
-    background-color: #412838;
+    background-color: #55394a;
 }
 
 ul.hero-menu li a:hover {
-    background-color: #55394a;
+    background-color: #412838;
 }
 
 .hero-cart{
@@ -237,7 +236,7 @@ ul.hero-menu li a:hover {
 
 .cultivos-title h3{
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 600;
     padding-bottom: 30px;
 }
 
@@ -287,7 +286,7 @@ ul.hero-menu li a:hover {
     padding: 10px 15px;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #412838;
+    background-color: #55394a;
     transition: all 0.3s ease-in-out;
 }
 
