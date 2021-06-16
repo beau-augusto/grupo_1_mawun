@@ -30,11 +30,19 @@ h2 {
     font-weight: 300;
 }
 
+h3{
+    font-family: 'DM Serif Display', serif;
+    color: #faeeed;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 1px;
+}
+
 h4{
     color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: italic;
+    font-size: 13px;
+    font-weight: 500;
+
     padding-top: 30px;
 }
 
@@ -82,7 +90,6 @@ input:focus {
 }
 
 .hero-search__submit{
-    background-color: #412838;
     font-size: 16px;
     color: #ffffff;
     border: none;
@@ -90,11 +97,11 @@ input:focus {
     height: 40px;
     padding: 0 8px;
     border-radius: 0px;
+    background-color: #412838;
 }
 
 .hero-search__submit:hover{
     background-color: #55394a;
-    transition: all 200ms;
 }
 
 .hero-menu-wrapper{
@@ -125,11 +132,12 @@ ul.hero-menu li a {
     padding: 14px 22px;
     text-decoration: none;
     text-transform: uppercase;
+    transition: background-color 0.5s ease;
+    background-color: #412838;
 }
 
 ul.hero-menu li a:hover {
     background-color: #55394a;
-    transition: all 200ms;
 }
 
 .hero-cart{
@@ -144,7 +152,6 @@ ul.hero-menu li a:hover {
 
 .hero-cart-link:hover {
     color: #faeeed;
-    transition: all 200ms;
 }
 
 .hero-logo{
@@ -163,9 +170,7 @@ ul.hero-menu li a:hover {
 .hero-banner-img {
     width: 100%;
     height: 480px;
-    -o-object-fit: cover;
     object-fit: cover;
-    -o-object-position: 50% 50%;
     object-position: 50% 50%;
 
 }
@@ -199,9 +204,6 @@ ul.hero-menu li a:hover {
     position: relative;
     width: 320px;
     height: 320px;
-    background-color: #55394a;
-    text-align:center
-
 }
 .cultivos-img {
     object-fit: cover;
@@ -210,25 +212,41 @@ ul.hero-menu li a:hover {
 }
 
 .cultivos-title{
-    width: 320px;
     position: absolute;
-    font-family: 'DM Serif Display', serif;
-    color: #ffffff;
-    font-size: 22px;
-    line-height: 30px;
-    letter-spacing: 1px;
+    top: 0px;
+    left: 0px;
+    width: 320px;
+    height: 320px;
+    text-decoration: none;
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+    transition: all .4s ease-in-out;
+}
+
+.cultivos-title:hover{
+    background-color: rgba(85, 57, 74, .5);
+}
+
+.cultivos-title h3{
+    text-decoration: none;
     font-weight: 400;
-    left: 50%;
-    margin-left: -160px;
-    bottom: 40px;
+    padding-bottom: 30px;
 }
 
 #recomendados {
-    margin: 40px;
+    padding: 40px 0;
 }
+
+.divider{
+    border-top: solid 1px #412838;
+    width: 15%;
+    margin: auto;
+}
+
 .recomendados-grid{
     display: grid;
-
 }
 
 .footer-wapper{
@@ -294,36 +312,46 @@ ul.hero-menu li a:hover {
 
 .footer-news a{
     color: #ffffff;
+    font-size: 10px;
     text-decoration: none;
-    margin: 15px 0 0 10px;
+    margin: 15px 0 0 15px;
+}
+
+.footer-news-form {
+    display: flex;
+	justify-content: center;
+    margin-bottom: 20px;
 }
 
 .footer-news__field {
-    width: 250px;
-    height: 40px;
+    width: 210px;
+    height: 30px;
+    border: none;
     padding-left: 10px;
 }
 
 .footer-news__field:focus {
     background-color: #ffffff;
+    font-size: 11px;
     color: #412838;
 }
 
 .footer-news__submit{
     background-color: #faeeed;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: normal;
     color: #412838;
     border: none;
-    height: 38px;
+    height: 30px;
     padding: 0 10px;
-    margin: 0;
+    margin: 0 0 0 5px;
     border-radius: 0px;
+    transition: all .4s ease-in-out;
 }
 
 .footer-news__submit:hover{
-    color: #55394a;
-    transition: all 200ms;
+    background-color: rgba(250, 238, 237, 0.3);
+    color: #faeeed;
 }
 
 
