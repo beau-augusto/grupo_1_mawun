@@ -755,4 +755,40 @@ ul.hero-menu li a:hover {
     margin-left: auto;
 }
 
+/** Migue INICIO**/
+.form-login {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
+    padding: 10px;
+    margin: 50px;
+}
+
+.form-name{
+    padding: 5px 10px;
+    margin: 10px 0;
+}
+
+.form-password{
+    padding: 5px 10px;
+    margin: 10px 0;
+}
+
+.form-button-submit {
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding-top: 10px 20px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #412838;
+}
+
+
+
+/** Migue FIN**/
 
