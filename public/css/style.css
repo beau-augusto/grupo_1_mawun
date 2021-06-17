@@ -757,11 +757,6 @@ ul.hero-menu li a:hover {
 
 /** Migue INICIO**/
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 .form-login {
     display: flex;
     flex-direction: column;
@@ -803,7 +798,7 @@ ul.hero-menu li a:hover {
 .form-login a {
     color: #666666;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .form-login a:hover {
