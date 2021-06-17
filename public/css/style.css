@@ -27,22 +27,25 @@ h2 {
     color: #412838;
     font-size: 26px;
     text-align: center;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 h3{
-    font-family: 'DM Serif Display', serif;
     color: #faeeed;
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 22px;
+    line-height: 30px;
     letter-spacing: 1px;
 }
-
 h4{
+    color: #666666;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+h5{
     color: #ffffff;
     font-size: 13px;
     font-weight: 500;
-
     padding-top: 30px;
 }
 
@@ -56,14 +59,14 @@ input:focus {
 }
 
 .bgc-fw {
-    background-color: #412838;
+    background-color: #55394a;
 }
 
 .hero-top {
     display: flex;
-    align-content: flex-end;
-    align-items: center;
-    justify-content: space-between;
+	justify-content: space-between;
+	align-items: center;
+	align-content: flex-end;
     max-width: 1100px;
     padding: 10px 0;
     margin: auto;
@@ -71,6 +74,8 @@ input:focus {
 
 .hero-search{
     display: flex;
+    justify-content: center;
+	align-items: center;
     height: 30px;
     margin-bottom: 0px;
 }
@@ -133,11 +138,11 @@ ul.hero-menu li a {
     text-decoration: none;
     text-transform: uppercase;
     transition: background-color 0.5s ease;
-    background-color: #412838;
+    background-color: #55394a;
 }
 
 ul.hero-menu li a:hover {
-    background-color: #55394a;
+    background-color: #412838;
 }
 
 .hero-cart{
@@ -231,12 +236,12 @@ ul.hero-menu li a:hover {
 
 .cultivos-title h3{
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 600;
     padding-bottom: 30px;
 }
 
 #recomendados {
-    padding: 40px 0;
+    padding: 60px 0 0;
 }
 
 .divider{
@@ -245,8 +250,56 @@ ul.hero-menu li a:hover {
     margin: auto;
 }
 
-.recomendados-grid{
+.product-grid{
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 30px 30px;
+    padding: 50px 0 0;
+}
+.product-grid-item {
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
+  }
+
+.product-grid-img {
+    width: 200px;
+}
+
+.product-grid-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 10px 0;
+}
+
+.button-wrap{
+    margin: 25px 0 15px;
+}
+
+.product-grid-button {
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-grid-button:hover {
+    background-color:#faeeed;
+    color: #55394a;
+}
+
+#ads-banner{
+    padding: 40px 0;
+}
+.ads-banner-wrapper{
+    position: relative;
 }
 
 .footer-wapper{
@@ -708,4 +761,55 @@ ul.hero-menu li a:hover {
     margin-left: auto;
 }
 
+/** Migue INICIO**/
 
+.form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
+    width: 400px;
+    height: 250px;
+    background: #fff;
+    margin: auto;
+    margin-top: 180px;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
+    padding: 20px 30px;
+    border-top: 4px solid #744b64;
+}
+
+.form-input{
+    font-weight: 300;
+    padding: 5px 10px;
+    margin: 10px 0;
+    width: 300px;
+}
+
+.form-button-submit {
+    font-weight: 300;
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 3px;
+    background-color: #412838;
+    margin-bottom: 15px;
+}
+
+.form-login p {
+    text-align: center;
+}
+
+.form-login a {
+    color: #666666;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.form-login a:hover {
+    text-decoration: underline;
+}
+
+/** Migue FIN**/
