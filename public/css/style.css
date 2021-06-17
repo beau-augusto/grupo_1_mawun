@@ -295,6 +295,13 @@ ul.hero-menu li a:hover {
     color: #55394a;
 }
 
+#ads-banner{
+    padding: 40px 0;
+}
+.ads-banner-wrapper{
+    position: relative;
+}
+
 .footer-wapper{
     margin-top: 60px;
     padding: 20px 0;
@@ -776,6 +783,7 @@ ul.hero-menu li a:hover {
     font-weight: 300;
     padding: 5px 10px;
     margin: 10px 0;
+    width: 300px;
 }
 
 .form-button-submit {
@@ -784,7 +792,7 @@ ul.hero-menu li a:hover {
     color: #ffffff;
     border: none;
     cursor: pointer;
-    padding-top: 10px 20px;
+    padding: 10px 20px;
     margin: 5px 0;
     border-radius: 3px;
     background-color: #412838;
@@ -806,4 +814,3 @@ ul.hero-menu li a:hover {
 }
 
 /** Migue FIN**/
-
