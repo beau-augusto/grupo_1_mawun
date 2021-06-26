@@ -971,7 +971,8 @@ h5 {
     width: 180px;
 }
 .bo-profile-wrap{
-display: flex;
+    display: flex;
+    align-items: center;
 }
 .bo-profile-txt{
     color: #412838;
@@ -991,6 +992,13 @@ display: flex;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+.abm-title{
+    font-size: 22px;
+    padding: 0 20px;
+    margin: 10px 0;
+    text-transform: uppercase;
+
 }
 .abm-form-wrapper{
     display: flex;
@@ -1031,12 +1039,48 @@ display: flex;
 }
 select:required:invalid {
     color: gray;
-  }
-  option[value=""][disabled] {
+}
+option[value=""][disabled] {
     display: none;
-  }
-  option {
+}
+option {
     color: black;
+}
+.abm-button-wrap{
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 10px;
+}
+.abm-button-submit {
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    border: #55394a solid 1px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+.abm-button-submit:hover {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+}
+.abm-file-input {
+    margin-left: -5px;
+  }
+.abm-file-input::-webkit-file-upload-button {
+    font-size: 13px;
+    color: #55394a;
+    border: solid 1px #55394a;
+    background-color:#faeeed;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
   }
 
 .bo-footer-wapper{
@@ -1050,4 +1094,47 @@ select:required:invalid {
 }
 .bo-footer-logo{
     width: 150px;
+}
+
+@media (max-width: 768px){ /* Tablets */
+    .abm-producto-wrapper {
+        padding: 0 20px;
+    }
+    .bo-footer-wapper {
+        padding: 10px 20px;
+    } 
+}
+@media (max-width: 468px){ /* BO Smartphones */
+    .bo-top {
+        padding: 5px 20px;
+    }
+    .bo-logo {
+        width: 100px;
+    }
+    .abm-title {
+        font-size: 16px;
+    }
+    .abm-form-wrapper {
+        padding: 15px;
+    }
+    .abm-input-container {
+        flex-direction: column;
+    }
+    .abm-input-wrap {
+        padding: 8px 0px;
+        width: 100%;
+    }
+    .abm-input-wrap-desc {
+        padding: 15px 0;
+        width: 100%;
+    }
+    .abm-button-submit {
+        width: 100%;
+    }
+    .bo-footer-wapper {
+        padding: 10px 10px;
+        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
 }
