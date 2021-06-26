@@ -30,39 +30,42 @@
             <div class="abm-producto-wrapper">
                 <h2>Crear Producto</h2>
                 <form action="" class="abm-form-wrapper">
-                    <div class="abm-input">
-                        <label for="">Nombre del Producto</label>
-                        <input type="text" placeholder="Nombre del Producto">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="" class="abm-input-tit">Nombre del Producto</label>
+                            <input type="text" placeholder="Nombre del Producto" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="" class="abm-input-tit">Categoria</label>
+                            <select name="" id="" class="abm-input">
+                                <option value="" disabled selected>Seleccione Categoría</option>
+                                <option value="Orgánicos">Orgánicos</option>
+                                <option value="Biodinámicos">Biodinámicos</option>
+                                <option value="Naturales">Naturales</option>
+                            </select>
+                        </div> 
                     </div>
-                    <div>
-                    <div>
-                        <label for="">Categoria</label>
-                        <select name="" id="">
-                            <option value="" disabled selected>Seleccione Categoría</option>
-                            <option value="Orgánicos">Orgánicos</option>
-                            <option value="Biodinámicos">Biodinámicos</option>
-                            <option value="Naturales">Naturales</option>
-                        </select>
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="" class="abm-input-tit">Precio</label>
+                            <input type="number" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="" class="abm-input-tit">Variedad</label>
+                            <input type="text"  class="abm-input">
+                        </div>
                     </div>
-                    <div>
-                        <label for="">Variedad</label>
-                        <input type="text">
+                    <div class="abm-input-wrap-desc">
+                        <label for="" class="abm-input-tit">Descripción</label>
+                        <textarea id="prod-desc" name="prod-desc" rows="6" cols="100" placeholder="Descripción"  class="abm-input"></textarea>
                     </div>
-                    </div>
-                    <div>
-                        <label for="">Precio</label>
-                        <input type="number"></div>
-                    <div>
-                        <label for="">Descripción</label>
-                        <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Descripción"></textarea></div>
-                    <div>
-                        <label for="">Imagen</label>
+                    <div class="abm-input-wrap"  class="abm-input">
+                        <label for="" class="abm-input-tit">Imagen</label>
                         <input type="file" class="register-file-input">
                     </div>
 
                     <button>GUARDAR</button>
                     
-
                 </form>
             </div>
 
