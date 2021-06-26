@@ -974,8 +974,9 @@ h5 {
     display: flex;
     align-items: center;
 }
-.bo-profile-txt{
+.bo-profile-txt {
     color: #412838;
+    font-size: 16px;
 }
 .bo-profile{
     color: #412838;
@@ -1082,7 +1083,6 @@ option {
     border-radius: 3px;
     margin-bottom: 15px;
   }
-
 .bo-footer-wapper{
     display: flex;
     justify-content: space-between;
@@ -1110,6 +1110,12 @@ option {
     }
     .bo-logo {
         width: 100px;
+    }
+    .bo-profile-txt {
+        font-size: 14px;
+    }
+    .abm-productos {
+        padding: 20px 0;
     }
     .abm-title {
         font-size: 16px;
