@@ -28,6 +28,7 @@
         </div>
         <div class="bgc-fw">
             <nav class="hero-menu-wrapper container">
+                <div class="hero-burger-wrap"><i class="fas fa-bars"></i></div>
                 <ul class="hero-menu">
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/detalle-producto.html">Tienda</a></li>
@@ -42,66 +43,67 @@
             </nav>
         </div>
     </header>
-
-    <form action="register.html" method="POST">
-        <div class="form-login">
-            <h1>Registro</h1>
-            <div>
-                <label for="Nombre"></label>
-                <input class="form-input" type="text" maxlength="25" placeholder="Nombre de Usuario" name="nombre" id="nombre" required>
+    <main>
+        <section class="abm-productos container">
+            <div class="abm-producto-wrapper">
+                <h2 class="abm-title">Registro</h2>
+                <form action="" class="abm-form-wrapper">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="Nombre" class="abm-input-tit">Nombre</label>
+                            <input type="text" id="name" placeholder="Nombre" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="Apellido" class="abm-input-tit">Apellido</label>
+                            <input type="text" id="Aplellido" placeholder="Apellido" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap-email">
+                            <label for="Email" class="abm-input-tit">Email</label>
+                            <input type="email" id="email" placeholder="Email" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit">Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>     
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>     
+                    </div>
+                    <div class="abm-button-wrap">
+                        <button type="submit" class="abm-button-submit">ENVIAR</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label for="Apellido"></label>
-                <input class="form-input" type="text" maxlength="12" placeholder="Apellido de Usurario" name="apellido" id="apellido" required>
+        </section>
+    </main>
+    <footer class="bgc-fw">
+        <div class="footer-wapper container">
+            <div class="footer-contact">
+                <img class="footer-logo" src="/images/mawun-logo-w.svg" alt="Mawun Wines">
+                <a href="#" class="footer-link"><i class="far fa-map"></i></i><p>Calle Nombre 815</p></a>
+                <a href="#" class="footer-link"><i class="fab fa-whatsapp"></i><p>54 11 3210 7654</p></a>
+                <a href="#" class="footer-link"><i class="far fa-envelope"></i><p>info@mawun.wine</p></a>
             </div>
-            <div>
-                <label for="Email"></label>
-                <input class="form-input" type="email" maxlength="30" placeholder="Ej. juancito@gmail.com" name="email" id="email" required>
+            <div class="footer-social-wrapper">
+                <h5>SEGUINOS</h5>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f" style="padding-left: 10px;"></i></a>
+                </div>
             </div>
-            <div>
-                <label for="password"></i> </label>
-                <input class="form-input" type="password" maxlength="15" placeholder="Contraseña" name="clave" id="password" required>
+            <div class="footer-news-wrapper">
+                <h5>SUSCRIBITE AL NEWSLETTER</h5>
+                <form action="/" method="POST" class="footer-news-form">
+                    <input type="email" class="footer-news__field" maxlength="256" placeholder="Tu e-mail" required>
+                    <button class="footer-news__submit">SUSCRIBIRSE</button>
+                </form>
+                <div class="footer-news">
+                    <a href="#">Términos & Condiciones</a>
+                    <a href="#">Póliticas de Privacidad</a>
+                </div>
             </div>
-            <div>
-                <label for="password"></i> </label>
-                <input class="form-input" type="password" maxlength="15" placeholder=" Confirmar contraseña" name="clave" id="password" required>
-            </div>
-            <div>
-                <button class="form-button-submit" type="submit">Enviar</button>
-            </div>
-            </form>
         </div>
-        <footer class="bgc-fw">
-            <div class="footer-wapper container">
-                <div class="footer-contact">
-                    <img class="footer-logo" src="/images/mawun-logo-w.svg" alt="Mawun Wines">
-                    <a href="#" class="footer-link"><i class="far fa-map"></i></i><p>Calle Nombre 815</p></a>
-                    <a href="#" class="footer-link"><i class="fab fa-whatsapp"></i><p>54 11 3210 7654</p></a>
-                    <a href="#" class="footer-link"><i class="far fa-envelope"></i><p>info@mawun.wine</p></a>
-                </div>
-                <div class="footer-social-wrapper">
-                    <h5>SEGUINOS</h5>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                <div class="footer-news-wrapper">
-                    <h5>SUSCRIBITE AL NEWSLETTER</h5>
-                    <form action="/" method="POST" class="footer-news-form">
-                        <input type="email" class="footer-news__field" maxlength="256" placeholder="Tu e-mail" required>
-                        <button class="footer-news__submit">SUSCRIBIRSE</button>
-                    </form>
-                    <div class="footer-news">
-                        <a href="#">Términos & Condiciones</a>
-                        <a href="#">Póliticas de Privacidad</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-
-    
+    </footer>
 </body>
 </html>

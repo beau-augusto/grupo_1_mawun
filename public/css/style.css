@@ -1022,6 +1022,12 @@ h5 {
     padding: 15px 10px;
     width: 50%;
 }
+.abm-input-wrap-email {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    width: 100%;
+}
 .abm-input-wrap-desc{
     display: flex;
     flex-direction: column;
