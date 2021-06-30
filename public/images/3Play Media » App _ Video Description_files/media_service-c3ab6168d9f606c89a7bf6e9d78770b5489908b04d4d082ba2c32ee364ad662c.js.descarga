@@ -1,0 +1,90 @@
+var app = angular.module('ViDApp');
+app.service('mediaService', ['$timeout', 
+                             'descriptionService',
+                             'videoService',
+  function($timeout, 
+           descriptionService,
+           videoService) { 
+  
+  this.descriptionService = descriptionService;
+  this.videoService = videoService;
+
+  this.playFromDesc = function(desc){
+    var that = this;
+    this.clearVideoPlayerTimeout();
+    
+    var currentDesc = this.descriptionService.currentDescription();
+    if (currentDesc != null && currentDesc.snippetStatus === 'complete'){
+      this.pauseSnippetPlayer(currentDesc)
+    }
+    this.descriptionService.setCurrentIndex(desc.index);
+    this.playSnippetPlayer(desc);
+
+    if (!(desc.startTime === videoService.videoDuration() && desc.endTime === videoService.videoDuration())) {
+      videoService.seek(desc.startTime);
+      this.setVideoPlayerTimeout(desc);
+    }
+  }
+
+  this.setVideoPlayerTimeout = function(desc){
+    var that = this;
+    this.clearVideoPlayerTimeout();
+    var snippetAudioPlayer = this.snippetAudioPlayer(desc.id);
+    var duration = desc.endTime - desc.startTime;
+    if (desc.extended) {      
+      this.vidPlayerTimeout = $timeout(function(){
+        that.videoService.pauseVideo();
+
+        that.vidStartTimeout = $timeout(function() {
+          that.videoService.playVideo();
+
+          that.vidStopTimout = $timeout(function() {
+            that.videoService.pauseVideo();
+            desc.snipPlayerState = "stopped"
+
+          }, 2000);
+
+        }, (snippetAudioPlayer.duration * 1000) - (snippetAudioPlayer.currentTime * 1000));
+      }, duration);
+    } else {
+      this.vidPlayerTimeout = $timeout(function(){
+        that.videoService.pauseVideo();
+        desc.snipPlayerState = "stopped"
+      }, duration + 1000);
+    }
+  }
+
+  this.clearVideoPlayerTimeout = function() {
+    $timeout.cancel(this.vidPlayerTimeout);
+    $timeout.cancel(this.vidStartTimeout);
+    $timeout.cancel(this.vidStopTimout);
+  };
+
+  this.stopFromDesc = function(desc){
+    if (desc == null) { return; }
+    this.clearVideoPlayerTimeout();
+    var snippetAudioPlayer = this.snippetAudioPlayer(desc.id);
+    snippetAudioPlayer.pause();
+    videoService.pauseVideo();
+    desc.snipPlayerState = "stopped"
+  }
+
+  this.playSnippetPlayer = function(desc) {
+    var snippetAudioPlayer = this.snippetAudioPlayer(desc.id);
+    snippetAudioPlayer.currentTime = 0;
+    snippetAudioPlayer.play();
+    desc.snipPlayerState = "playing";
+  }
+
+  this.pauseSnippetPlayer = function(desc) {
+    var snippetAudioPlayer = this.snippetAudioPlayer(desc.id);
+    snippetAudioPlayer.pause();
+    desc.snipPlayerState = 'stopped';
+  }
+
+  this.snippetAudioPlayer = function(descId) {
+    var snippetId = "snippet-" + String(descId)
+    return document.getElementById(snippetId);
+  }
+
+}]);

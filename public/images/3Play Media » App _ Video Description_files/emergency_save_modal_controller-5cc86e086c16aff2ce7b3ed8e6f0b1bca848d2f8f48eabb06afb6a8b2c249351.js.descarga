@@ -1,0 +1,13 @@
+var ViDApp = angular.module('ViDApp');
+ViDApp.controller('EmergencySaveModalInstanceCtrl', function ($uibModalInstance, data) {
+  var $ctrl = this;
+  $ctrl.data = data;
+
+  $ctrl.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});

@@ -1,0 +1,265 @@
+var app = angular.module('ViDApp');
+app.service('domService', ['$uibModal',
+                          '$rootScope',
+                          'dataService',
+                          'transcriptService',
+                          'descriptionService',
+  function($uibModal,
+           $rootScope,
+           dataService,
+           transcriptService,
+           descriptionService) {
+
+  // this.showClocks = false;
+  this.dataService = dataService;
+  this.transcriptService = transcriptService;
+  this.descriptionService = descriptionService;
+
+  this.initListeners = function(){
+    var that = this;
+    $(document).ready(function(){
+
+      $('#ViD').bind('contextmenu', function() { return false; });
+
+      $(document).on("mouseenter", "#ViD", function(){
+        $("#ViD").prop("controls", true);
+      });
+
+      $(document).on("mouseleave", "#ViD", function(){
+        $("#ViD").prop("controls", false);
+      });
+
+      $rootScope.$on('desc-update', function (event, desc) {
+        that.updateCellsDisplayClass(desc);
+      });
+      $rootScope.$on('desc-delete', function (event, desc) {
+        that.clearCellDisplayClasses(desc);
+      });
+      $rootScope.$on('update-cells', function (event, desc) {
+        that.computeCellKlasses(that.dataService.transcript.cells);
+      });
+    });
+  }
+
+  this.descriptionFitClasses = function(desc) {
+    var fitClasses = [];
+    if (desc == null) {return fitClasses};
+
+    if (_.isEmpty(desc.violations)){
+      fitClasses = ['fa-check icon-green'];
+    } else {
+      fitClasses = ['fa-exclamation-circle icon-red'];
+      if (_.some(desc.violations, function(violation) {return violation.violationTarget === 'description'})) {
+        fitClasses.push('fa-audio-description');
+      }
+      if (_.some(desc.violations, function(violation) {return violation.violationTarget === 'gap'})) {
+        fitClasses.push('fa-file-text-o');
+      }
+    }
+    return fitClasses;
+  }
+
+  this.descriptionFitToolTips = function(desc, index) {
+    var fitClass = this.descriptionFitClasses(desc)[index];
+    if ((fitClass === 'fa-check icon-green') || (fitClass === 'fa-exclamation-circle icon-red')) {
+      return null
+    } else if (fitClass === 'fa-audio-description') {
+      return 'Overlapping descriptions'
+    } else if (fitClass === 'fa-file-text-o') {
+      return 'Description may overlap speech or transcript end'
+    }
+  }
+
+  this.finishToolTip = function(last_page) {
+    var toolTip = null;
+    if (!last_page) {
+      toolTip = "Please navigate to the final page to finish"
+    }
+    return toolTip
+  }
+
+  this.updateCellsDisplayClass = function(desc) {
+    // find cells relevant to updated description and update their styling
+    var cellsToUpdate = this.findRelevantCells(desc);
+    this.computeCellKlasses(cellsToUpdate);
+    return cellsToUpdate;
+  }
+
+  this.refreshSurroundingParagraphCellDisplay = function(desc) {
+    var cellsToUpdate = this.findSurroundingParagraphCells(desc);
+    this.computeCellKlasses(cellsToUpdate);
+    return cellsToUpdate;
+  }
+
+  this.clearCellDisplayClasses = function(desc) {
+    var cellsToUpdate = this.findRelevantCells(desc);
+    _.each(cellsToUpdate, function(cell) {
+      _.remove(cell.displayClasses, function(klass) {
+        return (klass === 'video_description_present' || klass === 'video_description_extended_present');
+      });
+    })
+  }
+
+  this.findSurroundingParagraphCells = function(desc) {
+    var relevantCells = [];
+    var that = this;
+    var paragraphs = dataService.transcript.paragraphs;
+    var pTimeSets = _(dataService.transcript.paragraphs)
+    .map(function(paragraphTime, ii) {
+      var nextParagraph = paragraphs[ii+1];
+      var nextParagraphTime = nextParagraph == null ? that.dataService.transcript.duration*1000 : nextParagraph;
+      return {
+        shouldRefresh: that.descOverlapsParagraph(desc, paragraphTime, nextParagraphTime),
+        paragraphTime: paragraphTime,
+        index: ii
+      };
+    })
+    .filter(function(pSet) {
+      return pSet.shouldRefresh === true;
+    })
+    .value();
+
+    var firstP = _.first(pTimeSets);
+    var lastP = _.last(pTimeSets);
+
+    if (firstP != null && firstP.index !== 0) {
+      var prevParagraph = paragraphs[firstP.index - 1];
+      pTimeSets.unshift({
+        shouldRefresh: true,
+        paragraphTime: prevParagraph,
+        index: firstP.index - 1
+      })
+    }
+
+    if (lastP != null && lastP.index !== paragraphs.length - 1) {
+      var nextParagraph = paragraphs[lastP.index + 1];
+      pTimeSets.push({
+        shouldRefresh: true,
+        paragraphTime: nextParagraph,
+        index: lastP.index + 1
+      })
+    }
+
+    _.each(pTimeSets, function(pTimeSet, ii) {
+      var cells = dataService.transcript.groupedCells[String(pTimeSet.paragraphTime)]
+      _.each(cells, function(cell, ii) {
+        relevantCells.push(cell);
+      })
+    })
+    return relevantCells;
+  }
+
+  this.descOverlapsParagraph = function(desc, paragraphTime, nextParagraphTime) {
+    var currentStartTimeInParagraph = paragraphTime <= desc.startTime && desc.startTime <= nextParagraphTime;
+    var descCoversParagraph = desc.startTime <= paragraphTime && nextParagraphTime <= desc.endTime;
+    var currentEndTimeInParagraph = paragraphTime <= desc.endTime && desc.endTime <= nextParagraphTime;
+    var previousStartTimeInParagraph = paragraphTime <= desc.previousStartTime && desc.previousStartTime <= nextParagraphTime;
+    var descCoversParagraphByPrevTime = desc.previousStartTime <= paragraphTime && nextParagraphTime <= desc.previousEndTime;
+    var previousEndTimeInParagraph = paragraphTime <= desc.previousEndTime && desc.previousEndTime <= nextParagraphTime;
+    return currentStartTimeInParagraph || descCoversParagraph || currentEndTimeInParagraph || previousStartTimeInParagraph || descCoversParagraphByPrevTime || previousEndTimeInParagraph
+  }
+
+  // this will retrieve cells that are overlapping the description timestamps
+  this.findRelevantCells = function(desc) {
+    var relevantCells = [];
+    var that = this;
+    _.each(dataService.transcript.paragraphs, function(paragraphTime, ii) {
+      // only search relevant paragraph for cells
+      var nextParagraph = dataService.transcript.paragraphs[ii+1];
+      var nextParagraphTime = nextParagraph == null ? dataService.transcript.duration : nextParagraph;
+      // if the start or end time are within the paragraph boundaries, there are relevant cells to search
+      if (that.descOverlapsParagraph(desc, paragraphTime, nextParagraphTime)) {
+        var cells = dataService.transcript.groupedCells[String(paragraphTime)]
+        _.each(cells, function(cell) {
+          var descStartsInMiddleOfCell = cell.time <= desc.startTime && desc.startTime <= cell.endTime;
+          var descCoversCell = desc.startTime <= cell.time && cell.endTime <= desc.endTime;
+          var descEndsInMiddleOfCell = cell.time <= desc.endTime && desc.endTime <= cell.endTime;
+          var descPrevStartInMiddleOfCell = cell.time <= desc.previousStartTime && desc.previousStartTime <= cell.endTime;
+          var descCoversCellByPrevTime = desc.previousStartTime <= cell.time && cell.endTime <= desc.previousEndTime;
+          var descPrevEndsInMiddleOfCell = cell.time <= desc.previousEndTime && desc.previousEndTime <= cell.endTime;
+
+          if (descStartsInMiddleOfCell || descCoversCell || descEndsInMiddleOfCell || descPrevStartInMiddleOfCell || descCoversCellByPrevTime || descPrevEndsInMiddleOfCell) {
+            relevantCells.push(cell);
+          }
+        })
+      }
+    })
+    return relevantCells;
+  }
+
+  this.computeCellKlasses = function(cells) {
+    _.each(cells, function(cell, index) {
+      var cellKlasses = [];
+      if (transcriptService.belongsToGap(cell.timestamp)) {cellKlasses.push('video_description_blanks')};
+      var descs = descriptionService.findDescriptionsInRange(cell.time, cell.endTime)
+      descs = _.reject(descs, function(desc){ return desc.startTime === cell.endTime });
+      if (!_.isEmpty(descs)) {
+        cellKlasses.push('video_description_present');
+        var lastCellInExtendedDesc = _.some(descs, function(desc){
+          var lastCellInDesc = cell.time <= desc.endTime && desc.endTime <= cell.endTime;
+          var lastCellInTranscript = desc.endTime === dataService.transcript.duration && cell.endTime === dataService.transcript.duration;
+          return desc.extended && (lastCellInDesc || lastCellInTranscript);
+        });
+        if (lastCellInExtendedDesc) {
+          cellKlasses.push('video_description_extended_present');
+        }
+      };
+      cell.displayClasses = cellKlasses;
+      return cell;
+    })
+  }
+
+  this.startSpinner = function(id) {
+    id = id || 'ajax-spinner';
+    var opts = {
+      lines: 13 // The number of lines to draw
+    , length: 28 // The length of each line
+    , width: 14 // The line thickness
+    , radius: 40 // The radius of the inner circle
+    , scale: 1 // Scales overall size of the spinner
+    , corners: 1 // Corner roundness (0..1)
+    , color: '#000' // #rgb or #rrggbb or array of colors
+    , opacity: 0.25 // Opacity of the lines
+    , rotate: 0 // The rotation offset
+    , direction: 1 // 1: clockwise, -1: counterclockwise
+    , speed: 1 // Rounds per second
+    , trail: 60 // Afterglow percentage
+    , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+    , className: 'spinner' // The CSS class to assign to the spinner
+    , top: '50%' // Top position relative to parent
+    , left: '50%' // Left position relative to parent
+    , shadow: false // Whether to render a shadow
+    , hwaccel: false // Whether to use hardware acceleration
+    , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById(id);
+    this.spinner = new Spinner(opts).spin(target);
+  }
+
+  this.stopSpinner = function() {
+    this.spinner.stop();
+  }
+
+   this.openModal = function (title, body) {
+    title = title || 'Video Description';
+    body = body || '';
+    $uibModal.open({
+      ariaLabelledBy: 'modal-title-bottom',
+      ariaDescribedBy: 'modal-body-bottom',
+      templateUrl: 'general-modal.html',
+      size: 'med',
+      resolve: {
+        title: function () {
+          return title;
+        },
+        body: function () {
+          return body;
+        }
+      },
+      controller: 'GeneralModalInstanceCtrl',
+      controllerAs: '$ctrl'
+    });
+  }
+
+}]);

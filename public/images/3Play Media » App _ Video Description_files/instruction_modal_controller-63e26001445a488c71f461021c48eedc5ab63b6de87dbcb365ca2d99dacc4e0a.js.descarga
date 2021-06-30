@@ -1,0 +1,14 @@
+var ViDApp = angular.module('ViDApp');
+ViDApp.controller('InstructionModalInstanceCtrl', function ($uibModalInstance, $sce, instructions) {
+  var $ctrl = this;
+  $ctrl.$sce = $sce;
+  $ctrl.instructions = instructions;
+
+  $ctrl.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});

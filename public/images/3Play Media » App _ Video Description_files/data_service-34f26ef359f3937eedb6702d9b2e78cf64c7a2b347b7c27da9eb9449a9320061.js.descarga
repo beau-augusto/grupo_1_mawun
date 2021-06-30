@@ -1,0 +1,195 @@
+var app = angular.module('ViDApp');
+app.service('dataService', ['$rootScope', '$uibModal', function($rootScope, $uibModal) {
+  this.loaded = false;
+  this.transcript = {
+    words: {},
+    paragraphs: [],
+    cells: {},
+    duration: 0,
+    minPerPage: 30,
+    currentPage: 1,
+    numPages: 0,
+    startTime: 0,
+    endTime: 0
+  };
+  this.nudgeAmount = 0.3;
+  this.playbackRate = 1.0;
+  this.transcriptGaps = [];
+  this.messageCategories = [];
+  this.job = false;
+  this.applicationTitle = 'SAVI';
+  this.phoneticSuggestions = [];
+  this.nextJobId = false;
+  this.generalNotes = null;
+
+  this.setData = function(response) {
+    this.descriptions = response.data.descriptions;
+    this.speakingRate = response.data.speaking_rate;
+    this.googleSpeaker = response.data.google_speaker;
+    this.homeUrl = response.data.home_url;
+    this.xappStepUrl = response.data.xapp_step_url;
+    this.transcript.words = response.data.transcript_words;
+    this.transcript.paragraphs = response.data.transcript_paragraphs;
+    this.transcript.duration = parseInt(response.data.transcript_duration, 10);
+    this.transcript.minPerPage = response.data.min_per_page;
+    this.transcript.currentPage = response.data.page;
+    this.transcript.paginationData = response.data.pagination_data;
+    this.transcript.startTime = response.data.start_time;
+    this.transcript.endTime = response.data.end_time;
+    this.transcriptGaps = response.data.transcript_gaps;
+    this.instructions = response.data.instructions;
+    this.messageCategories = response.data.message_categories;
+    this.job = response.data.job;
+    this.nextJobId = response.data.next_job_id;
+    this.phoneticSuggestions = response.data.phonetic_suggestions === null ? [] : response.data.phonetic_suggestions;
+    this.generalNotes = response.data.general_notes;
+    this.validationErrors = response.data.errors
+  }
+
+  this.sortData = function() {
+    this.transcriptGaps = _.sortBy(this.transcriptGaps, function(gap){
+      return gap.startTime;
+    });
+
+    this.transcriptGapsEndSorted = _.sortBy(this.transcriptGaps, function(gap){
+      return gap.endTime;
+    });
+  }
+
+  this.sortDescriptions = function(){
+    this.descriptions = _.orderBy(this.descriptions, function(desc) {
+      return desc.startTime;
+    });
+  }
+
+  this.refreshTitle = function() {
+    if (this.job.extended) {this.applicationTitle = 'SAVI Extended'};
+  }
+
+  this.parseSnippet = function(responseData) {
+    return {
+      id: responseData.audio_snippet_id,
+      audioSourceUrl: responseData.audio_source_url,
+      duration: responseData.audio_duration,
+      text: responseData.text
+    }
+  }
+
+  this.generateNewDescId = function() {
+    ids = _.map(this.descriptions, function(desc) { return desc.id; });
+    return (_.max(ids) || 0) + 1;
+  }
+
+  this.reindexDescriptions = function() {
+    this.descriptions = _.map(this.descriptions, function (desc, ii) {
+      desc.index = ii;
+      return desc;
+    });
+  }
+
+  this.broadcastUpdateCells = function(desc) {
+    $rootScope.$broadcast('update-cells', desc);
+  }
+
+  this.broadcastSnippetSynthesis = function(desc) {
+    $rootScope.$broadcast('snippet-synthesized', desc);
+  }
+
+  this.resetPagination = function() {
+    this.transcript.currentPage = this.transcript.oldPage;
+    this.transcript.oldPage = null;
+    this.transcript.newPage = null;
+  }
+
+  this.openInfoModal = function() {
+    $uibModal.open({
+      ariaLabelledBy: 'modal-title-bottom',
+      ariaDescribedBy: 'modal-body-bottom',
+      templateUrl: 'info-modal.html',
+      size: 'med',
+      controller: 'InfoModalInstanceCtrl',
+      controllerAs: '$ctrl'
+    });
+  }
+
+  this.googlePronunciationExamples = [
+    {code: "pawlish", exampleUsage:"(noun) wood polish", word: "Polish"},
+    {code: "reed", exampleUsage:"(verb - present tense) Read a book", word: "Read"},
+    {code: "kaen", exampleUsage:"(noun) tin can", word: "Can"},
+    {code: "prehsint", exampleUsage:"(noun) Give her a present", word: "present"},
+    {code: "pre-zent", exampleUsage:"(verb) She will present her project.", word: "present"},
+    {code: "ax-iz", exampleUsage:"(noun) Firemen have axes", word: "axes"},
+    {code: "bauhs", exampleUsage:"(verb) She bows after performing.", word: "bows"},
+    {code: "led", exampleUsage:"(noun) Lead is a metal.", word: "lead"},
+    {code: "liv", exampleUsage:"(verb) I live in the city.", word: "live"}
+  ]
+
+  this.commonlyUsedPhoneticSpellings = [
+    {code: "KLOWS", exampleUsage:"(adjective) Close to me.", word: "Close"},
+    {code: "KLOWZ", exampleUsage:"(verb) Close the door.", word: "Close"},
+    {code: "KAANKRIYT", exampleUsage:"(noun) Pave it with concrete.", word: "Concrete"},
+    {code: "KAHNKRIYT", exampleUsage:"(adjective) I need concrete ideas.", word: "Concrete"},
+    {code: "AABJHEHKT", exampleUsage:"(noun) Pick up the object.", word: "Object"},
+    {code: "AHBJHEHKT", exampleUsage:"(verb) Your honor, I object", word: "Object"},
+    {code: "PRIYZEHNTS", exampleUsage:"(verb) She presents her project.", word: "Presents"},
+    {code: "STEHTHAXSKOWP", exampleUsage:"(noun) The doctor's stethoscope.", word: "Stethoscope"},
+    {code: "UWBER", exampleUsage:"(noun) Call an Uber.", word: "Uber"}
+  ]
+
+  this.phonemeData = [
+      {code: "AO", type: "vowel", example: "off, fall, frost"},
+      {code: "AA", type: "vowel", example: "father, cot"},
+      {code: "IY", type: "vowel", example: "bee, she"},
+      {code: "UW", type: "vowel", example: "you, new, food"},
+      {code: "EH", type: "vowel", example: "red, men"},
+      {code: "IH", type: "vowel", example: "big, win"},
+      {code: "UH", type: "vowel", example: "should, could"},
+      {code: "AH", type: "vowel", example: "but, sun, sofa, alone"},
+      {code: "AX", type: "vowel", example: "discus (note: not discuss)"},
+      {code: "AE", type: "vowel", example: "at, fast"},
+      {code: "EY", type: "vowel", example: "say, eight"},
+      {code: "AY", type: "vowel", example: "my, why, ride"},
+      {code: "OW", type: "vowel", example: "show, coat"},
+      {code: "AW", type: "vowel", example: "how, now"},
+      {code: "OY", type: "vowel", example: "boy, toy"},
+      {code: "Y", type: "vowel", example: "yes"},
+      {code: "W", type: "vowel", example: "way"},
+      {code: "ER", type: "vowel", example: "her, bird, hurt, nurse"},
+      {code: "AXR", type: "vowel", example: "father, coward"},
+      {code: "EHR", type: "vowel", example: "air, where, hair"},
+      {code: "UHR", type: "vowel", example: "cure; bureau, detour"},
+      {code: "AOR", type: "vowel", example: "more, bored, chord"},
+      {code: "AAR", type: "vowel", example: "large, hard"},
+      {code: "IHR or IYR", type: "vowel", example: "ear, near"},
+      {code: "AWR", type: "vowel", example: "In some dialects flower."},
+      {code: "P", type: "consonant", example: "pay"},
+      {code: "B", type: "consonant", example: "buy"},
+      {code: "T", type: "consonant", example: "take"},
+      {code: "D", type: "consonant", example: "day"},
+      {code: "K", type: "consonant", example: "key"},
+      {code: "G", type: "consonant", example: "go"},
+      {code: "CH", type: "consonant", example: "chair"},
+      {code: "JH", type: "consonant", example: "just, gym"},
+      {code: "F", type: "consonant", example: "for"},
+      {code: "V", type: "consonant", example: "very"},
+      {code: "TH", type: "consonant", example: "thanks, Thursday"},
+      {code: "DH", type: "consonant", example: "that, the, them"},
+      {code: "S", type: "consonant", example: "say"},
+      {code: "Z", type: "consonant", example: "zoo"},
+      {code: "SH", type: "consonant", example: "show"},
+      {code: "ZH", type: "consonant", example: "measure, pleasure"},
+      {code: "HH", type: "consonant", example: "house"},
+      {code: "M", type: "consonant", example: "man"},
+      {code: "EM", type: "consonant", example: "keep ’em"},
+      {code: "N", type: "consonant", example: "no"},
+      {code: "EN", type: "consonant", example: "button"},
+      {code: "NG", type: "consonant", example: "sing"},
+      {code: "ENG", type: "consonant", example: "Washington"},
+      {code: "L", type: "consonant", example: "late, fail"},
+      {code: "EL", type: "consonant", example: "bottle"},
+      {code: "R", type: "consonant", example: "run"},
+      {code: "DX", type: "consonant", example: "wetter"},
+      {code: "NX", type: "consonant", example: "wintergreen"},
+      {code: "Q", type: "consonant", example: "glottal stop, as in uh-oh."}
+  ]
+}]);

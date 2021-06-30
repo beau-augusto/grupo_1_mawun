@@ -1,0 +1,51 @@
+var ViDApp = angular.module('ViDApp');
+ViDApp.controller('ValidationsModalInstanceCtrl', function ($uibModalInstance, validationErrors, saveOptions, dataService, saveService) {
+  var $ctrl = this;
+  $ctrl.title = 'Validations Error';
+  $ctrl.validationErrors = validationErrors;
+  $ctrl.saveOptions = saveOptions;
+
+  $ctrl.cancel = function() {
+    if (!this.saveOptions["fromFinalize"]) {
+      dataService.resetPagination();
+    }
+    $uibModalInstance.close();
+  };
+
+  $ctrl.ok = function() {
+    if (!this.saveOptions["fromFinalize"]) {
+      dataService.resetPagination();
+    }
+    $uibModalInstance.close();
+  }
+
+  $ctrl.canContinue = function() {
+    return !_.some($ctrl.validationErrors, {validationType:'hard'});
+  }
+
+  $ctrl.continue = function () {
+    this.saveOptions.runValidations = false;
+    if (this.saveOptions.fromFinalize) {
+      this.saveOptions.shouldFinish = true;
+    }
+    if (dataService.nextJobId && this.saveOptions["shouldFinish"] && this.saveOptions["loadNext"]){ this.saveOptions["redirectToUrl"] = dataService.nextJobId}
+    saveService.saveJob(saveOptions)
+    $uibModalInstance.close();
+  }
+
+  $ctrl.proceedButtonText = function() {
+    return $ctrl.canContinue() ? 'Continue' : 'OK';
+  }
+
+  $ctrl.proceedButtonFunction = function() {
+    if ($ctrl.canContinue()) {
+      $ctrl.continue();
+    } else {
+      $ctrl.ok();
+    }
+  }
+
+  $ctrl.errorToolTipMessage = function(error) {
+    return error.validationType === 'hard' ? 'This error must be fixed before you can continue.' : 'This warning should be checked before continuing.'
+  }
+});

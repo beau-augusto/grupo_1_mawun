@@ -418,6 +418,12 @@ ul.hero-menu li a:hover {
     width: 91%;
 }
 
+.hero-banner-img-detalle {
+    width: 100%;
+    height: 84px;
+    object-fit: cover;
+    object-position: 73% 33%;
+}
 
 /* Imágenes de producto en detalle de compra */
 

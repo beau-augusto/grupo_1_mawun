@@ -1,0 +1,18 @@
+var ViDApp = angular.module('ViDApp');
+ViDApp.controller('FinalizeModalInstanceCtrl', function ($uibModalInstance, title, body, shouldLoadNext, qaRequested, saveService) {
+  var $ctrl = this;
+  $ctrl.title = title;
+  $ctrl.body = body;
+  $ctrl.saveService = saveService;
+  $ctrl.shouldLoadNext = shouldLoadNext;
+  $ctrl.qaRequested = qaRequested;
+
+  $ctrl.finalize = function () {
+    $uibModalInstance.close();
+  	$ctrl.saveService.finishJob({loadNext: $ctrl.shouldLoadNext, qaRequested: $ctrl.qaRequested, fromFinalize: true});
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.close(false);
+  };
+});

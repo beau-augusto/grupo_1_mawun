@@ -1,0 +1,54 @@
+var app = angular.module('ViDApp');
+app.service('transcriptService', ['dataService',
+  function(dataService) {
+
+    this.dataService = dataService;
+
+    this.transmuteTranscript = function() {
+      var that = this;
+      _.each(dataService.transcript.words, function(wordData, index) {
+        // find first paragraph that it fits
+        var timestamp = wordData[0];
+        var time = parseInt(timestamp, 10);
+        var words = wordData[1];
+        var nextWordData = dataService.transcript.words[index + 1];
+        var endTime = nextWordData != null ? parseInt(nextWordData[0], 10) : dataService.transcript.duration;
+        var pTime = _.find(dataService.transcript.paragraphs, function(paragraphTime, ii) {
+          var nextParagraphTime = dataService.transcript.paragraphs[ii+1];
+          if (nextParagraphTime == null) { return true };
+          return paragraphTime <= time && time < nextParagraphTime;
+        })
+        dataService.transcript.cells[timestamp] = {
+          timestamp: timestamp,
+          time: time,
+          endTime: endTime,
+          words: words,
+          paragraph: pTime,
+          displayClasses:[]
+        };
+      });
+
+      this.setGroupedCells();
+
+      _.each(dataService.descriptions, function(desc) {
+        desc.gapIndex = that.findDescriptionGapIndex(desc.startTime);
+      });
+    }
+
+    this.setGroupedCells = function() {
+      dataService.transcript.groupedCells = _.groupBy(dataService.transcript.cells, 'paragraph');
+    }
+
+    this.findDescriptionGapIndex = function(time){
+      return _.findIndex(dataService.transcriptGaps, function(gap) {
+        return time >= gap.start_time && time < gap.end_time;
+      });
+    }
+
+    this.belongsToGap = function(timestamp) {
+      var gap = _.find(dataService.transcriptGaps, function(gap) {
+        return timestamp >= gap.start_time && timestamp < gap.end_time;
+      })
+      return gap !== undefined;
+    }
+}]);

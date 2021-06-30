@@ -1,0 +1,31 @@
+var app = angular.module('ViDApp');
+app.service('stringService', ['$rootScope', function($rootScope) {
+  this.matchPresent = function(matchText, searchText, matchOptions) {
+    var matchPresent = false;
+    if (matchOptions.regularExpression) {
+      var flags = matchOptions.ignoreCase ? 'i' : '';
+      var regexp = new RegExp(matchText, flags);
+      matchPresent = regexp.test(searchText);
+    } else {
+      if (matchOptions.ignoreCase) {
+        matchText = matchText.toLowerCase();
+        searchText = searchText.toLowerCase();
+      }
+      matchPresent = searchText.indexOf(matchText) > -1;
+    }
+    return matchPresent;
+  }
+
+  this.msToHMS = function(ms) {
+    var milliseconds = parseInt((ms%1000)/100)
+        , seconds = parseInt((ms/1000)%60)
+        , minutes = parseInt((ms/(1000*60))%60)
+        , hours = parseInt((ms/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  }
+}]);

@@ -1,0 +1,96 @@
+var app = angular.module('ViDApp');
+app.service('videoService', [
+  function() {
+
+  this.player = function() {
+    return this.cachedPlayer = this.cachedPlayer || p3sdk.get(0).player;
+  }
+
+  this.p3 = function() {
+    return p3sdk.get(0);
+  }
+
+  this.p3Transcript = function() {
+    return this.p3().interactive_transcripts[0];
+  }
+
+  this.initializeVolume = function(){
+    document.getElementById("ViD").volume = 0.5
+  }
+
+  this.seek = function(ms){
+    this.player().seek(ms);
+    return this.player().play();
+  }
+
+  this.position = function() {
+    if (this.player()) { return this.player().position()};
+  }
+
+  this.state = function() {
+    if (this.player()) {return this.player().play_state()};
+  }
+
+  this.playVideo = function() {
+    return p3sdk.get(0).player.play();
+  }
+
+  this.pauseVideo = function() {
+    return p3sdk.get(0).player.pause();
+  }
+
+  this.resetP3 = function() {
+    // functions taken from the p3 repo, because there is no public 'resetCache()'
+    var $p3InteractiveTranscript = this.p3Transcript();
+    $p3InteractiveTranscript.transcript_paragraphs = [];
+    $p3InteractiveTranscript.current_word = false;
+    var cache_id = $p3InteractiveTranscript.cache_key();
+    $('.p3sdk-interactive-transcript-content').find("[m]").each(function(){
+      var cid = cache_id + "_" + $(this).attr("m");
+      $(this).attr("id", cid);
+    });
+    $p3InteractiveTranscript.trigger_event("transcript:transcript_set", {});
+  }
+
+  this.videoDuration = function() {
+    this.cachedVideoDuration = this.cachedVideoDuration || this.player() && this.player().duration();
+    return this.cachedVideoDuration;
+  }
+
+  this.toggleVideoPlay = function() {
+    $(document.getElementById("ViD")).prop('controls',true)
+    if (this.state() === 'PAUSED') {
+      this.playVideo();
+    } else {
+      this.pauseVideo();
+      $(document.getElementById("ViD")).prop('controls',false)
+    }
+  }
+
+  this.seekForward = function(ms){
+    ms = ms || 1000;
+    var currTime = this.position();
+    if (currTime >= (this.videoDuration() - ms)){
+      this.seek(this.videoDuration());
+    }else {
+      this.seek(currTime + ms);
+    }
+    this.pauseVideo();
+  }
+
+  this.seekBack = function(ms){
+    ms = ms || 1000;
+    var currTime = this.position();
+    if (currTime >= ms) {
+      this.seek(currTime - ms);
+    }else{
+      this.seek(0);
+    }
+    this.pauseVideo();
+  }
+
+  this.changePlaybackRate= function(speed){
+    document.getElementById("ViD").playbackRate = speed;
+  }
+
+}]);

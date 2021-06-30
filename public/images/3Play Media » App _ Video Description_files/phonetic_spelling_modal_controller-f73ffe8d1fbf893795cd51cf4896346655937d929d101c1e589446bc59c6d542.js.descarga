@@ -1,0 +1,62 @@
+var ViDApp = angular.module('ViDApp');
+ViDApp.controller('PhoneticSpellingModalInstanceCtrl', function ($uibModalInstance, title, dataService, phoneticSpellingService) {
+  var $ctrl = this;
+  $ctrl.dataService = dataService;
+  $ctrl.phoneticSpellingService = phoneticSpellingService;
+  $ctrl.title = title;
+  $ctrl.audioPlayer = document.getElementById('#phonetic-spelling-player')
+
+  $ctrl.init = function() {
+    $ctrl.runSelectionValidation();
+    $ctrl.highlightedSuggestions = phoneticSpellingService.findSuggestionsByMatch(phoneticSpellingService.selection.selectedText)
+    $ctrl.suggestions = dataService.phoneticSuggestions;
+    if (!_.isEmpty($ctrl.highlightedSuggestions)) {
+      $ctrl.suggestions = _.differenceBy($ctrl.suggestions, $ctrl.highlightedSuggestions, 'match')
+      $ctrl.suggestions = _.concat($ctrl.suggestions, $ctrl.highlightedSuggestions);
+    }
+    _.reverse($ctrl.suggestions);
+    $ctrl.offsets = [0];
+    if ($ctrl.suggestions.length > 10) {$ctrl.offsets.push(10)}
+    if ($ctrl.suggestions.length > 20) {$ctrl.offsets.push(20)}
+  }
+
+  $ctrl.displaySynthButton = function() {
+    return !($ctrl.phoneticSpellingService.snippetStatus === 'pending' || $ctrl.phoneticSpellingService.replacementText === $ctrl.phoneticSpellingService.snippet.text);
+  }
+
+  $ctrl.insert = function () {
+    phoneticSpellingService.insertText();
+    $uibModalInstance.close();
+  };
+
+  $ctrl.runSelectionValidation = function() {
+    if (phoneticSpellingService.selection.selectedText.split(" ").length > 1) {
+      $ctrl.selectionError = 'You cannot select more than one word at a time. Please select one word and relaunch the phonetic spelling navigator.'
+    }
+  }
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.close();
+  };
+
+  $ctrl.phonemePickerData = [
+    {
+      type:'vowel',
+      title:'Vowels',
+      columnData: [
+        {offset: 0, limit: 12},
+        {offset: 12,limit: 12}
+      ]
+    },
+    {
+      type:'consonant',
+      title:'Consonants',
+      columnData: [
+        {offset: 0, limit: 15},
+        {offset: 15, limit: 14}
+      ]
+    }
+  ];
+
+  $ctrl.init();
+});
