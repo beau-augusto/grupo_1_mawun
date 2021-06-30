@@ -13,3 +13,13 @@ Perder tiempo en conversación "social" al inicio de la reunión.
 
 5 Dejar de hacer
 Esperar a las reuniones para definir la temática.  
+
+Nueva Retrospectiva 
+1 Comenzar a hacer
+2 Más de
+
+3 Seguir haciendo
+Equipo colaborativo. Compañero.Buena onda.
+4 Menos de
+
+5 Dejar de hacer
