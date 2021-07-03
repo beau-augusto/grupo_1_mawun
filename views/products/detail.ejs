@@ -1,0 +1,36 @@
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/header') %>
+    <main class="detalleProducto">
+        <article class="imagenesProducto">
+            <div class="imagenesCostado">
+                <img src="\images\roselargarde2.webp" alt="">
+                <img src="\images\roselargarde3.webp" alt="">
+                <img src="/images\roselargarde4.webp" alt="">
+            </div>
+
+            <div class="imagenPrincipal">
+                <img src="\images\roselargade1.webp" alt="Rose">
+            </div>
+        </article>
+        <article class="contenedorTexto">
+            <div class="textoProducto">
+                <h2 class="tituloProducto">Malbec Pinot Noir Rosé</h2> <!--https://http2.mlstatic.com/D_NQ_NP_2X_866051-MLA42009582848_052020-F.webp-->
+            <span class="marcaLinea marcaDP">Lagarde</span> <span class="marcaLinea linesDP">Goes Pink</span>
+            <p class="precioDP">$1,200.-</p>   
+            <p class="descripcionDP">Este vino está inspirado en el sol mendocino y en los colores de su atardecer, que prolonga con calidez las tardes de verano. Nació para acompañar las vacaciones, los almuerzos interminables con los amigos, la siesta bajo la sombra de los árboles y la frescura del mar.</p>
+            </div>
+            
+            <div class="iconosProducto">
+                <div class="cajaSumadora">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
+                    <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
+                </div>
+                <div class="agregarCarrito">Agregar al carrito</div>
+        </article>
+
+
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>
