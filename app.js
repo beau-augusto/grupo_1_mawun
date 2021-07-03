@@ -5,9 +5,7 @@ const path = require('path');
 //***** Express *****//
 const app = express();
 
-/* const publicPath = path.resolve(__dirname, './public' );
-app.use( express.static(publicPath) ); */
-
+app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, './public')));
 
 app.listen(3000, () => {
@@ -25,12 +23,12 @@ app.get('/carrito.html', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/carrito.html'));
 });
 
-app.get('/login.html', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './views/login.html'));
+app.get('/login', (req, res) => {
+    res.render(path.resolve(__dirname, './views/login'));
 });
 
-app.get('/register.html', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './views/register.html'));
+app.get('/register', (req, res) => {
+    res.render(path.resolve(__dirname, './views/register'));
 });
 
 app.get('/abm-productos.html', (req, res) => {

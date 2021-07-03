@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <%- include('./partials/header') %>
+    <main>
+        <section class="abm-productos container">
+            <div class="abm-producto-wrapper">
+                <h2 class="abm-title">Registro</h2>
+                <form action="" class="abm-form-wrapper">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="Nombre" class="abm-input-tit">Nombre</label>
+                            <input type="text" id="name" placeholder="Nombre" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="Apellido" class="abm-input-tit">Apellido</label>
+                            <input type="text" id="Aplellido" placeholder="Apellido" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap-email">
+                            <label for="Email" class="abm-input-tit">Email</label>
+                            <input type="email" id="email" placeholder="Email" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit">Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>     
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>     
+                    </div>
+                    <div class="abm-button-wrap">
+                        <button type="submit" class="abm-button-submit">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>
