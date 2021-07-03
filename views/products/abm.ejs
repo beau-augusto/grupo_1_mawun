@@ -1,30 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABM Productos | Mawun</title>
-    <meta name="description" content="Tienda de vinos Biodinámicos, Naturales y Orgánicos para las personas de paladar fino y exquisito." />
-    <link href="/css/normalize.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
-</head>
+<%- include('../partials/head') %>
 <body>
-    <header class="bo-top-container">
-        <div class="bo-top">
-            <div>
-                <a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="bo-logo"></a>
-            </div>
-            <div class="bo-profile-wrap">
-                <p class="bo-profile-txt">Usuario A</p>
-                <a href="/login.html" class="bo-profile"><i class="far fa-user"></i></a>
-            </div>
-        </div>
-    </header>
+    <%- include('../partials/bo-header') %>
     <main>
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
@@ -70,11 +48,6 @@
             </div>
         </section>
     </main>
-    <footer class="bgc-fw">
-        <div class="bo-footer-wapper container">
-            <p class="bo-footer-txt">Powered by G1 - Digital House</p>
-            <img class="bo-footer-logo" src="/images/mawun-logo-w.svg" alt="Mawun Wines">
-        </div>
-    </footer>
+    <%- include('../partials/bo-footer') %>
 </body>
 </html>
