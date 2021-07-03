@@ -232,7 +232,6 @@ ul.hero-menu li a:hover {
     height: 250px;
     object-fit: cover;
     object-position: 50% 50%;
-
 }
 
 .page-title-desc {
@@ -244,8 +243,8 @@ ul.hero-menu li a:hover {
 
 .page-title-desc h1 { 
     font-family: 'DM Serif Display', serif;
-    font-size: 52px;
-    line-height: 64px;
+    font-size: 40px;
+    line-height: 48px;
     letter-spacing: 1px;
     font-weight: 400;
 }
@@ -871,6 +870,9 @@ ul.hero-menu li a:hover {
     }
     .page-title-img {
         height: 250px;
+    }
+    .page-title-img {
+        height: 200px;
     }
     .page-title-desc h1 {
         font-size: 45px;
