@@ -311,9 +311,14 @@ ul.hero-menu li a:hover {
 .product-grid-item {
     background-color: #ffffff;
     padding: 10px;
+    overflow: hidden;
     text-align: center;
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
   }
+.product-grid-item a{
+    display: block;
+    text-decoration: none;
+}
 
 .product-grid-img {
     width: 200px;
@@ -321,6 +326,7 @@ ul.hero-menu li a:hover {
 
 .product-grid-title {
     font-size: 24px;
+    color: #666666;
     font-weight: 600;
     letter-spacing: 1px;
     margin: 10px 0;
