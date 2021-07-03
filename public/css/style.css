@@ -204,6 +204,7 @@ ul.hero-menu li a:hover {
     color: #ffffff;
     max-width: 650px;
 }
+
 .hero-banner-desc h1 { 
     font-family: 'DM Serif Display', serif;
     font-size: 52px;
@@ -216,6 +217,37 @@ ul.hero-menu li a:hover {
     font-size: 18px;
     line-height: 26px;
     letter-spacing: 1px;
+}
+
+.page-title {
+    position: relative;
+    display: block;
+    height: auto;
+    padding: 0px;
+    object-position: 0% 0%;
+}
+
+.page-title-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+}
+
+.page-title-desc {
+    position: absolute;
+    top: 20%;
+    color: #744b64;
+    max-width: 650px;
+}
+
+.page-title-desc h1 { 
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 64px;
+    letter-spacing: 1px;
+    font-weight: 400;
 }
 
 #cultivos {
@@ -831,6 +863,14 @@ ul.hero-menu li a:hover {
     .hero-top {
         padding: 10px 20px;
     }
+    .page-title-img {
+        height: 250px;
+    }
+    .page-title-desc h1 {
+        font-size: 45px;
+        line-height: 50px;
+        margin: 20px 0;
+    }
     #cultivos {
         justify-content: space-around;
     }
@@ -878,6 +918,9 @@ h5 {
     padding:5px 0;
     flex-direction: column;
 }
+.hero-logo {
+    width: 200px;
+}
 .hero-search {
     display: none;
 }
@@ -901,6 +944,20 @@ h5 {
     font-size: 13px;
     line-height: 20px;
     letter-spacing: normal;
+}
+.page-title-img {
+    height: 200px;
+}
+.page-title-desc {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    color: #744b64;
+}
+.page-title-desc h1 {
+    font-size: 35px;
+    line-height: 40px;
+    margin:0;
 }
 #cultivos {
     justify-content: space-around;
