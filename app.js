@@ -15,6 +15,9 @@ app.listen(3000, () => {
 const mainRouter = require('./routes/main');
 app.use ('/', mainRouter);
 
+const usersRouter = require('./routes/users');
+app.use ('/users', usersRouter);
+
 app.get('/detalle-producto.html', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/detalle-producto.html'));
 });
@@ -23,15 +26,16 @@ app.get('/carrito.html', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/carrito.html'));
 });
 
-app.get('/login', (req, res) => {
+app.get('/abm-productos.html', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './views/abm-productos.html'));
+});
+
+/* app.get('/login', (req, res) => {
     res.render(path.resolve(__dirname, './views/login'));
 });
 
 app.get('/register', (req, res) => {
     res.render(path.resolve(__dirname, './views/register'));
-});
+}); */
 
-app.get('/abm-productos.html', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './views/abm-productos.html'));
-});
 
