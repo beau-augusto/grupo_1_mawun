@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <%- include('./partials/header') %>
+    <main>
+    <section>
+        <h2 class="tituloCarrito">Carrito</h2>
+        <section class="contenedorBarraSuperiorCarrito">
+            <section class="flexCorrection">
+        <div class="barraSuperiorCarrito">
+            <div class="columnaProducto">Producto</div>
+            <div class="columnasDerecha">
+                <p>Precio</p>
+                <p>Cantidad</p>
+                <p>Subtotal</p>
+            </div>
+        </div>     
+    </section>
+    <hr class="barraHR">
+        <article class="producto1CarritoContenedorTotal">
+        <section class="producto1CarritoContenedor">
+            <div class="producto1Carrito">
+                <img src="\images\roselargarde2.webp" alt="rose" class="imagenProductoCarrito">
+
+                <div class="nombreProductoCarrito">
+                   <p>Largarde Goes Pink</p>
+                   <p class="vinoLineaCarrito">Malbec Pino Noir Rosé</p>
+                </div>
+            </div>
+        </section>
+        <section class="producto1Derecho">
+            <p class="precioCarrito">$1,200.-</p>  
+            <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
+                <input type="button" value="-" class="minus"> <input type="tel" value="3" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
+            </div>
+            <p class="precioCarrito">$3,600.-
+                <span>
+                    <i class="far fa-trash-alt"></i>
+                </span>
+            </p> 
+        </section>
+        </article>
+        <hr class="barraHR">
+        <article class="producto1CarritoContenedorTotal">
+            <section class="producto1CarritoContenedor">
+                <div class="producto1Carrito">
+                    <img src="\images\malbec1.webp" alt="rose" class="imagenProductoCarrito"> <!--https://articulo.mercadolibre.com.ar/MLA-749995191-krontiras-malbec-organico-de-dona-silvia-750-ml-_JM#position=16&search_layout=stack&type=item&tracking_id=f9c429c4-d119-4e89-b855-14613970f501-->
+    
+                    <div class="nombreProductoCarrito">
+                       <p>Kron</p>
+                       <p class="vinoLineaCarrito">Malbec Doña Silva</p>
+                    </div>  
+                </div>    
+            </section>
+            <section class="producto1Derecho">
+                <p class="precioCarrito">$1,700.-</p>  
+                <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
+                    <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
+                </div>
+                <p class="precioCarrito">$5,300.-
+                    <span>
+                        <i class="far fa-trash-alt"></i>
+                    </span>
+                </p>     
+            </section>
+            </article>
+            <hr class="barraHR">
+            <div class="actualizarCarrito">Actualizar carrito</div>
+            <section class="totalCarrito">
+                <div>Total</div>
+                <div>$8,900-</div>
+            </section>
+            <div class="finalizarCompra">Finalizar compra</div>
+            </section>
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>
