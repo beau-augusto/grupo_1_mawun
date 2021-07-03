@@ -10,8 +10,10 @@ const productsController = {
     },
     detail: (req, res)=> {
         res.render (path.resolve(__dirname, '../views/products/detail'));
+    },
+    cart: (req, res)=> {
+        res.render (path.resolve(__dirname, '../views/products/cart'));
     }
-
 };
 
 module.exports = productsController;
