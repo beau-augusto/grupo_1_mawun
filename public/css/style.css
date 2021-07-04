@@ -313,7 +313,8 @@ ul.hero-menu li a:hover {
     overflow: hidden;
     text-align: center;
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
-  }
+}
+
 .product-grid-item a{
     display: block;
     text-decoration: none;
