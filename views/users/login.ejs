@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <section class="abm-productos container">
+            <div class="abm-producto-wrapper">
+                <h2 class="abm-title">Login</h2>
+                <form action="" class="abm-form-wrapper">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="usuario" class="abm-input-tit">Usuario</label>
+                            <input type="text" id="name" placeholder="Usuario" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit">Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>     
+                    </div>
+                    <div class="abm-button-wrap">
+                        <button type="submit" class="abm-button-submit">GUARDAR</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>
