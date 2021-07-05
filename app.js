@@ -34,3 +34,7 @@ app.get('/register.html', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/register.html'));
 });
 
+app.get('/abm-productos.html', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './views/abm-productos.html'));
+});
+
