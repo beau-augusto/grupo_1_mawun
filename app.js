@@ -1,22 +1,30 @@
 //***** Requeridos *****//
 const express = require('express');
 const path = require('path');
+const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
 
 //***** Express *****//
 const app = express();
 
+//***** Template Engine *****//
 app.set('view engine', 'ejs');
+
+
+//***** Middlewares *****//
 app.use(express.static(path.join(__dirname, './public')));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
 app.listen(3000, () => {
     console.log("servidor corriendo en el puerto 3000");
 });
 
-const mainRouter = require('./routes/main');
+//***** Route System  *****//
+const mainRouter = require('./routes/main'); // Rutas main
+const usersRouter = require('./routes/users'); // Rutas /usuarios
+const productsRouter = require('./routes/products'); // Rutas /products
+
 app.use ('/', mainRouter);
-
-const usersRouter = require('./routes/users');
 app.use ('/usuarios', usersRouter);
-
-const productsRouter = require('./routes/products');
 app.use ('/productos', productsRouter);
