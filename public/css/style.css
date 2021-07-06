@@ -969,6 +969,14 @@ h5 {
     margin:0;
 }
 
+/** hoja de contacto**/
+.contact-link {
+    color: #666666;
+    text-decoration: none;
+	align-items: center;
+}
+
+/** fin hoja de contacto**/
 #cultivos {
     justify-content: space-around;
 }
