@@ -845,6 +845,27 @@ ul.hero-menu li a:hover {
 .form-login a:hover {
     text-decoration: underline;
 }
+/** hoja de contacto**/
+.contenedor-contact {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contact-link {
+    color: #666666;
+    text-decoration: none;
+	align-items: center;
+}
+.title-contact {
+    color: #412838;
+    font-size: 26px;
+    font-weight: 500;
+}
+.information-form-contact {
+    display: flex;
+}
+
+/** fin hoja de contacto**/
 /** Migue FIN**/
 
 /* MEDIA QUERIES */
@@ -968,15 +989,6 @@ h5 {
     line-height: 40px;
     margin:0;
 }
-
-/** hoja de contacto**/
-.contact-link {
-    color: #666666;
-    text-decoration: none;
-	align-items: center;
-}
-
-/** fin hoja de contacto**/
 #cultivos {
     justify-content: space-around;
 }
