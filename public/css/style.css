@@ -469,19 +469,16 @@ ul.hero-menu li a:hover {
 
 /* CSS AUGUSTO */
 /* Estilos para detalleProducto.html*/
+
 .detalleProducto {
     margin: auto;
     display: flex;
     justify-content: center;
     margin-top: 35px;
-    width: 91%;
 }
 
 /* Imágenes de producto en detalle de compra */
 
-.imagenesProducto {
-    display: flex;
-}
 
 .imagenesCostado {
     display: flex;
@@ -504,21 +501,26 @@ ul.hero-menu li a:hover {
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
 }
 
+
 .imagenPrincipal img {
     width: 250px;
-    height: auto;
     margin: 30px;
     padding: 0px;
-    border-radius: 8px;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+    margin: 0px 25px;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
 }
 
 
 /* texto de producto en detalle de compra */
 
 .contenedorTexto {
-    width: 25%;
+    width: 55%;
+    max-width: 650px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
 
 }
 
@@ -526,7 +528,6 @@ ul.hero-menu li a:hover {
     font-family: 'DM Serif Display', serif;
     font-weight: normal;
     font-size: 23px;
-    margin-top: 40px;
     margin-bottom: 20px;
     text-align: left;
 }
@@ -544,7 +545,6 @@ ul.hero-menu li a:hover {
 }
 
 .descripcionDP {
-    width: 75%;
     font-weight: normal;
     font-size: 13px;
     line-height: 29px;
@@ -561,7 +561,6 @@ ul.hero-menu li a:hover {
 
 .cajaSumadora {
     display: flex;
-    width: 20%;
     justify-content: center;
     font-size: 16px;
     min-width: 70px;
@@ -594,23 +593,31 @@ ul.hero-menu li a:hover {
     background-color: white;
     border: none;
     text-align: center;
-    width: 40%;
+    width: 25px;
     font-size: 13px;
 }
 
 .agregarCarrito:hover {
-    background-color: #04b6a4;
-    transition: all 100ms;
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+
 
 }
 
 .agregarCarrito {
-    background-color: rgb(65 40 56);
-    color: white;
-    padding: 1px 8px 1px 8px;
-    font-size: 10px;
-    border: none;
-    border-radius: 7px;
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    min-width: 150px;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Carrito de compras */
@@ -623,8 +630,9 @@ ul.hero-menu li a:hover {
 }
 
 .contenedorBarraSuperiorCarrito {
-    width: 70%;
+    width: 98%;
     text-align: center;
+    max-width: 1100px;
     margin: auto;
     padding: 0px 5px 0px 5px;
 }
@@ -687,7 +695,6 @@ ul.hero-menu li a:hover {
 
 .imagenProductoCarrito {
     width: 35%;
-    border-radius: 10px;
     margin-right: 30px;
     max-width: 100px;
     border: solid 1px rgba(0, 0, 0, 0.24);
@@ -735,7 +742,6 @@ ul.hero-menu li a:hover {
 
 .cajaSumadoraCarrito {
     display: flex;
-    width: 20%;
     justify-content: center;
     font-size: 16px;
     align-items: center;
@@ -757,26 +763,36 @@ ul.hero-menu li a:hover {
     background-color: rgb(65 40 56);
     color: white;
     padding: 1px 8px 1px 8px;
-    font-size: 12px;
-    border: none;
-    border-radius: 7px;
-    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 150px;
+    padding: 10px 15px;
     text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
     margin: 40px 0px;
     max-width: 135px;
     margin-left: auto;
 }
 
+
+
 .finalizarCompra:hover, .actualizarCarrito:hover {
-    background-color: #04b6a4;
-    transition: all 100ms;
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
 }
 
 .totalCarrito {
     display: flex;
     justify-content: space-between;
     border: solid 1px rgba(0, 0, 0, 0.24);
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 10px 10px;
     margin: 40px 0px;
 }
@@ -785,13 +801,21 @@ ul.hero-menu li a:hover {
     background-color: rgb(65 40 56);
     color: white;
     padding: 1px 8px 1px 8px;
-    font-size: 12px;
-    border: none;
-    border-radius: 7px;
-    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 150px;
+    padding: 10px 15px;
     text-align: center;
-    margin: 20px 0px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+    margin: 40px 0px;
     max-width: 135px;
+    margin-left: auto;
     margin-left: auto;
 }
 /*FIN CSS AUGUSTO*/
@@ -905,6 +929,60 @@ ul.hero-menu li a:hover {
 /** Peter FIN **/
 
 /** Augusto INICIO **/
+
+/** detalle de Producto **/
+
+.detalleProducto {
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedorTexto {
+    margin-top: 100px;
+    text-align: center;
+    width: 70%;
+    margin: 0px;
+
+}
+.tituloProducto {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.iconosProducto {
+    width: 100%;
+    justify-content: center;
+}
+
+/** cart **/
+
+.barraSuperiorCarrito {
+    display: none;
+
+}
+
+.producto1Carrito {
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto1CarritoContenedorTotal {
+    flex-direction: column;
+    align-items: center;
+}
+
+.actualizarCarrito {
+    margin: auto;
+    margin-top: 40px;
+}
+
+.finalizarCompra {
+    margin: auto;
+}
+
+.imagenProductoCarrito {
+    min-width: 100px;
+}
 /** Augusto FIN **/
 
 /** Migue INICIO **/
@@ -1025,6 +1103,8 @@ h5 {
 /** Peter FIN **/
 
 /** Augusto INICIO **/
+
+
 /** Augusto FIN **/
 
 /** Migue INICIO **/
