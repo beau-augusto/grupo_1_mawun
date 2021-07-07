@@ -20,11 +20,6 @@ app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el 
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-
-/* app.listen(3000, () => {
-    console.log("servidor corriendo en el puerto 3000");
-}); */
-
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
 const usersRouter = require('./routes/users'); // Rutas /usuarios
