@@ -870,23 +870,50 @@ ul.hero-menu li a:hover {
     text-decoration: underline;
 }
 /** hoja de contacto**/
-.contenedor-contact {
-    width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+.contact-first-title {
+    color: #412838;
+    font-size: 30px;
+    text-align: center;
 }
 .contact-link {
     color: #666666;
     text-decoration: none;
 	align-items: center;
 }
-.title-contact {
+.contact-title {
     color: #412838;
     font-size: 26px;
     font-weight: 500;
 }
-.information-form-contact {
+.contact-information-form {
     display: flex;
+}
+.contact-information{
+    width: 48%;
+    margin: auto;
+}
+.contact-form {
+    width: 48%;
+    margin: auto;
+}
+.contact-form-input{
+    font-weight: 300;
+    padding: 10px 50px;
+    margin: 9px 0;
+    border: 2px solid #412838;
+}
+.contact-form-description {
+    font-weight: 300;
+    padding: 15px 54px;
+    margin: 9px 0;
+    border: 2px solid #412838;
+}
+.contact-form-buttom {
+    font-weight: 300;
+    padding: 10px 10px;
+    margin: 9px 0;
+    background: #fff;
+    border: 2px solid #412838;
 }
 
 /** fin hoja de contacto**/
