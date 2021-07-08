@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
-app.listen(3000, () => {
-    console.log("servidor corriendo en el puerto 3000");
-});
+//***** Get port from environment *****//
+const port = process.env.PORT || 3000;
+app.listen(port);
 
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
