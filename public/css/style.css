@@ -870,6 +870,18 @@ ul.hero-menu li a:hover {
     text-decoration: underline;
 }
 /** hoja de contacto**/
+.contact-form-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 40px; */
+}
+.contact-input-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    width: 100%;
+}
 .contact-first-title {
     color: #412838;
     font-size: 30px;
@@ -887,13 +899,15 @@ ul.hero-menu li a:hover {
 }
 .contact-information-form {
     display: flex;
+    flex-direction: row;
+    align-content: flex-start;
 }
 .contact-information{
-    width: 48%;
-    margin: auto;
+    margin-top: 50px;
+    padding: 15px;
 }
 .contact-form {
-    width: 48%;
+    width: 50%;
     margin: auto;
 }
 .contact-form-input{
