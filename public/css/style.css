@@ -937,21 +937,27 @@ ul.hero-menu li a:hover {
     color: #412838;
     font-weight: bold;
     text-decoration: none;
-	align-items: center;
 }
-.contact-title {
+.contact-link:hover {
+    color: #55394a;
+}
+.contact-title{
+    margin: 40px 0;
+}
+.contact-information-title {
     color: #412838;
-    font-size: 26px;
-    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    font-weight: 600;
 }
 .contact-information-form {
     display: flex;
-    flex-direction: row;
-    align-content: flex-start;
+    align-items: center;
+    padding: 40px 0;
 }
 .contact-information{
-    margin-top: 50px;
-    padding: 15px;
+    width: 50%;
+   padding-right: 20px;
 }
 .contact-button-wrap {
     display: flex;
