@@ -869,6 +869,31 @@ ul.hero-menu li a:hover {
 .form-login a:hover {
     text-decoration: underline;
 }
+/** hoja de Sobre Nosotros**/
+.about-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: center;
+    padding: 20px 0;
+    margin: 40px 0;
+}
+
+.about-description {
+    width: 50%;
+    text-align: justify;
+}
+
+.about-image-wrap{
+    width: 50%;
+    overflow: hidden;
+    margin-right: 30px;
+}
+.about-image{
+    width: 520px;
+    height: auto;
+}
+
 /** hoja de contacto**/
 .contact-first-title {
     color: #412838;
@@ -933,6 +958,7 @@ ul.hero-menu li a:hover {
     justify-content: flex-end;
     padding: 5px 0;
 }
+
 
 
 
