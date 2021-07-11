@@ -870,25 +870,47 @@ ul.hero-menu li a:hover {
     text-decoration: underline;
 }
 /** hoja de contacto**/
+.contact-first-title {
+    color: #412838;
+    font-size: 30px;
+    text-align: center;
+}
+.contact-form {
+    width: 50%;
+    margin: auto;
+}
 .contact-form-wrapper{
     display: flex;
     flex-direction: column;
     width: 100%;
     /* padding: 40px; */
 }
+.contact-input-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact-input-title{
+    color: #412838;
+    font-size: 20px;
+    font-weight: 500;
+}
 .contact-input-wrap {
     display: flex;
     flex-direction: column;
-    padding: 15px 10px;
+    padding: 5px 2px;
     width: 100%;
 }
-.contact-first-title {
-    color: #412838;
-    font-size: 30px;
-    text-align: center;
+.contact-input-wrap-email {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 2px;
+    width: 100%;
 }
 .contact-link {
-    color: #666666;
+    color: #412838;
+    font-weight: bold;
     text-decoration: none;
 	align-items: center;
 }
@@ -906,29 +928,15 @@ ul.hero-menu li a:hover {
     margin-top: 50px;
     padding: 15px;
 }
-.contact-form {
-    width: 50%;
-    margin: auto;
+.contact-button-wrap {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 0;
 }
-.contact-form-input{
-    font-weight: 300;
-    padding: 10px 50px;
-    margin: 9px 0;
-    border: 2px solid #412838;
-}
-.contact-form-description {
-    font-weight: 300;
-    padding: 15px 54px;
-    margin: 9px 0;
-    border: 2px solid #412838;
-}
-.contact-form-buttom {
-    font-weight: 300;
-    padding: 10px 10px;
-    margin: 9px 0;
-    background: #fff;
-    border: 2px solid #412838;
-}
+
+
+
+
 
 /** fin hoja de contacto**/
 /** Migue FIN**/
