@@ -1,0 +1,78 @@
+[{
+    "id": 1,
+    "product_name": "Chakana Frisante Rosé",
+    "description": "Este vino natural es la expresión más auténtica y novedosa de los vinos orgánicos, biodinámicos y veganos (certificados) de Chakana: viticultura para el futuro. Sobrenatural posee cero contenido de azufre y es originario de la Finca Nuna, en la zona de Agrelo, Luján de Cuyo, provincia de Mendoza. 100 % Tannat, el vino termina su fermentación en la botella para generar su efervescencia. Elaborado sin el agregado de anhídrido sulfuroso.",
+    "winery": "Bodega Chakana",
+    "category": "Naturales",
+    "varietal": "Tannat ",
+    "image": "chakana-frisante-rosé.jpg",
+    "price": "840",
+    "recommended": "false"
+  },
+  {
+    "id": 2,
+    "product_name": "Tikal Natural",
+    "description": "La magia de la unión. Un canto a las texturas y al maravilloso terruño de Vista Flores. Malbec y Syrah, Syrah y Malbec. Flores violetas y frutas rebeldes explotan en un vino envuelto en madera sutil. Un final abierto entre frutillas y vainillas. Su aroma a frutos del bosque con brisas mentoladas lo hacen inmejorable.",
+    "winery": "Bodega Ernesto Catena Vineyards",
+    "category": "Naturales",
+    "varietal": "Syrah",
+    "image": "chakana-frisante-rosé.jpg",
+    "price": "1800",
+    "recommended": "false"
+  },
+  {
+    "id": 3,
+    "product_name": "Be My Hippie Love Blanco",
+    "description": "100 % Criolla. Contiene 500 ml. Debajo de su tapa corona luce un tono que deja pasar la luz por todos lados. Lo típico de la uva criolla muestra la belleza de volver al principio. Espíritu hippie, indomable y libre. Fácil de beber, sin vueltas. Fruta y especias en final medio. Un vino fresco y alegre.",
+    "winery": "Bodega Ernesto Catena.",
+    "category": "Naturales",
+    "varietal": "Criolla",
+    "image": "be-my-hippie-love-blanco.png",
+    "price": "390",
+    "recommended": "true"
+  },
+  {
+    "id": 4,
+    "product_name": "Amici Miei",
+    "description": "Bocanadas de tierra, yuyos y frutos rojos se desprenden en nariz. Intensidad en su color poderoso y en su marcada acidez. Linda comunión de Barbera y Petit Verdot. Algunos días en cemento y algunos en madera. Natural por donde se lo mire. Sin sulfitos agregados. Un homenaje a la amistad. Espasmos de cítricos y pétalos suaves. Final fresco y de serpenteante amargor. Un vino luminoso y compañero.",
+    "winery": "Bodega Stella Crinita",
+    "category": "Naturales",
+    "varietal": "Barbera",
+    "image": "amici-miei.jpeg",
+    "price": "800",
+    "recommended": "false"
+  },
+  {
+    "id": 5,
+    "product_name": "Stella Crinita Petit Verdot",
+    "description": "Color violeta profundo con destellos rojizos. En nariz presenta notas que recuerdan la pimienta y frutas negras. Boca intensa de buena estructura con final sedoso. Vino Natural. “Hacer vino natural es la expresión más alta de nuestra ideología. El vino es arte y creemos en la belleza de la naturaleza reflejada en nuestros vinos”",
+    "winery": "Bodega Stella Crinita",
+    "category": "Naturales",
+    "varietal": "Petit Verdot",
+    "image": "stella-crinita-petit-verdot.jpeg",
+    "price": "1370",
+    "recommended": "false"
+  },
+  {
+    "id": 6,
+    "product_name": "Omaggio Pet Nat Viognier",
+    "description": "Orange Pet nat, 100% Viognier. Se realiza la fermentación en tanques de acero. Fermentación espontánea en sus lías salvajes. Sin refinamiento ni filtración. Sin agregado de sulfito ni Azufre. Método ancestral. Uvas certificadas biodinámicas por Demeter. Vista Flores, Mendoza. Suelos: arenosos y arcillosos a 1.100 metros de altitud.",
+    "winery": "Stella Crinita",
+    "category": "Naturales",
+    "varietal": "Viognier",
+    "image": "omaggio-pet-nat-viognier.jpg",
+    "price": "900",
+    "recommended": "false"
+  },
+  {
+    "id": 7,
+    "product_name": "Krontiras Natural Malbec",
+    "description": "Color rojo intenso con reflejos violáceos. Limpio y brillante. Presenta aromas a frutas rojas maduras como ciruelas pasas, notable expresión de madera con notas a vainilla, dejos suaves a canela. Entrada amable con una fluidez extrema, taninos redondos de agradable textura, equilibrado en acidez y alcohol. Con un elegante y suave final en boca. 100 % Malbec. Añejamiento en barricas de roble francés, primer y segundo uso, 10 a 12 meses.",
+    "winery": "Bodega Krontiras",
+    "category": "Naturales",
+    "varietal": "Malbec",
+    "image": "krontiras-natural-malbec.jpg",
+    "price": "1700",
+    "recommended": "true"
+  }
+]
