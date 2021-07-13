@@ -3,13 +3,13 @@ const path = require('path');
 
 const mainController = {
     index: (req, res)=> {
-        res.render (path.resolve(__dirname, '../views/index'));
+        res.render ('index');
     },
     contact: (req, res)=> {
-        res.render (path.resolve(__dirname, '../views/contact'));
+        res.render ('contact');
     },
     aboutUs: (req, res)=> {
-        res.render (path.resolve(__dirname, '../views/about-us'));
+        res.render ('about-us');
     }
     
 };
