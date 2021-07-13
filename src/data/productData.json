@@ -74,5 +74,93 @@
     "image": "krontiras-natural-malbec.jpg",
     "price": "1700",
     "recommended": "true"
+  },
+  {
+    "id": 8,
+    "product_name": "El vino del Capitán Malbec",
+    "description": "Malbec, frutado y armónico. Uvas de viñedos orgánicos. En nariz tiene notas de ciruela y algo floral, de color intenso. Sorprenden al paladar por ser de taninos ligeros pero frutados y de muy buena acidez, perdura en la boca. Cada varietal es evidente y equilibrado.",
+    "winery": "Bodega Vinecol",
+    "category": "Orgánico",
+    "varietal": "Malbec",
+    "image": "el-vino-del-capitan-malbec.jpg",
+    "price": "480",
+    "recommended": "false"
+  },
+  {
+    "id": 9,
+    "product_name": "El vino del Capitán Cabernet Sauvignon",
+    "description": "Cabernet Sauvignon, equilibrado y armónico. Uvas de viñedos orgánicos. En nariz tiene notas de ciruela y algo floral, de color intenso. Sorprenden al paladar por ser de taninos ligeros pero frutados y de muy buena acidez, perdura en la boca. Cada varietal es evidente y equilibrado.",
+    "winery": "Bodega Vinecol",
+    "category": "Orgánico",
+    "varietal": "Cabernet Sauvignon",
+    "image": "el-vino-del-capitan-cabernet-sauvignon.jpg",
+    "price": "480",
+    "recommended": "false"
+  },
+  {
+    "id": 10,
+    "product_name": "Red Puro Edición Limitada",
+    "description": "Red Puro es de color rojo violáceo, con suave toque de madera. Los aromas resultan admirables tanto por su intensidad como complejidad. En boca resulta envolvente con un suave toque dulce y cremoso, equilibrado en elegancia con notas de roble francés por su paso de 6 meses y un marcado sabor picante. Es ideal para acompañar carnes rojas y platos bien condimentados.",
+    "winery": "Bodega Vinecol",
+    "category": "Orgánico",
+    "varietal": "Malbec",
+    "image": "red-puro-edicion-limitada.jpg",
+    "price": "870",
+    "recommended": "false"
+  },
+  {
+    "id": 11,
+    "product_name": "Siesta Malbec",
+    "description": "Navega en su universo ilimitado de referencias placenteras. Un vino con lo mejor de la tierra y el cielo. Todo en él es maravilla. Su color muestra su alma. Notas de confituras y frutas pasas. Madera fiel, solidaria y armoniosamente abarcativa. Su corazón es redondo, como todo en este vino.",
+    "winery": "Bodega Ernesto Catena Vineyards",
+    "category": "Orgánico",
+    "varietal": "Malbec",
+    "image": "siesta-malbec.jpg",
+    "price": "2400",
+    "recommended": "true"
+  },
+  {
+    "id": 12,
+    "product_name": "Siesta Cabernet Sauvignon",
+    "description": "Tonalidades rojizas intensas, limpio y brillante, en nariz recuerda a pimiento rojo, aceitunas, canela, mora y cerezas. De paladar exquisito y estructura imponente, siendo al mismo tiempo fresco, intenso y largo en boca con un final que perdura y nos entrega un retrogusto agradable.",
+    "winery": "Bodega Ernesto Catena Vineyards",
+    "category": "Orgánico",
+    "varietal": "Cabernet Sauvignon",
+    "image": "siesta-cabernet-sauvignon.jpg",
+    "price": "2100",
+    "recommended": "false"
+  },
+  {
+    "id": 13,
+    "product_name": "Siesta Cabernet Franc",
+    "description": "Vino de intenso color rojo rubí con aromas a fruta madura, moras negras, compota de ciruela, higo caramelizado con vainilla y pimiento dulce. Máxima expresión del terroir en Vista Flores con gran cuerpo, complejidad, involucrada acidez y taninos presentes. Sofisticado y untuoso, se abren sabores de hierbas aromáticas y a cacao con cada copa. Persistente en boca con retrogusto a arándano y pimienta negra.",
+    "winery": "Bodega Ernesto Catena Vineyards",
+    "category": "Orgánico",
+    "varietal": "Franc",
+    "image": "siesta-cabernet-franc.jpg",
+    "price": "2900",
+    "recommended": "false"
+  },
+  {
+    "id": 14,
+    "product_name": "Krontiras Malbec",
+    "description": "Este Malbec se cosecha durante los últimos días de marzo y principios de abril. Más del 80% proviene de la viña Villa Seca, ubicado en Maipú, el resto proviene de los viñedos de Lunlunta. En la bodega dos selecciones se llevan a cabo, en primer lugar se hace selección de racimos enteros y luego sólo bayas. La fermentación alcohólica se lleva a cabo por las levaduras salvajes que viene de la viña. La fermentación maloláctica se realiza con bacterias salvajes también. El vino permanece en barricas de 10 a 12 meses, hasta que el color, taninos y acidez queden bien equilibrados.",
+    "winery": "Bodega Krontiras",
+    "category": "Orgánico",
+    "varietal": "Malbec",
+    "image": "krontiras-malbec.jpg",
+    "price": "1200",
+    "recommended": "false"
+  },
+  {
+    "id": 15,
+    "product_name": "Doña Silvina Malbec Reserva",
+    "description": "Este reserva se cosecha en abril. Se trata de un 100% Malbec de nuestro viñedo (de más de 90 años de edad) ubicado en Lunlunta, Luján de Cuyo. Las uvas son cosechadas a mano en pequeñas cajas y entregadas a la bodega durante la mañana para evitar las altas temperaturas. Una vez en la bodega los racimos son desgranados a mano, baya por baya. Algunas de las uvas se fermentan en barricas nuevas y algunas en tanques, todos con levadura silvestre. Este vino es criado en barricas de roble francés de primer uso. La estabilización se realiza a bajas temperaturas, de una manera natural.",
+    "winery": "Bodega Krontiras",
+    "category": "Orgánico",
+    "varietal": "Malbec",
+    "image": "dona-silvina-malbec-reserva.jpg",
+    "price": "2300",
+    "recommended": "false"
   }
 ]
