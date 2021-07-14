@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/bo-header') %>
+    <main>
+        <section class="abm-productos container">
+            <div class="abm-producto-wrapper">
+                <h2 class="abm-title">Crear Producto</h2>
+                <form action="" class="abm-form-wrapper">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="name" class="abm-input-tit">Nombre del Producto</label>
+                            <input type="text" id="name" placeholder="Nombre del Producto" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="category" class="abm-input-tit">Categoria</label>
+                            <select name="" id="category" class="abm-input">
+                                <option value="" disabled selected>Seleccione Categoría</option>
+                                <option value="Orgánicos">Orgánicos</option>
+                                <option value="Biodinámicos">Biodinámicos</option>
+                                <option value="Naturales">Naturales</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="price" class="abm-input-tit">Precio</label>
+                            <input type="number" id="price" placeholder="Precio" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="variety" class="abm-input-tit">Variedad</label>
+                            <input type="text" id="variety" placeholder="Variedad" class="abm-input">
+                        </div>
+                    </div>
+                    <div class="abm-input-wrap-desc">
+                        <label for="description" class="abm-input-tit">Descripción</label>
+                        <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción"  class="abm-input"></textarea>
+                    </div>
+                    <div class="abm-input-wrap">
+                        <label for="image" class="abm-input-tit">Imagen</label>
+                        <input type="file" id="image" class="abm-file-input">
+                    </div>
+                    <div class="abm-button-wrap">
+                        <button type="submit" class="abm-button-submit">GUARDAR</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <%- include('../partials/bo-footer') %>
+</body>
+</html>
