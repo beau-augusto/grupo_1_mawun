@@ -6,7 +6,7 @@
     "category": "Naturales",
     "varietal": "Tannat ",
     "image": "chakana-frisante-rosé.jpg",
-    "price": "840",
+    "price": 840,
     "recommended": "false"
   },
   {
@@ -17,7 +17,7 @@
     "category": "Naturales",
     "varietal": "Syrah",
     "image": "chakana-frisante-rosé.jpg",
-    "price": "1800",
+    "price": 1800,
     "recommended": "false"
   },
   {
@@ -28,7 +28,7 @@
     "category": "Naturales",
     "varietal": "Criolla",
     "image": "be-my-hippie-love-blanco.png",
-    "price": "390",
+    "price": 390,
     "recommended": "true"
   },
   {
@@ -39,7 +39,7 @@
     "category": "Naturales",
     "varietal": "Barbera",
     "image": "amici-miei.jpeg",
-    "price": "800",
+    "price": 800,
     "recommended": "false"
   },
   {
@@ -50,7 +50,7 @@
     "category": "Naturales",
     "varietal": "Petit Verdot",
     "image": "stella-crinita-petit-verdot.jpeg",
-    "price": "1370",
+    "price": 1370,
     "recommended": "false"
   },
   {
@@ -61,7 +61,7 @@
     "category": "Naturales",
     "varietal": "Viognier",
     "image": "omaggio-pet-nat-viognier.jpg",
-    "price": "900",
+    "price": 900,
     "recommended": "false"
   },
   {
@@ -72,7 +72,7 @@
     "category": "Naturales",
     "varietal": "Malbec",
     "image": "krontiras-natural-malbec.jpg",
-    "price": "1700",
+    "price": 1700,
     "recommended": "true"
   },
   {
@@ -83,7 +83,7 @@
     "category": "Orgánico",
     "varietal": "Malbec",
     "image": "el-vino-del-capitan-malbec.jpg",
-    "price": "480",
+    "price": 480,
     "recommended": "false"
   },
   {
@@ -94,7 +94,7 @@
     "category": "Orgánico",
     "varietal": "Cabernet Sauvignon",
     "image": "el-vino-del-capitan-cabernet-sauvignon.jpg",
-    "price": "480",
+    "price": 480,
     "recommended": "false"
   },
   {
@@ -105,7 +105,7 @@
     "category": "Orgánico",
     "varietal": "Malbec",
     "image": "red-puro-edicion-limitada.jpg",
-    "price": "870",
+    "price": 870,
     "recommended": "false"
   },
   {
@@ -116,7 +116,7 @@
     "category": "Orgánico",
     "varietal": "Malbec",
     "image": "siesta-malbec.jpg",
-    "price": "2400",
+    "price": 2400,
     "recommended": "true"
   },
   {
@@ -127,7 +127,7 @@
     "category": "Orgánico",
     "varietal": "Cabernet Sauvignon",
     "image": "siesta-cabernet-sauvignon.jpg",
-    "price": "2100",
+    "price": 2100,
     "recommended": "false"
   },
   {
@@ -138,7 +138,7 @@
     "category": "Orgánico",
     "varietal": "Franc",
     "image": "siesta-cabernet-franc.jpg",
-    "price": "2900",
+    "price": 2900,
     "recommended": "false"
   },
   {
@@ -149,7 +149,7 @@
     "category": "Orgánico",
     "varietal": "Malbec",
     "image": "krontiras-malbec.jpg",
-    "price": "1200",
+    "price": 1200,
     "recommended": "false"
   },
   {
@@ -160,7 +160,73 @@
     "category": "Orgánico",
     "varietal": "Malbec",
     "image": "dona-silvina-malbec-reserva.jpg",
-    "price": "2300",
+    "price": 2300,
     "recommended": "false"
+  },
+  {
+    "id": 16,
+    "product_name": "Nacha Rosé",
+    "description": "Bodega Chacra es el proyecto, en el Alto Valle del Río Negro, de Piero Inciso della Rochetta, de familia productora en la Toscana, Italia. Es un proyecto que se enfocó desde sus inicios en el Pinot Noir, trabajando con viñedos viejos de hasta 90 años, siguiendo prácticas biodinámicas y logrando muy tempranamente vinos de clase mundial. Nacha, un rosado de Pinot Noir hecho con uvas del viñedo de Barda, de 25 años de edad, es un vino fresco y bebible, con la firmeza y sutileza características de Chacra, para tomar bien frío. Es un vino orgánico y biodinámico, hecho a la manera del rosé, con poco contacto con pieles, fácil de beber, con poco alcohol, con buena acidez natural, simple, un vino que se da fácilmente.",
+    "winery": "Bodega Chacra",
+    "category": "Biodinamicos",
+    "varietal": "Rosados",
+    "image": "nacha-rosé.jpg",
+    "price": 2700,
+    "recommended": "true"
+  },
+  {
+    "id": 17,
+    "product_name": "Chakana Nuna Vineyard White Blend",
+    "description": "Este blend blanco orgánico y biodinámico (Demeter), es una combinación de Sauvignon Blanc, Chardonnay y Viognier. El White Blend fermenta gracias a levaduras indígenas en tanques de acero inoxidable para mantener toda su vitalidad, representando así una atractiva expresión de nuestra finca en Agrelo, Luján de Cuyo, Mendoza. “Aromas a durazno blanco, limón y pomelo se combinan aquí de manera agradable con un toque refrescante de calcáreo.” Tim Atkin",
+    "winery": "Bodega Chakana",
+    "category": "Biodinamicos",
+    "varietal": "Demeter",
+    "image": "nuna-vineyard-white-blend.jpg",
+    "price": 740,
+    "recommended": "false"
+  },
+  {
+    "id": 18,
+    "product_name": "Chakana Nuna Vineyard Rosé",
+    "description": "Nueva Cosecha! Vino rosé orgánico y biodinámico. Rosado biodinámico, posee un cuerpo ligero, freso y equilibrado siendo un blend de tres varietales: Syrah, Malbec y Tannat. Este vino es el fruto de nuestro profundo compromiso con esta misión. La visión del viñedo como ecosistema y la utilización de prácticas de manejo orgánicas nos permite garantizar el máximo respeto de los ciclos biológicos de la vid y la preservación de nuestros suelos, y de esta manera expresa con pureza su identidad. Es un vino equilibrado,elegante y seductor.",
+    "winery": "Bodega Chakana",
+    "category": "Biodinamicos",
+    "varietal": "Rosados",
+    "image": "chakana-nuna-vineyard-rosé.jpg",
+    "price": 740,
+    "recommended": "false"
+  },
+  {
+    "id": 19,
+    "product_name": "Chakana Nuna Vineyard Syrah",
+    "description": "Con certificación orgánica y biodinámica (Demeter) expresando la intensidad típica de nuestro viñedo Nuna en Agrelo, Luján de Cuyo, Mendoza, a través de una viticultura respetuosa y una enología de mínima intervención: buscamos explorar el potencial de esta cepa no tan común en la producción argentina.",
+    "winery": "Bodega Chakana",
+    "category": "Biodinamicos",
+    "varietal": "Syrah",
+    "image": "chakana-nuna-vineyard-syrah.jpg",
+    "price": 740,
+    "recommended": "false"
+  },
+  {
+    "id": 20,
+    "product_name": "Chakana Nuna Tetrada",
+    "description": "Este vino es un corte inusual de cuatro variedades tintas: Tannat, Cabernet Franc, Malbec, Syrah. Una edición limitada que busca expresar la esencia de Agrelo, a través de una viticultura orgánica y biodinámica y una enología de mínima intervención. Cosechado, criado y embotellado en nuestra Finca Nuna, garantizando la certificación orgánica y biodinámica de cada botella.",
+    "winery": "Bodega Chakana",
+    "category": "Biodinamicos",
+    "varietal": "Tannat, Cabernet Franc, Malbec, Syrah",
+    "image": "chakana-nuna-tetrada.jpg",
+    "price": 840,
+    "recommended": "true"
+  },
+  {
+    "id": 21,
+    "product_name": "Buenalma",
+    "description": "Buenalma Malbec: Presentado por Finca Dinamia – Año 2008 – uvas con certificación orgánica & biodinámica, su packaging es 100 % ecológico (botella pintada, corcho natural, caja de cartón reciclado). Elaborado en tanques de acero, fermentado con levaduras indígenas e integrado con “duelas de roble francés durante 6 meses”. Obtuvo por 3 años consecutivos Medalla Top Gold en el International Organic Wine Award – Alemania.",
+    "winery": " Bodega Finca Dinamia",
+    "category": "Biodinamicos",
+    "varietal": "Malbec",
+    "image": "buenalma.jpg",
+    "price": 730,
+    "recommended": "true"
   }
 ]
