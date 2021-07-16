@@ -15,6 +15,7 @@ const productsController = {
         res.render ('products/abm');
     },
     detail: (req, res)=> {
+        req.params.id
         res.render ('products/detail');
     },
     cart: (req, res)=> {
