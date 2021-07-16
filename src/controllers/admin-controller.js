@@ -8,6 +8,9 @@ const adminController = {
     create: (req, res)=> {
         res.render ('admin/create-product');
     }, 
+    store: (req, res)=> {
+        res.render ('admin/store-product');
+    }
 };
 
 module.exports = adminController;
