@@ -1,9 +1,16 @@
-const router = require("../routes/main");
+const fs = require('fs');
 const path = require('path');
+
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     index: (req, res)=> {
-        res.render ('index');
+        const recommendedProducts = products.filter((product) => product.recommended == true);
+        const viewData = {
+            recommendeds: recommendedProducts
+        }
+        res.render ('index', viewData );
     },
     contact: (req, res)=> {
         res.render ('contact');

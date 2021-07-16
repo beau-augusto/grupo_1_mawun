@@ -7,7 +7,7 @@
     "varietal": "Tannat ",
     "image": "chakana-frisante-rosé.jpg",
     "price": 840,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 2,
@@ -18,7 +18,7 @@
     "varietal": "Syrah",
     "image": "chakana-frisante-rosé.jpg",
     "price": 1800,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 3,
@@ -29,7 +29,7 @@
     "varietal": "Criolla",
     "image": "be-my-hippie-love-blanco.png",
     "price": 390,
-    "recommended": "true"
+    "recommended": true
   },
   {
     "id": 4,
@@ -40,7 +40,7 @@
     "varietal": "Barbera",
     "image": "amici-miei.jpeg",
     "price": 800,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 5,
@@ -51,7 +51,7 @@
     "varietal": "Petit Verdot",
     "image": "stella-crinita-petit-verdot.jpeg",
     "price": 1370,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 6,
@@ -62,7 +62,7 @@
     "varietal": "Viognier",
     "image": "omaggio-pet-nat-viognier.jpg",
     "price": 900,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 7,
@@ -73,7 +73,7 @@
     "varietal": "Malbec",
     "image": "krontiras-natural-malbec.jpg",
     "price": 1700,
-    "recommended": "true"
+    "recommended": false
   },
   {
     "id": 8,
@@ -84,7 +84,7 @@
     "varietal": "Malbec",
     "image": "el-vino-del-capitan-malbec.jpg",
     "price": 480,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 9,
@@ -95,7 +95,7 @@
     "varietal": "Cabernet Sauvignon",
     "image": "el-vino-del-capitan-cabernet-sauvignon.jpg",
     "price": 480,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 10,
@@ -106,7 +106,7 @@
     "varietal": "Malbec",
     "image": "red-puro-edicion-limitada.jpg",
     "price": 870,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 11,
@@ -117,7 +117,7 @@
     "varietal": "Malbec",
     "image": "siesta-malbec.jpg",
     "price": 2400,
-    "recommended": "true"
+    "recommended": true
   },
   {
     "id": 12,
@@ -128,7 +128,7 @@
     "varietal": "Cabernet Sauvignon",
     "image": "siesta-cabernet-sauvignon.jpg",
     "price": 2100,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 13,
@@ -139,7 +139,7 @@
     "varietal": "Franc",
     "image": "siesta-cabernet-franc.jpg",
     "price": 2900,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 14,
@@ -150,7 +150,7 @@
     "varietal": "Malbec",
     "image": "krontiras-malbec.jpg",
     "price": 1200,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 15,
@@ -161,7 +161,7 @@
     "varietal": "Malbec",
     "image": "dona-silvina-malbec-reserva.jpg",
     "price": 2300,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 16,
@@ -172,7 +172,7 @@
     "varietal": "Rosados",
     "image": "nacha-rosé.jpg",
     "price": 2700,
-    "recommended": "true"
+    "recommended": true
   },
   {
     "id": 17,
@@ -183,7 +183,7 @@
     "varietal": "Demeter",
     "image": "nuna-vineyard-white-blend.jpg",
     "price": 740,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 18,
@@ -194,7 +194,7 @@
     "varietal": "Rosados",
     "image": "chakana-nuna-vineyard-rosé.jpg",
     "price": 740,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 19,
@@ -205,7 +205,7 @@
     "varietal": "Syrah",
     "image": "chakana-nuna-vineyard-syrah.jpg",
     "price": 740,
-    "recommended": "false"
+    "recommended": false
   },
   {
     "id": 20,
@@ -216,7 +216,7 @@
     "varietal": "Tannat, Cabernet Franc, Malbec, Syrah",
     "image": "chakana-nuna-tetrada.jpg",
     "price": 840,
-    "recommended": "true"
+    "recommended": true
   },
   {
     "id": 21,
@@ -227,6 +227,6 @@
     "varietal": "Malbec",
     "image": "buenalma.jpg",
     "price": 730,
-    "recommended": "true"
+    "recommended": false
   }
 ]

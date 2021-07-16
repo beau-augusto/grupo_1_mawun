@@ -1,4 +1,3 @@
-//const router = require("../routes/main");
 const fs = require('fs');
 const path = require('path');
 

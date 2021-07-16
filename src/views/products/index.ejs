@@ -14,138 +14,16 @@
         </div>
         <section class="container">
             <div class="product-grid">
-
                 <% products.forEach(product => { %>
-
                 <article class="product-grid-item">
                     <a href="/productos/detalle">
-                        <img src="/images/vino-nr3-home.jpg" alt="Gran Lurton Rosé" class="product-grid-img">
+                        <img src="/upload/products/<%= product.image %>" alt="<%= product.product_name %>" class="product-grid-img">
                         <h4><%= product.product_name %></h4>
                         <p class="product-grid-title">$<%= product.price %></p>
                         <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
                     </a> 
                 </article>
                 <% }) %>
-                <!-- <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr1-home.jpg" alt="Stutz Tannat" class="product-grid-img">
-                        <h4>Stutz Tannat</h4>
-                        <p class="product-grid-title">$ 750</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr4-home.jpg" alt="Hippie Love Blanco" class="product-grid-img">
-                        <h4>Hippie Love Blanco</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr2-home.jpg" alt="Cosmic Amber" class="product-grid-img">
-                        <h4>Cosmic Amber</h4>
-                        <p class="product-grid-title">$ 1500</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr3-home.jpg" alt="Gran Lurton Rosé" class="product-grid-img">
-                        <h4>Gran Lurton Rosé</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr1-home.jpg" alt="Stutz Tannat" class="product-grid-img">
-                        <h4>Stutz Tannat</h4>
-                        <p class="product-grid-title">$ 750</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr4-home.jpg" alt="Hippie Love Blanco" class="product-grid-img">
-                        <h4>Hippie Love Blanco</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr2-home.jpg" alt="Cosmic Amber" class="product-grid-img">
-                        <h4>Cosmic Amber</h4>
-                        <p class="product-grid-title">$ 1500</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr3-home.jpg" alt="Gran Lurton Rosé" class="product-grid-img">
-                        <h4>Gran Lurton Rosé</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr1-home.jpg" alt="Stutz Tannat" class="product-grid-img">
-                        <h4>Stutz Tannat</h4>
-                        <p class="product-grid-title">$ 750</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr4-home.jpg" alt="Hippie Love Blanco" class="product-grid-img">
-                        <h4>Hippie Love Blanco</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr2-home.jpg" alt="Cosmic Amber" class="product-grid-img">
-                        <h4>Cosmic Amber</h4>
-                        <p class="product-grid-title">$ 1500</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr3-home.jpg" alt="Gran Lurton Rosé" class="product-grid-img">
-                        <h4>Gran Lurton Rosé</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr1-home.jpg" alt="Stutz Tannat" class="product-grid-img">
-                        <h4>Stutz Tannat</h4>
-                        <p class="product-grid-title">$ 750</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr4-home.jpg" alt="Hippie Love Blanco" class="product-grid-img">
-                        <h4>Hippie Love Blanco</h4>
-                        <p class="product-grid-title">$ 1700</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a>
-                </article>
-                <article class="product-grid-item">
-                    <a href="/productos/detalle">
-                        <img src="/images/vino-nr2-home.jpg" alt="Cosmic Amber" class="product-grid-img">
-                        <h4>Cosmic Amber</h4>
-                        <p class="product-grid-title">$ 1500</p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
-                </article> -->
             </div>
         </section>
     </main>
