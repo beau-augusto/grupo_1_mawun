@@ -843,6 +843,41 @@ ul.hero-menu li a:hover {
     margin-left: auto;
     margin-left: auto;
 }
+
+/*ABM inventario*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.1fr 2.7fr 0.2fr 1fr;
+    grid-template-rows: 0.4fr 1.6fr;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . . ."
+      ". . . .";
+    width: 100%;
+    height: 23.4%;
+    border: 2px solid black;
+  }
+  
+  
+  .grid-item {
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+
+  }
+
+  .abm-inventory-wrapper {
+
+    background-color: #ffffff;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
+    border-top: 4px solid #744b64;
+}
+
+
 /*FIN CSS AUGUSTO*/
 
 /** Migue INICIO**/
@@ -1262,7 +1297,7 @@ h5 {
 .bo-profile:hover {
     color: #55394a;
 }
-.abm-productos{
+.abm-productos, .abm-inventory{
     padding: 40px 0;
 }
 .abm-producto-wrapper{
@@ -1286,6 +1321,8 @@ h5 {
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
+
+
 .abm-input-container{
     display: flex;
     flex-wrap: wrap;
@@ -1315,7 +1352,7 @@ h5 {
     padding: 10px 10px;
     margin: 10px 0;
 }
-.abm-input-tit{
+.abm-input-tit {
     color: #412838;
     font-size: 16px;
     font-weight: 500;

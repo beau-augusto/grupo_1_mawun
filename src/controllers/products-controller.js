@@ -24,13 +24,20 @@ const productsController = {
         res.render ('products/detail', elProducto);
     }  
         if (!req.params.id) {
-        res.render ('products/cart');
+            const recommendedProducts = products.filter((product) => product.recommended == true);
+            const viewData = {
+                recommendeds: recommendedProducts
+            }
+            res.render ('index', viewData );
     }   else {
         res.send ('El producto que buscás no existe. Lo lamento mucho. Muajaja.')
     }
     },
     cart: (req, res)=> {
         res.render ('products/cart');
+    },
+    inventory:  (req, res)=> {
+        res.render ('products/inventory');
     }
 };
 
