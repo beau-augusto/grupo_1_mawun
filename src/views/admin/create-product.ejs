@@ -7,15 +7,15 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Crear Producto</h2>
-                <form action="/admin/store-product" class="abm-form-wrapper" method="POST">
+                <form action="" class="abm-form-wrapper" method="POST">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Nombre del Producto</label>
-                            <input type="text" id="name" placeholder="Nombre del Producto" class="abm-input">
+                            <input type="text" id="name" name="product_name" placeholder="Nombre del Producto" class="abm-input">
                         </div>
                         <div class="abm-input-wrap">
                             <label for="category" class="abm-input-tit">Categoria</label>
-                            <select name="" id="category" class="abm-input">
+                            <select name="category" id="category" class="abm-input">
                                 <option value="" disabled selected>Seleccione Categoría</option>
                                 <option value="Orgánicos">Orgánicos</option>
                                 <option value="Biodinámicos">Biodinámicos</option>
@@ -26,12 +26,24 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="price" class="abm-input-tit">Precio</label>
-                            <input type="number" id="price" placeholder="Precio" class="abm-input">
+                            <input type="number" name="price" id="price" placeholder="Precio" class="abm-input">
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="variety" class="abm-input-tit">Variedad</label>
-                            <input type="text" id="variety" placeholder="Variedad" class="abm-input">
+                            <label for="varietal" class="abm-input-tit">Variedad</label>
+                            <input type="text" name="varietal" id="varietal" placeholder="Variedad" class="abm-input">
                         </div>
+                        <div class="abm-input-wrap">
+                            <label for="winery" class="abm-input-tit">Bodega</label>
+                            <input type="text" name="winery" id="winery" placeholder="Bodega" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="recommended" class="abm-input-tit">Recomendados</label>
+                            <select name="recommended" id="recommended" class="abm-input">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div> 
                     </div>
                     <div class="abm-input-wrap-desc">
                         <label for="description" class="abm-input-tit">Descripción</label>
@@ -39,7 +51,7 @@
                     </div>
                     <div class="abm-input-wrap">
                         <label for="image" class="abm-input-tit">Imagen</label>
-                        <input type="file" id="image" class="abm-file-input">
+                        <input type="file" name="image" id="image" class="abm-file-input">
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">GUARDAR</button>
