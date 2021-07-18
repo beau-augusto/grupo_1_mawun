@@ -512,7 +512,7 @@ ul.hero-menu li a:hover {
 
 
 .imagenPrincipal img {
-    width: 250px;
+    width: 350px;
     margin: 30px;
     padding: 0px;
     margin: 0px 25px;
@@ -536,7 +536,7 @@ ul.hero-menu li a:hover {
     font-family: 'DM Serif Display', serif;
     font-weight: normal;
     font-size: 23px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     text-align: left;
 }
 
@@ -547,13 +547,15 @@ ul.hero-menu li a:hover {
 .categoriasPC {
     font-size: 15px; 
     font-weight: 500;
+    margin-top: 10px;
 }
+
 
 .precioDP {
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
-    line-height: 46px;
+    line-height: 48px;
     color:rgba(29, 14, 14, 0.8);
 }
 
@@ -561,6 +563,8 @@ ul.hero-menu li a:hover {
     font-weight: normal;
     font-size: 13px;
     line-height: 29px;
+    margin-bottom: 4px;
+
 }
 
 /* Íconos en el texto de detalle de compra */
@@ -569,7 +573,7 @@ ul.hero-menu li a:hover {
     display: flex;
     margin-top: 50px;
     justify-content: space-between;
-    width: 67%;
+    width: 100%;
 }
 
 .cajaSumadora {
@@ -843,6 +847,159 @@ ul.hero-menu li a:hover {
     margin-left: auto;
     margin-left: auto;
 }
+
+/*ABM inventario*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.3fr 2.1fr 0.1fr 1.5fr; 
+    grid-template-rows: 0.3fr 1.2fr; 
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . . ."
+      ". . . .";
+    width: 100%;
+    height: 23.4%;
+  }
+  
+  
+  .grid-item {
+    padding: 10px;
+    text-align: left;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+
+  }
+
+  .grid-item:nth-child(4n) {
+    border-right: 1px solid black;
+  }
+
+  .grid-item:nth-child(5n) {
+    border-bottom: 1px solid black;
+  }
+
+  .grid-item:nth-child(5n+6) {
+    border-bottom: 1px solid black;
+  }
+
+  .grid-item:nth-child(5n+7) {
+    border-bottom: 1px solid black;
+  }
+
+  .grid-item:nth-child(5n+8) {
+    border-bottom: 1px solid black;
+  }
+  .grid-item:nth-child(5n+9) {
+    border-bottom: 1px solid black;
+  }
+
+  .grid-item:nth-child(1n+9) {
+    border-top: none;
+  }
+
+  .abm-inventory-wrapper {
+
+    background-color: #ffffff;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
+    border-top: 4px solid #744b64;
+}
+
+.itemInfo {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.botonesWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.botonesInventario:hover {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+
+
+}
+
+.botonesInventario1 {
+    font-size: 13px;
+    margin-right: 3px;
+    margin-left: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    min-width: 75px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #55394a;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.botonesInventario3 {
+    font-size: 13px;
+    margin-right: 3px;
+    margin-left: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    min-width: 75px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #D49E4D;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.botonesInventario2 {
+    font-size: 13px;
+    margin-right: 3px;
+    margin-left: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    min-width: 75px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #2E301A;
+    border: #55394a solid 1px;
+    padding: 5px 8px 5px 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.labelID {
+    font-size: 17px;
+}
+
+.searchInventario {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 36px;
+    border: 1px solid rgba(0, 0, 0, 0.226);
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.searchFieldInventario {
+    width: 100%;
+    height: 40px;
+    border-width: 0px;
+    padding: 10px;
+}
+
+
 /*FIN CSS AUGUSTO*/
 
 /** Migue INICIO**/
@@ -1262,7 +1419,7 @@ h5 {
 .bo-profile:hover {
     color: #55394a;
 }
-.abm-productos{
+.abm-productos, .abm-inventory{
     padding: 40px 0;
 }
 .abm-producto-wrapper{
@@ -1286,6 +1443,8 @@ h5 {
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
+
+
 .abm-input-container{
     display: flex;
     flex-wrap: wrap;
@@ -1315,7 +1474,7 @@ h5 {
     padding: 10px 10px;
     margin: 10px 0;
 }
-.abm-input-tit{
+.abm-input-tit {
     color: #412838;
     font-size: 16px;
     font-weight: 500;
