@@ -8,8 +8,18 @@ const adminController = {
     create: (req, res)=> {
         res.render ('admin/create-product');
     },
+
     edit: (req, res)=> {
-        res.render ('admin/edit-product');
+        const id = req.params.id;
+		const product = products.find((prod) => prod.id == id);
+		if(!product) {
+			return res.send('No pudimos encotrar ese Producto')
+		}
+		const viewData = {
+			product: product
+		}
+        
+        return res.render ('admin/edit-product', viewData);
     },
 
     update: (req, res) => {

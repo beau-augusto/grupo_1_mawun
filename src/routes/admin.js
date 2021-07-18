@@ -8,7 +8,7 @@ router.get('/crear', adminController.create);
 router.post('/', adminController.store);
 
 
-router.get('/editar', adminController.edit);
+router.get('/editar/:id', adminController.edit);
 router.post('/', adminController.update);
 
 module.exports = router;
