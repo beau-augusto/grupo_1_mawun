@@ -1443,8 +1443,6 @@ h5 {
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
-
-
 .abm-input-container{
     display: flex;
     flex-wrap: wrap;
@@ -1473,6 +1471,23 @@ h5 {
     font-weight: 300;
     padding: 10px 10px;
     margin: 10px 0;
+}
+.abm-ratio-wrap {
+    font-weight: 300;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #faeeed;
+    border-radius: 3px;
+    display: flex;
+}
+.abm-ratio-lavel {
+        display: flex;
+        align-items: center;
+}
+.abm-ratio {
+    color: #412838;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 .abm-input-tit {
     color: #412838;
