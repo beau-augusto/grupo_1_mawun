@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/bo-header') %>
+    <main>
+        <section class="abm-inventory container">
+
+
+                <div class="abm-inventory-wrapper">
+
+                    <form action="/" method="POST" class="searchInventario">
+                        <input type="search" maxlength="256" placeholder="Buscar" class="searchFieldInventario">
+                        <button class="hero-search__submit"><i class="fa fa-search"></i></button>
+                    </form>
+
+                    <div class="grid-container">
+
+
+                    <div class="grid-item abm-input-tit">
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                        <label for="vehicle1"> ID</label><br>
+                    </div>
+                    <div class="grid-item abm-input-tit">Artículo</div>
+                    <div class="grid-item abm-input-tit">Recomendado</div>
+                    <div class="grid-item abm-input-tit">Acciones</div>
+                    <% products.forEach(product => { %>
+
+
+
+        
+                    <div class="grid-item itemInfo">
+                        <form action="/action_page.php" >
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <label for="vehicle1"  class="labelID"> <%= product.id %></label><br>
+                    </div>
+                    <div class="grid-item itemInfo"><%= product.product_name %></div>
+                    <div class="grid-item itemInfo"><%= product.recommended %></div>
+                    <div class="grid-item botonesWrapper"> 
+                        <a href="/productos/detalle/<%= product.id %>" class="botonesInventario1">Ver</a>
+                        <a href="/" class="botonesInventario2">Editar</a>
+                        <a href="/" class="botonesInventario3">Borrar</a>
+                    </div>
+                    <% }) %>
+
+
+
+
+
+                </div>
+
+
+                    
+                    
+                </div>
+        </section>
+    </main>
+    <%- include('../partials/bo-footer') %>
+</body>
+</html>
