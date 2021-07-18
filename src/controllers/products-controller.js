@@ -28,7 +28,7 @@ const productsController = {
             const viewData = {
                 recommendeds: recommendedProducts
             }
-            res.render ('index', viewData );
+            res.render ('index', viewData);
     }   else {
         res.send ('El producto que buscás no existe. Lo lamento mucho. Muajaja.')
     }
@@ -37,7 +37,8 @@ const productsController = {
         res.render ('products/cart');
     },
     inventory:  (req, res)=> {
-        res.render ('products/inventory');
+
+        res.render ('products/inventory', { products: products});
     }
 };
 
