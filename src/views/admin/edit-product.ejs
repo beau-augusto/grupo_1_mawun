@@ -7,7 +7,7 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Editar Producto</h2>
-                <form action="" class="abm-form-wrapper">
+                <form action="/" class="abm-form-wrapper" method="POST">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="product_name" class="abm-input-tit">Nombre del Producto</label>
@@ -25,12 +25,22 @@
                     </div>
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
-                            <label for="price" class="abm-input-tit">Precio</label>
-                            <input type="number" id="price" placeholder="Precio" class="abm-input">
+                            <label for="winery" class="abm-input-tit">Bodega</label>
+                            <input type="text" id="winery" placeholder="Bodega" class="abm-input">
                         </div>
                         <div class="abm-input-wrap">
                             <label for="varietal" class="abm-input-tit">Variedad</label>
                             <input type="text" id="varietal" placeholder="Variedad" class="abm-input">
+                        </div>
+                    </div>
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="price" class="abm-input-tit">Precio</label>
+                            <input type="number" id="price" placeholder="Precio" class="abm-input">
+                        </div>
+                        <div class="registrer-ratio-wrap">
+                            <label for="recommendedSi" class="perfil-ratio"><input type="radio" name="profile" value="recommendedSi" id="recommendedSi">SI</label>
+                            <label for="recommendedNo" class="perfil-ratio"><input type="radio" name="profile" value="recommendedNo" id="recommendedNo" checked="checked" style="margin-left: 15px;">NO</label>
                         </div>
                     </div>
                     <div class="abm-input-wrap-desc">
