@@ -10,20 +10,25 @@ const adminController = {
     },
 
     edit: (req, res)=> {
-        const id = req.params.id;
-		const product = products.find((prod) => prod.id == id);
-		if(!product) {
+        const id = req.params.id; // Obtengo el parámetro para buscar el recurso
+		const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
+		if (!product) {
 			return res.send('No pudimos encotrar ese Producto')
 		}
 		const viewData = {
 			product: product
 		}
-        
         return res.render ('admin/edit-product', viewData);
     },
 
     update: (req, res) => {
-		res.render(('/'))
+        const indexProduct = products.findIndex( product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
+
+        products[indexProduct] = { ...products[indexProduct] , ...req.body };
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
+
+		res.redirect(303, '/productos/inventario');
 	}, 
 
     store: (req, res)=> {
