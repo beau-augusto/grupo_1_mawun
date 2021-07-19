@@ -56,6 +56,12 @@ const adminController = {
     inventory:  (req, res)=> {
 
         res.render ('./admin/inventory', {products});
+    },
+    delete: 
+    (req, res)=> {
+
+        
+        res.render ('./admin/inventory', {products});
     }
 };
 
