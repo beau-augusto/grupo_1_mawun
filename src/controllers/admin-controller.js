@@ -4,6 +4,9 @@ const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
+
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 const adminController = {
     create: (req, res)=> {
         res.render ('admin/create-product');
@@ -33,13 +36,14 @@ const adminController = {
 
     store: (req, res)=> {
         //asignarle ID en base al ultimo producto
-        const lastProduct = products (products.lenght - 1)
+        const lastProduct = products [products.lenght - 1];
 
         const productToCreate = req.body;
         productToCreate.id = lastProduct.id + 1;
+        productToCreate.image = 'buenalma.jpg';
 
         //Para agregar un nuevo producto en el array del Json
-        product.push(productToCreate);
+        products.push(productToCreate);
 
         //llama al metodo fs.writeFileSync(GUARDAR UN ARCHIVO) y el contenido de ese archivo
         //va a ser => la ruta donde lo voy a guardar y el contenido va a ser JSON.stringify
@@ -47,7 +51,7 @@ const adminController = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
 
         //Codigo 303, redirecciona a la ruta que escribas
-        res.redirect (303, '/');
+        res.redirect (303, '/productos/inventario');
     }
 };
 
