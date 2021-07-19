@@ -4,14 +4,12 @@ const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
-
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const adminController = {
     create: (req, res)=> {
         res.render ('admin/create-product');
     },
-
     edit: (req, res)=> {
         const id = req.params.id; // Obtengo el parámetro para buscar el recurso
 		const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
@@ -23,7 +21,6 @@ const adminController = {
 		}
         return res.render ('admin/edit-product', viewData);
     },
-
     update: (req, res) => {
         const indexProduct = products.findIndex( product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
 
@@ -33,7 +30,6 @@ const adminController = {
 
 		res.redirect(303, '/productos/inventario');
 	}, 
-
     store: (req, res)=> {
         //asignarle ID en base al ultimo producto
         const lastProduct = products [products.lenght - 1];
@@ -54,7 +50,6 @@ const adminController = {
         res.redirect (303, '/admin/inventario');
     },
     inventory:  (req, res)=> {
-
         res.render ('./admin/inventory', {products});
     },
     delete: 
