@@ -229,5 +229,16 @@
     "image": "buenalma.jpg",
     "price": 730,
     "recommended": false
+  },
+  {
+    "product_name": "Lilen Cabernet Sauvignon",
+    "category": "Orgánicos",
+    "price": 650,
+    "varietal": "Cabernet Sauvignon",
+    "winery": "Bodega Andalhue",
+    "recommended": false,
+    "description": "Posee un color rojo oscuro con destellos azulados y un brillo singular, aparecen sabores a frutos rojos, especialmente ciruelas y frutillas, también confituras, acomplejados con café que aporta el roble. En la boca tiene una entrada grata y redondo, con taninos jugosos que otorga largo y placentero final.",
+    "id": 22,
+    "image": "buenalma.jpg"
   }
 ]

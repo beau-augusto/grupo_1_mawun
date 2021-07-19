@@ -13,14 +13,14 @@ const productsController = {
         const elProducto = products.find(producto => producto.id == req.params.id) 
         if (elProducto != undefined){
         res.render ('products/detail', elProducto);
-    }  
+    } /*  
         if (!req.params.id) {
             const recommendedProducts = products.filter((product) => product.recommended == true);
             const viewData = {
                 recommendeds: recommendedProducts
             }
             res.render ('index', viewData);
-    }   else {
+    }  */  else {
         res.send ('El producto que buscás no existe. Lo lamento mucho. Muajaja.')
     }
     },

@@ -28,11 +28,11 @@ const adminController = {
 
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
 
-		res.redirect(303, '/productos/inventario');
+		res.redirect(303, '/admin/inventario');
 	}, 
     store: (req, res)=> {
         //asignarle ID en base al ultimo producto
-        const lastProduct = products [products.lenght - 1];
+        const lastProduct = products [products.length - 1];
 
         const productToCreate = req.body;
         productToCreate.id = lastProduct.id + 1;
