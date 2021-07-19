@@ -36,10 +36,6 @@ const productsController = {
     cart: (req, res)=> {
         res.render ('products/cart');
     },
-    inventory:  (req, res)=> {
-
-        res.render ('products/inventory', { products: products});
-    }
 };
 
 module.exports = productsController;

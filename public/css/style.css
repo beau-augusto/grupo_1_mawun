@@ -854,7 +854,6 @@ ul.hero-menu li a:hover {
     display: grid;
     grid-template-columns: 0.3fr 2.1fr 0.1fr 1.5fr; 
     grid-template-rows: 0.3fr 1.2fr; 
-    grid-auto-flow: row;
     grid-template-areas:
       ". . . ."
       ". . . .";
@@ -911,8 +910,23 @@ ul.hero-menu li a:hover {
     text-align: left;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkboxInventario {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkboxCheck {
+    margin-right: 10px;
+
 }
 
 
@@ -921,13 +935,24 @@ ul.hero-menu li a:hover {
     justify-content: center;
 }
 
-.botonesInventario:hover {
+.botonesInventario1:hover {
     background-color:#faeeed;
     color: #55394a;
     border: #55394a solid 1px;
-
-
 }
+
+.botonesInventario2:hover {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+}
+
+.botonesInventario3:hover {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+}
+
 
 .botonesInventario1 {
     font-size: 13px;
@@ -945,7 +970,7 @@ ul.hero-menu li a:hover {
     transition: all 0.3s ease-in-out;
 }
 
-.botonesInventario3 {
+.botonesInventario2 {
     font-size: 13px;
     margin-right: 3px;
     margin-left: 3px;
@@ -961,7 +986,7 @@ ul.hero-menu li a:hover {
     transition: all 0.3s ease-in-out;
 }
 
-.botonesInventario2 {
+.botonesInventario3 {
     font-size: 13px;
     margin-right: 3px;
     margin-left: 3px;
@@ -971,7 +996,7 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #2E301A;
+    background-color: rgb(109, 108, 108);
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;

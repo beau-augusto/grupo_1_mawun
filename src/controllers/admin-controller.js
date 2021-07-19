@@ -25,6 +25,10 @@ const adminController = {
 
 //Codigo 303, redirecciona a la ruta que escribas
         res.redirect (303, '/');
+    },
+    inventory:  (req, res)=> {
+
+        res.render ('products/inventory', {products});
     }
 };
 

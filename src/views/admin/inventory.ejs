@@ -29,10 +29,10 @@
 
 
         
-                    <div class="grid-item itemInfo">
-                        <form action="/action_page.php" >
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                            <label for="vehicle1"  class="labelID"> <%= product.id %></label><br>
+                    <div class="grid-item checkboxInventario">
+                        <form action="/action_page.php">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="checkboxCheck">
+                            <label for="vehicle1"> <%=product.id%></label>
                     </div>
                     <div class="grid-item itemInfo"><%= product.product_name %></div>
                     <div class="grid-item itemInfo"><%= product.recommended %></div>
