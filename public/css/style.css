@@ -953,6 +953,12 @@ ul.hero-menu li a:hover {
     border: #55394a solid 1px;
 }
 
+.botonesInventarioCrear {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+}
+
 
 .botonesInventario1 {
     font-size: 13px;
@@ -964,7 +970,7 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #55394a;
+    background-color: #FAC262;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
@@ -980,7 +986,7 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #D49E4D;
+    background-color: #67C1AF;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
@@ -996,10 +1002,34 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: rgb(109, 108, 108);
+    background-color: #2E301A;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
+}
+
+.botonesInventarioCrear {
+        font-size: 13px;
+        margin-right: 3px;
+        margin-left: 3px;
+        color: white;
+        cursor: pointer;
+        width: 30%;
+        text-align: center;
+        border-radius: 3px;
+        text-decoration: none;
+        background-color: #55394a; 
+        border: #55394a solid 1px;
+        padding: 5px 8px 5px 8px;
+        transition: all 0.3s ease-in-out;
+}
+
+.search-crear-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 27px;
+
 }
 
 .labelID {
@@ -1010,16 +1040,26 @@ ul.hero-menu li a:hover {
     display: flex;
     align-items: center;
     align-content: center;
-    margin-bottom: 36px;
     border: 1px solid rgba(0, 0, 0, 0.226);
-    width: 100%;
+    width: 70%;
     justify-content: space-between;
+}
+
+.searchInven__submit {
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    height: 31px;
+    padding: 0 10px;
+    border-radius: 0px;
+    background-color: #412838;
 }
 
 
 .searchFieldInventario {
     width: 100%;
-    height: 40px;
+    height: 31px;
     border-width: 0px;
     padding: 10px;
 }
@@ -1468,8 +1508,6 @@ h5 {
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
-
-
 .abm-input-container{
     display: flex;
     flex-wrap: wrap;
@@ -1498,6 +1536,23 @@ h5 {
     font-weight: 300;
     padding: 10px 10px;
     margin: 10px 0;
+}
+.abm-ratio-wrap {
+    font-weight: 300;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #faeeed;
+    border-radius: 3px;
+    display: flex;
+}
+.abm-ratio-lavel {
+        display: flex;
+        align-items: center;
+}
+.abm-ratio {
+    color: #412838;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 .abm-input-tit {
     color: #412838;

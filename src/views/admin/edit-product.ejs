@@ -6,43 +6,55 @@
     <main>
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
-                <h2 class="abm-title">Editar Producto</h2>
-                <form action="" class="abm-form-wrapper">
+                <h2 class="abm-title">Editar - <span style="font-weight:400; text-transform: capitalize;"><%= product.product_name %></span></h2>
+                <form action="/admin/<%= product.id %>?_method=PUT" method="POST" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="product_name" class="abm-input-tit">Nombre del Producto</label>
-                            <input type="text" id="product_name" placeholder="Nombre del Producto" class="abm-input">
+                            <input type="text" id="product_name" name="product_name" placeholder="Nombre del Producto" value="<%= product.product_name %>" class="abm-input">
                         </div>
                         <div class="abm-input-wrap">
                             <label for="category" class="abm-input-tit">Categoria</label>
-                            <select name="" id="category" class="abm-input">
-                                <option value="" disabled selected>Seleccione Categoría</option>
-                                <option value="Orgánicos">Orgánicos</option>
-                                <option value="Biodinámicos">Biodinámicos</option>
-                                <option value="Naturales">Naturales</option>
+                            <select name="category" id="category" class="abm-input">
+                                <option <% if (product.category == 'Orgánico') { %> selected <% } %> value="Orgánicos">Orgánicos</option>
+                                <option <% if (product.category == 'Biodinámicos') { %> selected <% } %> value="Biodinámicos">Biodinámicos</option>
+                                <option <% if (product.category == 'Naturales') { %> selected <% } %> value="Naturales">Naturales</option>
                             </select>
                         </div> 
                     </div>
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
-                            <label for="price" class="abm-input-tit">Precio</label>
-                            <input type="number" id="price" placeholder="Precio" class="abm-input">
+                            <label for="winery" class="abm-input-tit">Bodega</label>
+                            <input type="text" id="winery" name="winery" placeholder="Bodega" value="<%= product.winery %>" class="abm-input">
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="varietal" class="abm-input-tit">Variedad</label>
-                            <input type="text" id="varietal" placeholder="Variedad" class="abm-input">
+                            <label for="varietal" class="abm-input-tit">Varietal</label>
+                            <input type="text" id="varietal" name="varietal" placeholder="Variedad" value="<%= product.varietal %>" class="abm-input">
+                        </div>
+                    </div>
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="price" class="abm-input-tit">Precio</label>
+                            <input type="number" id="price" value="<%= product.price %>" name="price" placeholder="Precio" class="abm-input">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label class="abm-input-tit">Recomendado</label>
+                            <div class="abm-ratio-wrap">
+                            <label for="recommendedSi" class="abm-ratio-lavel"><input type="radio" name="recommended" value="true" id="recommendedYes" <% if (product.recommended == true) { %> checked <% } %> class="abm-ratio">SI</label>
+                            <label for="recommendedNo" class="abm-ratio-lavel"><input type="radio" name="recommended" value="false" id="recommendedNo" <% if (product.recommended == false) { %> checked <% } %>class="abm-ratio">NO</label>
+                            </div>
                         </div>
                     </div>
                     <div class="abm-input-wrap-desc">
                         <label for="description" class="abm-input-tit">Descripción</label>
-                        <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción"  class="abm-input"></textarea>
+                        <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción" class="abm-input"><%= product.description %></textarea>
                     </div>
                     <div class="abm-input-wrap">
                         <label for="image" class="abm-input-tit">Imagen</label>
                         <input type="file" id="image" class="abm-file-input">
                     </div>
                     <div class="abm-button-wrap">
-                        <button type="submit" class="abm-button-submit">GUARDAR</button>
+                        <button type="submit" class="abm-button-submit">ACTUALIZAR</button>
                     </div>
                 </form>
             </div>

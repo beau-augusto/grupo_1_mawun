@@ -7,7 +7,7 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Crear Producto</h2>
-                <form action="" class="abm-form-wrapper" method="POST">
+                <form action="/admin" class="abm-form-wrapper" method="POST">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Nombre del Producto</label>
@@ -40,8 +40,8 @@
                             <label for="recommended" class="abm-input-tit">Recomendados</label>
                             <select name="recommended" id="recommended" class="abm-input">
                                 <option value="" disabled selected>Seleccionar</option>
-                                <option value="Sí">Sí</option>
-                                <option value="No">No</option>
+                                <option value="true">Sí</option>
+                                <option value="false" selected>No</option>
                             </select>
                         </div> 
                     </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="abm-input-wrap">
                         <label for="image" class="abm-input-tit">Imagen</label>
-                        <input type="file" name="image" id="image" class="abm-file-input">
+                        <input type="file" id="image" class="abm-file-input">
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">GUARDAR</button>
