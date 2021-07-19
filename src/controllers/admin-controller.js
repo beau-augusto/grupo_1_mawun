@@ -59,8 +59,13 @@ const adminController = {
     },
     delete: 
     (req, res)=> {
+        const productDelete = req.params.id
 
-        
+        if (productDelete === -1) return res.status(404).json({})
+       
+        products.splice(productoBorrar, 1)
+        res.json(products)
+
         res.render ('./admin/inventory', {products});
     }
 };
