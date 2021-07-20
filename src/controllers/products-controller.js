@@ -21,7 +21,7 @@ const productsController = {
             }
             res.render ('index', viewData);
     }  */  else {
-        res.send ('El producto que buscás no existe. Lo lamento mucho. Muajaja.')
+        res.send ('El producto que buscás no existe.')
     }
     },
     cart: (req, res)=> {

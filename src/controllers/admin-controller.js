@@ -54,14 +54,18 @@ const adminController = {
     },
     delete: 
     (req, res)=> {
-        const productDelete = req.params.id
+        const indexProduct = products.findIndex( product => product.id == req.params.id);
 
-        if (productDelete === -1) return res.status(404).json({})
+        if (indexProduct === -1) {
+             res.send ('El producto que buscás no existe.');
+        }
        
-        products.splice(productoBorrar, 1)
-        res.json(products)
+        products.splice(indexProduct, 1);
 
-        res.render ('./admin/inventory', {products});
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+
+
+        res.redirect('/admin/inventario');
     }
 };
 

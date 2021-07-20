@@ -954,11 +954,6 @@ ul.hero-menu li a:hover {
     border: #55394a solid 1px;
 }
 
-.botonesInventarioCrear {
-    background-color:#faeeed;
-    color: #55394a;
-    border: #55394a solid 1px;
-}
 
 
 .botonesInventario1 {
@@ -971,8 +966,8 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #FAC262;
-    border: #55394a solid 1px;
+    background-color: #22a7f0; 
+    border: #55394a solid 1px; 
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
 }
@@ -987,7 +982,7 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #67C1AF;
+    background-color: #f39c12;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
@@ -1000,10 +995,11 @@ ul.hero-menu li a:hover {
     color: #ffffff;
     cursor: pointer;
     min-width: 75px;
+    height: 33px;
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #2E301A;
+    background-color: #fa2a00;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
@@ -1015,11 +1011,11 @@ ul.hero-menu li a:hover {
         margin-left: 3px;
         color: white;
         cursor: pointer;
-        width: 30%;
+        width: 24%;
         text-align: center;
         border-radius: 3px;
         text-decoration: none;
-        background-color: #55394a; 
+        background-color: #2ecc71; 
         border: #55394a solid 1px;
         padding: 5px 8px 5px 8px;
         transition: all 0.3s ease-in-out;
@@ -1065,6 +1061,13 @@ ul.hero-menu li a:hover {
     padding: 10px;
 }
 
+.abm-title-inv {
+    font-size: 22px;
+    padding: 0 20px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    text-align: left;
+}
 
 /*FIN CSS AUGUSTO*/
 

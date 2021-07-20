@@ -12,6 +12,6 @@ router.get('/inventario', adminController.inventory);
 /*** EDITAR UN PRODUCTO ***/
 router.get('/:id/editar', adminController.edit);
 router.put('/:id', adminController.update);
-router.delete('/:id', adminController.delete);
+router.delete('/:id/delete', adminController.delete);
 
 module.exports = router;
