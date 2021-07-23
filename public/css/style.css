@@ -727,7 +727,6 @@ ul.hero-menu li a:hover {
     width: 35%;
     margin-right: 30px;
     max-width: 100px;
-    border: solid 1px rgba(0, 0, 0, 0.24);
 }
 
 .nombreProductoCarrito {
@@ -800,14 +799,14 @@ ul.hero-menu li a:hover {
     text-align: center;
     border-radius: 3px;
     text-decoration: none;
-    background-color: #55394a;
+    background-color: #AAC6B5;
     border: #55394a solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
     align-items: center;
     margin: 40px 0px;
     max-width: 135px;
-    margin-left: auto;
+    margin-right: 26px;
 }
 
 
@@ -845,8 +844,6 @@ ul.hero-menu li a:hover {
     align-items: center;
     margin: 40px 0px;
     max-width: 135px;
-    margin-left: auto;
-    margin-left: auto;
 }
 
 /*ABM inventario*/
@@ -1011,7 +1008,7 @@ ul.hero-menu li a:hover {
         margin-left: 3px;
         color: white;
         cursor: pointer;
-        width: 24%;
+        width:24%;
         text-align: center;
         border-radius: 3px;
         text-decoration: none;
@@ -1067,6 +1064,64 @@ ul.hero-menu li a:hover {
     margin: 10px 0;
     text-transform: uppercase;
     text-align: left;
+}
+
+/*Carrito de compras 2.0*/
+
+.carrito-grid-container {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 0.8fr; 
+    grid-template-rows: 0.5fr 2fr 2fr 0.5fr; 
+    grid-auto-columns: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . . ."
+      ". . . ."
+      ". . . ."
+      ". . . .";
+    width: 100%;
+    height: 26.2%;
+  }
+
+  .grid-item-carrito {
+    /* border: 1px dotted black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .abm-input-tit-carrito {
+    color: #412838;
+    font-size: 19px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.abm-input-tit-carrito-total {
+    color: #412838;
+    font-size: 19px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* .grid-producto-carrito {
+    justify-content: left;
+} */
+  
+.botones-carrito {
+     display: flex;
+     justify-content: flex-end;
+     margin-right: 32px;
+}
+
+.total-carrito {
+    font-weight: 700;
+    font-size: 14px;
 }
 
 /*FIN CSS AUGUSTO*/
@@ -1324,10 +1379,7 @@ ul.hero-menu li a:hover {
     align-items: center;
 }
 
-.actualizarCarrito {
-    margin: auto;
-    margin-top: 40px;
-}
+
 
 .finalizarCompra {
     margin: auto;
