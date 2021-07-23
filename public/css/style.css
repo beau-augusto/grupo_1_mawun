@@ -967,7 +967,7 @@ ul.hero-menu li a:hover {
     border-radius: 3px;
     text-decoration: none;
     background-color: #22a7f0; 
-    border: #55394a solid 1px; 
+    border: #22a7f0 solid 1px; 
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
 }
@@ -983,7 +983,7 @@ ul.hero-menu li a:hover {
     border-radius: 3px;
     text-decoration: none;
     background-color: #f39c12;
-    border: #55394a solid 1px;
+    border: #f39c12 solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
 }
@@ -1000,7 +1000,7 @@ ul.hero-menu li a:hover {
     border-radius: 3px;
     text-decoration: none;
     background-color: #fa2a00;
-    border: #55394a solid 1px;
+    border: #fa2a00 solid 1px;
     padding: 5px 8px 5px 8px;
     transition: all 0.3s ease-in-out;
 }
@@ -1016,7 +1016,7 @@ ul.hero-menu li a:hover {
         border-radius: 3px;
         text-decoration: none;
         background-color: #2ecc71; 
-        border: #55394a solid 1px;
+        border: #2ecc71 solid 1px;
         padding: 5px 8px 5px 8px;
         transition: all 0.3s ease-in-out;
 }

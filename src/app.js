@@ -21,7 +21,7 @@ app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el 
 const mainRouter = require('./routes/main'); // Rutas main
 const usersRouter = require('./routes/users'); // Rutas /usuarios
 const productsRouter = require('./routes/products'); // Rutas /products
-const adminRouter = require ('./routes/admin'); //
+const adminRouter = require ('./routes/admin'); // Rutas Admin Back Office
 
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);

@@ -7,7 +7,7 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Editar - <span style="font-weight:400; text-transform: capitalize;"><%= product.product_name %></span></h2>
-                <form action="/admin/<%= product.id %>?_method=PUT" method="POST" class="abm-form-wrapper">
+                <form action="/admin/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="product_name" class="abm-input-tit">Nombre del Producto</label>
@@ -50,8 +50,8 @@
                         <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción" class="abm-input"><%= product.description %></textarea>
                     </div>
                     <div class="abm-input-wrap">
-                        <label for="image" class="abm-input-tit">Imagen</label>
-                        <input type="file" id="image" class="abm-file-input">
+                        <label for="image" class="abm-input-tit">Imagen del Producto</label>
+                        <input type="file" name="image" id="image" class="abm-file-input">
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">ACTUALIZAR</button>

@@ -1,26 +1,26 @@
 [
   {
-  "id": 1,
-  "product_name": "Chakana Frisante Rosé",
-  "description": "Este vino natural es la expresión más auténtica y novedosa de los vinos orgánicos, biodinámicos y veganos (certificados) de Chakana: viticultura para el futuro. Sobrenatural posee cero contenido de azufre y es originario de la Finca Nuna, en la zona de Agrelo, Luján de Cuyo, provincia de Mendoza. 100 % Tannat, el vino termina su fermentación en la botella para generar su efervescencia. Elaborado sin el agregado de anhídrido sulfuroso.",
-  "winery": "Bodega Chakana",
-  "category": "Naturales",
-  "varietal": "Tannat ",
-  "image": "chakana-frisante-rosé.jpg",
-  "price": 840,
-  "recommended": false
-},
-{
-  "id": 2,
-  "product_name": "Tikal Natural",
-  "description": "La magia de la unión. Un canto a las texturas y al maravilloso terruño de Vista Flores. Malbec y Syrah, Syrah y Malbec. Flores violetas y frutas rebeldes explotan en un vino envuelto en madera sutil. Un final abierto entre frutillas y vainillas. Su aroma a frutos del bosque con brisas mentoladas lo hacen inmejorable.",
-  "winery": "Bodega Ernesto Catena Vineyards",
-  "category": "Naturales",
-  "varietal": "Syrah",
-  "image": "chakana-frisante-rosé.jpg",
-  "price": 1800,
-  "recommended": false
-},
+    "id": 1,
+    "product_name": "Chakana Frisante Rosé",
+    "description": "Este vino natural es la expresión más auténtica y novedosa de los vinos orgánicos, biodinámicos y veganos (certificados) de Chakana: viticultura para el futuro. Sobrenatural posee cero contenido de azufre y es originario de la Finca Nuna, en la zona de Agrelo, Luján de Cuyo, provincia de Mendoza. 100 % Tannat, el vino termina su fermentación en la botella para generar su efervescencia. Elaborado sin el agregado de anhídrido sulfuroso.",
+    "winery": "Bodega Chakana",
+    "category": "Naturales",
+    "varietal": "Tannat ",
+    "image": "chakana-frisante-rosé.jpg",
+    "price": 840,
+    "recommended": false
+  },
+  {
+    "id": 2,
+    "product_name": "Tikal Natural",
+    "description": "La magia de la unión. Un canto a las texturas y al maravilloso terruño de Vista Flores. Malbec y Syrah, Syrah y Malbec. Flores violetas y frutas rebeldes explotan en un vino envuelto en madera sutil. Un final abierto entre frutillas y vainillas. Su aroma a frutos del bosque con brisas mentoladas lo hacen inmejorable.",
+    "winery": "Bodega Ernesto Catena Vineyards",
+    "category": "Naturales",
+    "varietal": "Syrah",
+    "image": "chakana-frisante-rosé.jpg",
+    "price": 1800,
+    "recommended": false
+  },
   {
     "id": 3,
     "product_name": "Be My Hippie Love Blanco",
@@ -231,19 +231,14 @@
     "recommended": false
   },
   {
+    "id": 22,
     "product_name": "Lilen Cabernet Sauvignon",
     "category": "Orgánicos",
-    "price": 650,
     "varietal": "Cabernet Sauvignon",
     "winery": "Bodega Andalhue",
-    "recommended": false,
     "description": "Posee un color rojo oscuro con destellos azulados y un brillo singular, aparecen sabores a frutos rojos, especialmente ciruelas y frutillas, también confituras, acomplejados con café que aporta el roble. En la boca tiene una entrada grata y redondo, con taninos jugosos que otorga largo y placentero final.",
-    "id": 22,
-    "image": "buenalma.jpg"
-  },
-  {
-    "submit": "Borrar",
-    "id": 23,
-    "image": "buenalma.jpg"
+    "image": "lilen-cabernet-sauvignon.jpg",
+    "price": 650,
+    "recommended": false
   }
 ]

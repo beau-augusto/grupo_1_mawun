@@ -25,18 +25,21 @@ const adminController = {
         const indexProduct = products.findIndex( product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
 
         products[indexProduct] = { ...products[indexProduct] , ...req.body };
+        // si tengo req.file me estan enviando nvo archivo si no req.file.filename
 
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
 
-		res.redirect(303, '/admin/inventario');
+		return res.redirect(303, '/admin/inventario');
 	}, 
     store: (req, res)=> {
         //asignarle ID en base al ultimo producto
         const lastProduct = products [products.length - 1];
 
         const productToCreate = req.body;
+        productToCreate.image = req.file.filename;
         productToCreate.id = lastProduct.id + 1;
-        productToCreate.image = 'buenalma.jpg';
+
+        console.log (productToCreate);
 
         //Para agregar un nuevo producto en el array del Json
         products.push(productToCreate);
@@ -47,7 +50,7 @@ const adminController = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
 
         //Codigo 303, redirecciona a la ruta que escribas
-        res.redirect (303, '/admin/inventario');
+        return res.redirect (303, '/admin/inventario');
     },
     inventory:  (req, res)=> {
         res.render ('./admin/inventory', {products});
@@ -65,7 +68,7 @@ const adminController = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
 
 
-        res.redirect('/admin/inventario');
+        return res.redirect('/admin/inventario');
     }
 };
 
