@@ -1,24 +1,52 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const { validationResult } = require('express-validator'); // Destructuracion pido resultdo de la validacion (Express-Validator)
+
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const adminController = {
+    inventory:  (req, res)=> {
+        return res.render ('./admin/inventory', {products}); // Imprimir Lista de productos ABM
+    },
     create: (req, res)=> {
-        res.render ('admin/create-product');
+        return res.render ('admin/create-product'); // Imprimir hoja para crear producto
+    },
+    store: (req, res)=> {
+
+        const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
+
+        // Si errores de express Validator viene vacio continuo
+        if (errors.isEmpty()){ 
+        const lastProduct = products [products.length - 1]; //Obtengo el último indice del array
+        const productToCreate = req.body; //Obtengo la informacion del formulario
+
+        productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
+        productToCreate.id = lastProduct.id + 1; //Agrego el id del Nvo producto
+
+        products.push(productToCreate); // Añado a Products el elemento creado al final de un array
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2)); // Transformo el nuevo array de productos en Json
+
+        return res.redirect (303, '/admin/inventario'); //Codigo 303, redirecciona a la ruta se desee
+
+        } else { 
+            return res.render ('admin/create-product', { errors: errors.array(), oldInfo: req.body   }); // Si errores vuelvo a la vista con errores y campos ya completados por el cliente
+        };
     },
     edit: (req, res)=> {
         const id = req.params.id; // Obtengo el parámetro para buscar el recurso
 		const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
+
 		if (!product) {
 			return res.send('No pudimos encotrar ese Producto')
-		}
-		const viewData = {
-			product: product
-		}
+		};
+
+		const viewData = { product };
+
         return res.render ('admin/edit-product', viewData);
     },
     update: (req, res) => {
@@ -27,40 +55,16 @@ const adminController = {
         products[indexProduct] = { ...products[indexProduct] , ...req.body };
         // si tengo req.file me estan enviando nvo archivo si no req.file.filename
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
 
 		return res.redirect(303, '/admin/inventario');
 	}, 
-    store: (req, res)=> {
-        //asignarle ID en base al ultimo producto
-        const lastProduct = products [products.length - 1];
-
-        const productToCreate = req.body;
-        productToCreate.image = req.file.filename;
-        productToCreate.id = lastProduct.id + 1;
-
-        console.log (productToCreate);
-
-        //Para agregar un nuevo producto en el array del Json
-        products.push(productToCreate);
-
-        //llama al metodo fs.writeFileSync(GUARDAR UN ARCHIVO) y el contenido de ese archivo
-        //va a ser => la ruta donde lo voy a guardar y el contenido va a ser JSON.stringify
-        //xq json.stringify, porque ahora tengo datos de js y los tengo que volver a parsear a JSON 
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2))
-
-        //Codigo 303, redirecciona a la ruta que escribas
-        return res.redirect (303, '/admin/inventario');
-    },
-    inventory:  (req, res)=> {
-        res.render ('./admin/inventory', {products});
-    },
     delete: 
     (req, res)=> {
         const indexProduct = products.findIndex( product => product.id == req.params.id);
 
         if (indexProduct === -1) {
-             res.send ('El producto que buscás no existe.');
+            return res.send ('El producto que buscás no existe.');
         }
        
         products.splice(indexProduct, 1);
