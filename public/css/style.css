@@ -1365,12 +1365,12 @@ ul.hero-menu li a:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 .abm-input-wrap{
     display: flex;
     flex-direction: column;
-    padding: 15px 10px;
+    padding: 10px;
     width: 50%;
 }
 .abm-input-wrap-email {
@@ -1385,15 +1385,19 @@ ul.hero-menu li a:hover {
     padding: 15px 10px;
     width: 100%;
 }
+.abm-input-error{
+    margin: 0;
+    color: #fa2a00;
+}
 .abm-input {
     font-weight: 300;
     padding: 10px 10px;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 .abm-ratio-wrap {
     font-weight: 300;
     padding: 10px 10px;
-    margin: 10px 0;
+    margin: 5px 0;
     background-color: #faeeed;
     border-radius: 3px;
     display: flex;

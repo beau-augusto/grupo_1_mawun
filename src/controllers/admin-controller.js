@@ -25,16 +25,22 @@ const adminController = {
         const productToCreate = req.body; //Obtengo la informacion del formulario
 
         productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
+        productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
+        productToCreate.recommended = !!req.body.recommended; //Transformo el campo de string a Booleano
         productToCreate.id = lastProduct.id + 1; //Agrego el id del Nvo producto
 
-        products.push(productToCreate); // Añado a Products el elemento creado al final de un array
+        products.push(productToCreate); //Añado a Products el elemento creado al final de un array
 
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2)); // Transformo el nuevo array de productos en Json
 
         return res.redirect (303, '/admin/inventario'); //Codigo 303, redirecciona a la ruta se desee
 
-        } else { 
-            return res.render ('admin/create-product', { errors: errors.array(), oldInfo: req.body   }); // Si errores vuelvo a la vista con errores y campos ya completados por el cliente
+        } else {
+
+            return res.render ('admin/create-product', { 
+                errors: errors.mapped(), 
+                oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
+            }); 
         };
     },
     edit: (req, res)=> {
@@ -52,6 +58,8 @@ const adminController = {
     update: (req, res) => {
         const indexProduct = products.findIndex( product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
 
+        req.body.image = req.file ? req.file.filename : req.file.filename;
+
         products[indexProduct] = { ...products[indexProduct] , ...req.body };
         // si tengo req.file me estan enviando nvo archivo si no req.file.filename
 
@@ -66,11 +74,9 @@ const adminController = {
         if (indexProduct === -1) {
             return res.send ('El producto que buscás no existe.');
         }
-       
         products.splice(indexProduct, 1);
 
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
 
         return res.redirect('/admin/inventario');
     }

@@ -11,7 +11,20 @@ const validateCreatForm = [
     body('category').notEmpty().withMessage('Debes completar el campo Categoría del producto'),
     body('price').notEmpty().withMessage('Debes completar el campo Precio del producto'),
     body('varietal').notEmpty().withMessage('Debes completar el campo Varietal del producto'),
-    body('winery').notEmpty().withMessage('Debes completar el campo Bodega del producto')
+    body('winery').notEmpty().withMessage('Debes completar el campo Bodega del producto'),
+    body ('image').custom ((value, {req}) => {
+        let file = req.file;
+        let permitedExtensions = ['.jpg', '.jpeg', '.png', '.gif']
+        if (!file) {
+            throw new Error('Debes subir una imagen de Producto');
+        } else {
+            let fileExtension = path.extname(file.originalname);
+            if (!permitedExtensions.includes(fileExtension)){
+                throw new Error(`Las extensiones de archivo permitidas son ${permitedExtensions.join(', ')}`);
+            }
+        };
+        return true;
+    })
 ];
 
 /*** Multer ***/
@@ -28,7 +41,6 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage });
-
 
 /*** CREAR UN PRODUCTO ***/
 router.get('/crear', adminController.create);
