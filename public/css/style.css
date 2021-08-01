@@ -994,6 +994,10 @@ ul.hero-menu li a:hover {
 .form-login a:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: red;
+}
 /** hoja de Sobre Nosotros**/
 .about-wrapper {
     display: flex;

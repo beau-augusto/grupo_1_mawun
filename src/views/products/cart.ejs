@@ -1,186 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-<body>
-    <%- include('../partials/header') %>
 
-    <main>
-        <section class="abm-inventory container">
-    
-            <h2 class="abm-title-inv">Carrito</h2>
-    
-                <div class="abm-inventory-wrapper">
-    
-    
-                    <div class="carrito-grid-container">
-    
-    
-                    <div class="grid-item-carrito abm-input-tit-carrito grid-producto-carrito">Producto</div>
-                    <div class="grid-item-carrito abm-input-tit-carrito">Precio</div>
-                    <div class="grid-item-carrito abm-input-tit-carrito">Cantidad</div>
-                    <div class="grid-item-carrito abm-input-tit-carrito">Subtotal</div>
-              
-                    <div class="grid-item-carrito">
-                        <div class="producto1Carrito">
-                            <img src="\upload\products/el-vino-del-capitan-malbec.jpg" alt="rose" class="imagenProductoCarrito">
-            
-                            <div class="nombreProductoCarrito">
-                                <p class="vinoLineaCarrito">El vino del Capitán Malbec</p>
-                               <p>Bodega Vinecol</p>
+    <body>
+        <%- include('../partials/header') %>
+
+            <main>
+                <section class="abm-inventory container">
+
+                    <h2 class="abm-title-inv">Carrito</h2>
+
+                    <div class="abm-inventory-wrapper">
+
+
+                        <div class="carrito-grid-container">
+
+
+                            <div class="grid-item-carrito abm-input-tit-carrito grid-producto-carrito">Producto</div>
+                            <div class="grid-item-carrito abm-input-tit-carrito">Precio</div>
+                            <div class="grid-item-carrito abm-input-tit-carrito">Cantidad</div>
+                            <div class="grid-item-carrito abm-input-tit-carrito">Subtotal</div>
+
+                            <div class="grid-item-carrito">
+                                <div class="producto1Carrito">
+                                    <img src="\upload\products/el-vino-del-capitan-malbec.jpg" alt="rose"
+                                        class="imagenProductoCarrito">
+
+                                    <div class="nombreProductoCarrito">
+                                        <p class="vinoLineaCarrito">El vino del Capitán Malbec</p>
+                                        <p>Bodega Vinecol</p>
+                                    </div>
+                                </div>
+
+
                             </div>
-                        </div>
-
-                        
-                    </div>
-                    <div class="grid-item-carrito">
-                        <p class="precioCarrito">$480.-</p>  
-                    </div>
-                    <div class="grid-item-carrito">
-                        <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
-                            <input type="button" value="-" class="minus"> <input type="tel" value="3" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
-                        </div>
-                    </div>
-
-                    <div class="grid-item-carrito">
-                        <p class="precioCarrito">$1440.-
-                            <span>
-                                <i class="far fa-trash-alt"></i>
-                            </span>
-                        </p> 
-
-                    </div>
-
-
-
-                    <div class="grid-item-carrito">
-                        <div class="producto1Carrito"> 
-                            <img src="\upload\products\stella-crinita-petit-verdot.jpeg" alt="rose" class="imagenProductoCarrito">
-            
-                            <div class="nombreProductoCarrito">
-                                <p class="vinoLineaCarrito">Stella Crinita Petit Verdot</p>
-                               <p>Bodega Stella Crinita</p>
+                            <div class="grid-item-carrito">
+                                <p class="precioCarrito">$480.-</p>
                             </div>
+                            <div class="grid-item-carrito">
+                                <div class="cajaSumadoraCarrito">
+                                    <!--https://embed.plnkr.co/plunk/B5waxZ-->
+                                    <input type="button" value="-" class="minus"> <input type="tel" value="3"
+                                        name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input
+                                        type="button" value="+" class="plus">
+                                </div>
+                            </div>
+
+                            <div class="grid-item-carrito">
+                                <p class="precioCarrito">$1440.-
+                                    <span>
+                                        <i class="far fa-trash-alt"></i>
+                                    </span>
+                                </p>
+
+                            </div>
+
+
+
+                            <div class="grid-item-carrito">
+                                <div class="producto1Carrito">
+                                    <img src="\upload\products\stella-crinita-petit-verdot.jpeg" alt="rose"
+                                        class="imagenProductoCarrito">
+
+                                    <div class="nombreProductoCarrito">
+                                        <p class="vinoLineaCarrito">Stella Crinita Petit Verdot</p>
+                                        <p>Bodega Stella Crinita</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid-item-carrito">
+                                <p class="precioCarrito">$1370.-</p>
+                            </div>
+                            <div class="grid-item-carrito">
+                                <div class="cajaSumadoraCarrito">
+                                    <!--https://embed.plnkr.co/plunk/B5waxZ-->
+                                    <input type="button" value="-" class="minus"> <input type="tel" value="1"
+                                        name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input
+                                        type="button" value="+" class="plus">
+                                </div>
+                            </div>
+
+                            <div class="grid-item-carrito">
+                                <p class="precioCarrito">$1370.-
+                                    <span>
+                                        <i class="far fa-trash-alt"></i>
+                                    </span>
+                                </p>
+
+                            </div>
+
+
+                            <div class="grid-item-carrito grid-producto-carrito abm-input-tit-carrito-total">Total</div>
+                            <div class="grid-item-carrito"></div>
+                            <div class="grid-item-carrito"></div>
+                            <div class="grid-item-carrito total-carrito">$2810-</div>
+
+
+
+
+
                         </div>
-                        
-                    </div>
-                    <div class="grid-item-carrito">
-                        <p class="precioCarrito">$1370.-</p>  
-                    </div>
-                    <div class="grid-item-carrito">
-                        <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
-                            <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
-                        </div>
-                    </div>
-
-                    <div class="grid-item-carrito">
-                        <p class="precioCarrito">$1370.-
-                            <span>
-                                <i class="far fa-trash-alt"></i>
-                            </span>
-                        </p> 
+                        <section class="botones-carrito">
+                            <div class="actualizarCarrito">Actualizar carrito</div>
+                            <div class="finalizarCompra">Finalizar compra</div>
+                        </section>
 
                     </div>
-                    
+                </section>
+            </main>
+            <main>
+                <%- include('../partials/footer') %>
+    </body>
 
-                    <div class="grid-item-carrito grid-producto-carrito abm-input-tit-carrito-total">Total</div>
-                    <div class="grid-item-carrito"></div>
-                    <div class="grid-item-carrito"></div>
-                    <div class="grid-item-carrito total-carrito">$2810-</div>
-
-    
-    
-    
-    
-                </div>
-    <section class="botones-carrito">
-                <div class="actualizarCarrito">Actualizar carrito</div>
-                <div class="finalizarCompra">Finalizar compra</div>
-            </section>
-            
-                </div>
-        </section>
-    </main>
-    <main>
-    <%- include('../partials/footer') %>
-</body>
 </html>
-
-
-
-<!-- <div class="page-title">
-    <img src="/images/page-title-img.jpg" alt="Carrito" class="page-title-img">
-    <div class="container">
-        <div class="page-title-desc">
-            <h1>CARRITO</h1>
-        </div>
-    </div>
-</div>
-<section>
-    <section class="contenedorBarraSuperiorCarrito">
-        <section class="flexCorrection">
-    <div class="barraSuperiorCarrito">
-        <div class="columnaProducto">Producto</div>
-        <div class="columnasDerecha">
-            <p>Precio</p>
-            <p>Cantidad</p>
-            <p>Subtotal</p>
-        </div>
-    </div>     
-</section>
-<hr class="barraHR">
-<article class="producto1CarritoContenedorTotal">
-<section class="producto1CarritoContenedor">
-    <div class="producto1Carrito">
-        <img src="\images\roselargarde2.webp" alt="rose" class="imagenProductoCarrito">
-
-        <div class="nombreProductoCarrito">
-           <p>Largarde Goes Pink</p>
-           <p class="vinoLineaCarrito">Malbec Pino Noir Rosé</p>
-        </div>
-    </div>
-</section>
-<section class="producto1Derecho">
-    <p class="precioCarrito">$1,200.-</p>  
-    <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
-        <input type="button" value="-" class="minus"> <input type="tel" value="3" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
-    </div>
-    <p class="precioCarrito">$3,600.-
-        <span>
-            <i class="far fa-trash-alt"></i>
-        </span>
-    </p> 
-</section>
-</article>
-<hr class="barraHR">
-<article class="producto1CarritoContenedorTotal">
-    <section class="producto1CarritoContenedor">
-        <div class="producto1Carrito">
-            <img src="\images\malbec1.webp" alt="rose" class="imagenProductoCarrito"> <!--https://articulo.mercadolibre.com.ar/MLA-749995191-krontiras-malbec-organico-de-dona-silvia-750-ml-_JM#position=16&search_layout=stack&type=item&tracking_id=f9c429c4-d119-4e89-b855-14613970f501-->
-
-            <div class="nombreProductoCarrito">
-               <p>Kron</p>
-               <p class="vinoLineaCarrito">Malbec Doña Silva</p>
-            </div>  
-        </div>    
-    </section>
-    <section class="producto1Derecho">
-        <p class="precioCarrito">$1,700.-</p>  
-        <div class="cajaSumadoraCarrito">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
-            <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
-        </div>
-        <p class="precioCarrito">$5,300.-
-            <span>
-                <i class="far fa-trash-alt"></i>
-            </span>
-        </p>     
-    </section>
-    </article>
-    <hr class="barraHR">
-    <div class="actualizarCarrito">Actualizar carrito</div>
-    <section class="totalCarrito">
-        <div>Total</div>
-        <div>$8,900-</div>
-    </section>
-    <div class="finalizarCompra">Finalizar compra</div>
-    </section>
-</main> -->
