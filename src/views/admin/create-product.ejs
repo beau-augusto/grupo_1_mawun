@@ -10,20 +10,15 @@
 
                 <form action="/admin" class="abm-form-wrapper" enctype="multipart/form-data" method="POST">
                     
-                    <!-- Mensaje de error form; Primer if, si no tiene errores no corre el forEach.-->
+                    <!-- Mensaje de error form; Primer if, si no tiene errores no corre el for.-->
                     <!-- VALUE para mostrar lo info cargada; si estas 2 variables están, cargo el precio cargado previamente si no Value vacio -->
-                    <% if (locals.errors) { // 
-                        errors.forEach(error => { %>
-                            <div class="abm-form-error-container">
-                                <p><%= error.msg %></p>
-                            </div>
-                        <% })
-                    } %>
-                    
                     <div class="abm-input-container"> 
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Nombre del Producto</label>
                             <input type="text" id="name" name="product_name" placeholder="Nombre del Producto" class="abm-input" value="<%= locals.oldInfo && oldInfo.product_name ? oldInfo.product_name : '' %>">
+                            <% if (locals.errors && errors.product_name) { %>
+                                <p class="abm-input-error"><%= errors.product_name.msg %></p>
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="category" class="abm-input-tit">Categoria</label>
@@ -33,12 +28,18 @@
                                 <option value="Biodinámicos" <%= locals.oldInfo && oldInfo.category === 'Biodinámicos' ? 'selected' : '' %> >Biodinámicos</option>
                                 <option value="Naturales" <%= locals.oldInfo && oldInfo.category === 'Naturales' ? 'selected' : '' %> >Naturales</option>
                             </select>
+                            <% if (locals.errors && errors.category) { %>
+                                <p class="abm-input-error"><%= errors.category.msg %></p>
+                            <% } %>
                         </div> 
                     </div>
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="price" class="abm-input-tit">Precio</label>
                             <input type="number" name="price" id="price" placeholder="Precio" class="abm-input" value="<%= locals.oldInfo && oldInfo.price ? oldInfo.price : '' %>">
+                            <% if (locals.errors && errors.price) { %>
+                                <p class="abm-input-error"><%= errors.price.msg %></p>
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="varietal" class="abm-input-tit">Varietal</label>
@@ -57,27 +58,35 @@
                                 <option value="Petit Verdot" <%= locals.oldInfo && oldInfo.varietal === 'Petit Verdot' ? 'selected' : '' %> >Petit Verdot</option>
                                 <option value="Tannat, Cabernet Franc, Malbec, Syrah" <%= locals.oldInfo && oldInfo.varietal === 'Tannat, Cabernet Franc, Malbec, Syrah' ? 'selected' : '' %> >Tannat, Cabernet Franc, Malbec, Syrah</option>
                             </select>
+                            <% if (locals.errors && errors.varietal) { %>
+                                <p class="abm-input-error"><%= errors.varietal.msg %></p>
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="winery" class="abm-input-tit">Bodega</label>
                             <input type="text" name="winery" id="winery" placeholder="Bodega" class="abm-input" value="<%= locals.oldInfo && oldInfo.winery ? oldInfo.winery : '' %>">
+                            <% if (locals.errors && errors.winery) { %>
+                                <p class="abm-input-error"><%= errors.winery.msg %></p>
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="recommended" class="abm-input-tit">Recomendados</label>
-                            <select name="recommended" id="recommended" class="abm-input">
-                                <option value="" disabled selected>Seleccionar</option>
-                                <option value="true">Sí</option>
-                                <option value="false" selected>No</option>
-                            </select>
+                            <label class="abm-input-tit">Recomendado</label>
+                            <div class="abm-ratio-wrap">
+                            <label for="recommendedSi" class="abm-ratio-lavel"><input type="radio" name="recommended" value="true" id="recommendedYes" class="abm-ratio">SI</label>
+                            <label for="recommendedNo" class="abm-ratio-lavel"><input type="radio" name="recommended" value="false" id="recommendedNo" class="abm-ratio" checked>NO</label>
+                            </div>
                         </div> 
                     </div>
                     <div class="abm-input-wrap-desc">
                         <label for="description" class="abm-input-tit">Descripción</label>
-                        <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción"  class="abm-input"></textarea>
+                        <textarea id="description" name="description" rows="6" cols="100" placeholder="Descripción"  class="abm-input"><%= locals.oldInfo && oldInfo.description ? oldInfo.description : '' %></textarea>
                     </div>
                     <div class="abm-input-wrap">
                         <label for="image" class="abm-input-tit">Imagen</label>
                         <input type="file" name="image" id="image" class="abm-file-input">
+                        <% if (locals.errors && errors.image) { %>
+                                <p class="abm-input-error"><%= errors.image.msg %></p>
+                            <% } %>
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">GUARDAR</button>
