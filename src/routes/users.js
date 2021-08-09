@@ -4,6 +4,7 @@ const multer = require ('multer');
 const {check} = require('express-validator');
 
 
+
 let validateLogin = [
     check('name')
     .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
@@ -17,7 +18,8 @@ let validateLogin = [
 
 const usersController = require('../controllers/users-controller');
 
-router.get('/registro', usersController.register);
+router.get('/registro', usersController.create);
+router.post('/', usersController.store);
 router.get('/inicio', usersController.login); 
 router.post('/inicio', validateLogin, usersController.submitLogin)
 

@@ -6,8 +6,12 @@ const { body } = require('express-validator');
 
 
 const usersController = {
-    register: (req, res)=> {
-        res.render ('users/register');
+    create: (req, res)=> {
+        res.render ('users/create-users');
+    },
+    store: (req, res)=> {
+        //res.render ('users/create-users');
+        res.send('ok');
     },
     login: (req, res)=> {
        res.render ('users/login');
