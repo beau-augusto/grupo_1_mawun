@@ -7,26 +7,28 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Login</h2>
+
+                
                 <form action="/usuarios/inicio" class="abm-form-wrapper" enctype="multipart/form-data" method="POST">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Usuario</label> 
-                            <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.old && old.name %>">
+                            <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.old && old.name ? old.name : '' %>">
+
                             <% if (locals.errors && errors.name) { %>
-
-                                <p class = "error-message"> <%= errors.name %> </p>
-
+                                <p class="abm-input-error"><%= errors.name.msg %></p>
                             <% } %>
+  
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
-                            <input type="password" id="password" name="password" placeholder="Contraseña" class="abm-input" value="<%= locals.old && old.password %>">
+                            <input type="password" id="password" name="password" placeholder="Contraseña" class="abm-input" value="<%= locals.old && old.password ? old.password : '' %>">
+
                             <% if (locals.errors && errors.password) { %>
-
-                                <p class = "error-message"><%= errors.name %> </p>
-
+                                <p class="abm-input-error"><%= errors.password.msg %></p>
                             <% } %>
-                        </div>     
+   
+                        </div>      
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">GUARDAR</button>
