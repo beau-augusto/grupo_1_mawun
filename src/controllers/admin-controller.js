@@ -28,6 +28,8 @@ const adminController = {
         if (errors.isEmpty()){ 
         const lastProduct = products [products.length - 1]; //Obtengo el último indice del array
 
+        const productToCreate = req.body; //Obtengo la informacion del formulario
+
         productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
         productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
         productToCreate.recommended = !!req.body.recommended; //Transformo el campo de string a Booleano
