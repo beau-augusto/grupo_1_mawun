@@ -13,7 +13,7 @@ const upload = multer()
 router.get('/registro', usersController.create);
 router.post('/', usersController.store);
 router.get('/inicio', usersController.login); 
-router.post('/inicio', upload.none(), validateLogin, usersController.submitLogin)
+router.post('/inicio', validateLogin, usersController.submitLogin)
 
 
 
