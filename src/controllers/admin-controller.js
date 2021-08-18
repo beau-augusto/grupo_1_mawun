@@ -6,11 +6,16 @@ const { validationResult } = require('express-validator'); // Destructuracion pi
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
 
+const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
+const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
+
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 
 const adminController = {
     inventory:  (req, res)=> {
-        return res.render ('./admin/inventory', {products}); // Imprimir Lista de productos ABM
+        let usuario = req.session.usuarioLogeado
+        return res.render ('./admin/inventory', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
     },
     create: (req, res)=> {
         return res.render ('admin/create-product'); // Imprimir hoja para crear producto
@@ -22,7 +27,6 @@ const adminController = {
         // Si errores de express Validator viene vacio continuo
         if (errors.isEmpty()){ 
         const lastProduct = products [products.length - 1]; //Obtengo el último indice del array
-        const productToCreate = req.body; //Obtengo la informacion del formulario
 
         productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
         productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
@@ -52,7 +56,6 @@ const adminController = {
 		};
 
 		const viewData = { product };
-
         return res.render ('admin/edit-product', viewData);
     },
     update: (req, res) => {
@@ -79,6 +82,10 @@ const adminController = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
 
         return res.redirect('/admin/inventario');
+    }, 
+    profile: (req, res)=> {
+
+        return res.render('/admin/user-profile');
     }
 };
 

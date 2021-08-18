@@ -1322,6 +1322,7 @@ ul.hero-menu li a:hover {
 .bo-profile-wrap{
     display: flex;
     align-items: center;
+    
 }
 .bo-profile-txt {
     color: #412838;
@@ -1329,9 +1330,15 @@ ul.hero-menu li a:hover {
 }
 .bo-profile{
     color: #412838;
-    padding: 12px;
-    font-size: 18px;   
+    display: flex;   
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    margin-left: 16px;
+    border-radius: 32px;
+    border:solid 1px rgba(0, 0, 0, 0.50)
 }
+
 .bo-profile:hover {
     color: #55394a;
 }
