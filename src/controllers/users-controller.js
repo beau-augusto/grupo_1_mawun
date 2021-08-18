@@ -23,7 +23,6 @@ const usersController = {
        res.render ('users/login');
     },
     submitLogin: (req, res) => {
- 
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
             
