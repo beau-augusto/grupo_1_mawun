@@ -43,10 +43,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+/*** DETALLE BO ***/
+router.get('/inventario', adminController.inventory);
+
 /*** CREAR UN PRODUCTO ***/
 router.get('/crear', adminController.create);
 router.post('/', upload.single('image'), validateCreatForm, adminController.store);
-router.get('/inventario', adminController.inventory);
 
 /*** EDITAR UN PRODUCTO ***/
 router.get('/:id/editar', adminController.edit);

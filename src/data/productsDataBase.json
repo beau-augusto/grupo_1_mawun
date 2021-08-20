@@ -253,13 +253,14 @@
     "id": 23
   },
   {
-    "price": null,
-    "recommended": false,
+    "product_name": "test",
+    "category": "Orgánicos",
+    "price": 123412,
+    "varietal": "Malbec",
+    "winery": "Bodegita",
+    "recommended": true,
+    "description": "tesatd",
+    "image": "amici-miei.jpeg",
     "id": 24
-  },
-  {
-    "price": null,
-    "recommended": false,
-    "id": 25
   }
 ]

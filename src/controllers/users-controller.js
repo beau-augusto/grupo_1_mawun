@@ -7,17 +7,21 @@ const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Rut
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-
-
-
-
 const usersController = {
     create: (req, res)=> {
         res.render ('users/create-users');
     },
     store: (req, res)=> {
-        //res.render ('users/create-users');
-        res.send('ok');
+
+        const lastUser = users [users.length - 1]; //Obtengo el último indice del array
+        const userToCreate = req.body; //Obtengo la informacion del formulario
+        userToCreate.image = "user-avatar.jpg"; //Obtengo la imagen del formulario - req.file.filename
+        userToCreate.id = lastUser.id + 1; //Agrego el id del Nvo usuario
+
+        users.push(userToCreate); //Añado a Ususario creado al final de un array
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2)); // Transformo el nuevo array de usuarios en Json
+
+        return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee
     },
     login: (req, res)=> {
        res.render ('users/login');
