@@ -29,20 +29,17 @@ const adminController = {
         const lastProduct = products [products.length - 1]; //Obtengo el último indice del array
 
         const productToCreate = req.body; //Obtengo la informacion del formulario
-
         productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
         productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
-        productToCreate.recommended = !!req.body.recommended; //Transformo el campo de string a Booleano
+        productToCreate.recommended = Number(req.body.recommended); //Transformo el campo de string a numero
         productToCreate.id = lastProduct.id + 1; //Agrego el id del Nvo producto
 
         products.push(productToCreate); //Añado a Products el elemento creado al final de un array
-
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2)); // Transformo el nuevo array de productos en Json
 
         return res.redirect (303, '/admin/inventario'); //Codigo 303, redirecciona a la ruta se desee
 
         } else {
-
             return res.render ('admin/create-product', { 
                 errors: errors.mapped(), 
                 oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
@@ -86,8 +83,7 @@ const adminController = {
         return res.redirect('/admin/inventario');
     }, 
     profile: (req, res)=> {
-
-        return res.render('/admin/user-profile');
+        return res.render('./admin/user-profile');
     }
 };
 

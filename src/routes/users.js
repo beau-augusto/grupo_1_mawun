@@ -7,8 +7,8 @@ const usersController = require('../controllers/users-controller');
 const validateLogin = require("../middlewares/validateLogin.js");
 
 /*** Multer ***/
-const multer  = require('multer')
-const upload = multer()
+const multer  = require('multer');
+const upload = multer();
 
 /*** CREAR USUSARIO ***/
 router.get('/registro', usersController.create); // Imprimir hoja para crear producto

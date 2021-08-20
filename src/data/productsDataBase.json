@@ -8,7 +8,7 @@
     "varietal": "Tannat ",
     "image": "chakana-frisante-rosé.jpg",
     "price": 840,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "varietal": "Syrah",
     "image": "tikal-natural.jpeg",
     "price": 1800,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "varietal": "Criolla",
     "image": "be-my-hippie-love-blanco.jpg",
     "price": 390,
-    "recommended": true
+    "recommended": 1
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "varietal": "Barbera",
     "image": "amici-miei.jpeg",
     "price": 800,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "varietal": "Petit Verdot",
     "image": "stella-crinita-petit-verdot.jpeg",
     "price": 1370,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "varietal": "Viognier",
     "image": "omaggio-pet-nat-viognier.jpg",
     "price": 900,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@
     "varietal": "Malbec",
     "image": "krontiras-natural-malbec.jpg",
     "price": 1700,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "varietal": "Malbec",
     "image": "el-vino-del-capitan-malbec.jpg",
     "price": 480,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 9,
@@ -96,7 +96,7 @@
     "varietal": "Cabernet Sauvignon",
     "image": "el-vino-del-capitan-cabernet-sauvignon.jpg",
     "price": 480,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "varietal": "Malbec",
     "image": "red-puro-edicion-limitada.jpg",
     "price": 870,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 11,
@@ -118,7 +118,7 @@
     "varietal": "Malbec",
     "image": "siesta-malbec.jpg",
     "price": 2400,
-    "recommended": true
+    "recommended": 1
   },
   {
     "id": 12,
@@ -129,7 +129,7 @@
     "varietal": "Cabernet Sauvignon",
     "image": "siesta-cabernet-sauvignon.jpg",
     "price": 2100,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 13,
@@ -140,7 +140,7 @@
     "varietal": "Franc",
     "image": "siesta-cabernet-franc.jpg",
     "price": 2900,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 14,
@@ -151,7 +151,7 @@
     "varietal": "Malbec",
     "image": "krontiras-malbec.jpg",
     "price": 1200,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 15,
@@ -162,7 +162,7 @@
     "varietal": "Malbec",
     "image": "dona-silvina-malbec-reserva.jpg",
     "price": 2300,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 16,
@@ -173,7 +173,7 @@
     "varietal": "Rosados",
     "image": "nacha-rosé.jpg",
     "price": 2700,
-    "recommended": true
+    "recommended": 1
   },
   {
     "id": 17,
@@ -184,7 +184,7 @@
     "varietal": "Demeter",
     "image": "nuna-vineyard-white-blend.jpg",
     "price": 740,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 18,
@@ -195,7 +195,7 @@
     "varietal": "Rosados",
     "image": "chakana-nuna-vineyard-rosé.jpg",
     "price": 740,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 19,
@@ -206,7 +206,7 @@
     "varietal": "Syrah",
     "image": "chakana-nuna-vineyard-syrah.jpg",
     "price": 740,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 20,
@@ -217,7 +217,7 @@
     "varietal": "Tannat, Cabernet Franc, Malbec, Syrah",
     "image": "chakana-nuna-tetrada.jpg",
     "price": 840,
-    "recommended": true
+    "recommended": 1
   },
   {
     "id": 21,
@@ -228,7 +228,7 @@
     "varietal": "Malbec",
     "image": "buenalma.jpg",
     "price": 730,
-    "recommended": false
+    "recommended": 0
   },
   {
     "id": 22,
@@ -239,7 +239,7 @@
     "description": "Posee un color rojo oscuro con destellos azulados y un brillo singular, aparecen sabores a frutos rojos, especialmente ciruelas y frutillas, también confituras, acomplejados con café que aporta el roble. En la boca tiene una entrada grata y redondo, con taninos jugosos que otorga largo y placentero final.",
     "image": "lilen-cabernet-sauvignon.jpg",
     "price": 650,
-    "recommended": false
+    "recommended": 0
   },
   {
     "product_name": "Be My Hippie Love Tinto",
@@ -247,20 +247,9 @@
     "price": 390,
     "varietal": "Criolla",
     "winery": "Bodega Ernesto Catena",
-    "recommended": true,
+    "recommended": 0,
     "description": "Fácil de beber, sin vueltas. 500 ml. 100% Criolla. Se puede disfrutar de su fruta y especias en final medio. Un vino tinto fresco y alegre. “Es trabajo, diversión y amistad, todo metido en esta botella, para que vos, fan del vino y de los buenos momentos,  lo lleves bajo el brazo en una aventura de destino incierto”.  Ernesto Catena. Ánimal Organic",
     "image": "be-my-hippie-love-tinto.jpg",
     "id": 23
-  },
-  {
-    "product_name": "test",
-    "category": "Orgánicos",
-    "price": 123412,
-    "varietal": "Malbec",
-    "winery": "Bodegita",
-    "recommended": true,
-    "description": "tesatd",
-    "image": "amici-miei.jpeg",
-    "id": 24
   }
 ]

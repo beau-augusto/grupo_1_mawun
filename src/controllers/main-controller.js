@@ -6,7 +6,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     index: (req, res)=> {
-        const recommendedProducts = products.filter((product) => product.recommended == true);
+        const recommendedProducts = products.filter((product) => product.recommended == 1);
         const viewData = {
             recommendeds: recommendedProducts
         }
