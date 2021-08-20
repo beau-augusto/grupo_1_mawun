@@ -4,6 +4,7 @@ const path = require('path');
 const { body } = require('express-validator'); // Destructuracion pido la propiedad body (Express-Validator)
 
 const adminController = require('../controllers/admin-controller');
+const adminRedirect = require('../Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
 
 /*** Validaciones Crear (Express-Validator) ***/
 const validateCreatForm = [

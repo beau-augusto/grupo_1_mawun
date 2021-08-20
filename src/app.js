@@ -37,6 +37,8 @@ const usersRouter = require('./routes/users'); // Rutas /usuarios
 const productsRouter = require('./routes/products'); // Rutas /products
 const adminRouter = require ('./routes/admin'); // Rutas Admin Back Office
 
+
+const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
