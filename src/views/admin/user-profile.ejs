@@ -7,6 +7,23 @@
         <section class="abm-form-wrapper container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Perfil</h2>
+                <div>
+                    <div></div>
+                    <div>
+                        <div class="product-grid">
+                            
+                            <article class="product-grid-item">
+                                <a href="/productos/detalle/<%= product.id %>">
+                                    <img src="/upload/products/<%= product.image %>" alt="<%= product.product_name %>" class="product-grid-img">
+                                    <h4><%= product.product_name %></h4>
+                                    <p class="product-grid-title">$<%= product.price %></p>
+                                    <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
+                                </a> 
+                            </article>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
