@@ -7,7 +7,7 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Registro</h2>
-                <form action="/usuarios" class="abm-form-wrapper" method="POST" >
+                <form action="/" class="abm-form-wrapper" method="POST" enctype="multipart/form-data">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
@@ -31,7 +31,7 @@
                         </div>-->
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Subir imagen</label>
-                            <input type="file" id="image" placeholder="Subir imagen" class="abm-input">
+                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input">
                         </div>
                     </div>
                     <div class="abm-button-wrap">

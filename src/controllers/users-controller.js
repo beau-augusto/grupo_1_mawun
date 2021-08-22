@@ -15,7 +15,7 @@ const usersController = {
 
         const lastUser = users [users.length - 1]; //Obtengo el último indice del array
         const userToCreate = req.body; //Obtengo la informacion del formulario
-        userToCreate.image = "user-avatar.jpg"; //Obtengo la imagen del formulario - req.file.filename
+        userToCreate.image = req.file.filename; //Obtengo la imagen del formulario - req.file.filename
         userToCreate.id = lastUser.id + 1; //Agrego el id del Nvo usuario
 
         users.push(userToCreate); //Añado a Ususario creado al final de un array

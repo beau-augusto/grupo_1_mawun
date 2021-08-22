@@ -202,5 +202,13 @@
     "password": "12342352",
     "image": "user-avatar.jpg",
     "id": 23
+  },
+  {
+    "first_name": "ramon",
+    "last_name": "garcia",
+    "email": "ramongarcia@hotmail.com",
+    "password": "123456",
+    "image": "user-avatar.jpg",
+    "id": 24
   }
 ]
