@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-<body>
-    <%- include('../partials/header') %>
-    <main>
-        <section class="abm-form-wrapper container">
-            <div class="abm-producto-wrapper">
-                <h2 class="abm-title">Perfil</h2>
-            </div>
-        </section>
-    </main>
-    <%- include('../partials/footer') %>
-</body>
+
+    <body>
+        <%- include('../partials/header') %>
+            <main>
+                <section class="abm-inventory container">
+
+                    <h2 class="abm-title-inv">Perfil de Usuario</h2>
+
+                    <div class="abm-inventory-wrapper">
+
+
+                        <div class="items-wrapper-perfil-de-usuario">
+                        <div class="abm-input-tit">Nombre </div>
+                        <p class=" perfil-de-usuario-item"> <%= locals.user.first_name %> <%= locals.user.last_name %></p> 
+
+                        <div class="abm-input-tit">Imagen</div>
+                        <p class=" perfil-de-usuario-item"> <img src="/upload/profile-pictures/<%= locals.user.image %>"  class="bo-profile"></p> 
+
+                    </div>
+
+                        <div class="items-wrapper-perfil-de-usuario">
+                        <div class="abm-input-tit">Email</div>
+                        <p class=" perfil-de-usuario-item"> <%= locals.user.email %></p> 
+
+                            <div class="abm-input-tit">Contraseña</div>
+                            <p class=" perfil-de-usuario-item"> <%= locals.user.password %></p> 
+                        </div>
+
+                        
+                        <a href="#" class="perfil-de-usuario-item perfil-de-usuario-editar">Editar</a> 
+
+                        </div>
+
+
+                </section>
+            </main>
+            <%- include('../partials/footer') %>
+    </body>
+
 </html>
