@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-<body>
-    <%- include('../partials/header') %>
-    <main>
-        <section class="abm-form-wrapper container">
-            <div class="abm-producto-wrapper">
-                <h2 class="abm-title">Perfil</h2>
-                <div>
-                    <div></div>
-                    <div>
-                        <div class="product-grid">
-                            
-                            <article class="product-grid-item">
-                                <a href="/productos/detalle/<%= product.id %>">
-                                    <img src="/upload/products/<%= product.image %>" alt="<%= product.product_name %>" class="product-grid-img">
-                                    <h4><%= product.product_name %></h4>
-                                    <p class="product-grid-title">$<%= product.price %></p>
-                                    <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                                </a> 
-                            </article>
-                            
+
+    <body>
+        <%- include('../partials/header') %>
+            <main>
+                <section class="abm-inventory container">
+
+                    <h2 class="abm-title-inv">Perfil de Usuario</h2>
+
+                    <div class="abm-inventory-wrapper wrapper-perfil-de-usuario">
+
+                        <div class="wrapper-de-dos-perfil-de-usuario">
+
+                        <div class="items-wrapper-perfil-de-usuario">
+                        <div class="abm-input-tit">Nombre </div>
+                        <p class="perfil-de-usuario-item"> <%= locals.user.first_name %> <%= locals.user.last_name %></p> 
+
+                        </div>
+                        <div class="items-wrapper-perfil-de-usuario">
+                        <div class="abm-input-tit">Imagen</div>
+                        <p class="perfil-de-usuario-item"> <img src="/upload/profile-pictures/<%= locals.user.image %>"  class="bo-profile"></p> 
+
+                    </div>
+
+                    </div>
+
+                    <div class="wrapper-de-dos-perfil-de-usuario">
+                        <div class="items-wrapper-perfil-de-usuario">
+                        <div class="abm-input-tit">Email</div>
+                        <p class="perfil-de-usuario-item"> <%= locals.user.email %></p> 
+                        </div>
+
+                        <div class="items-wrapper-perfil-de-usuario">
+                            <div class="abm-input-tit">Contraseña</div>
+                            <p class="perfil-de-usuario-item"> <%= locals.user.password %></p> 
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <%- include('../partials/footer') %>
-</body>
+                        
+                        <a href="#" class="perfil-de-usuario-editar">Editar</a> 
+
+                        </div>
+
+
+                </section>
+            </main>
+            <%- include('../partials/footer') %>
+    </body>
+
 </html>

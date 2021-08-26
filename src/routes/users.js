@@ -8,11 +8,10 @@ const validateLogin = require("../middlewares/validateLogin.js");
 
 /*** Multer ***/
 const multer  = require('multer');
-const upload = multer();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        let folder = path.join(__dirname, '../../public/upload/users/');
+        let folder = path.join(__dirname, '../../public/upload/profile-pictures/');
         cb(null, folder);
 
     },
@@ -25,7 +24,7 @@ let fileUpload = multer({ storage });
 
 /*** CREAR USUARIO ***/
 router.get('/registro', usersController.create); // Imprimir hoja para crear producto
-router.post('/', fileUpload.single('imagen'), usersController.store);
+router.post('/', fileUpload.single('image'), usersController.store);
 
 /*** SESIONES ***/
 router.get('/inicio', usersController.login); 
