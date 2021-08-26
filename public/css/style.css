@@ -419,15 +419,27 @@ ul.hero-menu li a:hover {
     margin-bottom: 40px;
 }
 
-.items-wrapper-perfil-de-usuario {
+
+
+.wrapper-perfil-de-usuario {
     display: flex;
     flex-direction: column;
 }
 
+.items-wrapper-perfil-de-usuario {
+    width: 250px;
+    margin: 10px;
+}
+
+
+
 .perfil-de-usuario-editar {
     color:blue;
-    position: absolute; 
+    margin: 10px;
+
 }
+
+
 
 /* Estilos para detalleProducto.html*/
 .detalleProducto {

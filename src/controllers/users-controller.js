@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { validationResult } = require('express-validator');
 const { body } = require('express-validator');
+const bcryptjs = require("bcryptjs"); 
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
@@ -14,9 +15,14 @@ const usersController = {
     store: (req, res)=> {
 
         const lastUser = users [users.length - 1]; //Obtengo el último indice del array
-        const userToCreate = req.body; //Obtengo la informacion del formulario
-        userToCreate.image = req.file.filename; //Obtengo la imagen del formulario - req.file.filename
-        userToCreate.id = lastUser.id + 1; //Agrego el id del Nvo usuario
+        const userToCreate = {  //Obtengo la informacion del formulario y la creo 
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
+            id: lastUser.id + 1 //Agrego el id del Nvo usuario
+         } 
 
         users.push(userToCreate); //Añado a Ususario creado al final de un array
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2)); // Transformo el nuevo array de usuarios en Json
@@ -29,8 +35,10 @@ const usersController = {
     submitLogin: (req, res) => {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
+            let findUsername = users.find(user => user.email == req.body.name);
+            res.cookie("recordame", findUsername.email, { maxAge: 60000}) // Si no hay errores de validación, creo una cookie
             
-            // Si no hay errores de validación, avanzo al Back Office
+            // Y avanzo al Back Office
            return res.redirect ('/admin/inventario');
 
         } else {

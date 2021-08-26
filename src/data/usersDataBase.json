@@ -218,5 +218,53 @@
     "password": "asdfasdf",
     "image": "users-1629847141590.jpeg",
     "id": 25
+  },
+  {
+    "first_name": "Prueba",
+    "last_name": "Prueba",
+    "email": "Prueba",
+    "password": "123456",
+    "image": "users-1629941924319.jpeg",
+    "id": 26
+  },
+  {
+    "first_name": "Prueba 1",
+    "last_name": "Prueba 1",
+    "email": "Prueba 1",
+    "password": "$2a$10$q3nLiN7oMawe1d7a0R0.kOcdNAuynurdCg655HJSJxGgZFeHtFYSS",
+    "image": "users-1629942029763.jpeg",
+    "id": 27
+  },
+  {
+    "first_name": "beasd",
+    "last_name": "asdfasdf",
+    "email": "asdfasdf",
+    "password": "$2a$10$ECgNAnn5PMbiyKuJ86luu.WDuPV31CQQbmyCPH1Yf/ZtUcC921NxS",
+    "image": "users-1629943258498.jpeg",
+    "id": 28
+  },
+  {
+    "first_name": "asdfas",
+    "last_name": "asdfasd",
+    "email": "asdfasd",
+    "password": "$2a$10$dhuDdRUMfMLcR.Rccx94Jew3yqrL57WAdtxp6xSKzEVUXd840VUMK",
+    "image": "users-1629943294880.jpeg",
+    "id": 29
+  },
+  {
+    "first_name": "asdf",
+    "last_name": "asdf",
+    "email": "123456@gmail.com",
+    "password": "$2a$10$TW3.kgL6p4O3..9DHG3j0epHwpgXBEYtS7c4eJ.WWiXPQnnS0pOWm",
+    "image": "users-1629943324679.jpeg",
+    "id": 30
+  },
+  {
+    "first_name": "Prueba2",
+    "last_name": "Prueba2",
+    "email": "prueba@gmail.com",
+    "password": "$2a$10$Wfscs/.0/xo.hTGeH2Jz.OMYP3rG.pNqdQpOZnViUXFoDbcTEf9lS",
+    "image": "users-1629943855077.jpeg",
+    "id": 31
   }
 ]

@@ -1,8 +1,8 @@
-const multer = require ('multer');
-const {check} = require('express-validator');
+const {body} = require('express-validator');
 const path = require('path');
 const fs = require('fs');
-const { nextTick } = require('process');
+const bcryptjs = require("bcryptjs");
+
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
@@ -10,7 +10,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 module.exports = [
-    check('name')
+    body('name')
     .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
     .isLength({ min:4, max: 25}).withMessage('Debe ser de entre 4 y 25 caracteres')
     .isEmail().withMessage('Debe ser un mail válido')
@@ -19,24 +19,26 @@ module.exports = [
         if (!findUsername) {
             throw new Error('Este correo electrónico no está registrado');
         } else {
-            
-            req.session.usuarioLogeado = findUsername  // Guarda usuario en session
-            
             return true;
         };
         // Validando el nombre de usuario en el JSON
     }),
-    check('password')
-            .notEmpty().withMessage('Debes completar la contraseña').bail()
-            .isLength({ min:4, max: 30}).withMessage('Debe ser de entre 4 y 30 caracteres')
-            .custom ((value, {req}) => {
-  
-                let findUsername = users.find(user => user.email == req.body.name);
-                if (findUsername.password != req.body.password) {
-                    throw new Error('La contraseña no es correcta');
-                } else {
-                    return true;
-                };
-                // Validando la contraseña del usuario en el JSON
-            })
+    
+    body('password')
+    .notEmpty().withMessage('Debes completar la contraseña').bail()
+    .isLength({ min:4, max: 60}).withMessage('Debe ser de entre 4 y 30 caracteres')
+    .custom (async (value, {req}) => {
+        let findUsername = users.find(user => user.email == req.body.name);
+        let bcryptCompare = await bcryptjs.compare(req.body.password, findUsername.password)
+        if (bcryptCompare == true) {
+
+            req.session.usuarioLogeado = findUsername  // Guarda usuario en session
+            return true;
+        } else {
+            
+            throw new Error('La contraseña no es correcta');
+        };
+        // Validando la contraseña del usuario en el JSON
+    })
+
 ]

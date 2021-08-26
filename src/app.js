@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
-
-app.use(expressSession({
+//***** Session *****//
+app.use(expressSession({  
   secret: "secreta",
   saveUninitialized: false,
   resave: false
@@ -30,6 +30,10 @@ app.use(function(req, res, next) { // middleware para usar los datos de user en 
   res.locals.user = req.session.usuarioLogeado;
   next();
 });
+
+//***** Cookies *****//
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
@@ -42,7 +46,7 @@ const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware a
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
-app.use ('/admin', adminRouter);
+app.use ('/admin', adminRedirect, adminRouter);
 
 
 // ************ catch 404 and forward to error handler ************

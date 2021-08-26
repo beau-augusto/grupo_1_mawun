@@ -3,7 +3,6 @@ const router = express.Router();
 const path = require('path');
 
 const adminController = require('../controllers/admin-controller');
-const adminRedirect = require('../Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
 
 const { body } = require('express-validator'); // Destructuracion pido la propiedad body (Express-Validator)
 
