@@ -266,5 +266,13 @@
     "password": "$2a$10$Wfscs/.0/xo.hTGeH2Jz.OMYP3rG.pNqdQpOZnViUXFoDbcTEf9lS",
     "image": "users-1629943855077.jpeg",
     "id": 31
+  },
+  {
+    "first_name": "juan",
+    "last_name": "rodriguez",
+    "email": "jackdaniels@gmail.com",
+    "password": "$2a$10$jtR/yX4aR5XUm6qpyTEMSO4KcBFz68NJL3xr0GIviMjw4cg43IMDW",
+    "image": "user-1630075496173.jpg",
+    "id": 32
   }
 ]
