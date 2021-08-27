@@ -411,6 +411,36 @@ ul.hero-menu li a:hover {
 /* FIN CSS PETER */
 
 /* CSS AUGUSTO */
+
+
+/* Perfil de usuario */
+
+.perfil-de-usuario-item {
+    margin-bottom: 40px;
+}
+
+
+
+.wrapper-perfil-de-usuario {
+    display: flex;
+    flex-direction: column;
+}
+
+.items-wrapper-perfil-de-usuario {
+    width: 250px;
+    margin: 10px;
+}
+
+
+
+.perfil-de-usuario-editar {
+    color:blue;
+    margin: 10px;
+
+}
+
+
+
 /* Estilos para detalleProducto.html*/
 .detalleProducto {
     margin: auto;
@@ -951,6 +981,16 @@ ul.hero-menu li a:hover {
 /*FIN CSS AUGUSTO*/
 
 /** Migue INICIO**/
+
+.checkbox-login-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-login-input {
+    margin-right: 5px;
+}
+
 .form-login {
     display: flex;
     flex-direction: column;
@@ -1438,7 +1478,7 @@ option {
 }
 .abm-button-wrap{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 15px 10px;
 }
 .abm-button-submit {

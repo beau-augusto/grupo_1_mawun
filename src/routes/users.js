@@ -11,7 +11,11 @@ const multer  = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+<<<<<<< HEAD
         let folder = path.join(__dirname, '../public/upload/users');
+=======
+        let folder = path.join(__dirname, '../../public/upload/profile-pictures/');
+>>>>>>> aef79982069236eae7e822fd0e4f9caa4817962f
         cb(null, folder);
 
     },
@@ -25,7 +29,7 @@ let fileUpload = multer({ storage });
 
 /*** CREAR USUARIO ***/
 router.get('/registro', usersController.create); // Imprimir hoja para crear producto
-router.post('/', fileUpload.single('imagen'), usersController.store);
+router.post('/', fileUpload.single('image'), usersController.store);
 
 /*** SESIONES ***/
 router.get('/inicio', usersController.login); 
