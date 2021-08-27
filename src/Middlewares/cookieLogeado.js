@@ -11,6 +11,7 @@ module.exports = function adminRedirect(req, res, next) {
         console.log("cookie middleware")
         let findUsername = users.find(user => user.email == req.cookies.recordame);
         req.session.usuarioLogeado = findUsername;
+        res.locals.user = req.session.usuarioLogeado;
         next();
     }
     else {

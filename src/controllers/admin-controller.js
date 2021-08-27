@@ -14,7 +14,6 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const adminController = {
     inventory: (req, res)=> {
-        console.log(res.locals.user)
         return res.render ('./admin/inventory', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
     },
     create: (req, res)=> {
