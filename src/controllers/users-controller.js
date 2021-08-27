@@ -36,8 +36,8 @@ const usersController = {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
             let findUsername = users.find(user => user.email == req.body.name);
-            res.cookie("recordame", findUsername.email, { maxAge: 60000}) // Si no hay errores de validación, creo una cookie
-            
+            res.cookie("recordame", findUsername.email, { maxAge: 600000}) // Si no hay errores de validación, creo una cookie
+          
             // Y avanzo al Back Office
            return res.redirect ('/admin/inventario');
 

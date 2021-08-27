@@ -5,6 +5,7 @@ const methodOverride =  require('method-override'); // Para poder usar los méto
 
 const expressSession = require('express-session') // Para poder usar los Session
 const createError = require('http-errors');
+const cookieLogeado = require('./Middlewares/cookieLogeado'); // Para mantenerte logeado si tenés el cookie
 
 //***** Express *****//
 const app = express();
@@ -46,7 +47,7 @@ const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware a
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
-app.use ('/admin', adminRedirect, adminRouter);
+app.use ('/admin', cookieLogeado, adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
 
 // ************ catch 404 and forward to error handler ************
