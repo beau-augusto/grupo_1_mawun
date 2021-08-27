@@ -8,19 +8,19 @@ const validateLogin = require("../middlewares/validateLogin.js");
 
 /*** Multer ***/
 const multer  = require('multer');
-const upload = multer();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        let folder = path.join(__dirname, '../../public/upload/users/');
+        let folder = path.join(__dirname, '../public/upload/users');
         cb(null, folder);
 
     },
     filename: (req, file, cb) => {
-        let imageName = 'users-' + Date.now() + path.extname(file.originalname);
-        cb(null, imageName);
+        let newFileName = 'user-' + Date.now() + path.extname(file.originalname);
+        cb(null, newFileName);
     }
 });
+
 let fileUpload = multer({ storage });
 
 /*** CREAR USUARIO ***/
