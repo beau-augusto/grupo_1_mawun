@@ -3,8 +3,10 @@ const router = express.Router();
 const path = require('path');
 const usersController = require('../controllers/users-controller');
 
+
 /** MIDDLEWARES **/
 const validateLogin = require("../middlewares/validateLogin.js");
+
 
 /*** Multer ***/
 const multer  = require('multer');
@@ -16,10 +18,11 @@ const storage = multer.diskStorage({
 
     },
     filename: (req, file, cb) => {
-        let imageName = 'users-' + Date.now() + path.extname(file.originalname);
-        cb(null, imageName);
+        let newFileName = 'user-' + Date.now() + path.extname(file.originalname);
+        cb(null, newFileName);
     }
 });
+
 let fileUpload = multer({ storage });
 
 /*** CREAR USUARIO ***/
