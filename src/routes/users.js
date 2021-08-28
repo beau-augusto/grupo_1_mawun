@@ -3,8 +3,10 @@ const router = express.Router();
 const path = require('path');
 const usersController = require('../controllers/users-controller');
 
+
 /** MIDDLEWARES **/
 const validateLogin = require("../middlewares/validateLogin.js");
+
 
 /*** Multer ***/
 const multer  = require('multer');
