@@ -274,5 +274,21 @@
     "password": "$2a$10$jtR/yX4aR5XUm6qpyTEMSO4KcBFz68NJL3xr0GIviMjw4cg43IMDW",
     "image": "user-1630075496173.jpg",
     "id": 32
+  },
+  {
+    "first_name": "Elida",
+    "last_name": "Ojeda",
+    "email": "adc@hotmail.com",
+    "password": "$2a$10$BZG2ar8NI2JYdIxxf/bRtO/Ym4caEOCcpvh0NCVQxUQQGZIAz.Ndm",
+    "image": "user-1630284178460.jpg",
+    "id": 33
+  },
+  {
+    "first_name": "leo",
+    "last_name": "bujan",
+    "email": "jackdaniels@gmail.com",
+    "password": "$2a$10$4Ql4ozOUQID/sofMKBbXnuD/nUo8iIKgtXST7RevvYJEJYvchXDbC",
+    "image": "user-1630294211338.jpg",
+    "id": 34
   }
 ]
