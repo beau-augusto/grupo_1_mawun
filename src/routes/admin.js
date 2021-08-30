@@ -36,7 +36,6 @@ router.get('/:id/editar', adminController.edit);
 router.put('/:id', upload.single('image'), adminController.update);
 router.delete('/:id/delete', adminController.delete);
 
-/*** Perfil de usuario ***/
-router.get('/perfil', adminController.profile);
+
 
 module.exports = router;

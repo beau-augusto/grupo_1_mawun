@@ -33,8 +33,6 @@ const usersController = {
        res.render ('users/login');
     },
     submitLogin: (req, res) => {
-
-    console.log(req.body)
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
             let findUsername = users.find(user => user.email == req.body.name);
@@ -52,7 +50,20 @@ const usersController = {
         res.render ('users/login', {errors: errors.mapped(), old: req.body});
         }
  
-    }
+    },
+    profile: (req, res)=> {
+        return res.render('./users/user-profile');
+    },
+    edit: (req, res)=> {
+		const user = users.find(user => user.email == req.session.usuarioLogeado.email); // Busco si esta el pruducto
+
+		if (!user) {
+			return res.send('No pudimos encotrar ese perfil')
+		};
+
+        
+        return res.render('./users/edit-user', user);
+    },
 };
 
 module.exports = usersController;

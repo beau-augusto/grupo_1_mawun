@@ -35,6 +35,7 @@ app.use(function(req, res, next) { // middleware para usar los datos de user en 
 //***** Cookies *****//
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
+app.use(cookieLogeado);
 
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
@@ -47,7 +48,7 @@ const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware a
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
-app.use ('/admin', cookieLogeado, adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
+app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
 
 // ************ catch 404 and forward to error handler ************

@@ -33,6 +33,11 @@ router.post('/', fileUpload.single('image'), usersController.store);
 router.get('/inicio', usersController.login); 
 router.post('/inicio', validateLogin, usersController.submitLogin)
 
+/*** Perfil de usuario ***/
+router.get('/perfil', usersController.profile);
 
+router.get('/editar', usersController.edit);
+// router.put('/:id', upload.single('image'), usersController.editProfile);
+// router.delete('/:id/delete', usersController.deleteProfile);
 
 module.exports = router;
