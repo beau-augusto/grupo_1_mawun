@@ -12,7 +12,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 module.exports = [
     body('name')
     .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
-    .isLength({ min:4, max: 25}).withMessage('Debe ser de entre 4 y 25 caracteres')
+    .isLength({ min:4, max: 30}).withMessage('Debe ser de entre 4 y 30 caracteres')
     .isEmail().withMessage('Debe ser un mail válido')
     .custom ((value, {req}) => {
         let findUsername = users.find(user => user.email == req.body.name);

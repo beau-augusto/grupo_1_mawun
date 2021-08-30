@@ -18,19 +18,31 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input <%= locals.errors && errors.first_name ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.first_name : null %>" > <% if(locals.errors && errors.first_name) { %> <div><%= errors.first_name.msg %> </div> <% } %>  
+                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input <%= locals.errors && errors.first_name ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.first_name : null %>" > 
+                            <% if(locals.errors && errors.first_name) { %> 
+                                <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit">Apellido</label>
-                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input <%= locals.errors && errors.last_name ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.last_name : null %>" ><% if(locals.errors && errors.last_name) { %> <div><%= errors.last_name.msg %></div> <% } %>
+                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input <%= locals.errors && errors.last_name ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.last_name : null %>" >
+                            <% if(locals.errors && errors.last_name) { %> 
+                                <p class="abm-input-error"><%= errors.last_name.msg %></p> 
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap-email">
                             <label for="email" class="abm-input-tit">Email</label>
-                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>" ><% if(locals.errors && errors.email) { %> <div><%= errors.email.msg %></div> <% } %>
+                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>" >
+                            <% if(locals.errors && errors.email) { %> 
+                                <p class="abm-input-error"><%= errors.email.msg %></p>
+                            <% } %>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input <%= locals.errors && errors.password ? 'is-invalid' : null %>"><% if(locals.errors && errors.password) { %> <div><%= errors.password.msg %></div> <% } %>
+                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input <%= locals.errors && errors.password ? 'is-invalid' : null %>">
+                            <% if(locals.errors && errors.password) { %> 
+                                <p class="abm-input-error"><%= errors.password.msg %></p>
+                            <% } %>
                         </div>     
                         <!--<div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
@@ -39,7 +51,9 @@
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Subir imagen</label>
                             <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input">
-                            <% if(locals.errors && errors.image) { %> <div><%= errors.image.msg %> </div> <% } %>
+                            <% if(locals.errors && errors.image) { %>
+                                <p class="abm-input-error"><%= errors.image.msg %> </p>
+                            <% } %>
                         </div>
                     </div>
                     <div class="abm-button-wrap">
