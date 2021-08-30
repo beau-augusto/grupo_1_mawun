@@ -4,7 +4,7 @@
     "first_name": "Peter",
     "last_name": "Badia",
     "email": "pedrobadia@gmail.com",
-    "password": "123456",
+    "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
     "category": "admin",
     "image": "img-6962.jpg"
   },
@@ -274,5 +274,13 @@
     "password": "$2a$10$jtR/yX4aR5XUm6qpyTEMSO4KcBFz68NJL3xr0GIviMjw4cg43IMDW",
     "image": "user-1630075496173.jpg",
     "id": 32
+  },
+  {
+    "first_name": "Armando Estaban",
+    "last_name": "Quito",
+    "email": "armando@estebanquito.com",
+    "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
+    "image": "user-1630182433345.jpg",
+    "id": 33
   }
 ]
