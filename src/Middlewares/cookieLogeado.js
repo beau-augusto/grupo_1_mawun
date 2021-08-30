@@ -8,13 +8,13 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 module.exports = function adminRedirect(req, res, next) {
 
     if(req.cookies.recordame != undefined && req.session.usuarioLogeado == undefined) {
-        console.log("cookie middleware")
+      console.log("funciona");
         let findUsername = users.find(user => user.email == req.cookies.recordame);
-        req.session.usuarioLogeado = findUsername;
-        res.locals.user = req.session.usuarioLogeado;
-        next();
+         req.session.usuarioLogeado = findUsername;
+         next();
     }
     else {
+      console.log("no funciona");
       return  next();
     }
 }

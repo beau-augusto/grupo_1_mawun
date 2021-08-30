@@ -81,9 +81,6 @@ const adminController = {
 
         return res.redirect('/admin/inventario');
     }, 
-    profile: (req, res)=> {
-        return res.render('./admin/user-profile');
-    }
 };
 
 module.exports = adminController;
