@@ -276,14 +276,6 @@
     "id": 32
   },
   {
-<<<<<<< HEAD
-    "first_name": "Armando Estaban",
-    "last_name": "Quito",
-    "email": "armando@estebanquito.com",
-    "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
-    "image": "user-1630182433345.jpg",
-    "id": 33
-=======
     "first_name": "Elida",
     "last_name": "Ojeda",
     "email": "adc@hotmail.com",
@@ -298,6 +290,5 @@
     "password": "$2a$10$4Ql4ozOUQID/sofMKBbXnuD/nUo8iIKgtXST7RevvYJEJYvchXDbC",
     "image": "user-1630294211338.jpg",
     "id": 34
->>>>>>> 161c764705d280474d4ac34fff94b7c34c2b33a0
   }
 ]
