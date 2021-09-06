@@ -36,6 +36,7 @@ router.post('/', fileUpload.single('image'), validationCreateFormUser, usersCont
 /*** SESIONES ***/
 router.get('/inicio', usersController.login); 
 router.post('/inicio', validateLogin, usersController.submitLogin)
+router.get('/logout', usersController.logout);
 
 /*** Perfil de usuario ***/
 router.get('/perfil', usersController.profile);

@@ -27,15 +27,10 @@ app.use(expressSession({
   saveUninitialized: false,
   resave: false
 }));
-app.use(function(req, res, next) { // middleware para usar los datos de user en todas las vistas
-  res.locals.user = req.session.usuarioLogeado;
-  next();
-});
 
 //***** Cookies *****//
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
-app.use(cookieLogeado);
 
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
@@ -43,12 +38,20 @@ const usersRouter = require('./routes/users'); // Rutas /usuarios
 const productsRouter = require('./routes/products'); // Rutas /products
 const adminRouter = require ('./routes/admin'); // Rutas Admin Back Office
 
+//app.use(cookieLogeado);
+app.use(function(req, res, next) { // middleware para usar los datos de user en todas las vistas
+  console.log("locals")
+  res.locals.user = req.session.usuarioLogeado;
+  next();
+});
+
 
 const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
+
 
 
 // ************ catch 404 and forward to error handler ************

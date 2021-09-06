@@ -32,15 +32,14 @@
                         <p class="perfil-de-usuario-item"> <%= locals.user.email %></p> 
                         </div>
 
-                        <div class="items-wrapper-perfil-de-usuario">
-                            <div class="abm-input-tit">Contraseña</div>
-                            <p class="perfil-de-usuario-item"> <%= locals.user.password %></p> 
-                        </div>
                     </div>
                         
-                        <a href="#" class="perfil-de-usuario-editar">Editar</a> 
+                    <form action="/usuarios/editar" class="perfil-de-usuario-editar"><button type="submit" class="perfil-de-usuario-editar">Editar</button></form> 
+                        <form action="/usuarios/logout" class="perfil-de-usuario-editar"><button type="submit" class="perfil-de-usuario-editar">Logout</button></form> 
 
                         </div>
+
+                        
 
 
                 </section>

@@ -6,15 +6,14 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 module.exports = function adminRedirect(req, res, next) {
-
-    if(req.cookies.recordame != undefined && req.session.usuarioLogeado == undefined) {
+    if(req.cookies && req.cookies != undefined && req.session.usuarioLogeado == undefined) {
       console.log("funciona");
         let findUsername = users.find(user => user.email == req.cookies.recordame);
-         req.session.usuarioLogeado = findUsername;
-         next();
-    }
+        req.session.usuarioLogeado = findUsername;
+        next()
+      }
     else {
-      console.log("no funciona");
+      console.log("cookies");
       return  next();
     }
 }

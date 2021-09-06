@@ -3,6 +3,7 @@ const path = require('path');
 const { validationResult } = require('express-validator');
 const { body } = require('express-validator');
 const bcryptjs = require("bcryptjs"); 
+const cookieParser = require('cookie-parser');
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
@@ -40,18 +41,24 @@ const usersController = {
         };
     },
     login: (req, res)=> {
-    res.render ('users/login');
+            res.render ('users/login');
+    
     },
     submitLogin: (req, res) => {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
             let findUsername = users.find(user => user.email == req.body.name);
-            if (req.body.remember) {
-                res.cookie("recordame", findUsername.email, { maxAge: 600000}) // Si no hay errores de validación, creo una cookie
-            }
-          
-            // Y avanzo al Back Office
-           return res.redirect ('/admin/inventario');
+
+            if (req.session.usuarioLogeado.category == "admin"){
+
+            
+                    return res.redirect ('/admin/inventario');
+            
+                }
+            else {
+                return res.redirect("/productos");
+
+            } 
 
         } else {
 
@@ -74,6 +81,13 @@ const usersController = {
         
         return res.render('./users/edit-user', user);
     },
-};
+    logout: (req, res) => {
+        req.session.destroy();
+        res.clearCookie("recordame");
+        return   res.render ('users/login');
+    }
+}
+
+
 
 module.exports = usersController;

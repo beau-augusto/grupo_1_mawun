@@ -6,32 +6,32 @@
     <main>
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
-                <h2 class="abm-title">Registro</h2>
+                <h2 class="abm-title">Editar Usuario</h2>
                 <form action="/usuarios" class="abm-form-wrapper" enctype="multipart/form-data" method="POST" >
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit" placeholder="asdfasdf" value="123"><%= user.first_name%></label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input">
+                            <label for="first_name" class="abm-input-tit">Nombre</label>
+                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%= user.first_name%>">
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="last_name" class="abm-input-tit" value="asdsa"><%= user.last_name%></label>
-                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input">
+                            <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
+                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%= user.last_name%>">
                         </div>
                         <div class="abm-input-wrap-email">
-                            <label for="email" class="abm-input-tit" value="<%= user.email%>">Email</label>
-                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input">
+                            <label for="email" class="abm-input-tit">Email</label>
+                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input"  value="<%= user.email%>">
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="password" class="abm-input-tit" value="<%= user.password%>">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input">
+                            <label for="password" class="abm-input-tit">Contraseña</label>
+                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input"  value="<%= user.password%>">
                         </div>     
                         <!--<div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
                             <input type="password" id="password" placeholder="Contraseña" class="abm-input">
                         </div>-->
                         <div class="abm-input-wrap">
-                            <label for="image" class="abm-input-tit" value="<%= user.image%>">Subir imagen</label>
-                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input">
+                            <label for="image" class="abm-input-tit">Imagen</label>
+                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input" value="<%= user.image%>">
                         </div>
                     </div>
                     <div class="abm-button-wrap">
