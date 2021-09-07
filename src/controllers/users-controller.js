@@ -25,6 +25,7 @@ const usersController = {
             last_name: req.body.last_name,
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
+            category: "visitor",
             image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
             id: lastUser.id + 1 //Agrego el id del Nvo usuario
         }
@@ -41,7 +42,13 @@ const usersController = {
         };
     },
     login: (req, res)=> {
-            res.render ('users/login');
+
+            let datosCookie= {
+                email: req.cookies.recordame
+
+            }
+     
+        return res.render ('users/login', datosCookie); 
     
     },
     submitLogin: (req, res) => {
@@ -50,12 +57,18 @@ const usersController = {
             let findUsername = users.find(user => user.email == req.body.name);
 
             if (req.session.usuarioLogeado.category == "admin"){
+                if(req.body.remember){
+                    res.cookie("recordame", req.body.name, { maxAge: 900000})
+                }
 
             
                     return res.redirect ('/admin/inventario');
             
                 }
             else {
+                if(req.body.remember){
+                    res.cookie("recordame", { maxAge: 900000})
+                }
                 return res.redirect("/productos");
 
             } 

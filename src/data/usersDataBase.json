@@ -27,11 +27,12 @@
     "image": "augusto-6964.jpg"
   },
   {
-    "first_name": "Federico",
-    "last_name": "Rizzo",
-    "email": "fede.r@gmail.com",
-    "password": "$2a$10$8FiAqlaZMMoD4H3r9HdEM.5kESekgqa5vz7A.dPNqYVOaaVlSEC8G",
-    "image": "user-1630963321922.jpg",
-    "id": 4
+    "first_name": "Joe",
+    "last_name": "Schmoe",
+    "email": "joe@gmail.com",
+    "password": "$2a$10$n8YWfbz.cpUiTZyBYFftb.anAwUEQjRRSJrQxYWZHDxOZcQTrdZ.a",
+    "category": "visitor",
+    "image": "user-1630974614333.jpg",
+    "id": 5
   }
 ]

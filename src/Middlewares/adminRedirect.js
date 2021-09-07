@@ -7,7 +7,7 @@ module.exports = function adminRedirect(req, res, next) {
       return res.redirect ('/usuarios/inicio');
   
     }
-    if(!req.session.usuarioLogeado.category) {
+    if(req.session.usuarioLogeado.category == "visitor") {
 
       return res.redirect ('/productos');
   

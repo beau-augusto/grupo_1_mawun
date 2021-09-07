@@ -2,6 +2,7 @@ const {body} = require('express-validator');
 const path = require('path');
 const fs = require('fs');
 const bcryptjs = require("bcryptjs");
+const { nextTick } = require('process');
 
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
@@ -19,6 +20,7 @@ module.exports = [
         if (!findUsername) {
             throw new Error('Este correo electrónico no está registrado');
         } else {
+            
             return true;
         };
         // Validando el nombre de usuario en el JSON
@@ -28,7 +30,13 @@ module.exports = [
     .notEmpty().withMessage('Debes completar la contraseña').bail()
     .isLength({ min:4, max: 60}).withMessage('Debe ser de entre 4 y 30 caracteres')
     .custom (async (value, {req}) => {
+
         let findUsername = users.find(user => user.email == req.body.name);
+
+        if(!findUsername){
+            return false
+
+        }
         let bcryptCompare = await bcryptjs.compare(req.body.password, findUsername.password)
         if (bcryptCompare == true) {
 

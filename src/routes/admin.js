@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 
 const adminController = require('../controllers/admin-controller');
+const adminVisitor = require("../middlewares/adminVisitor.js");
 
 const { body } = require('express-validator'); // Destructuracion pido la propiedad body (Express-Validator)
 

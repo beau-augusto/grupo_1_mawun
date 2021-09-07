@@ -13,7 +13,7 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Usuario</label> 
-                            <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.old && old.name ? old.name : '' %>">
+                            <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.email ? locals.email : '' %><%= locals.old && old.name ? old.name : '' %>"> 
 
                             <% if (locals.errors && errors.name) { %>
                                 <p class="abm-input-error"><%= errors.name.msg %></p>

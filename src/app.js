@@ -5,7 +5,6 @@ const methodOverride =  require('method-override'); // Para poder usar los méto
 
 const expressSession = require('express-session') // Para poder usar los Session
 const createError = require('http-errors');
-const cookieLogeado = require('./Middlewares/cookieLogeado'); // Para mantenerte logeado si tenés el cookie
 
 //***** Express *****//
 const app = express();
@@ -38,9 +37,7 @@ const usersRouter = require('./routes/users'); // Rutas /usuarios
 const productsRouter = require('./routes/products'); // Rutas /products
 const adminRouter = require ('./routes/admin'); // Rutas Admin Back Office
 
-//app.use(cookieLogeado);
 app.use(function(req, res, next) { // middleware para usar los datos de user en todas las vistas
-  console.log("locals")
   res.locals.user = req.session.usuarioLogeado;
   next();
 });

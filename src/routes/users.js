@@ -7,6 +7,7 @@ const { body } = require ('express-validator');
 
 /** MIDDLEWARES **/
 const validateLogin = require("../middlewares/validateLogin.js");
+const adminVisitor = require("../middlewares/adminVisitor.js");
 
 
 /*** Multer ***/
@@ -30,11 +31,11 @@ let fileUpload = multer({ storage });
 
 
 /*** CREAR USUARIO ***/
-router.get('/registro', usersController.create); // Imprimir hoja para crear producto
+router.get('/registro', adminVisitor, usersController.create); // Imprimir hoja para crear producto
 router.post('/', fileUpload.single('image'), validationCreateFormUser, usersController.store);
 
 /*** SESIONES ***/
-router.get('/inicio', usersController.login); 
+router.get('/inicio', adminVisitor, usersController.login); 
 router.post('/inicio', validateLogin, usersController.submitLogin)
 router.get('/logout', usersController.logout);
 
