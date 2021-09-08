@@ -1,5 +1,6 @@
     
 module.exports = function adminRedirect(req, res, next) {
+    console.log(req.session.usuarioLogeado);
 if (req.session.usuarioLogeado) {
     switch (req.session.usuarioLogeado.category){
         case "admin":

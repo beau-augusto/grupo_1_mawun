@@ -18,4 +18,3 @@
 // 5. No permitir dos cuentas con el mismo mail 
 // 6. Carrito funcional con Javascript
 
-// if (locals.name) {locals.name} else {locals.old && old.name ? old.name : '' }%>

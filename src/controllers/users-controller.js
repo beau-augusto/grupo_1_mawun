@@ -32,6 +32,9 @@ const usersController = {
 
         users.push(userToCreate); //Añado a Ususario creado al final de un array
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2)); // Transformo el nuevo array de usuarios en Json
+        
+        req.session.usuarioLogeado = userToCreate  // Automaticamente logea al usuario y lo guarda en session
+
 
         return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee
         } else {

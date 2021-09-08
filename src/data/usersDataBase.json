@@ -34,5 +34,113 @@
     "category": "visitor",
     "image": "user-1630974614333.jpg",
     "id": 5
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Manuel",
+    "email": "juanma@gmail.com",
+    "password": "$2a$10$ewkeLTYDPbq/t1S.yRv.ue9UgEA7JBbNHgOPKEgZQYL/aUwgKkohO",
+    "category": "visitor",
+    "image": "user-1631068687967.png",
+    "id": 6
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma`",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$SohIcYgCYXZz4yuSoZ608eHy2uota3qWGAw.KRZtX6oBrM54HE/gO",
+    "category": "visitor",
+    "image": "user-1631068734475.png",
+    "id": 7
+  },
+  {
+    "first_name": "juan",
+    "last_name": "ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$ZtdA22EUrVWPv9OsqCdwMOKtbzArQYwtvMxRvqaDtOjDmzA6rELMK",
+    "category": "visitor",
+    "image": "user-1631068785509.png",
+    "id": 8
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$9uCPgQFlBnO58pswpPswc.xTRhzj5QXAh6LF5Fm8KUnf.tzgHdDZq",
+    "category": "visitor",
+    "image": "user-1631068840593.png",
+    "id": 9
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "Juan@gmail.com",
+    "password": "$2a$10$avaDnBJTLigQRj5cmlOQp.nmFZiVa8pkGJjT0F3NO45FZZrNqNkb2",
+    "category": "visitor",
+    "image": "user-1631069009629.png",
+    "id": 10
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$BSXKk5aorN2KNAM2UVKt7OBDGUx7F02J8oqpnLKs.tlV2w0ukfxnS",
+    "category": "visitor",
+    "image": "user-1631069071258.png",
+    "id": 11
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$2PNpkoE7V5KyOtRuX4YyxOGKD.omlq.NTo8gS9mneDHo//wDPfc9.",
+    "category": "visitor",
+    "image": "user-1631069131692.png",
+    "id": 12
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$51uAeIyommM2PwJYQQX92uydVfx4liSO8cJcTStfqRCXQ2YJriFbO",
+    "category": "visitor",
+    "image": "user-1631069179809.png",
+    "id": 13
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$kw3pzdgkGJBHpY22eNnlouw1sW1O6BT.AGOoEGl3QYxZbPQVwZk0W",
+    "category": "visitor",
+    "image": "user-1631069201278.png",
+    "id": 14
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$CcHPhcXcpBOMoUpvo28PseIE732SDvZOyJOxrLhwzJadLuoihjJMa",
+    "category": "visitor",
+    "image": "user-1631069226005.png",
+    "id": 15
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$sbVg59VJaxxeGM/bak3Ni.1Ksh.X1pOgYtdP.vC1WSzxgpC5OLrRO",
+    "category": "visitor",
+    "image": "user-1631069254129.png",
+    "id": 16
+  },
+  {
+    "first_name": "Juan",
+    "last_name": "Ma",
+    "email": "juan@gmail.com",
+    "password": "$2a$10$SevNESZWlGHYtC3fOpGunOKcV1fCx4Mv/dcqph2TVdV4hfjI4BoCq",
+    "category": "visitor",
+    "image": "user-1631069266742.png",
+    "id": 17
   }
 ]
