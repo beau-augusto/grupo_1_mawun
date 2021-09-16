@@ -4,8 +4,11 @@
   "description": "Antes de describir nuestro producto y los detalles mas importantes del e-commerce, vamos a profundizar un poco en algunos conceptos importantes, por ejemplo a que nos referimos cuando decimos \"vinos orgánicos, naturales y biodinámicos\".",
   "main": "app.js",
   "nodemonConfig": {
-    "ignore": ["src/data/*.json"]
-  },  "scripts": {
+    "ignore": [
+      "src/data/*.json"
+    ]
+  },
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/bin/www"
   },
@@ -27,6 +30,8 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.12.1",
     "method-override": "^3.0.0",
-    "multer": "^1.4.3"
+    "multer": "^1.4.3",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
   }
 }
