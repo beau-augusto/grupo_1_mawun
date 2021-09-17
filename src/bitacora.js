@@ -1,12 +1,8 @@
 // Preguntas para Juan
 
-// 1. cómo evitar que el express validator diga "Cannot read property 'password' of undefined."
+// Logica de carrito
+// Alcance del compra
 
-
-
-// Preguntas para Migue y Peter
-
-// 
 
 
 // Ideas a meter desde el demo
