@@ -9,19 +9,24 @@ module.exports = function (sequelize, dataTypes){
             autoIncrement: true
         },
         name: {
-            type: dataTypes.STRING(50)
+            type: dataTypes.STRING(50),
+            allowNull: false
         },
         price: {
-            type: dataTypes.DECIMAL
+            type: dataTypes.DECIMAL,
+            allowNull: false
         },
         description: {
-            type: dataTypes.STRING
+            type: dataTypes.STRING,
+            allowNull: false
         },
         recommended: {
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER,
+            allowNull: false
         },
         image: {
-            type: dataTypes.STRING
+            type: dataTypes.STRING,
+            allowNull: false
         }
     }
 
@@ -31,6 +36,20 @@ module.exports = function (sequelize, dataTypes){
     }
 
     let Product = sequelize.define(alias, cols, config);
+
+    Product.associate = function (models) {
+        Product.hasMany(models.Orders_products, {
+            as: "order_products",
+            foreignKey: "product_id"
+
+        })
+        Product.hasMany(models.Products_tags, {
+            as: "Product_tags",
+            foreignKey: "product_id"
+
+        })
+
+    }
 
     return Product
 }    

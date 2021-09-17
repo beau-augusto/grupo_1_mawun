@@ -1,6 +1,6 @@
 module.exports = function (sequelize, dataTypes){
 
-    let alias = "Tags_type";
+    let alias = "Tags_name";
 
     let cols = {
         id: {
@@ -15,20 +15,20 @@ module.exports = function (sequelize, dataTypes){
     }
 
     let config = {
-        tableName: "Tags_type",
+        tableName: "Tags_name",
         timestamps: false
     }
 
-    let Tags_type = sequelize.define(alias, cols, config);
+    let Tags_name = sequelize.define(alias, cols, config);
 
-    Tags_type.associate = function (models) {
+    Tags_name.associate = function (models) {
         Tags_type.hasMany(models.Products_tags, {
-            as: "tag_type_products_tags",
-            foreignKey: "tag_type_id"
+            as: "tag_name_products_tags",
+            foreignKey: "tag_name_id"
 
         })
 
     }
 
-    return Tags_type
+    return Tags_name
 }    
