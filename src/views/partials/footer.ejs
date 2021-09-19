@@ -20,8 +20,13 @@
                 <button class="footer-news__submit">SUSCRIBIRSE</button>
             </form>
             <div class="footer-news">
+                <% if (locals.user == undefined) { %>
                 <a href="/usuarios/registro">Registrate</a>
-                <a href="/admin/inventario">Back Office</a>
+                <% } %>
+                <% if (locals.user) { %>
+                    <a href="/usuarios/logout"> Logout</a>
+                    <% } %>
+                <a href="/admin/inventario-productos">Back Office</a>
             </div>
         </div>
     </div>

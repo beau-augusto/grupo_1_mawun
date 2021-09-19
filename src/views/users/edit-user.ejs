@@ -7,23 +7,23 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Editar Usuario</h2>
-                <form action="/usuarios" class="abm-form-wrapper" enctype="multipart/form-data" method="POST" >
+                <form action="/usuarios/editar/<%=id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%= user.first_name%>">
+                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%=first_name%>">
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
-                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%= user.last_name%>">
+                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%=last_name%>">
                         </div>
                         <div class="abm-input-wrap-email">
                             <label for="email" class="abm-input-tit">Email</label>
-                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input"  value="<%= user.email%>">
+                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input"  value="<%=email%>">
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input"  value="<%= user.password%>">
+                            <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input"  value="<%=password%>">
                         </div>     
                         <!--<div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
@@ -31,11 +31,11 @@
                         </div>-->
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Imagen</label>
-                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input" value="<%= user.image%>">
+                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input" value="<%=image%>">
                         </div>
                     </div>
                     <div class="abm-button-wrap">
-                        <button type="submit" class="abm-button-submit">ENVIAR</button>
+                        <button type="submit" class="abm-button-submit">ACTUALIZAR</button>
                     </div>
                 </form>
             </div>

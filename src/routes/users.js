@@ -8,7 +8,7 @@ const { body } = require ('express-validator');
 /** MIDDLEWARES **/
 const validateLogin = require("../middlewares/validateLogin.js");
 const adminVisitor = require("../middlewares/adminVisitor.js");
-
+const loggedoutRedirect = require("../middlewares/loggedoutRedirect.js");
 
 /*** Multer ***/
 const multer  = require('multer');
@@ -37,13 +37,13 @@ router.post('/', fileUpload.single('image'), validationCreateFormUser, usersCont
 /*** SESIONES ***/
 router.get('/inicio', adminVisitor, usersController.login); 
 router.post('/inicio', validateLogin, usersController.submitLogin)
-router.get('/logout', usersController.logout);
+router.get('/logout', loggedoutRedirect, usersController.logout);
 
 /*** Perfil de usuario ***/
-router.get('/perfil', usersController.profile);
+router.get('/perfil/:id', loggedoutRedirect, usersController.profile);
 
-router.get('/editar', usersController.edit);
-// router.put('/:id', upload.single('image'), usersController.editProfile);
+router.get('/:id/editar', loggedoutRedirect, usersController.edit);
+router.put('/:id/editar', loggedoutRedirect, fileUpload.single('image'), usersController.update);
 // router.delete('/:id/delete', usersController.deleteProfile);
 
 module.exports = router;

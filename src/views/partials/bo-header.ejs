@@ -4,8 +4,8 @@
             <a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="bo-logo"></a>
         </div>
         <div class="bo-profile-wrap">
-            <p class="bo-profile-txt"> <%= locals.user.email %>  </p>
-            <a href="/usuarios/perfil"><img src="/upload/profile-pictures/<%= locals.user.image %> "  class="bo-profile"></a>
+            <p class="bo-profile-txt"> <% if (locals.user) { %> <%= locals.user.email %> <% } %>  </p>
+            <a href="/usuarios/perfil/<%=locals.user.id%>"><img src="/upload/profile-pictures/<%if(locals.user){%><%=locals.user.image%><%}%>"  class="bo-profile"></a>
         </div>
     </div>
 </header>

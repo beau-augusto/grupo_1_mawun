@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 const { body } = require('express-validator');
 const bcryptjs = require("bcryptjs"); 
 const cookieParser = require('cookie-parser');
+const { locals } = require('../app');
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
@@ -25,7 +26,7 @@ const usersController = {
             last_name: req.body.last_name,
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
-            category: "visitor",
+            role: "visitor",
             image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
             id: lastUser.id + 1 //Agrego el id del Nvo usuario
         }
@@ -57,15 +58,14 @@ const usersController = {
     submitLogin: (req, res) => {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
-            let findUsername = users.find(user => user.email == req.body.name);
 
-            if (req.session.usuarioLogeado.category == "admin"){
+            if (req.session.usuarioLogeado.role == "admin"){
                 if(req.body.remember){
-                    res.cookie("recordame", req.body.name, { maxAge: 900000})
+                    res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
                 }
 
             
-                    return res.redirect ('/admin/inventario');
+                    return res.redirect ('/admin/inventario-productos');
             
                 }
             else {
@@ -85,22 +85,47 @@ const usersController = {
  
     },
     profile: (req, res)=> {
-        return res.render('./users/user-profile');
-    },
+        const user = users.find(user => user.id == req.params.id) 
+        if (user != undefined){
+       return  res.render ('./users/user-profile', user);
+    }   else {
+        res.send ('El usuario que buscás no existe.')
+        
+    }},
     edit: (req, res)=> {
-		const user = users.find(user => user.email == req.session.usuarioLogeado.email); // Busco si esta el pruducto
+		const user = users.find(user => user.id == req.params.id); // Busco si esta el pruducto
 
 		if (!user) {
-			return res.send('No pudimos encotrar ese perfil')
+			return res.send('No pudimos encontrar ese perfil')
 		};
 
         
         return res.render('./users/edit-user', user);
     },
+    update: (req, res) => {
+        let indexUser = users.findIndex(user => user.id == req.params.id); 
+        req.body.image = req.file ? req.file.filename : req.file.filename;
+
+        
+        delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
+        let password = bcryptjs.hashSync(req.body.password, 10) // encripya la nueva constraseña
+        users[indexUser] = {...users[indexUser], ...req.body, password};
+
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+
+		return res.redirect(303, '/admin/inventario-productos');
+
+	},
     logout: (req, res) => {
         req.session.destroy();
-        res.clearCookie("recordame");
-        return   res.render ('users/login');
+        res.locals.user = undefined
+
+        let datosCookie= {
+            email: req.cookies.recordame // Mandar el cookie a la pagina de login para popular el campo mail 
+
+        }
+ 
+        return res.render ('users/login', datosCookie)
     }
 }
 

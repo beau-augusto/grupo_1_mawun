@@ -351,7 +351,7 @@ ul.hero-menu li a:hover {
     text-decoration: none;
     display: flex;
 	align-items: center;
-    padding: 0 20px;
+    padding: 0px 20px 0px 17px;
 }
 .footer-social a {
     color: #ffffff;
@@ -417,6 +417,10 @@ ul.hero-menu li a:hover {
 
 .perfil-de-usuario-item {
     margin-bottom: 40px;
+}
+
+#foto-perfil {
+    margin: 0;
 }
 
 

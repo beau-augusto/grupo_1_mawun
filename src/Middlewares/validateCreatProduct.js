@@ -5,7 +5,6 @@ const fs = require('fs');
 const { body } = require('express-validator'); // Destructuracion pido la propiedad body (Express-Validator)
 
 const usersFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB de productos
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 

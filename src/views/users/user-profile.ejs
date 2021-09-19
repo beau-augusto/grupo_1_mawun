@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-
-    <body>
-        <%- include('../partials/header') %>
-            <main>
-                <section class="abm-inventory container">
-
-                    <h2 class="abm-title-inv">Perfil de Usuario</h2>
-
-                    <div class="abm-inventory-wrapper wrapper-perfil-de-usuario">
-
-                        <div class="wrapper-de-dos-perfil-de-usuario">
-
-                        <div class="items-wrapper-perfil-de-usuario">
-                        <div class="abm-input-tit">Nombre </div>
-                        <p class="perfil-de-usuario-item"> <%= locals.user.first_name %> <%= locals.user.last_name %></p> 
-
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <section class="abm-productos container">
+            <div class="abm-producto-wrapper">
+                <h2 class="abm-title">Perfil de Usuario</h2>
+                <form action="/usuarios/<%=id%>/editar" method="GET" class="abm-form-wrapper">
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="first_name" class="abm-input-tit">Nombre</label>
+                            <p><%=first_name %></p>
                         </div>
-                        <div class="items-wrapper-perfil-de-usuario">
-                        <div class="abm-input-tit">Imagen</div>
-                        <p class="perfil-de-usuario-item"> <img src="/upload/profile-pictures/<%= locals.user.image %>"  class="bo-profile"></p> 
-
-                    </div>
-
-                    </div>
-
-                    <div class="wrapper-de-dos-perfil-de-usuario">
-                        <div class="items-wrapper-perfil-de-usuario">
-                        <div class="abm-input-tit">Email</div>
-                        <p class="perfil-de-usuario-item"> <%= locals.user.email %></p> 
+                        <div class="abm-input-wrap">
+                            <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
+                            <p><%=last_name %></p>
                         </div>
-
+                        <div class="abm-input-wrap-email">
+                            <label for="email" class="abm-input-tit">Email</label>
+                            <p><%=email %></p>
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit">Contraseña</label>
+                            <p type="password">●●●●●●●●●●●●●●</p>
+                        </div>     
+                        <!--<div class="abm-input-wrap">
+                            <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
+                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
+                        </div>-->
+                        <div class="abm-input-wrap">
+                            <label for="image" class="abm-input-tit">Imagen</label>
+                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=image %>"  class="bo-profile"></p> 
+                        </div>
                     </div>
+                    <div class="abm-button-wrap">
+                        <button type="submit" class="abm-button-submit">Editar</button>
+                    </div>
+                </form>
+            </div>
+
+    
+                </div>
+        </div>
                         
-                    <form action="/usuarios/editar" class="perfil-de-usuario-editar"><button type="submit" class="perfil-de-usuario-editar">Editar</button></form> 
-                        <form action="/usuarios/logout" class="perfil-de-usuario-editar"><button type="submit" class="perfil-de-usuario-editar">Logout</button></form> 
-
-                        </div>
-
-                        
-
-
-                </section>
-            </main>
-            <%- include('../partials/footer') %>
-    </body>
-
+        </section>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
 </html>

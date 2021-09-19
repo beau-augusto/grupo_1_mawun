@@ -11,7 +11,17 @@ const validationCreateFormUser = [
     body('last_name').notEmpty().withMessage('Tienes que completar con tu apellido'),
     body('email')
         .notEmpty().withMessage('Tienes que completar con tu correo electrónico').bail()
-        .isEmail().withMessage('Tienes que completar con un  formato de correo electrónico válido'),
+        .isEmail().withMessage('Tienes que completar con un  formato de correo electrónico válido')
+        .custom((value, {req}) => {
+
+            let findUsername = users.find(user => user.email == req.body.email)
+            if (findUsername) {
+                throw new Error('Este usuario ya existe');
+            }
+
+        return true;
+    
+        }),
     body('password').notEmpty().withMessage('Tienes que completar con una contraseña'),
     body('image').custom((value, {req}) => {
         let file = req.file;
