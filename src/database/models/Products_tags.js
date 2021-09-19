@@ -1,6 +1,6 @@
 module.exports = function (sequelize, dataTypes){
 
-    let alias = "Products_tags";
+    let alias = "Product_tag";
 
     let cols = {
         id: {
@@ -15,30 +15,18 @@ module.exports = function (sequelize, dataTypes){
     }
 
     let config = {
-        tableName: "Products_tags",
+        tableName: "Product_tag",
         timestamps: false
     }
 
-    let Products_tags = sequelize.define(alias, cols, config);
+    let Product_tag = sequelize.define(alias, cols, config);
 
-    Products_tags.associate = function (models) {
-        Products_tags.belongsTo(models.Product, {
-            as: "Products_products_tags",
-            foreignKey: "product_id"
-
-        }),
-        Products_tags.belongsTo(models.Tags_type, {
-            as: "Products_tags_tags_type",
+    Product_tag.associate = function (models) {
+        Product_tags.belongsTo(models.TagType, {
+            as: "tagtype",
             foreignKey: "tag_type_id"
 
-        }),
-        Products_tags.belongsTo(models.Tags_name, {
-            as: "Products_tags_tags_name",
-            foreignKey: "tag_name_id"
-
         })
-
-
     }
 
     return Products_tags

@@ -10,18 +10,23 @@ const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Rut
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
 const bcryptjs = require("bcryptjs"); 
 
+const db = require("../database/models")
+
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 const adminController = {
     inventoryProducts: (req, res)=> {
+        db.Product.findAll()
+        .then(function(productsDB) {
+            return console.log(productsDB);
+        })
+        // if(req.session.usuarioLogeado){
 
-        if(req.session.usuarioLogeado){
-
-            return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
-        } else {
-            return res.redirect("users/login")
-        }
+        //     return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
+        // } else {
+        //     return res.redirect("users/login")
+        // }
     },
     create: (req, res)=> {
         return res.render ('admin/create-product'); // Imprimir hoja para crear producto

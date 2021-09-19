@@ -31,22 +31,29 @@ module.exports = function (sequelize, dataTypes){
     }
 
     let config = {
-        tableName: "productos",
+        tableName: "products",
         timestamps: false
     }
 
     let Product = sequelize.define(alias, cols, config);
 
     Product.associate = function (models) {
-        Product.hasMany(models.Orders_products, {
-            as: "order_products",
-            foreignKey: "product_id"
-
+      
+        Product.belongsToMany(models.Order, {
+            as: "orders",
+            through: "product_order",
+            foreignKey: "product_id",
+            otherKey: "order_id",
+            timestamps: false
         })
-        Product.hasMany(models.Products_tags, {
-            as: "Product_tags",
-            foreignKey: "product_id"
 
+        Product.belongsToMany(models.Tag, {
+            as: "tags",
+            through: "product_tag",
+            foreignKey: "product_id",
+            otherKey: "tag_type_id",
+            // otherKey: "tag_name_id", // dudo de esta 
+            timestamps: false
         })
 
     }
