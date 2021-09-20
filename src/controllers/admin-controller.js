@@ -17,16 +17,12 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const adminController = {
     inventoryProducts: (req, res)=> {
-        db.Product.findAll()
-        .then(function(productsDB) {
-            return console.log(productsDB);
-        })
-        // if(req.session.usuarioLogeado){
+        if(req.session.usuarioLogeado){
 
-        //     return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
-        // } else {
-        //     return res.redirect("users/login")
-        // }
+            return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
+        } else {
+            return res.redirect("users/login")
+        }
     },
     create: (req, res)=> {
         return res.render ('admin/create-product'); // Imprimir hoja para crear producto
