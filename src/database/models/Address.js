@@ -2,7 +2,7 @@ const sequelize = require("sequelize");
 
 module.exports = (sequelize, dataTypes) =>{
 
-    let alias = "Ad";
+    let alias = "Address";
 
     cols = {
         id: {
