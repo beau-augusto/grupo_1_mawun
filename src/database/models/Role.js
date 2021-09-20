@@ -2,7 +2,7 @@ const sequelize = require("sequelize");
 
 module.exports = (sequelize, dataTypes) => {
 
-    let alias = "Roles";
+    let alias = "Role";
 
     let cols = {
         id: {
@@ -17,7 +17,7 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     let config = {
-        tableName: 'Roles',
+        tableName: 'roles',
         timesTamps: false
     }
 
