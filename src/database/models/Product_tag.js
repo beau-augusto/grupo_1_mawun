@@ -10,24 +10,23 @@ module.exports = function (sequelize, dataTypes){
         },
         name: {
             type: dataTypes.STRING(50),
-            allowNull: false
         },
     }
 
     let config = {
-        tableName: "Product_tag",
+        tableName: "product_tags",
         timestamps: false
     }
 
-    let Product_tag = sequelize.define(alias, cols, config);
+    const Product_tag = sequelize.define(alias, cols, config);
 
     Product_tag.associate = function (models) {
-        Product_tags.belongsTo(models.TagType, {
+        Product_tag.belongsTo(models.Tag_type, {
             as: "tagtype",
             foreignKey: "tag_type_id"
 
         })
     }
 
-    return Products_tags
+    return Product_tag;
 }    

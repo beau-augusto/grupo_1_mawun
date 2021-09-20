@@ -18,7 +18,7 @@ module.exports = function (sequelize, dataTypes){
         timestamps: false
     };
 
-    let Newsletter = sequelize.define(alias, cols, config);
+    const Newsletter = sequelize.define(alias, cols, config);
 
     return Newsletter;
 }    

@@ -1,6 +1,6 @@
 module.exports = function (sequelize, dataTypes){
 
-    let alias = "Tag_type";
+    let alias = "Tag";
 
     let cols = {
         id: {
@@ -9,27 +9,32 @@ module.exports = function (sequelize, dataTypes){
             autoIncrement: true
         },
         name: {
-            type: dataTypes.STRING(50),
+            type: dataTypes.STRING(25),
         },
     }
 
     let config = {
-        tableName: "tag_types",
+        tableName: "tags",
         timestamps: false
     }
 
-    const Tag_type = sequelize.define(alias, cols, config);
+    const Tag = sequelize.define(alias, cols, config);
 
-    Tag_type.associate = function (models) {
-        Tag_type.belongsToMany(models.Product, {
-            as: "tag_type",
+
+    Tag.associate = function (models) {
+        Tag.belongsToMany(models.Product, {
+            as: "tags",
             through: "product_tags",
-            foreignKey: "tag_type_id",
+            foreignKey: "tag_id",
             otherKey: "product_id",
             timestamps: false
         })
+    
+        }
 
-    }
+    
 
-    return Tag_type;
+    
+
+    return Tag;
 }    
