@@ -1,6 +1,6 @@
 module.exports = function (sequelize, dataTypes){
 
-    let alias = "Newsletters";
+    let alias = "Newsletter";
 
     let cols = {
         id: {
@@ -10,12 +10,11 @@ module.exports = function (sequelize, dataTypes){
         },
         email: {
             type: dataTypes.STRING(50),
-            allowNull: false
         },
     };
 
     let config = {
-        tableName: "newsletter",
+        tableName: "newsletters",
         timestamps: false
     };
 

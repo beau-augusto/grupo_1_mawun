@@ -52,10 +52,10 @@ module.exports = function (sequelize, dataTypes){
 
         Product.belongsToMany(models.Tag, {
             as: "tags",
-            through: "product_tag",
+            through: "product_tags",
             foreignKey: "product_id",
             otherKey: "tag_type_id",
-            // otherKey: "tag_name_id", // dudo de esta 
+            //otherKey: "tag_name_id", // dudo de esta 
             timestamps: false
         })
 
