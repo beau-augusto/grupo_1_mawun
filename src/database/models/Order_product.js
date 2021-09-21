@@ -9,13 +9,13 @@ module.exports = function (sequelize, dataTypes){
             autoIncrement: true
         },
         quantity: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         product_id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         order_id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         }
     };
 
@@ -29,25 +29,12 @@ module.exports = function (sequelize, dataTypes){
     Order_product.associate = function (models) {
 
         Order_product.belongsTo(models.Order, {
-            as: "products_order",
+            as: "orders",
             foreignKey: "order_id"
         }),
 
         Order_product.belongsTo(models.Product, {
-            as: "products_orders",
-            foreignKey: "product_id"
-        })        
-    };
-
-    Order_product.associate = function (models) {
-
-        Order_product.belongsToMany(models.Order, {
-            as: "products_order",
-            foreignKey: "order_id"
-        }),
-
-        Order_product.belongsToMany(models.Product, {
-            as: "products_orders",
+            as: "products",
             foreignKey: "product_id"
         })        
     };

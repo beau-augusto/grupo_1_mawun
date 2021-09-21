@@ -2,12 +2,12 @@
 <html lang="en">
 <%- include('../partials/head') %>
 <body>
-    <%- include('../partials/header') %>
+    <%- include('../partials/bo-header') %>
     <main>
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Perfil de Usuario</h2>
-                <form action="/usuarios/editar" method="GET" class="abm-form-wrapper">
+                <form action="/admin/<%=id%>/editar-usuario" method="GET" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
@@ -46,6 +46,6 @@
                         
         </section>
     </main>
-    <%- include('../partials/footer') %>
+    <%- include('../partials/bo-footer') %>
 </body>
 </html>

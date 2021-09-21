@@ -1,5 +1,3 @@
-
-
 module.exports = function (sequelize, dataTypes){
 
 
@@ -13,23 +11,21 @@ module.exports = function (sequelize, dataTypes){
         },
         name: {
             type: dataTypes.STRING(50),
-            allowNull: false
         },
         price: {
             type: dataTypes.DECIMAL,
-            allowNull: false
         },
         description: {
-            type: dataTypes.STRING,
-            allowNull: false
+            type: dataTypes.TEXT,
         },
         recommended: {
             type: dataTypes.INTEGER,
-            allowNull: false
         },
         image: {
             type: dataTypes.STRING,
-            allowNull: false
+        },
+        winery_id:{
+            type: dataTypes.INTEGER,
         }
     }
 
@@ -38,13 +34,13 @@ module.exports = function (sequelize, dataTypes){
         timestamps: false
     }
 
-    let Product = sequelize.define(alias, cols, config);
+    const Product = sequelize.define(alias, cols, config);
 
     Product.associate = function (models) {
       
         Product.belongsToMany(models.Order, {
             as: "orders",
-            through: "product_order",
+            through: "order_products",
             foreignKey: "product_id",
             otherKey: "order_id",
             timestamps: false
@@ -54,13 +50,29 @@ module.exports = function (sequelize, dataTypes){
             as: "tags",
             through: "product_tags",
             foreignKey: "product_id",
-            otherKey: "tag_type_id",
-            //otherKey: "tag_name_id", // dudo de esta 
+            otherKey: "tag_id",
             timestamps: false
         })
 
+        Product.belongsToMany(models.Tag_type, {
+            as: "tag_types",
+            through: "product_tags",
+            foreignKey: "product_id",
+            otherKey: "tag_type_id",
+            timestamps: false
+        })
+
+        Product.hasMany(models.Order_product,{
+            as: "order_products", 
+            foreignKey: "product_id"
+        })
+
+        Product.belongsTo(models.Winery,{
+            as: "wineries",
+            foreignKey: "winery_id"
+        })
     }
 
-    return Product
+    return Product;
 }
 

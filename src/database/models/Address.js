@@ -1,5 +1,3 @@
-const sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) =>{
 
     let alias = "Address";
@@ -23,6 +21,9 @@ module.exports = (sequelize, dataTypes) =>{
         state: {
             type: dataTypes.STRING(25),
         },
+        user_id: {
+            type: dataTypes.INTEGER,
+        }
     }
 
     let config = {
@@ -36,19 +37,7 @@ module.exports = (sequelize, dataTypes) =>{
       
         Address.belongsTo(models.User, {
             as: "users",
-            through: "product_order",
-            foreignKey: "product_id",
-            otherKey: "order_id",
-            timestamps: false
-        })
-
-        Address.belongsToMany(models.Tag, {
-            as: "tags",
-            through: "product_tag",
-            foreignKey: "product_id",
-            otherKey: "tag_type_id",
-            // otherKey: "tag_name_id", // dudo de esta 
-            timestamps: false
+            foreignKey: "user_id",
         })
 
     }

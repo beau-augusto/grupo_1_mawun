@@ -1,5 +1,3 @@
-const sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) => {
 
     let alias = "Role";
@@ -12,7 +10,6 @@ module.exports = (sequelize, dataTypes) => {
         },
         name: {
             type: dataTypes.STRING(50),
-            allowNull: false
         },
     }
 
@@ -21,6 +18,15 @@ module.exports = (sequelize, dataTypes) => {
         timesTamps: false
     }
 
-    let Roles = sequelize.define(alias, cols, config);
-    return Roles;
+    const Role = sequelize.define(alias, cols, config);
+
+    Role.associate = function(models){
+        
+        Role.hasMany(models.User,{
+            as: "users",
+            foreignKey: "role_id"
+        })
+    }
+
+    return Role;
 }

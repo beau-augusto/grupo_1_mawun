@@ -1,7 +1,5 @@
-const sequelize = require("sequelize");
-
 module.exports = (sequelize, dataTypes) =>{
-    let alias = 'Users';
+    let alias = 'User';
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -10,19 +8,15 @@ module.exports = (sequelize, dataTypes) =>{
         },
         name: {
             type: dataTypes.STRING(50),
-            allowNull: false
         } ,
         last_name: {
             type: dataTypes.STRING(50),
-            allowNull: false
         } ,
         password: {
             type: dataTypes.STRING(10),
-            allowNull: false
         } ,
         image: {
             type: dataTypes.STRING(50),
-            allowNull: false
         },
     };
     
@@ -33,6 +27,19 @@ module.exports = (sequelize, dataTypes) =>{
     }
     const User = sequelize.define(alias, cols, config)
 
+    User.associate = function(models){
+
+        User.belongsTo(models.Role,{
+            as: "roles",
+            foreignKey: "role_id"
+        })
+
+        User.hasMany(models.Address,{
+            as: "addresses",
+            foreignKey: "user_id"
+        })
+
+}
     return User;
 
 }
