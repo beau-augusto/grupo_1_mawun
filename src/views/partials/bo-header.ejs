@@ -5,7 +5,7 @@
         </div>
         <div class="bo-profile-wrap">
             <p class="bo-profile-txt"> <% if (locals.user) { %> <%= locals.user.email %> <% } %>  </p>
-            <a href="/usuarios/perfil/<%=locals.user.id%>"><img src="/upload/profile-pictures/<%if(locals.user){%><%=locals.user.image%><%}%>"  class="bo-profile"></a>
+            <a href="/admin/perfil/<%=locals.user.id%>"><img src="/upload/profile-pictures/<%if(locals.user){%><%=locals.user.image%><%}%>"  class="bo-profile"></a>
         </div>
     </div>
 </header>

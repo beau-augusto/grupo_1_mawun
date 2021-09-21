@@ -22,9 +22,9 @@
     "first_name": "Augusto",
     "last_name": "Salgado",
     "email": "augustosalgad@gmail.com",
-    "password": "$2a$10$JMItxqV9JV69Evzc.F1P9.sk1.nBzR/oWhb7dWYzc3B..W2O/bb4y",
+    "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
     "role": "admin",
-    "image": "augusto-6964.jpg"
+    "image": "user-1632239390530.jpg"
   },
   {
     "first_name": "Joe",
@@ -37,10 +37,10 @@
   },
   {
     "id": 5,
-    "first_name": "Saree",
+    "first_name": "Sareeeee",
     "last_name": "Brigshaw",
     "email": "sbrigshaw4@irs.gov",
-    "password": "9SR9mFy2L",
+    "password": "$2a$10$VCeAU6nu9Nw73TWO5lYgx.3G3Q1ItZ6gf6/4oaMZKuBE3RYoWF18m",
     "role": "visitor",
     "image": "default.jpg"
   },

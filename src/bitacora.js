@@ -8,6 +8,8 @@
 // Preguntas para Migue y Peter
 // 1. clase 33, hacia la clase en vivo desafio 2 y 3
 // Por qué aparece locals en la edición de usuarios si quitas el delete
+// Por que el footer en BO esta tan arriba en perfil BO y editar usuario BO
+// como user el this en el metodo
 
 // Ideas a meter desde el demo
 // 1. De registarse ya logearse directamente //
@@ -32,5 +34,19 @@
 // 10. codigo para descargar los mails en CVS 
 // 11. ensayar la demo 15 minutos con cronometro 
 // 12. Cambiar category en users a role // 
+// 13. direccion en edicion de usuario 
 
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        let folder = path.join(__dirname, '../../public/upload/products/');
+        cb(null, folder);
+
+    },
+    filename: (req, file, cb) => {
+        let newFileName = 'user-' + Date.now() + path.extname(file.originalname);
+        cb(null, newFileName);
+    }
+});
+
+let fileUpload = multer({ storage });

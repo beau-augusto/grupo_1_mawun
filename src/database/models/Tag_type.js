@@ -22,7 +22,7 @@ module.exports = function (sequelize, dataTypes){
 
     Tag_type.associate = function (models) {
         Tag_type.belongsToMany(models.Product, {
-            as: "tag_type",
+            as: "products",
             through: "product_tags",
             foreignKey: "tag_type_id",
             otherKey: "product_id",

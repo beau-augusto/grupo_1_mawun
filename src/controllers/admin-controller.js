@@ -18,10 +18,6 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const adminController = {
     inventoryProducts: (req, res)=> {
 
-        db.Product.findAll()
-        .then(resultado => 
-            console.log(resultado)
-        )
         if(req.session.usuarioLogeado){
 
             return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
@@ -35,7 +31,6 @@ const adminController = {
     store: (req, res)=> {
 
         const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
-
         // Si errores de express Validator viene vacio continuo
         if (errors.isEmpty()){ 
         const lastProduct = products [products.length - 1]; //Obtengo el último indice del array
@@ -103,13 +98,20 @@ const adminController = {
             return res.redirect("users/login")
         }
     },
+    profile: (req, res)=> {
+        const user = users.find(user => user.id == req.params.id) 
+        if (user != undefined){
+       return  res.render ('./admin/user-profile-bo', user);
+    }   else {
+        res.send ('El usuario que buscás no existe.')
+        
+    }},
     createUser: (req, res)=> {
         return res.render ('admin/create-user'); // Imprimir hoja para crear producto
     },
     storeUser: (req, res)=> {
 
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-        
         if (resultValidation.isEmpty()){
 
         const lastUser = users [users.length - 1]; //Obtengo el último indice del array
@@ -133,6 +135,46 @@ const adminController = {
             }); 
         };
     },
+    editUser: (req, res)=> {
+		const user = users.find(user => user.id == req.params.id); 
+
+		if (!user) {
+			return res.send('No pudimos encontrar ese perfil')
+		};
+
+        
+        return res.render('./admin/edit-user', user);
+    },
+    updateUser: (req, res) => {
+
+        console.log(users);
+        
+        let indexUser = users.findIndex(user => user.id == req.params.id); 
+        const user = users.find(user => user.id == req.params.id)
+    
+     //   req.body.image = req.file ? req.file.filename : req.file.filename;
+
+        // const userToUpdate = {  //Obtengo la informacion del formulario y la creo 
+        //     first_name: req.body.first_name,
+        //     last_name: req.body.last_name,
+        //     email: req.body.email,
+        //     password: bcryptjs.hashSync(req.body.password, 10),
+        //     role: user.role,
+        //     image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
+        //     id: user.id
+        // }
+
+
+        console.log(user);
+
+        let password = bcryptjs.hashSync(req.body.password, 10) // encripya la nueva constraseña
+        users[indexUser] = {...users[indexUser], userToUpdate};
+
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+
+		return res.redirect(303, '/admin/inventario-usuarios');
+
+	},
     deleteUser: (req, res)=> {
         const indexUser = users.findIndex( user => user.id == req.params.id);
 

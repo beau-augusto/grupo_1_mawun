@@ -21,7 +21,13 @@
                 <li><a href="/contacto">Contacto</a></li>
             </ul> 
             <div class="hero-cart">
-                <a href="/usuarios/inicio" class="hero-cart-link"><i class="far fa-user"></i></a>
+
+                <% if (locals.user == undefined) { %>
+                    <a href="/usuarios/inicio" class="hero-cart-link"><i class="far fa-user"></i></a>
+                    <% } %>
+                    <% if (locals.user) { %>
+                        <a href="/usuarios/perfil" class="hero-cart-link"><i class="far fa-user"></i></a>
+                        <% } %> 
                 <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </nav>

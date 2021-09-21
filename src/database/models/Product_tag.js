@@ -22,7 +22,7 @@ module.exports = function (sequelize, dataTypes){
 
     Product_tag.associate = function (models) {
         Product_tag.belongsTo(models.Tag_type, {
-            as: "tagtype",
+            as: "tag_types",
             foreignKey: "tag_type_id"
 
         })

@@ -2,22 +2,22 @@
 <html lang="en">
 <%- include('../partials/head') %>
 <body>
-    <%- include('../partials/header') %>
+    <%- include('../partials/bo-header') %>
     <main>
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Editar Usuario</h2>
-                <form action="/usuarios/editar/<%=id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
+                <form action="/admin/<%=id%>/editar-usuario?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
                             <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%=first_name%>">
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
+                            <label for="last_name" class="abm-input-tit">Apellido</label>
                             <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%=last_name%>">
                         </div>
-                        <div class="abm-input-wrap-email">
+                        <div class="abm-input-wrap-email"rs>
                             <label for="email" class="abm-input-tit">Email</label>
                             <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input"  value="<%=email%>">
                         </div>
@@ -41,6 +41,6 @@
             </div>
         </section>
     </main>
-    <%- include('../partials/footer') %>
+    <%- include('../partials/bo-footer') %>
 </body>
 </html>

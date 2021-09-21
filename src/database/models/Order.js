@@ -35,10 +35,16 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "order_id",
             otherKey: "product_id",
             timestamps: false
-        }),
+        })
+
         Order.belongsTo(models.User, {
             as: "users",
             foreignKey: "user_id"
+        })
+
+      Order.hasMany(models.Order_product,{
+            as: "orders_product",  // **chequear**
+            foreignKey: "order_id"
         })
     };
 
