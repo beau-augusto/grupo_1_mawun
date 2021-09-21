@@ -35,9 +35,9 @@ module.exports = (sequelize, dataTypes) =>{
 
     Winery.associate = function (models) {
 
-        Winery.belongsTo(models.Product,{
+        Winery.hasMany(models.Product,{
             as: "products",
-            foreignKey: "product_id"
+            foreignKey: "winery_id"
         })
     }
 
