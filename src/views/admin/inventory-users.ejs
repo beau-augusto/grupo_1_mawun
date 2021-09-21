@@ -51,9 +51,9 @@
                                     <%= user.role %>
                                 </div>
                                 <div class="grid-item botonesWrapper">
-                                    <a href="/usuarios/perfil/<%= user.id %>" class="botonesInventario1">Ver</a>
-                                    <a href="/usuarios/<%= user.id %>/editar/" class="botonesInventario2">Editar</a>
-                                    <form action="/admin/<%= user.id %>/delete?_method=DELETE" method="POST">
+                                    <a href="/admin/perfil/<%= user.id %>" class="botonesInventario1">Ver</a>
+                                    <a href="/admin/<%= user.id %>/editar-usuario/" class="botonesInventario2">Editar</a>
+                                    <form action="/admin/<%= user.id %>/delete-usuario?_method=DELETE" method="POST">
                                         <input type="submit" class="botonesInventario3" value="Borrar">
                                     </form>
                                 </div>

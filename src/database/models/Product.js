@@ -52,11 +52,16 @@ module.exports = function (sequelize, dataTypes){
         })
 
         Product.belongsToMany(models.Tag_type, {
-            as: "tag_type",
+            as: "tag_types",
             through: "product_tags",
             foreignKey: "product_id",
             otherKey: "tag_type_id",
             timestamps: false
+        })
+
+        Product.hasMany(models.Order_product,{
+            as: "order_products", 
+            foreignKey: "product_id"
         })
 
     }

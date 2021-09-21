@@ -1,5 +1,3 @@
-const Sequelize = require('sequelize');
-
 module.exports = function (sequelize, dataTypes){
 
     let alias = "Order_product";
@@ -28,31 +26,18 @@ module.exports = function (sequelize, dataTypes){
 
     const Order_product = sequelize.define(alias, cols, config);
 
-    // Order_product.associate = function (models) {
+    Order_product.associate = function (models) {
 
-    //     Order_product.belongsTo(models.Order, {
-    //         as: "products_order",
-    //         foreignKey: "order_id"
-    //     }),
+        Order_product.belongsTo(models.Order, {
+            as: "orders",
+            foreignKey: "order_id"
+        }),
 
-    //     Order_product.belongsTo(models.Product, {
-    //         as: "products_orders",
-    //         foreignKey: "product_id"
-    //     })        
-    // };
-
-    // Order_product.associate = function (models) {
-
-    //     Order_product.belongsToMany(models.Order, {
-    //         as: "products_order",
-    //         foreignKey: "order_id"
-    //     }),
-
-    //     Order_product.belongsToMany(models.Product, {
-    //         as: "products_orders",
-    //         foreignKey: "product_id"
-    //     })        
-    //};
+        Order_product.belongsTo(models.Product, {
+            as: "products",
+            foreignKey: "product_id"
+        })        
+    };
 
     return Order_product;
 }    

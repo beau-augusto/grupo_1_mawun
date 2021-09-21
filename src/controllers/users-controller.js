@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { validationResult } = require('express-validator');
-const { body } = require('express-validator');
 const bcryptjs = require("bcryptjs"); 
-const cookieParser = require('cookie-parser');
 const { locals } = require('../app');
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
@@ -85,7 +83,7 @@ const usersController = {
  
     },
     profile: (req, res)=> {
-        const user = users.find(user => user.id == req.params.id) 
+        const user = users.find(user => user.email == res.locals.user.email) 
         if (user != undefined){
        return  res.render ('./users/user-profile', user);
     }   else {
@@ -93,28 +91,26 @@ const usersController = {
         
     }},
     edit: (req, res)=> {
-		const user = users.find(user => user.id == req.params.id); // Busco si esta el pruducto
+        const user = users.find(user => user.id == req.params.id) 
 
 		if (!user) {
 			return res.send('No pudimos encontrar ese perfil')
 		};
 
         
-        return res.render('./users/edit-user', user);
+        return res.render('./users/edit-users', user);
     },
     update: (req, res) => {
-        let indexUser = users.findIndex(user => user.id == req.params.id); 
+        let indexUser = users.findIndex(user => user.email == res.locals.user.email); 
         req.body.image = req.file ? req.file.filename : req.file.filename;
 
-        
         delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
         let password = bcryptjs.hashSync(req.body.password, 10) // encripya la nueva constraseña
         users[indexUser] = {...users[indexUser], ...req.body, password};
 
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
 
-		return res.redirect(303, '/admin/inventario-productos');
-
+        return  res.render('./users/user-profile');
 	},
     logout: (req, res) => {
         req.session.destroy();

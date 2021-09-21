@@ -32,8 +32,14 @@ module.exports = (sequelize, dataTypes) =>{
             as: "roles",
             foreignKey: "role_id"
         })
-    }
 
+
+    User.hasMany(models.Address,{
+        as: "addresses",
+        foreignKey: "user_id"
+    })
+
+}
     return User;
 
 }
