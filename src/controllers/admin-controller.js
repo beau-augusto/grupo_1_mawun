@@ -185,9 +185,7 @@ const adminController = {
         return res.redirect('/admin/inventario-usuarios');
     },
     newsletterStore: (req, res)=> {
-        console.log(req.body)
-
-        const lastEmail = emails [emails.length - 1]; //Obtengo el último indice del array
+       const lastEmail = emails [emails.length - 1]; //Obtengo el último indice del array
 
         const addEmail = req.body; //Obtengo la informacion del formulario
         addEmail.id = lastEmail.id + 1; //Agrego el id del Nvo EMAIL agregado
@@ -195,7 +193,7 @@ const adminController = {
         emails.push(addEmail);
         fs.writeFileSync(emailFilePath, JSON.stringify(emails, null, 2)); // Transformo el nuevo array de productos en Json
 
-        return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee
+        return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
     }
 }
 
