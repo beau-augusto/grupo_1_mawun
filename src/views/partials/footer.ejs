@@ -15,11 +15,8 @@
         </div>
         <div class="footer-news-wrapper">
             <h5>SUSCRIBITE AL NEWSLETTER</h5>
-            <form action="/" method="POST" class="footer-news-form">
-                <input type="email" class="footer-news__field" maxlength="256" placeholder="Tu e-mail" required <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>" >
-                <% if(locals.errors && errors.email) { %> 
-                    <p class="abm-input-error"><%= errors.email.msg %></p>
-                <% } %>
+            <form action="/admin" method="POST" class="footer-news-form">
+                <input type="email" name= "email" class="footer-news__field" maxlength="256" placeholder="Tu e-mail" required >
                 <button class="footer-news__submit">SUSCRIBIRSE</button>
             </form>
             <div class="footer-news">

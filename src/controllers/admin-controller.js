@@ -180,26 +180,17 @@ const adminController = {
         return res.redirect('/admin/inventario-usuarios');
     },
     newsletterStore: (req, res)=> {
+        console.log(req.body)
 
-        const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
-        // Si errores de express Validator viene vacio continuo
-        if (errors.isEmpty()){ 
         const lastEmail = emails [emails.length - 1]; //Obtengo el último indice del array
 
         const addEmail = req.body; //Obtengo la informacion del formulario
         addEmail.id = lastEmail.id + 1; //Agrego el id del Nvo EMAIL agregado
 
-        products.push(addEmail);
+        emails.push(addEmail);
         fs.writeFileSync(emailFilePath, JSON.stringify(emails, null, 2)); // Transformo el nuevo array de productos en Json
 
         return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee
-
-        } else {
-            return res.render ('/', { 
-                errors: errors.mapped(), 
-                oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
-            }); 
-        };
     }
 }
 
