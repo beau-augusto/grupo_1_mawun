@@ -17,9 +17,16 @@
                             <label for="last_name" class="abm-input-tit">Apellido</label>
                             <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%=last_name%>">
                         </div>
-                        <div class="abm-input-wrap-email"rs>
+                        <div class="abm-input-wrap">
                             <label for="email" class="abm-input-tit">Email</label>
-                            <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input"  value="<%=email%>">
+                            <input type="text" name="email" id="email" placeholder="Email" class="abm-input" value="<%=email%>">
+                        </div>
+                        <div class="abm-input-wrap">
+                            <label for="role" class="abm-input-tit">Role</label>
+                            <select name="role" id="role" class="abm-input">
+                                <option value="admin" <%=role === 'admin' ? 'selected' : '' %> >admin</option>
+                                <option value="visitor" <%=role === 'visitor' ? 'selected' : '' %> >visitor</option>
+                            </select>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>

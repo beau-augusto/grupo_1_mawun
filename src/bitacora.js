@@ -4,6 +4,8 @@
 // 3. https://docs.sendgrid.com/for-developers/sending-email/v2-nodejs-code-example
 // 4. json2cvs json-2-csv
 
+// Preguntas para Juan y Guido
+////  por que no funciona order_products como alias en el modelo order
 
 // Preguntas para Migue y Peter
 // 1. clase 33, hacia la clase en vivo desafio 2 y 3
@@ -35,18 +37,5 @@
 // 11. ensayar la demo 15 minutos con cronometro 
 // 12. Cambiar category en users a role // 
 // 13. direccion en edicion de usuario 
+// 15. google recaptcha v.3
 
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        let folder = path.join(__dirname, '../../public/upload/products/');
-        cb(null, folder);
-
-    },
-    filename: (req, file, cb) => {
-        let newFileName = 'user-' + Date.now() + path.extname(file.originalname);
-        cb(null, newFileName);
-    }
-});
-
-let fileUpload = multer({ storage });

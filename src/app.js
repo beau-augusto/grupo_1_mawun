@@ -45,6 +45,7 @@ app.use(function(req, res, next) { // middleware para usar los datos de user en 
 
 
 const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
+const { closeSync } = require('fs');
 app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);

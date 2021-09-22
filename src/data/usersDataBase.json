@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "first_name": "Migue",
+    "first_name": "Miguel",
     "last_name": "Sandoval",
     "email": "miguel_ed_sand@hotmail.com",
     "password": "$2a$10$5Q3krNQ/igDvaCVFQRVpku8grfSE3CrqGlGWUX7befRtam4pAaUF2",
@@ -24,13 +24,13 @@
     "email": "augustosalgad@gmail.com",
     "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
     "role": "admin",
-    "image": "user-1632239390530.jpg"
+    "image": "augusto-6964.jpg"
   },
   {
     "first_name": "Joe",
     "last_name": "Sal",
     "email": "joe@gmail.com",
-    "password": "$2a$10$ntdCBqqJSwBDZoco6Li79euIuMtD.9FuXqEm1gDkcdShqfZx6xopW",
+    "password": "$2a$10$oAg2bUm8jNvh0abU7IV81eGCCoT7T3g7L233k/grQAJ7RL8NC3GVm",
     "role": "admin",
     "image": "default.jpg",
     "id": 4
@@ -80,6 +80,7 @@
     "role": "visitor",
     "image": "default.jpg"
   },
+  
   {
     "id": 10,
     "first_name": "Langsdon",
