@@ -1,14 +1,14 @@
 [
-    {
-        "id": 1,
-        "email": "miguel_ed_sand@hotmail.com"
-    },
-    {
-        "id": 2,
-        "email": "pedrobadia@gmail.com"
-    },
-    {
-        "id": 3,
-        "email": "augustosalgad@gmail.com"
-    }
+  {
+    "id": 1,
+    "email": "miguel_ed_sand@hotmail.com"
+  },
+  {
+    "id": 2,
+    "email": "pedrobadia@gmail.com"
+  },
+  {
+    "id": 3,
+    "email": "augustosalgad@gmail.com"
+  }
 ]

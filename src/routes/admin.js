@@ -18,6 +18,7 @@ const validateCreatUserBO = require("../middlewares/validateCreatUserBO.js");
 
 /*** DETALLE BO ***/
 router.get('/inventario-productos', adminController.inventoryProducts);
+
 /*** DETALLE BO ***/
 router.get('/inventario-usuarios', adminController.inventoryUsers);
 
@@ -41,7 +42,7 @@ router.put('/:id/editar-usuario', uploadUser.single('image'), adminController.up
 router.delete('/:id/delete-usuario', adminController.deleteUser);
 
 /** Newsletter*/
-router.post('/', adminController.newsletterStore);
+router.post('/news', adminController.newsletterStore);
 
 
 module.exports = router;
