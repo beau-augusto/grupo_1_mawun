@@ -14,6 +14,7 @@ const validateCreatUser = require("../middlewares/validateCreatUser.js");
 /*** Multer ***/
 const uploadUser = require("../Middlewares/multerUser");
 const uploadProduct = require("../Middlewares/multerProduct");
+const validateCreatUserBO = require("../middlewares/validateCreatUserBO.js");
 
 /*** DETALLE BO ***/
 router.get('/inventario-productos', adminController.inventoryProducts);
@@ -32,8 +33,8 @@ router.delete('/:id/delete', adminController.delete);
 
 /*** ADMINISTRAR UN USUARIO ***/
 router.get('/perfil/:id', adminController.profile); // Perfil de Usuario BO
-router.get('/crear-usuario',adminController.createUser);
-router.post('/crear-usuario', uploadUser.single('image'), validateCreatUser, adminController.storeUser);
+router.get('/crear-usuario', adminController.createUser);
+router.post('/crear-usuario', uploadUser.single('image'), validateCreatUserBO, adminController.storeUser);
 
 router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), adminController.updateUser);

@@ -91,7 +91,7 @@ const usersController = {
         
     }},
     edit: (req, res)=> {
-        const user = users.find(user => user.id == req.params.id) 
+        const user = users.find(user => user.email == res.locals.user.email) 
 
 		if (!user) {
 			return res.send('No pudimos encontrar ese perfil')
@@ -110,7 +110,9 @@ const usersController = {
 
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
 
-        return  res.render('./users/user-profile');
+        const user = users.find(user => user.email == res.locals.user.email) // Agarro el usuario actual para mandarlo a la vista del perfil actualizado
+
+        return  res.render('./users/user-profile', user);
 	},
     logout: (req, res) => {
         req.session.destroy();

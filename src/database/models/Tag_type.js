@@ -10,13 +10,14 @@ module.exports = function (sequelize, dataTypes){
         },
         name: {
             type: dataTypes.STRING(50),
+            allowNull: false
         },
-    }
+    };
 
     let config = {
         tableName: "tag_types",
         timestamps: false
-    }
+    };
 
     const Tag_type = sequelize.define(alias, cols, config);
 
@@ -28,8 +29,7 @@ module.exports = function (sequelize, dataTypes){
             otherKey: "product_id",
             timestamps: false
         })
-
-    }
+    };
 
     return Tag_type;
 }    

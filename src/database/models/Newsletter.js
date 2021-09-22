@@ -10,6 +10,7 @@ module.exports = function (sequelize, dataTypes){
         },
         email: {
             type: dataTypes.STRING(50),
+            allowNull: false
         },
     };
 

@@ -11,28 +11,34 @@ module.exports = function (sequelize, dataTypes){
         },
         name: {
             type: dataTypes.STRING(50),
+            allowNull: false
         },
         price: {
             type: dataTypes.DECIMAL,
+            allowNull: false
         },
         description: {
             type: dataTypes.TEXT,
+            allowNull: false
         },
         recommended: {
             type: dataTypes.INTEGER,
+            allowNull: false
         },
         image: {
             type: dataTypes.STRING,
+            allowNull: false
         },
         winery_id:{
             type: dataTypes.INTEGER,
+            allowNull: false
         }
-    }
+    };
 
     let config = {
         tableName: "products",
         timestamps: false
-    }
+    };
 
     const Product = sequelize.define(alias, cols, config);
 
@@ -40,7 +46,7 @@ module.exports = function (sequelize, dataTypes){
       
         Product.belongsToMany(models.Order, {
             as: "orders",
-            through: "order_products",
+            through: "order_products",   //**chequear**
             foreignKey: "product_id",
             otherKey: "order_id",
             timestamps: false
@@ -71,7 +77,7 @@ module.exports = function (sequelize, dataTypes){
             as: "wineries",
             foreignKey: "winery_id"
         })
-    }
+    };
 
     return Product;
 }

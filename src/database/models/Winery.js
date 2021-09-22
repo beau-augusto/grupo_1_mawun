@@ -10,6 +10,7 @@ module.exports = (sequelize, dataTypes) =>{
         },
         name:{
             type: dataTypes.STRING(50),
+            allowNull: false
         },
         address: {
             type: dataTypes.STRING(100),
@@ -24,12 +25,12 @@ module.exports = (sequelize, dataTypes) =>{
         product_id: {
             type: dataTypes.INTEGER,
         }
-    }
+    };
 
     let config = {
         tableName: 'wineries',
         timesTamps: false
-    }
+    };
 
     const Winery = sequelize.define(alias, cols, config);
 
@@ -39,7 +40,7 @@ module.exports = (sequelize, dataTypes) =>{
             as: "products",
             foreignKey: "winery_id"
         })
-    }
+    };
 
     return Winery;
 }

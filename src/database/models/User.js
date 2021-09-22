@@ -1,5 +1,6 @@
 module.exports = (sequelize, dataTypes) =>{
     let alias = 'User';
+
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -8,13 +9,19 @@ module.exports = (sequelize, dataTypes) =>{
         },
         name: {
             type: dataTypes.STRING(50),
-        } ,
+            allowNull: false
+        },
         last_name: {
             type: dataTypes.STRING(50),
-        } ,
+        },
+        email: {
+            type: dataTypes.STRING(50),
+            allowNull: false
+        },
         password: {
-            type: dataTypes.STRING(10),
-        } ,
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
         image: {
             type: dataTypes.STRING(50),
         },
@@ -23,8 +30,8 @@ module.exports = (sequelize, dataTypes) =>{
     let config = {
         tableName: 'users',
         timesTamps: false
+    };
 
-    }
     const User = sequelize.define(alias, cols, config)
 
     User.associate = function(models){
@@ -38,8 +45,6 @@ module.exports = (sequelize, dataTypes) =>{
             as: "addresses",
             foreignKey: "user_id"
         })
-
-}
+    };
     return User;
-
 }
