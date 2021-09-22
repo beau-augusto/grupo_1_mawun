@@ -105,7 +105,11 @@ const usersController = {
         req.body.image = req.file ? req.file.filename : req.file.filename;
 
         delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
-        let password = bcryptjs.hashSync(req.body.password, 10) // encripya la nueva constraseña
+
+
+         let password = users[indexUser].password // por ahora la contraseña vas a ser la misma
+
+       // let password = bcryptjs.hashSync(req.body.password, 10) // encripta la nueva constraseña
         users[indexUser] = {...users[indexUser], ...req.body, password};
 
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));

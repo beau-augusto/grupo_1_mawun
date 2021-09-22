@@ -13,7 +13,7 @@
 // Por que el footer en BO esta tan arriba en perfil BO y editar usuario BO
 // como user el this en el metodo
 
-// Ideas a meter desde el demo
+// Cosas para hacer
 // 1. De registarse ya logearse directamente //
 // 2. confirmar al eliminar un producto
 // 3. Carrousel
@@ -23,6 +23,7 @@
 // 7. Wishlist
 // 8. Campo en registro para comprar contraseñas
 // 9. Logica de javascript para una contraseña con caracteres 
+// 10. Como actualizar la contraseña
 
 // Otra ideas
 // 1. alinear los socials en el footer //
@@ -38,4 +39,5 @@
 // 12. Cambiar category en users a role // 
 // 13. direccion en edicion de usuario 
 // 15. google recaptcha v.3
+// 16. addresses agregar y borrar sin regargar la pagina desde edicion de usuario por JS front
 

@@ -80,7 +80,6 @@
     "role": "visitor",
     "image": "default.jpg"
   },
-  
   {
     "id": 10,
     "first_name": "Langsdon",
@@ -359,5 +358,14 @@
     "password": "3tPrMdIfy",
     "role": "visitor",
     "image": "default.jpg"
+  },
+  {
+    "first_name": "asdafd",
+    "last_name": "asdfad",
+    "email": "asdfasdssf@gmail.com",
+    "password": "$2a$10$ZMEGEnDpJA/uhYK.4ACaGeVCuI11kGpSSeUe0ABiKgZsGzZYDhYLW",
+    "role": "visitor",
+    "image": "user-1632283943405.jpg",
+    "id": 41
   }
 ]
