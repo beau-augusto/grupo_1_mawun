@@ -11,12 +11,12 @@ module.exports = function (sequelize, dataTypes){
         name: {
             type: dataTypes.STRING(50),
         },
-    }
+    };
 
     let config = {
         tableName: "product_tags",
         timestamps: false
-    }
+    };
 
     const Product_tag = sequelize.define(alias, cols, config);
 
@@ -26,7 +26,7 @@ module.exports = function (sequelize, dataTypes){
             foreignKey: "tag_type_id"
 
         })
-    }
+    };
 
     return Product_tag;
 }    

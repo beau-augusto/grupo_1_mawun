@@ -10,13 +10,14 @@ module.exports = (sequelize, dataTypes) => {
         },
         name: {
             type: dataTypes.STRING(50),
+            allowNull: false
         },
-    }
+    };
 
     let config = {
         tableName: 'roles',
         timesTamps: false
-    }
+    };
 
     const Role = sequelize.define(alias, cols, config);
 
@@ -26,7 +27,7 @@ module.exports = (sequelize, dataTypes) => {
             as: "users",
             foreignKey: "role_id"
         })
-    }
+    };
 
     return Role;
 }
