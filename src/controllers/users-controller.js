@@ -93,6 +93,7 @@ const usersController = {
     edit: (req, res)=> {
         const user = users.find(user => user.email == res.locals.user.email) 
 
+
 		if (!user) {
 			return res.send('No pudimos encontrar ese perfil')
 		};
@@ -107,10 +108,13 @@ const usersController = {
         delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
 
 
-         let password = users[indexUser].password // por ahora la contraseña vas a ser la misma
-
-       // let password = bcryptjs.hashSync(req.body.password, 10) // encripta la nueva constraseña
-        users[indexUser] = {...users[indexUser], ...req.body, password};
+        if (req.body.password == "") {
+            let password = users[indexUser].password // si no agrego nada al campo de constrania, queda igual como en la base de datos
+            users[indexUser] = {...users[indexUser], ...req.body, password};
+        } else {
+            let password = bcryptjs.hashSync(req.body.password, 10) // si agrego algo el usuario, entonces se encypta y pisa la contrasenia vieja
+            users[indexUser] = {...users[indexUser], ...req.body, password};
+        }
 
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
 

@@ -22,17 +22,17 @@
     "first_name": "Augusto",
     "last_name": "Salgado",
     "email": "augustosalgad@gmail.com",
-    "password": "$2a$10$RNtF12yHVmsUtkOTnN.Qme3fP9E0HqYI0oRTK2O6ZgQPVQeoIPaoa",
+    "password": "$2a$10$4ZlT7YHOS4BBxW7stZvlkug.S.sqZq0sLfqz04yUlo3Xqh9fPE4Wu",
     "role": "admin",
-    "image": "augusto-6964.jpg"
+    "image": "user-1632332941481.jpg"
   },
   {
     "first_name": "Joe",
     "last_name": "Sal",
     "email": "joe@gmail.com",
-    "password": "$2a$10$oAg2bUm8jNvh0abU7IV81eGCCoT7T3g7L233k/grQAJ7RL8NC3GVm",
-    "role": "admin",
-    "image": "default.jpg",
+    "password": "$2a$10$VWw3iyAoQJ3a5xX.t6Ztc.Y6t6VH7l.XLcvvkKrPbkQxA8cahOxP2",
+    "role": "visitor",
+    "image": "user-1632332768743.jpg",
     "id": 4
   },
   {

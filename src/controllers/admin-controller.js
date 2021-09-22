@@ -148,7 +148,7 @@ const adminController = {
         
         return res.render('./admin/edit-user', user);
     },
-    updateUser: (req, res) => {
+    updateUser: async (req, res) => {
 
         for (let i = 0; i < users.length; i++){ // Borra todos los _locals de los usuarios que se visualizaron durante la sesión, por el bug rarisimo que no entiendo
             delete users[i]._locals;
@@ -159,11 +159,13 @@ const adminController = {
 
         delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
 
-         let password = users[indexUser].password // por ahora la contraseña vas a ser la misma
-
-       // let password = bcryptjs.hashSync(req.body.password, 10) // encripta la nueva constraseña
-        users[indexUser] = {...users[indexUser], ...req.body, password};
-
+        if (req.body.password == "") {
+            let password = users[indexUser].password // si no agrego nada al campo de constrania, queda igual como en la base de datos
+            users[indexUser] = {...users[indexUser], ...req.body, password};
+        } else {
+            let password = bcryptjs.hashSync(req.body.password, 10) // si agrego algo el usuario, entonces se encypta y pisa la contrasenia vieja
+            users[indexUser] = {...users[indexUser], ...req.body, password};
+        }
 
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2)); // Escribo en la base de datos JSON
 
