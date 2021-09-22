@@ -24,13 +24,24 @@
                                     <p class="abm-input-error"><%= errors.last_name.msg %></p> 
                                 <% } %>
                             </div>
-                            <div class="abm-input-wrap-email">
+                            <div class="abm-input-wrap">
                                 <label for="email" class="abm-input-tit">Email</label>
                                 <input type="text" name="email" id="email" placeholder="E-mail" class="abm-input <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>" >
                                 <% if(locals.errors && errors.email) { %> 
                                     <p class="abm-input-error"><%= errors.email.msg %></p>
                                 <% } %>
                             </div>
+                            <div class="abm-input-wrap">
+                            <label for="role" class="abm-input-tit">Role</label>
+                            <select name="role" id="role" class="abm-input">
+                                <option value="">Seleccione Role</option>
+                                <option value="admin" <%= locals.oldData && oldData.role === 'admin' ? 'selected' : '' %> >admin</option>
+                                <option value="visitor" <%= locals.oldData && oldData.role === 'visitor' ? 'selected' : '' %> >visitor</option>
+                            </select>
+                            <% if (locals.errors && errors.role) { %>
+                                <p class="abm-input-error"><%= errors.role.msg %></p>
+                            <% } %>
+                        </div>
                             <div class="abm-input-wrap">
                                 <label for="password" class="abm-input-tit">Contraseña</label>
                                 <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input <%= locals.errors && errors.password ? 'is-invalid' : null %>">

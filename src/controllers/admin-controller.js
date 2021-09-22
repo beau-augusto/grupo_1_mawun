@@ -120,7 +120,7 @@ const adminController = {
             last_name: req.body.last_name,
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
-            role: "visitor",
+            role: req.body.role,
             image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
             id: lastUser.id + 1 //Agrego el id del Nvo usuario
         }
@@ -147,30 +147,19 @@ const adminController = {
     },
     updateUser: (req, res) => {
 
-        console.log(users);
-        
-        let indexUser = users.findIndex(user => user.id == req.params.id); 
-        const user = users.find(user => user.id == req.params.id)
-    
-     //   req.body.image = req.file ? req.file.filename : req.file.filename;
+        for (let i = 0; i < users.length; i++){ // Borra todos los _locals de los usuarios que se visualizaron durante la sesión, por el bug rarisimo que no entiendo
+            delete users[i]._locals;
+        }
 
-        // const userToUpdate = {  //Obtengo la informacion del formulario y la creo 
-        //     first_name: req.body.first_name,
-        //     last_name: req.body.last_name,
-        //     email: req.body.email,
-        //     password: bcryptjs.hashSync(req.body.password, 10),
-        //     role: user.role,
-        //     image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
-        //     id: user.id
-        // }
+        let indexUser = users.findIndex(user => user.id == req.params.id); // encuentro el id del usuario a visualizar de la ruta
+        req.body.image = req.file ? req.file.filename : req.file.filename;
+
+        delete users[indexUser]._locals // Borro locals del usuario para que no aparezca en el JSON. Por qué carajos aparece locals 
+        let password = bcryptjs.hashSync(req.body.password, 10) // encripta la nueva constraseña
+        users[indexUser] = {...users[indexUser], ...req.body, password};
 
 
-        console.log(user);
-
-        let password = bcryptjs.hashSync(req.body.password, 10) // encripya la nueva constraseña
-        users[indexUser] = {...users[indexUser], userToUpdate};
-
-        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2)); // Escribo en la base de datos JSON
 
 		return res.redirect(303, '/admin/inventario-usuarios');
 
