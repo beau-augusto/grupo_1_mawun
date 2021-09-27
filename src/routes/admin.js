@@ -41,8 +41,4 @@ router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), adminController.updateUser);
 router.delete('/:id/delete-usuario', adminController.deleteUser);
 
-/** Newsletter*/
-router.post('/news', adminController.newsletterStore);
-
-
 module.exports = router;
