@@ -33,7 +33,7 @@ module.exports = (sequelize, dataTypes) =>{
 
     let config = {
         tableName: 'addresses',
-        timesTamps: false
+        timestamps: false
     };
 
     const Address = sequelize.define(alias, cols, config);
@@ -42,7 +42,7 @@ module.exports = (sequelize, dataTypes) =>{
       
         Address.belongsTo(models.User, {
             as: "users",
-            foreignKey: "user_id",
+            foreignKey: "user_id"
         })
     };
 

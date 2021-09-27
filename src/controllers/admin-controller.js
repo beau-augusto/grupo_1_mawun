@@ -19,8 +19,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 const adminController = {
-    inventoryProducts: (req, res)=> {
-
+    inventoryProducts: async (req, res)=> {
         if(req.session.usuarioLogeado){
 
             return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 

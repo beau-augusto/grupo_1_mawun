@@ -37,8 +37,7 @@ module.exports = (sequelize, dataTypes) => {
             as: "products",
             through: "order_products",
             foreignKey: "order_id",
-            otherKey: "product_id",
-            timestamps: false
+            otherKey: "product_id"
         })
 
         Order.belongsTo(models.User, {

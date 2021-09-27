@@ -40,4 +40,11 @@
 // 13. direccion en edicion de usuario 
 // 15. google recaptcha v.3
 // 16. addresses agregar y borrar sin regargar la pagina desde edicion de usuario por JS front
+// 17. una botella de vino vacia
 
+// Cambio a la base de datos
+// Agregar campo apartment number
+
+// <% if (locals.user) { %>
+//     <a href="/usuarios/perfil" class="hero-cart-link"><img src="/upload/profile-pictures/<%=locals.user.image%>"  class="bo-profile"></a>
+//     <% } %> 

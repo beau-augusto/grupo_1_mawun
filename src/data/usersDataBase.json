@@ -24,15 +24,15 @@
     "email": "augustosalgad@gmail.com",
     "password": "$2a$10$4ZlT7YHOS4BBxW7stZvlkug.S.sqZq0sLfqz04yUlo3Xqh9fPE4Wu",
     "role": "admin",
-    "image": "user-1632332941481.jpg"
+    "image": "augusto-6964.jpg"
   },
   {
     "first_name": "Joe",
     "last_name": "Sal",
     "email": "joe@gmail.com",
-    "password": "$2a$10$VWw3iyAoQJ3a5xX.t6Ztc.Y6t6VH7l.XLcvvkKrPbkQxA8cahOxP2",
+    "password": "$2a$10$0mjWyY5q5WoJVJN/tW3QsugQ9EtADgxYnMfal3.voKttO.gevypiy",
     "role": "visitor",
-    "image": "user-1632332768743.jpg",
+    "image": "user-1632364399805.jfif",
     "id": 4
   },
   {
