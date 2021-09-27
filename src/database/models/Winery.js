@@ -21,15 +21,12 @@ module.exports = (sequelize, dataTypes) =>{
         },
         image: {
             type: dataTypes.STRING(50),
-        },
-        product_id: {
-            type: dataTypes.INTEGER,
         }
     };
 
     let config = {
         tableName: 'wineries',
-        timesTamps: false
+        timestamps: false
     };
 
     const Winery = sequelize.define(alias, cols, config);
