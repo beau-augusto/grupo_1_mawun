@@ -15,7 +15,6 @@ const productsController = {
     list: (req, res)=> {
         db.Product.findAll( {order:[['name','ASC']]}, { include: ['winery']})
             .then(function (products){
-                console.log ({products})
                 res.render ('products/index', {products:products});
             })
     },
@@ -23,7 +22,6 @@ const productsController = {
         db.Product.findByPk(req.params.id, { include: [{association:'winery'}, {association:'tags'}]}, {raw:true}, {nest:true})
             .then(function (product){
                 if (product){
-                console.log ({product});
                 res.render ('products/detail', {product});
                 }else {
                 res.send ('El producto que buscás no existe.')
