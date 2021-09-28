@@ -29,8 +29,7 @@
 
 
                             <div class="grid-item abm-input-tit">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                <label for="vehicle1"> ID</label><br>
+                                <label>ID</label><br>
                             </div>
                             <div class="grid-item abm-input-tit">Artículo</div>
                             <div class="grid-item abm-input-tit">Recomendado</div>
@@ -39,18 +38,13 @@
                             <% products.forEach(product=> { %>
 
                                 <div class="grid-item checkboxInventario">
-
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"
-                                        class="checkboxCheck">
-                                    <label for="vehicle1">
-                                        <%=product.id%>
-                                    </label>
+                                    <label> <%=product.id%> </label>
                                 </div>
                                 <div class="grid-item itemInfo">
-                                    <%= product.product_name %>
+                                    <%= product.name %>
                                 </div>
-                                <div class="grid-item itemInfo">
-                                    <%= product.recommended %>
+                                <div class="grid-item itemRecom">
+                                   <% if (product.recommended == 0) { %> NO <% }else{%> SI <%} %>
                                 </div>
                                 <div class="grid-item botonesWrapper">
                                     <a href="/productos/detalle/<%= product.id %>" class="botonesInventario1">Ver</a>

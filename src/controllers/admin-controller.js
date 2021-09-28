@@ -10,7 +10,8 @@ const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Rut
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
 const bcryptjs = require("bcryptjs"); 
 
-const db = require("../database/models")
+//Sequelize Models//
+const db = require("../database/models");
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -19,7 +20,12 @@ const adminController = {
     inventoryProducts: async (req, res)=> {
         if(req.session.usuarioLogeado){
 
-            return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
+            db.Product.findAll( {order:[['name','ASC']]})
+            .then(function (products){
+                res.render ('./admin/inventory-products', {products:products});
+            })
+
+            //return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
     } else {
             return res.redirect("users/login")
         }
