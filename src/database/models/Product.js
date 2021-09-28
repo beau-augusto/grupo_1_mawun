@@ -46,7 +46,7 @@ module.exports = function (sequelize, dataTypes){
       
         Product.belongsToMany(models.Order, {
             as: "orders",
-            through: "order_products",   //**chequear**
+            through: "order_products",
             foreignKey: "product_id",
             otherKey: "order_id",
             timestamps: false
@@ -56,7 +56,7 @@ module.exports = function (sequelize, dataTypes){
             as: "tags",
             through: "product_tags",
             foreignKey: "product_id",
-            otherKey: "tag_id",
+            otherKey: "tag_name_id",
             timestamps: false
         })
 
@@ -74,7 +74,7 @@ module.exports = function (sequelize, dataTypes){
         })
 
         Product.belongsTo(models.Winery,{
-            as: "wineries",
+            as: "winery",
             foreignKey: "winery_id"
         })
     };

@@ -4,25 +4,28 @@
     <%- include('../partials/header') %>
     <main class="detalleProducto">
         <article class="imagenesProducto">
-          <!--  <div class="imagenesCostado">
-                <img src="\images\roselargarde2.webp" alt="">
-                <img src="\images\roselargarde3.webp" alt="">
-                <img src="/images\roselargarde4.webp" alt="">
-            </div> --> 
             <div class="imagenPrincipal">
-                <img src="\upload\products/<%=image%>" alt="Rose">
+                <img src="\upload\products/<%=product.image%>" alt="<%= product.name %>" >
             </div>
         </article>
         <article class="contenedorTexto">
             <div class="textoProducto">
-                <h2 class="tituloProducto"><%=product_name%></h2> <!--https://http2.mlstatic.com/D_NQ_NP_2X_866051-MLA42009582848_052020-F.webp-->
-            <span class="marcaLinea marcaDP"><%=winery%></span> <!--<span class="marcaLinea linesDP">Goes Pink</span> -->
-            <p class="precioDP">$<%=price%>.-</p>   
-            <p class="descripcionDP"><%=description%></p>
-            <span class='categoriasPC'>Categorias: </span> <span class="categoriasPCC"><%=varietal%>, <%=category%> </span>
+                <h2 class="tituloProducto"><%=product.name%></h2>
+            <span class="marcaLinea marcaDP"><%=product.winery.name%></span>
+            <p class="precioDP">$<%=product.price%>.-</p>   
+            <p class="descripcionDP"><%=product.description%></p>
+            <span class='categoriasPC'>Categorias: </span> <span class="categoriasPCC">
+                <ul>
+                    <% for (let i=0; i < product.tags.length; i++) { %>
+                        <li>
+                            <%=product.tags[i].name %> 
+                        </li>
+                    <% } %>
+                </ul>
+            </span>
             </div>
             <div class="iconosProducto">
-                <div class="cajaSumadora">  <!--https://embed.plnkr.co/plunk/B5waxZ--> 
+                <div class="cajaSumadora">
                     <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
                 </div>
                 <div class="agregarCarrito">Agregar al carrito</div>

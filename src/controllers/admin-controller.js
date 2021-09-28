@@ -6,9 +6,6 @@ const { validationResult } = require('express-validator'); // Destructuracion pi
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
 
-const emailFilePath = path.join(__dirname, '../data/newsletterDataBase.json'); // Ruta donde se encuentra la DB
-const emails = JSON.parse(fs.readFileSync(emailFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
-
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
 const bcryptjs = require("bcryptjs"); 
@@ -182,17 +179,6 @@ const adminController = {
         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
 
         return res.redirect('/admin/inventario-usuarios');
-    },
-    newsletterStore: (req, res)=> {
-       const lastEmail = emails [emails.length - 1]; //Obtengo el último indice del array
-
-        const addEmail = req.body; //Obtengo la informacion del formulario
-        addEmail.id = lastEmail.id + 1; //Agrego el id del Nvo EMAIL agregado
-
-        emails.push(addEmail);
-        fs.writeFileSync(emailFilePath, JSON.stringify(emails, null, 2)); // Transformo el nuevo array de productos en Json
-
-        return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
     }
 }
 
