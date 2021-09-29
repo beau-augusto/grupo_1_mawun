@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { body } = require('express-validation');
+const { body } = require('express-validator');
 const mainController = require('../controllers/main-controller');
+const validateNewsletter = require("../middlewares/validateNewsletter.js");
 
 router.get('/', mainController.index);
 router.get('/contacto', mainController.contact);
 router.get('/nosotros', mainController.aboutUs);
 
 /** Newsletter*/
-router.post('/', validationNewsletter, mainController.newsletterStore);
+router.post('/', validateNewsletter, mainController.newsletterStore);
 
 module.exports = router;
