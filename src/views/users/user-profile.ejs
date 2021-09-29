@@ -11,15 +11,15 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <p><%=first_name %></p>
+                            <p><%=user.name %></p>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
-                            <p><%=last_name %></p>
+                            <p><%=user.last_name %></p>
                         </div>
                         <div class="abm-input-wrap-email">
                             <label for="email" class="abm-input-tit">Email</label>
-                            <p><%=email %></p>
+                            <p><%=user.email %></p>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
@@ -31,7 +31,7 @@
                         </div>-->
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Imagen</label>
-                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=image %>"  class="bo-profile"></p> 
+                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
                         </div>
                         <% if (user.street == !undefined) { %>
                         <div class="abm-input-wrap">
