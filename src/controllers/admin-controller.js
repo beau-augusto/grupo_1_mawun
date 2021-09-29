@@ -13,6 +13,8 @@ const bcryptjs = require("bcryptjs");
 //Sequelize Models//
 const db = require("../database/models");
 
+const User = require("./../models/User")
+
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
@@ -97,8 +99,22 @@ const adminController = {
     inventoryUsers: (req, res)=> {
 
         if(req.session.usuarioLogeado){
+           db.User.findAll({
+            order:[['last_name','ASC']],
+            include: [{
+                association: "roles",
+                attributes: ["name"]
+        }],
+            attributes: {exclude:["role_id"]},
+            raw: true,
+            nested: true
+        }).then((resultado) => {
+            return res.render ('./admin/inventory-users', {users: resultado}); 
+        
+    })
+    .catch(error => {console.log(error)}) // agarra el error
 
-            return res.render ('./admin/inventory-users', {users}); // Imprimir Lista de productos ABM y el Usuario logeado 
+// Imprimir Lista de productos ABM y el Usuario logeado 
         } else {
             return res.redirect("users/login")
         }
@@ -141,14 +157,33 @@ const adminController = {
         };
     },
     editUser: (req, res)=> {
-		const user = users.find(user => user.id == req.params.id); 
-
 		if (!user) {
 			return res.send('No pudimos encontrar ese perfil')
 		};
 
+        db.User.findByPk(req.params.id, {
+            order:[['name','ASC']],
+            include: [{
+                association: "roles",
+                attributes: ["name"]
+        },
+        {
+            association: "addresses",
+            attributes: {exclude:["id", "user_id"]}
+    }],
+            attributes: {exclude:["role_id"]},
+            raw: true,
+            nested: true
+        })
+        .then((resultado) => {
+            return resultado; 
+
+})
+.catch(error => {console.log(error)}) // agarra el error
         
-        return res.render('./admin/edit-user', user);
+        return res.render('./admin/edit-user', {user: resultado});
+
+
     },
     updateUser: async (req, res) => {
 
