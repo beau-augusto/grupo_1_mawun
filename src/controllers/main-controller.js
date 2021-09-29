@@ -1,6 +1,7 @@
 const { raw } = require('express');
 const fs = require('fs');
 const path = require('path');
+const { validationResult } = require('express-validator');
 
 //const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 //const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -31,6 +32,7 @@ const mainController = {
         res.render ('about-us');
     },
     newsletterStore: (req, res)=> {
+
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
         
         if (resultValidation.isEmpty()){
