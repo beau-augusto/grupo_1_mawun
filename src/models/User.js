@@ -1,38 +1,94 @@
 // Modelo de lógica para laburar con la base de datos de
 
 const db = require('../database/models'); // Llamo los models de la base de datos en SQL
-const Address = require('../database/models/Address');
+const { Op } = require("sequelize");
 
 const User = {
-    findAll: (req, res) => {
+    allUsers: function() {
         db.User.findAll({
-            include: ["roles"],
-            raw: true
-        }).then(function (users) {
-            console.log((users));    
+            order:[['name','ASC']],
+            include: [{
+                association: "roles",
+                attributes: ["name"]
+        },
+        {
+            association: "addresses",
+            attributes: {exclude:["id", "user_id"]}
+    }],
+            attributes: {exclude:["role_id"]},
+            raw: true,
+            nested: true
+        }).then((resultado) => {
+           return console.log(resultado);    
         
     })
-    .catch(err => {console.log(err)}) // agarra el error
+    .catch(error => {console.log(error)}) // agarra el error
 },
-    findUser: function(){
-            db.User.findByPk().then(function (users) {
-        console.log((users)); 
-    });
+    findUser: function (PK) {
+            db.User.findByPk(PK, {
+                order:[['name','ASC']],
+                include: [{
+                    association: "roles",
+                    attributes: ["name"]
+            },
+            {
+                association: "addresses",
+                attributes: {exclude:["id", "user_id"]}
+        }],
+                attributes: {exclude:["role_id"]},
+                raw: true,
+                nested: true
+            })
+            .then((resultado) => {
+                return console.log(resultado); 
+
+    })
+    .catch(error => {console.log(error)}) // agarra el error
+    },
+    searchName: function(text) {
+        db.User.findAll({
+            order:[['name','ASC']],
+            include: [{
+                association: "roles",
+                attributes: ["name"]
+        },
+        {
+            association: "addresses",
+            attributes: {exclude:["id", "user_id"]}
+    }],
+            attributes: {exclude:["role_id"]},
+            raw: true,
+            nested: true,
+            where: {
+                [Op.or]: [
+                 {name: { [Op.like]: '%' + text + '%' }},
+                 {last_name: { [Op.like]: '%' + text + '%' }},
+                 {email: { [Op.like]: '%' + text + '%' }}
+                ]
+              }
+        }).then((resultado) => {
+           return console.log(resultado);    
+        
+    })
+    .catch(error => {console.log(error)}) // agarra el error
     },
     create: function(userData) {
-
+        db.User.create(userData)
+    },
+    update: function(userData, ID) {
+        db.User.update(userData,
+            {where: {id: ID}
+        });
 
     },
-    delete: function(userData) {
-
+    delete: function(ID) {
+        db.User.destroy({
+            where: {
+                id: ID,
+            }
+        });
 
     }
 }
 
-console.log(User.findUser(0));
-
-// (req, res) => {
-//     db.User.findByPk().then(function (users) {
-//         console.log((users)); 
-//     });
-// },
+module.exports = User
