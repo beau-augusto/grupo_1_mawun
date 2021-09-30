@@ -9,6 +9,6 @@ router.get('/contacto', mainController.contact);
 router.get('/nosotros', mainController.aboutUs);
 
 /** Newsletter*/
-router.post('/', validateNewsletter, mainController.newsletterStore);
+router.post('/', validateNewsletter, mainController.newsletterCreate);
 
 module.exports = router;
