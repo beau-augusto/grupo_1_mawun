@@ -29,6 +29,11 @@ module.exports = function (sequelize, dataTypes){
             otherKey: "product_id",
             timestamps: false
         })
+
+        /* Tag_type.hasMany(models.Product_tag,{
+            as: "products_tags",
+            foreignKey: "tag_id"
+        }) */
     };
 
     return Tag_type;

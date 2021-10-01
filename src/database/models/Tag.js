@@ -21,7 +21,6 @@ module.exports = function (sequelize, dataTypes){
 
     const Tag = sequelize.define(alias, cols, config);
 
-
     Tag.associate = function (models) {
         Tag.belongsToMany(models.Product, {
             as: "products",
@@ -30,6 +29,11 @@ module.exports = function (sequelize, dataTypes){
             otherKey: "product_id",
             timestamps: false
         })
+
+        /* Tag.hasMany(models.Product_tag,{
+            as: "products_tags",
+            foreignKey: "tag_id"
+        }) */
     };
     return Tag;
 }

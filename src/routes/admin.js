@@ -17,7 +17,9 @@ const uploadProduct = require("../Middlewares/multerProduct");
 const validateCreatUserBO = require("../middlewares/validateCreatUserBO.js");
 
 /*** DETALLE BO ***/
+router.get('/dashboard', adminController.dashboard);
 router.get('/inventario-productos', adminController.inventoryProducts);
+
 
 /*** DETALLE BO ***/
 router.get('/inventario-usuarios', adminController.inventoryUsers);

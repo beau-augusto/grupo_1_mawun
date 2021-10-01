@@ -53,6 +53,9 @@ input:focus {
     margin: auto;
     max-width: 1100px;
 }
+.full-height{
+    height: 80vh; 
+}
 .bgc-fw {
     background-color: #55394a;
 }
@@ -788,7 +791,7 @@ ul.hero-menu li a:hover {
 .abm-inventory-wrapper {
     background-color: #ffffff;
     width: 100%;
-    padding: 40px;
+    padding: 15px 40px;
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
@@ -939,7 +942,7 @@ ul.hero-menu li a:hover {
 }
 .abm-title-inv {
     font-size: 22px;
-    padding: 0 20px;
+    padding-bottom:20px;
     margin: 10px 0;
     text-transform: uppercase;
     text-align: left;
@@ -1394,6 +1397,31 @@ ul.hero-menu li a:hover {
 .bo-profile:hover {
     color: #55394a;
 }
+.dashboard-wrapper{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 25px 0px 60px;
+    
+}
+.abm-inventory-nav-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.abm-inventory-nav{
+    font-weight: 600;
+}
+.abm-inventory-nav-link{
+    color:#412838;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+.abm-inventory-nav-link:hover{
+    color:#55394a;
+}
 .abm-productos, .abm-inventory{
     padding: 40px 0;
 }
@@ -1475,6 +1503,12 @@ ul.hero-menu li a:hover {
     margin-right: 5px;
 }
 .abm-input-tit {
+    color: #412838;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+.abm-title-tit{
     color: #412838;
     font-size: 16px;
     font-weight: 500;
