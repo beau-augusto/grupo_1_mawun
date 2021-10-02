@@ -799,6 +799,21 @@ ul.hero-menu li a:hover {
     box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
     border-top: 4px solid #744b64;
 }
+
+
+
+
+.arrow
+{
+  border-color: transparent transparent #FFF #FFF;
+  border-style: solid;
+  border-width: 23px 23px 23px 23px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:0px;
+}
+
 .itemInfo {
     text-align: left;
     display: flex;
@@ -1413,19 +1428,28 @@ ul.hero-menu li a:hover {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 8px;
 }
 .abm-inventory-nav{
     font-weight: 600;
 }
 .abm-inventory-nav-link{
+    height: 33px;
+    width: 111px;
     color:#412838;
-    padding: 5px 10px;
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
     text-decoration: none;
+    padding: 7px 13px 2px 15px;
+    margin-right: 10px;
+    transition: background-color 0.35s ease-out;
 }
-.abm-inventory-nav-link:hover{
-    color:#55394a;
+
+.abm-inventory-nav-link:hover {
+    background-color: #ffffff;
+    z-index: 1;
+    padding: 7px 13px 7px 15px;
 }
+
 .abm-productos, .abm-inventory{
     padding: 40px 0;
 }
@@ -1510,16 +1534,6 @@ ul.hero-menu li a:hover {
     color: #412838;
     font-size: 16px;
     font-weight: 500;
-<<<<<<< HEAD
-
-}
-.abm-title-tit{
-    color: #412838;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-=======
->>>>>>> d1d276651e85617c9fe87d7b88c2dfcf6ebb2b1e
 }
 select:required:invalid {
     color: gray;

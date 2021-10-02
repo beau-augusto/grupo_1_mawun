@@ -64,7 +64,7 @@ const usersController = {
                 }
 
             
-                    return res.redirect ('/admin/inventario-productos');
+                    return res.redirect ('/admin/dashboard');
             
                 }
             else {
