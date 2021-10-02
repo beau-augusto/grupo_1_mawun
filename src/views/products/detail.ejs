@@ -14,15 +14,21 @@
             <span class="marcaLinea marcaDP"><%=product.winery.name%></span>
             <p class="precioDP">$<%=product.price%>.-</p>   
             <p class="descripcionDP"><%=product.description%></p>
-            <span class='categoriasPC'>Categorias: </span> <span class="categoriasPCC">
-                <ul>
-                    <% for (let i=0; i < product.tags.length; i++) { %>
-                        <li>
-                            <%=product.tags[i].name %> 
-                        </li>
-                    <% } %>
-                </ul>
+            <span class='categoriasPC'>Categoria: </span>
+            <span class="categoriasPCC">
+                <% for (let i=0; i < product.dataValues.categories.length; i++) { %>
+                    <%= product.dataValues.categories[i]%>
+                <% } %>   
+            </span><br>
+            <span class='categoriasPC'>Varieltal: </span>
+            <span class="categoriasPCC">
+                <% for (let i=0; i < product.dataValues.varietals.length; i++) { %>
+                    <%= product.dataValues.varietals[i]%>
+                <% } %>  
             </span>
+
+            
+                
             </div>
             <div class="iconosProducto">
                 <div class="cajaSumadora">

@@ -16,17 +16,18 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 const adminController = {
-    inventoryProducts: async (req, res) => {
-        if (req.session.usuarioLogeado) {
+    dashboard: (req, res)=> {
+        return res.render ('admin/dashboard');
+    },
+    inventoryProducts: async (req, res)=> {
+        if(req.session.usuarioLogeado){
 
-            db.Product.findAll({ order: [['name', 'ASC']] })
-                .then(function (products) {
-                    res.render('./admin/inventory-products', { products: products });
-                })
-
-            //return res.render ('./admin/inventory-products', {products}); // Imprimir Lista de productos ABM y el Usuario logeado 
-        } else {
-            return res.redirect("users/login")
+            db.Product.findAll( {order:[['name','ASC']]})
+            .then(function (products){
+                res.render ('./admin/inventory-products', {products:products});
+            })
+    } else {
+            return res.redirect("users/login");
         }
     },
     create: (req, res) => {

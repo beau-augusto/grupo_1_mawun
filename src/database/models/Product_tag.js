@@ -8,9 +8,18 @@ module.exports = function (sequelize, dataTypes){
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: dataTypes.STRING(50),
+        product_id:{
+            type: dataTypes.INTEGER,
+            allowNull: false
         },
+        tag_type_id:{
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },
+        tag_id:{
+            type: dataTypes.INTEGER,
+            allowNull: false
+        }
     };
 
     let config = {
@@ -21,10 +30,20 @@ module.exports = function (sequelize, dataTypes){
     const Product_tag = sequelize.define(alias, cols, config);
 
     Product_tag.associate = function (models) {
-        Product_tag.belongsTo(models.Tag_type, {
+
+        Product_tag.belongsTo(models.Product,{
+            as: "products",
+            foreignKey: "product_id"
+        })
+
+        Product_tag.belongsTo(models.Tag,{
+            as: "tags",
+            foreignKey: "tag_id"
+        })
+
+        Product_tag.belongsTo(models.Tag_type,{
             as: "tag_types",
             foreignKey: "tag_type_id"
-
         })
     };
 
