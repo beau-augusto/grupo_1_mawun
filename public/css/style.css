@@ -423,6 +423,10 @@ ul.hero-menu li a:hover {
     margin: 0;
 }
 
+.flex-image-edituser {
+    display: flex;
+    align-items: center;
+}
 
 
 .wrapper-perfil-de-usuario {
@@ -1509,6 +1513,14 @@ option {
     background-color:#faeeed;
     color: #55394a;
     border: #55394a solid 1px;
+}
+
+.cambiarimagen-button {
+    background-color:#faeeed;
+    color: #55394a;
+    border: #55394a solid 1px;
+    padding: 2px 7px;
+    margin-left: 65px;
 }
 .abm-file-input {
     margin-left: -5px;

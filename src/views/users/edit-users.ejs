@@ -11,7 +11,10 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%=user.name%>">
+                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input" value="<%= !locals.oldData ? user.name : oldData.first_name%>">
+                            <% if(locals.errors && errors.first_name) { %> 
+                                <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
@@ -25,6 +28,9 @@
                             <label for="password" class="abm-input-tit">Contraseña</label>
                             <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input"  value="">
                         </div>     
+                        <% if(locals.errors && errors.password) { %> 
+                            <p class="abm-input-error"><%= errors.password.msg %> </p> 
+                        <% } %> 
                         <!--<div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
                             <input type="password" id="password" placeholder="Contraseña" class="abm-input">

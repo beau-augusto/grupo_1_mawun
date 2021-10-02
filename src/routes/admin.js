@@ -8,7 +8,8 @@ const { body } = require('express-validator'); // Destructuracion pido la propie
 
 /** MIDDLEWARES **/
 const validateCreatProduct = require("../middlewares/validateCreatProduct.js");
-const validateCreatUser = require("../middlewares/validateCreatUser.js");
+const validateUpdateUser = require("../middlewares/validateUpdateUser.js");
+
 
 
 /*** Multer ***/
@@ -38,7 +39,7 @@ router.get('/crear-usuario', adminController.createUser);
 router.post('/crear-usuario', uploadUser.single('image'), validateCreatUserBO, adminController.storeUser);
 
 router.get('/:id/editar-usuario', adminController.editUser);
-router.put('/:id/editar-usuario', uploadUser.single('image'), adminController.updateUser);
+router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser, adminController.updateUser);
 router.delete('/:id/delete-usuario', adminController.deleteUser);
 
 module.exports = router;

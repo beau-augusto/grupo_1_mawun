@@ -7,38 +7,62 @@
         <section class="abm-productos container">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Editar Usuario</h2>
-                <form action="/admin/<%=id%>/editar-usuario?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
+                <form action="/admin/<%=user.id%>/editar-usuario?_method=PUT" method="POST" enctype="multipart/form-data" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="<%=first_name%>">
+                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input" value="<%= locals.oldData ? oldData.first_name : user.name%>">
+                            <% if(locals.errors && errors.first_name) { %> 
+                                <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit">Apellido</label>
-                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%=last_name%>">
+                            <input type="text" name="last_name" id="last_name" placeholder="Apellido" class="abm-input" value="<%= locals.oldData ? oldData.last_name : user.last_name%>">
+                            <% if(locals.errors && errors.last_name) { %> 
+                                <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="email" class="abm-input-tit">Email</label>
-                            <input type="text" name="email" id="email" placeholder="Email" class="abm-input" value="<%=email%>">
+                            <input type="text" name="email" id="email" placeholder="Email" class="abm-input" value="<%= locals.oldData ? oldData.email : user.email%>">
+                            <% if(locals.errors && errors.email) { %> 
+                                <p class="abm-input-error"><%= errors.email.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="role" class="abm-input-tit">Role</label>
                             <select name="role" id="role" class="abm-input">
-                                <option value="admin" <%=role === 'admin' ? 'selected' : '' %> >admin</option>
-                                <option value="visitor" <%=role === 'visitor' ? 'selected' : '' %> >visitor</option>
+                               <option value=""> Seleccione Role</option>
+                                <option value= "admin" <% if (locals.oldData && oldData.role == 'admin') { %> selected <%} else{ %> <%=user['roles.name'] == 'Admin' ? 'selected' : "" %><%} %> >admin</option>
+                                <option value= "visitor" <% if (locals.oldData && oldData.role == 'visitor') { %> selected <%} else{ %> <%=user['roles.name'] == 'Visitor' ? 'selected' : "" %><%} %>  > visitor</option>
                             </select>
+                            <% if(locals.errors && errors.role) { %> 
+                                <p class="abm-input-error"><%= errors.role.msg %> </p> 
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
                             <input type="password" name="password" id="password" placeholder="Contraseña" class="abm-input"  value="">
+                            <% if(locals.errors && errors.password) { %> 
+                                <p class="abm-input-error"><%= errors.password.msg %></p>
+                            <% } %>
                         </div>     
                         <!--<div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
                             <input type="password" id="password" placeholder="Contraseña" class="abm-input">
                         </div>-->
                         <div class="abm-input-wrap">
-                            <label for="image" class="abm-input-tit">Imagen</label>
-                            <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input" value="<%=image%>">
+                            <label class="abm-input-tit">Imagen</label>
+                            <div class="flex-image-edituser">
+
+                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
+                            <input type="file" name="image" id="image" class="abm-input" style="display:none;">
+                            <label for="image" class="abm-button-submit cambiarimagen-button"> Cambiar imagen</label>
+                            <% if(locals.errors && errors.image) { %>
+                                <p class="abm-input-error"><%= errors.image.msg %> </p>
+                            <% } %>
+                            </div>
                         </div>
                     </div>
                     <div class="abm-button-wrap">
