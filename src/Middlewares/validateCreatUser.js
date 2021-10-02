@@ -7,8 +7,8 @@ const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const validationCreateFormUser = [
-    body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre'),
-    body('last_name').notEmpty().withMessage('Tienes que completar con tu apellido'),
+    body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
+    body('last_name').notEmpty().withMessage('Tienes que completar con tu apellido').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
     body('email')
         .notEmpty().withMessage('Tienes que completar con tu correo electrónico').bail()
         .isEmail().withMessage('Tienes que completar con un  formato de correo electrónico válido')
@@ -22,7 +22,7 @@ const validationCreateFormUser = [
         return true;
     
         }),
-    body('password').notEmpty().withMessage('Tienes que completar con una contraseña'),
+    body('password').notEmpty().withMessage('Tienes que completar con una contraseña').isLength({ min:4, max: 30}).withMessage('Debe ser de entre 4 y 30 caracteres'),
     body('image').custom((value, {req}) => {
         let file = req.file;
         let extensionAccepted = ['.jpg', '.png', '.gif'];

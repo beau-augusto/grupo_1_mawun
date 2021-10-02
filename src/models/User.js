@@ -4,8 +4,8 @@ const db = require('../database/models'); // Llamo los models de la base de dato
 const { Op } = require("sequelize");
 
 const User = {
-    allUsers: function() {
-        db.User.findAll({
+    all: function() {
+       return db.User.findAll({
             order:[['name','ASC']],
             include: [{
                 association: "roles",
@@ -18,14 +18,10 @@ const User = {
             attributes: {exclude:["role_id"]},
             raw: true,
             nested: true
-        }).then((resultado) => {
-           return console.log(resultado);    
-        
-    })
-    .catch(error => {console.log(error)}) // agarra el error
+        })
 },
-    findUser: function (PK) {
-            db.User.findByPk(PK, {
+    findPK: function (PK) {
+         return   db.User.findByPk(PK, {
                 order:[['name','ASC']],
                 include: [{
                     association: "roles",
@@ -38,15 +34,10 @@ const User = {
                 attributes: {exclude:["role_id"]},
                 raw: true,
                 nested: true
-            })
-            .then((resultado) => {
-                return console.log(resultado); 
-
-    })
-    .catch(error => {console.log(error)}) // agarra el error
+            })  
     },
-    searchName: function(text) {
-        db.User.findAll({
+    search: function(text) {
+       return  db.User.findAll({
             order:[['name','ASC']],
             include: [{
                 association: "roles",
@@ -66,23 +57,19 @@ const User = {
                  {email: { [Op.like]: '%' + text + '%' }}
                 ]
               }
-        }).then((resultado) => {
-           return console.log(resultado);    
-        
-    })
-    .catch(error => {console.log(error)}) // agarra el error
-    },
+            })  
+     },
     create: function(userData) {
-        db.User.create(userData)
+        return db.User.create(userData)
     },
     update: function(userData, ID) {
-        db.User.update(userData,
+       return db.User.update(userData,
             {where: {id: ID}
         });
 
     },
     delete: function(ID) {
-        db.User.destroy({
+       return db.User.destroy({
             where: {
                 id: ID,
             }
@@ -90,5 +77,7 @@ const User = {
 
     }
 }
+
+
 
 module.exports = User
