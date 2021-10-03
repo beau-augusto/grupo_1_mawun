@@ -1,11 +1,11 @@
     
 module.exports = function adminRedirect(req, res, next) {
 if (req.session.usuarioLogeado) {
-    switch (req.session.usuarioLogeado.role){
-        case "admin":
+    switch (req.session.usuarioLogeado.role_id){
+        case "1":
             res.redirect("../admin/dashboard");
         break;
-        case "visitor":
+        case "2":
             res.redirect("../productos");
         break;
         default: 

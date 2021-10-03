@@ -31,32 +31,35 @@
                         </div>-->
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Imagen</label>
-                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
+                            <p class="foto-perfil foto-margin-right" id=""> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
                         </div>
-                        <% if (user.street == !undefined) { %>
-                        <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit">Calle y numero</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="">
-                        </div>
-                        <% } %>
-                        <% if (user.zip_code == !undefined) { %>
-                        <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit">Codigo Postal</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="">
-                        </div>
-                        <% } %>
-                        <% if (user.city == !undefined) { %>
-                        <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit">Ciudad</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="">
-                        </div>
-                        <% } %>
-                        <% if (user.state == !undefined) { %>
-                        <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit">Provincia</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Nombre" class="abm-input"value="">
-                        </div>
-                        <% } %>
+                        <% if (user['addresses.user_id'] != null) { %> 
+
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Calle y numero</label>
+                                <p><%= user['addresses.street'] %></p>
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Departamento</label>
+                                <p><%= user['addresses.apartment'] %></p>
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Codigo Postal</label>
+                                <p><%= user['addresses.zip_code'] %></p>
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Barrio</label>
+                                <p><%= user['addresses.district'] %></p>
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Ciudad</label>
+                                <p><%= user['addresses.city'] %></p>
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Provincia</label>
+                                <p><%= user['addresses.state'] %></p>
+                            </div>
+                        <% } %> 
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">Editar</button>

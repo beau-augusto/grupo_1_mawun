@@ -3,10 +3,6 @@ const path = require('path');
 const { validationResult } = require('express-validator');
 const bcryptjs = require("bcryptjs"); 
 
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
 //Sequelize Models//
 const User = require("../../src/models/User");
 
@@ -29,11 +25,11 @@ const usersController = {
                 role_id: 2, // siempre es visitante
                 image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
             }
-
             await User.create(userToCreate);
-            req.session.usuarioLogeado = userToCreate  // Automaticamente logea al usuario y lo guarda en session
+            let userSession = await User.findByEmail(userToCreate.email) // buscar al usuario creado para iniciar sesion porque el ID del nuevo usuario no esta en el body
+            req.session.usuarioLogeado = userSession  // Automaticamente logea al usuario y lo guarda en session
 
-            return res.redirect(303, '/admin/inventario-usuarios'); //Codigo 303, redirecciona a la ruta se desee
+            return res.redirect(303, '/productos'); //Codigo 303, redirecciona a la ruta se desee
         } else {
             return res.render ('users/create-users', {
                 errors: resultValidation.mapped(),
@@ -58,7 +54,7 @@ const usersController = {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
 
-            if (req.session.usuarioLogeado.role == "admin"){
+            if (req.session.usuarioLogeado.role_id == "1"){
                 if(req.body.remember){
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
                 }
@@ -85,10 +81,10 @@ const usersController = {
     },
     profile: async (req, res)=> {
 
-        if (res.locals.user != undefined){
+        if (res.locals.usuarioLogeado != undefined){
 
         try {
-            let userFound = await User.findPK(res.locals.user.id); // encuentra un usuario por su PK
+            let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
     
             if (userFound) {
                 return res.render('./users/user-profile', { user: userFound });
@@ -101,7 +97,7 @@ const usersController = {
     }
     },
     edit: async (req, res)=> {  
-        let PK = res.locals.user.id
+        let PK = res.locals.usuarioLogeado.id
         try {
             let userFound = await User.findPK(PK); // encuentra un usuario por su PK
             if (userFound) {
@@ -116,29 +112,38 @@ const usersController = {
     },
     update: async (req, res) => {
 
-
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-        console.log(resultValidation.mapped());
+        let PK = res.locals.usuarioLogeado.id // saca el PK del usuario desde locals
 
         try {
-            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
+            let userData = await User.findPK(PK); // encuentra un usuario por su PK 
 
             if (resultValidation.isEmpty()) {
+            req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
     
-            req.body.image = req.file ? req.file.filename : userData.image;
-    
-            userData = {
+            let NewUserData = {
                 name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,
                 password: req.body.password === "" ? userData.password : bcryptjs.hashSync(req.body.password, 10), // logica de contrasenia
                 image: req.body.image, // si manda una imagen nueva, agregarla. si no, dejar la anterior
-                role_id: (req.body.role === "admin" ? 1 : 2), // si es admin guardar 1, sino 2. 
+                street: req.body.calle_numero != '' ? req.body.calle_numero : userData.street,
+                apartment: req.body.departamento != '' ? req.body.departamento : userData.apartment,
+                district: req.body.barrio != '' ? req.body.barrio : userData.district,
+                zip_code: req.body.codigo_postal != '' ? req.body.codigo_postal : userData.zip_code,
+                city: req.body.ciudad != '' ? req.body.ciudad : userData.city,
+                state: req.body.provincia != '' ? req.body.provincia : userData.state
             }
+
+          await User.update(NewUserData, PK); // actualizar el usuario con la data nueva del formulario 
+             if (userData['addresses.user_id'] != null){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
             
-             await User.update(userData, req.params.id);
+                await User.updateAddress(NewUserData, PK); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+
+             }
+
     
-            return res.redirect(303, './users/user-profile');
+            return res.redirect(303, '/usuarios/perfil');
             } else {
                 return res.render('./users/edit-user',{
                     errors: resultValidation.mapped(),
@@ -149,10 +154,11 @@ const usersController = {
         } catch (error) {
             console.error(error)
         }
+
 	},
     logout: (req, res) => {
         req.session.destroy();
-        res.locals.user = undefined
+        res.locals.usuarioLogeado = undefined
 
         let datosCookie= {
             email: req.cookies.recordame // Mandar el cookie a la pagina de login para popular el campo mail 

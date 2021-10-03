@@ -422,13 +422,19 @@ ul.hero-menu li a:hover {
     margin-bottom: 40px;
 }
 
-#foto-perfil {
+.foto-perfil {
     margin: 0;
+    margin-top: 7px;
+}
+
+.foto-margin-right {
+    margin-right: 48px;
 }
 
 .flex-image-edituser {
     display: flex;
     align-items: center;
+    height: 48px;
 }
 
 
@@ -1408,9 +1414,12 @@ ul.hero-menu li a:hover {
     font-size: 18px;
     width: 40px;
     height: 40px;
-    margin-left: 16px;
     border-radius: 32px;
     border:solid 1px rgba(0, 0, 0, 0.50)
+}
+
+.margin-left-bo-profile {
+    margin-left: 16px;
 }
 
 .bo-profile:hover {
@@ -1605,7 +1614,6 @@ option {
     color: #55394a;
     border: #55394a solid 1px;
     padding: 2px 7px;
-    margin-left: 65px;
 }
 .abm-file-input {
     margin-left: -5px;

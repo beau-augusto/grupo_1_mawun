@@ -12,10 +12,8 @@ const User = {
                 attributes: ["name"]
         },
         {
-            association: "addresses",
-            attributes: {exclude:["id", "user_id"]}
+            association: "addresses"
     }],
-            attributes: {exclude:["role_id"]},
             raw: true,
             nested: true
         })
@@ -28,26 +26,28 @@ const User = {
                     attributes: ["name"]
             },
             {
-                association: "addresses",
-                attributes: {exclude:["id", "user_id"]}
+                association: "addresses"
         }],
-                attributes: {exclude:["role_id"]},
                 raw: true,
                 nested: true
             })  
     },
+    findByEmail: function (email) {
+        return   db.User.findOne({
+            where: {email: email},
+               raw: true,
+               nested: true
+           })  
+   },
     search: function(text) {
        return  db.User.findAll({
             order:[['name','ASC']],
             include: [{
-                association: "roles",
-                attributes: ["name"]
+                association: "roles"
         },
         {
-            association: "addresses",
-            attributes: {exclude:["id", "user_id"]}
+            association: "addresses"
     }],
-            attributes: {exclude:["role_id"]},
             raw: true,
             nested: true,
             where: {
@@ -64,10 +64,19 @@ const User = {
     },
     update: function(userData, ID) {
        return db.User.update(userData,
-            {where: {id: ID}
+            { include: [{association: "roles"}],
+            where: {id: ID}
         });
-
     },
+    updateAddress:  function(userData, ID) {
+        return db.Address.update(userData,
+             {
+             where: {user_id: ID}
+         });
+     },
+     createAddress:  function(userData) {
+        return db.Address.create(userData);
+     },
     delete: function(ID) {
        return db.User.destroy({
             where: {
@@ -77,7 +86,6 @@ const User = {
 
     }
 }
-
 
 
 module.exports = User

@@ -4,10 +4,6 @@ const fs = require('fs');
 
 const { body } = require('express-validator'); // Destructuracion pido la propiedad body (Express-Validator)
 
-const usersFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB de productos
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-
 module.exports = [
     body('product_name').notEmpty().withMessage('Debes completar el campo Nombre del producto'),
     body('category').notEmpty().withMessage('Debes completar el campo Categoría del producto'),

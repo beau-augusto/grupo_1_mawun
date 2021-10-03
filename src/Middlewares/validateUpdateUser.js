@@ -3,8 +3,6 @@ const path = require('path');
 const fs = require('fs');
 
 const { body } = require('express-validator');
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const validationUpdateUser = [
     body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
@@ -29,6 +27,11 @@ const validationUpdateUser = [
     return true;
 
     })
+    // body('calle_numero').notEmpty().withMessage('Tienes que completar la calle y numero'),
+    // body('codigo_postal').notEmpty().withMessage('Tienes que completar el codigo postal'),
+    // body('barrio').notEmpty().withMessage('Tienes que completar el barrio'),
+    // body('ciudad').notEmpty().withMessage('Tienes que completar la ciudad'),
+    // body('provincia').notEmpty().withMessage('Tienes que completar la provincia')
 ];
 
 module.exports = validationUpdateUser;

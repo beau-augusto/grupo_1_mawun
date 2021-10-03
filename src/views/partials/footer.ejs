@@ -23,10 +23,10 @@
                 <button type="submit" class="footer-news__submit">SUSCRIBIRSE</button>
             </form>
             <div class="footer-news">
-                <% if (locals.user == undefined) { %>
+                <% if (locals.usuarioLogeado == undefined) { %>
                 <a href="/usuarios/registro">Registrate</a>
                 <% } %>
-                <% if (locals.user) { %>
+                <% if (locals.usuarioLogeado) { %>
                     <a href="/usuarios/logout"> Logout</a>
                     <% } %>
                 <a href="/admin/dashboard">Back Office</a>
