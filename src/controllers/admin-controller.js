@@ -180,7 +180,7 @@ const adminController = {
             let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
 
             if (resultValidation.isEmpty()) {
-            req.body.image = req.file ? req.file.filename : userData.image;
+            req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
     
             let NewUserData = {
                 name: req.body.first_name,
@@ -198,7 +198,8 @@ const adminController = {
             }
 
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
-             if (userData['addresses.street'] == null){ // si el usuario no tiene una direccion cargada, pasa la logica por aca
+          
+             if (userData['addresses.user_id'] === null){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
             
                 let updateCreate = { // se le agrega el id y user_id para la table addresses
                  ...NewUserData, // mantiene la informacion nueva a subir
