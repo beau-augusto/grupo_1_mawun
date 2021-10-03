@@ -53,7 +53,7 @@
                             <% } %>
                             </div>
                         </div>
-                        <% if (user['addresses.street']) { %> 
+                        <% if (user['addresses.user_id'] != null) { %> 
                             <div class="abm-input-wrap">
                                 <label for="calle_numero" class="abm-input-tit">Calle y numero</label>
                                 <input type="text" name="calle_numero" id="calle_numero" placeholder="Calle y numero" class="abm-input"value="<%=locals.oldData ? oldData.calle_numero : user['addresses.street']%>">

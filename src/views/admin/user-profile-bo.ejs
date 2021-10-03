@@ -37,7 +37,7 @@
                             <label for="image" class="abm-input-tit">Imagen</label>
                             <p class="foto-perfil foto-margin-right" id=""> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
                         </div>
-                        <% if (user['addresses.street'] ) { %> 
+                        <% if (user['addresses.user_id'] != null) { %> 
 
                             <div class="abm-input-wrap">
                                 <label for="role" class="abm-input-tit">Calle y numero</label>

@@ -6,14 +6,14 @@ const { body } = require('express-validator');
 const User = require('../models/User');
 
 const validationCreateFormUser = [
-    body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
-    body('last_name').notEmpty().withMessage('Tienes que completar con tu apellido').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
+    body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre'),
+    body('last_name').notEmpty().withMessage('Tienes que completar con tu apellido'),
     body('email')
         .notEmpty().withMessage('Tienes que completar con tu correo electrónico').bail()
         .isEmail().withMessage('Tienes que completar con un  formato de correo electrónico válido')
         .custom(async (value, {req}) => {
 
-            let findUsername = await User.findByEmail(req.body.name); // encuentra el usuario por su mail
+            let findUsername = await User.findByEmail(req.body.email); // encuentra el usuario por su mail
             if (findUsername) {
                 throw new Error('Este usuario ya existe');
             }

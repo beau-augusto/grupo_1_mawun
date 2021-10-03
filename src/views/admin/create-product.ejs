@@ -23,10 +23,14 @@
                         <div class="abm-input-wrap">
                             <label for="category" class="abm-input-tit">Categoria</label>
                             <select name="category" id="category" class="abm-input">
+
                                 <option value="">Seleccione Categoría</option>
-                                <option value="Orgánicos" <%= locals.oldInfo && oldInfo.category === 'Orgánicos' ? 'selected' : '' %> >Orgánicos</option>
-                                <option value="Biodinámicos" <%= locals.oldInfo && oldInfo.category === 'Biodinámicos' ? 'selected' : '' %> >Biodinámicos</option>
-                                <option value="Naturales" <%= locals.oldInfo && oldInfo.category === 'Naturales' ? 'selected' : '' %> >Naturales</option>
+                                <% for (let i = 0; i < categorie.length; i++) { %>
+                                    <option value="<%= categorie[i].id %>" >
+                                        <%= categorie[i] %>
+                                    </option>
+                                <%}%>
+
                             </select>
                             <% if (locals.errors && errors.category) { %>
                                 <p class="abm-input-error"><%= errors.category.msg %></p>
@@ -45,18 +49,11 @@
                             <label for="varietal" class="abm-input-tit">Varietal</label>
                             <select name="varietal" id="varietal" class="abm-input">
                                 <option value="">Seleccione Varietal</option>
-                                <option value="Malbec" <%= locals.oldInfo && oldInfo.varietal === 'Malbec' ? 'selected' : '' %> >Malbec</option>
-                                <option value="Cabernet Sauvignon" <%= locals.oldInfo && oldInfo.varietal === 'Cabernet Sauvignon' ? 'selected' : '' %> >Cabernet Sauvignon</option>
-                                <option value="Rosados" <%= locals.oldInfo && oldInfo.varietal === 'Rosados' ? 'selected' : '' %> >Rosados</option>
-                                <option value="Syrah" <%= locals.oldInfo && oldInfo.varietal === 'Syrah' ? 'selected' : '' %> >Syrah</option>
-                                <option value="Franc" <%= locals.oldInfo && oldInfo.varietal === 'Franc' ? 'selected' : '' %> >Franc</option>
-                                <option value="Tannat" <%= locals.oldInfo && oldInfo.varietal === 'Tannat' ? 'selected' : '' %> >Tannat</option>
-                                <option value="Demeter" <%= locals.oldInfo && oldInfo.varietal === 'Demeter' ? 'selected' : '' %> >Demeter</option>
-                                <option value="Criolla" <%= locals.oldInfo && oldInfo.varietal === 'Criolla' ? 'selected' : '' %> >Criolla</option>
-                                <option value="Barbera" <%= locals.oldInfo && oldInfo.varietal === 'Barbera' ? 'selected' : '' %> >Barbera</option>
-                                <option value="Viognier" <%= locals.oldInfo && oldInfo.varietal === 'Viognier' ? 'selected' : '' %> >Viognier</option>
-                                <option value="Petit Verdot" <%= locals.oldInfo && oldInfo.varietal === 'Petit Verdot' ? 'selected' : '' %> >Petit Verdot</option>
-                                <option value="Tannat, Cabernet Franc, Malbec, Syrah" <%= locals.oldInfo && oldInfo.varietal === 'Tannat, Cabernet Franc, Malbec, Syrah' ? 'selected' : '' %> >Tannat, Cabernet Franc, Malbec, Syrah</option>
+                                <% for (let i = 0; i < varietal.length; i++) { %>
+                                    <option value="<%= varietal[i] %>" >
+                                        <%= varietal[i] %>
+                                    </option>
+                                <%}%>     
                             </select>
                             <% if (locals.errors && errors.varietal) { %>
                                 <p class="abm-input-error"><%= errors.varietal.msg %></p>
@@ -64,10 +61,17 @@
                         </div>
                         <div class="abm-input-wrap">
                             <label for="winery" class="abm-input-tit">Bodega</label>
-                            <input type="text" name="winery" id="winery" placeholder="Bodega" class="abm-input" value="<%= locals.oldInfo && oldInfo.winery ? oldInfo.winery : '' %>">
+                            <select name="winery" id="winery" class="abm-input">
+                                <option value="">Seleccione Bodega</option>
+                                <% for (let i = 0; i < wineries.length; i++) { %>
+                                    <option value="<%= wineries[i].id %>" >
+                                        <%= wineries[i] %>
+                                    </option>
+                                <%}%>
+                            </select>
                             <% if (locals.errors && errors.winery) { %>
                                 <p class="abm-input-error"><%= errors.winery.msg %></p>
-                            <% } %>
+                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label class="abm-input-tit">Recomendado</label>
@@ -88,10 +92,11 @@
                                 <p class="abm-input-error"><%= errors.image.msg %></p>
                             <% } %>
                     </div>
-                    <div class="abm-button-wrap">
-                        <button type="submit" class="abm-button-submit">GUARDAR</button>
+                    
+                    <div class="abm-button-wrapper">
+                        <button type="submit" class="abm-button-submit green-submit"><i class="far fa-save"></i> GUARDAR</button>
+                        <a href='/admin/inventario-productos' class="abm-button-cancel"><i class="fas fa-times"></i> CANCELAR</a>
                     </div>
-                </form>
             </div>
         </section>
     </main>
