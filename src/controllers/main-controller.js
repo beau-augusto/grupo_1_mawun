@@ -20,7 +20,7 @@ const mainController = {
                 const viewData = {
                     recommendeds: recommendedProducts
                     }
-                res.render ('index', viewData );
+              return  res.render ('index', viewData );
             })
 
         
@@ -31,25 +31,30 @@ const mainController = {
     aboutUs: (req, res)=> {
         res.render ('about-us');
     },
-    newsletterCreate: (req, res)=> {
-        db.Newsletter.create({
-            email: req.body.email,
-        });
+    newsletterCreate: async (req, res)=> {
+        try{
+            const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
+            if (resultValidation.isEmpty()){
+                db.Newsletter.create({
+                    email: req.body.email
+                });
+    
+            return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
+            } else {
+                return res.render ('/', { 
+                    errors: resultValidation.mapped(), 
+                }); 
+            };
 
-        const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
+        } catch(error){
+            console.error(error)
+        }
+
+
         
-        if (resultValidation.isEmpty()){
-            db.Newsletter.create({
-                email: req.body
-            });
-
-        return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
-        } else {
-            return res.render ('/', { 
-                errors: resultValidation.mapped(), 
-            }); 
-        };
-    },
+        
+        
+    }
 }
 
 module.exports = mainController;

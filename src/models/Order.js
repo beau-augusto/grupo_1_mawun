@@ -4,10 +4,7 @@ const { Op } = require("sequelize");
 const Order = {
     all: function() {
        return db.Order.findAll({
-            order:[['name','ASC']],
-            include: [{association: "products"}, {association: "users"}, {association: "items_carrito"}],
-            raw: true,
-            nested: true
+           include: [{association: "users"}, {association: "items_carrito"}]
         })
 },
     findPK: function (PK) {
@@ -45,8 +42,11 @@ const Order = {
               }
             })  
      },
-    create: function(userData) {
-        return db.User.create(userData)
+    create: function(orderData) {
+        return db.Order.create(orderData, {include: [{association: "items_carrito"}]})
+    },
+    createAssociation: function(orderData) {
+        return db.Order_product.create(orderData)
     },
     update: function(userData, ID) {
        return db.User.update(userData,

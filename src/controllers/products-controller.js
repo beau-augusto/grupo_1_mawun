@@ -4,6 +4,7 @@ const path = require('path');
 //Sequelize Models//
 const db = require("../database/models");
 const Order = require("../models/Order");
+const Product = require("../models/Product");
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -42,11 +43,40 @@ const productsController = {
             console.error(error);
         };
     },
-    cart: (req, res)=> {
+    cart: async (req, res)=> {
+        try {
+            
+            let orders = await Order.all()
+            return res.send(orders)
+        } catch (error) {
+            
+        }
 
-        return res.send(Order.all())
         //res.render ('products/cart');
     },
+    addToCart: async (req, res)=> {
+        try {
+            let orderData = {
+                date_created: Date.now(),
+                status: 1,
+                user_id: 3
+            }
+            let test = await Product.findPk(req.params.id)
+            console.log(test);
+            console.log("llega hasta aqui");
+
+            await Order.create(orderData)
+            let association = {
+                quantity: 2,
+                product_id: test.id,
+                order_id: 3
+            }
+           await Order.createAssociation(association)
+            return res.redirect('/productos')
+        } catch (error) {
+            console.log(error);
+        }
+    }
 };
 
 module.exports = productsController;

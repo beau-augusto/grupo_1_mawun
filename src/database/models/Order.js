@@ -15,10 +15,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER,
             allowNull: false
         },
-        total: {
-            type: dataTypes.DECIMAL,
-            allowNull: false
-        },
         user_id:{
             type: dataTypes.INTEGER,
             allowNull: false

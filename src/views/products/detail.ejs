@@ -34,7 +34,9 @@
                 <div class="cajaSumadora">
                     <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
                 </div>
-                <div class="agregarCarrito">Agregar al carrito</div>
+                <form action="/productos/carrito/<%=product.id%>" method="POST">
+                <button class="agregarCarrito">Agregar al carrito </button>
+                </form>
         </article>
     </main>
     <%- include('../partials/footer') %>
