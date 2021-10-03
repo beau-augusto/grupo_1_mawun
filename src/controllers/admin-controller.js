@@ -21,46 +21,66 @@ const adminController = {
         return res.render ('admin/dashboard');
     },
     inventoryProducts: async (req, res)=> {
-        if(req.session.usuarioLogeado){
+        try {
+            if (req.session.usuarioLogeado){
 
-            db.Product.findAll( {order:[['name','ASC']]})
-            .then(function (products){
-                res.render ('./admin/inventory-products', {products:products});
-            })
-    } else {
-            return res.redirect("users/login");
+                let products = await db.Product.findAll( {order:[['name','ASC']]})
+
+                return res.render ('./admin/inventory-products', {products});
+                
+            } else {
+                return res.redirect("users/login");
+            }
+        } catch (error) {
+                console.error(error);
         }
     },
-    create: (req, res) => {
-        return res.render('admin/create-product'); // Imprimir hoja para crear producto
+    createProduct:  async (req, res) => {
+        try{
+            let wineries = await db.Winery.findAll( {order:[['name','ASC']]});
+            let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]});
+
+            let varietal = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+            varietal = varietal.map(v => v.name)//Relaizó un map para obtener unicamente los nombres
+
+            let categorie = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = Categoria
+            categorie = categorie.map(v => v.name)//Relaizó un map para obtener unicamente los nombres 
+
+            wineries = wineries.map(v => v.name)//Relaizó un map para obtener unicamente los nombres 
+
+            return res.render('admin/create-product', {varietal, wineries, categorie}); // Imprimir hoja para crear producto
+
+        } catch (error) {
+            console.error(error);
+        }
     },
-    store: (req, res) => {
+    storeProduct: async (req, res) => {
 
-        const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
+        try{
+            const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
+        
+            if (errors.isEmpty()) { // Si errores de express Validator viene vacio continuo
 
-        // Si errores de express Validator viene vacio continuo
-        if (errors.isEmpty()) {
-            const lastProduct = products[products.length - 1]; //Obtengo el último indice del array
+                const productToCreate = req.body; //Obtengo la informacion del formulario
+                productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
+                productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
+                productToCreate.recommended = Number(req.body.recommended); //Transformo el campo de string a numero
 
-            const productToCreate = req.body; //Obtengo la informacion del formulario
-            productToCreate.image = req.file.filename; //Obtengo la imagen del formulario
-            productToCreate.price = Number(req.body.price); /// Transformo el campo de string a numero
-            productToCreate.recommended = Number(req.body.recommended); //Transformo el campo de string a numero
-            productToCreate.id = lastProduct.id + 1; //Agrego el id del Nvo producto
 
-            products.push(productToCreate); //Añado a Products el elemento creado al final de un array
-            fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2)); // Transformo el nuevo array de productos en Json
+                return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
-            return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
+            } else {
+                return res.render('admin/create-product', {
+                    errors: errors.mapped(),
+                    oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
+                });
+            };
 
-        } else {
-            return res.render('admin/create-product', {
-                errors: errors.mapped(),
-                oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
-            });
-        };
+        } catch (error) {
+            console.error(error);
+        } 
     },
-    edit: (req, res) => {
+    editProduct: (req, res) => {
         const id = req.params.id; // Obtengo el parámetro para buscar el recurso
         const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
 
@@ -71,7 +91,7 @@ const adminController = {
         const viewData = { product };
         return res.render('admin/edit-product', viewData);
     },
-    update: (req, res) => {
+    updateProduct: (req, res) => {
         const indexProduct = products.findIndex(product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
 
         req.body.image = req.file ? req.file.filename : req.file.filename;
@@ -83,7 +103,7 @@ const adminController = {
 
         return res.redirect(303, '/admin/inventario-productos');
     },
-    delete: (req, res) => {
+    deleteProduct: (req, res) => {
 
         const indexProduct = products.findIndex(product => product.id == req.params.id);
 

@@ -1,13 +1,12 @@
-require('dotenv').config()
 
 module.exports = {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "peter",
+    "password": "peter",
     "database": "mawun",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    //"dialectOptions": { "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock" }
+    "dialectOptions": { "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock" }
   },
   "test": {
     "username": "root",

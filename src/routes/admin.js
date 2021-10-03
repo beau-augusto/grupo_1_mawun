@@ -10,8 +10,6 @@ const { body } = require('express-validator'); // Destructuracion pido la propie
 const validateCreatProduct = require("../middlewares/validateCreatProduct.js");
 const validateUpdateUser = require("../middlewares/validateUpdateUser.js");
 
-
-
 /*** Multer ***/
 const uploadUser = require("../Middlewares/multerUser");
 const uploadProduct = require("../Middlewares/multerProduct");
@@ -20,20 +18,14 @@ const validateCreatUserBO = require("../middlewares/validateCreatUserBO.js");
 /*** DETALLE BO ***/
 router.get('/dashboard', adminController.dashboard);
 router.get('/inventario-productos', adminController.inventoryProducts);
-
-
-/*** DETALLE BO ***/
 router.get('/inventario-usuarios', adminController.inventoryUsers);
 
-/*** CREAR UN PRODUCTO ***/
-router.get('/crear', adminController.create);
-router.post('/', uploadProduct.single('image'), validateCreatProduct, adminController.store);
-
-
-/*** EDITAR UN PRODUCTO ***/
-router.get('/:id/editar', adminController.edit);
-router.put('/:id', uploadProduct.single('image'), adminController.update);
-router.delete('/:id/delete', adminController.delete);
+/*** PRODUCTO ***/
+router.get('/crear', adminController.createProduct);
+router.post('/', uploadProduct.single('image'), validateCreatProduct, adminController.storeProduct);
+router.get('/:id/editar', adminController.editProduct);
+router.put('/:id', uploadProduct.single('image'), adminController.updateProduct);
+router.delete('/:id/delete', adminController.deleteProduct);
 
 /*** ADMINISTRAR UN USUARIO ***/
 router.get('/perfil/:id', adminController.profile); // Perfil de Usuario BO
