@@ -19,6 +19,7 @@ const validateCreatUserBO = require("../middlewares/validateCreatUserBO.js");
 router.get('/dashboard', adminController.dashboard);
 router.get('/inventario-productos', adminController.inventoryProducts);
 router.get('/inventario-usuarios', adminController.inventoryUsers);
+router.get('/inventario-newsletter', adminController.inventoryNewsletter);
 
 /*** PRODUCTO ***/
 router.get('/crear', adminController.createProduct);
@@ -35,5 +36,9 @@ router.post('/crear-usuario', uploadUser.single('image'), validateCreatUserBO, a
 router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser, adminController.updateUser);
 router.delete('/:id/delete-usuario', adminController.deleteUser);
+
+/*** ELIMINAR EMAIL DEL NEWSLETTER ***/
+
+
 
 module.exports = router;

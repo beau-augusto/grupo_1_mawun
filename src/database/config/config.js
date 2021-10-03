@@ -2,11 +2,11 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password":  null,
+    "password": "root",
     "database": "mawun",
     "host": "127.0.0.1",
-    "dialect": "mysql"
-   // "dialectOptions": { "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock" }
+    "dialect": "mysql",
+    //"dialectOptions": { "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock" }
   },
   "test": {
     "username": "root",
