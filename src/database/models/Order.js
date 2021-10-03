@@ -46,7 +46,7 @@ module.exports = (sequelize, dataTypes) => {
         })
 
         Order.hasMany(models.Order_product,{
-            as: "order_productss",   //** chequear **
+            as: "items_carrito",   //** chequear **
             foreignKey: "order_id"
         })
 

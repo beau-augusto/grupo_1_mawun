@@ -3,6 +3,7 @@ const path = require('path');
 
 //Sequelize Models//
 const db = require("../database/models");
+const Order = require("../models/Order");
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -36,7 +37,9 @@ const productsController = {
             });
     },
     cart: (req, res)=> {
-        res.render ('products/cart');
+
+        return res.send(Order.all())
+        //res.render ('products/cart');
     },
 };
 
