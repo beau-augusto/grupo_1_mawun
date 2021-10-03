@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator'); // Destructuracion pi
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
+const chalk = require('chalk');
 
 const bcryptjs = require("bcryptjs");
 
@@ -36,6 +37,7 @@ const adminController = {
     store: (req, res) => {
 
         const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
+
         // Si errores de express Validator viene vacio continuo
         if (errors.isEmpty()) {
             const lastProduct = products[products.length - 1]; //Obtengo el último indice del array
@@ -111,7 +113,9 @@ const adminController = {
     },
     profile: async (req, res) => {
         try {
+
         let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
+        let test = await User.findByEmail(userFound.email)
 
         if (userFound) {
             return res.render('./admin/user-profile-bo', { user: userFound });
@@ -129,8 +133,8 @@ const adminController = {
     storeUser: async (req, res) => {
 
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-
         try {
+        req.body.image = req.file ? req.file.filename : "";
         if (resultValidation.isEmpty()) {
 
             const userToCreate = {  //Obtengo la informacion del formulario y la creo 
@@ -139,7 +143,7 @@ const adminController = {
                 email: req.body.email,
                 password: bcryptjs.hashSync(req.body.password, 10),
                 role_id: (req.body.role === "admin" ? 1 : 2), // si es admin guardar 1, sino 2. 
-                image: req.file.filename, //Obtengo la imagen del formulario - req.file.filename
+                image: req.body.image, //Obtengo la imagen del formulario - req.file.filename
             }
 
             await User.create(userToCreate);
@@ -171,25 +175,42 @@ const adminController = {
     },
     updateUser: async (req, res) => {
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-        console.log(resultValidation.mapped());
 
         try {
             let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
 
             if (resultValidation.isEmpty()) {
-    
             req.body.image = req.file ? req.file.filename : userData.image;
     
-            userData = {
+            let NewUserData = {
                 name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,
                 password: req.body.password === "" ? userData.password : bcryptjs.hashSync(req.body.password, 10), // logica de contrasenia
                 image: req.body.image, // si manda una imagen nueva, agregarla. si no, dejar la anterior
                 role_id: (req.body.role === "admin" ? 1 : 2), // si es admin guardar 1, sino 2. 
+                street: req.body.calle_numero,
+                apartment: req.body.departamento,
+                district: req.body.barrio,
+                zip_code: req.body.codigo_postal,
+                city: req.body.ciudad,
+                state: req.body.provincia
             }
+
+          await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
+             if (userData['addresses.street'] == null){ // si el usuario no tiene una direccion cargada, pasa la logica por aca
             
-             await User.update(userData, req.params.id);
+                let updateCreate = { // se le agrega el id y user_id para la table addresses
+                 ...NewUserData, // mantiene la informacion nueva a subir
+                 id: userData.id,
+                 user_id: userData.id
+             }
+                await User.createAddress(updateCreate); // crea una nueva fila en addresses que corresponde al usuario ya existente
+            }
+            else {
+             await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+            }
+
     
             return res.redirect(303, '/admin/inventario-usuarios');
             } else {

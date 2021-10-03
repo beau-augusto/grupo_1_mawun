@@ -54,11 +54,15 @@
                                 <input type="password" id="password" placeholder="Contraseña" class="abm-input">
                             </div>-->
                             <div class="abm-input-wrap">
-                                <label for="image" class="abm-input-tit">Subir imagen</label>
-                                <input type="file" name="image" id="image" placeholder="Subir imagen" class="abm-input">
+                                <label class="abm-input-tit">Imagen</label>
+                                <div class="flex-image-edituser">
+                            
+                                <input type="file" name="image" id="image" class="abm-input" style="display:none;">
+                                <label for="image" class="abm-button-submit cambiarimagen-button"> Elegir imagen</label>
                                 <% if(locals.errors && errors.image) { %>
                                     <p class="abm-input-error"><%= errors.image.msg %> </p>
                                 <% } %>
+                                </div>
                             </div>
                         </div>
                         <div class="abm-button-wrap">

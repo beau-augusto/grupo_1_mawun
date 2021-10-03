@@ -46,35 +46,11 @@
 // Cambio a la base de datos
 // Agregar campo apartment number
 
-<% if (locals.user) { %>
-    <a href="/usuarios/perfil" class="hero-cart-link"><img src="/upload/profile-pictures/<%=locals.user.image%>"  class="bo-profile"></a>
-    <% } %> 
-
-//para editar desde visitor
-
-// db.User.findByPk(res.locals.id, {
-//     order:[['name','ASC']],
-//     include: [{
-//         association: "roles",
-//         attributes: ["name"]
-// },
-// {
-//     association: "addresses",
-//     attributes: {exclude:["id", "user_id"]}
-// }],
-//     attributes: {exclude:["role_id"]},
-//     raw: true,
-//     nested: true
-// })
-// .then((resultado) => {
-//     if (resultado){
-//      return   res.render ('./users/user-profile', {user: resultado});
-//         } else {
-//         res.send ('El usuario que buscás no existe.')
-//         }
-
-// })
-// .catch(error => {console.log(error)}) // agarra el error
-// },
 
 // cambie var 25 a 50 en imagen 
+
+
+
+
+
+

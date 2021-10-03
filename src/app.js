@@ -39,7 +39,7 @@ const productsRouter = require('./routes/products'); // Rutas /products
 const adminRouter = require ('./routes/admin'); // Rutas Admin Back Office
 
 app.use(function(req, res, next) { // middleware para usar los datos de user en todas las vistas
-  res.locals.user = req.session.usuarioLogeado;
+  res.locals.usuarioLogeado = req.session.usuarioLogeado;
   next();
 });
 

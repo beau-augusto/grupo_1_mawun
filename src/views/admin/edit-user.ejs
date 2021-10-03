@@ -56,7 +56,7 @@
                             <label class="abm-input-tit">Imagen</label>
                             <div class="flex-image-edituser">
 
-                            <p class="perfil-de-usuario-item" id="foto-perfil"> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
+                            <p class="foto-perfil foto-margin-right" id=""> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
                             <input type="file" name="image" id="image" class="abm-input" style="display:none;">
                             <label for="image" class="abm-button-submit cambiarimagen-button"> Cambiar imagen</label>
                             <% if(locals.errors && errors.image) { %>
@@ -64,6 +64,49 @@
                             <% } %>
                             </div>
                         </div>
+
+                            <div class="abm-input-wrap">
+                                <label for="calle_numero" class="abm-input-tit">Calle y numero</label>
+                                <input type="text" name="calle_numero" id="calle_numero" placeholder="Calle y numero" class="abm-input"value="<%=locals.oldData ? oldData.calle_numero : user['addresses.street']%>">
+                                <% if(locals.errors && errors.calle_numero) { %>
+                                    <p class="abm-input-error"><%= errors.calle_numero.msg %> </p>
+                                <% } %>  
+                            </div>
+                                <div class="abm-input-wrap">
+                                    <label for="departamento" class="abm-input-tit">Departamento</label>
+                                    <input type="text" name="departamento" id="departamento" placeholder="Departamento" class="abm-input"value="<%=locals.oldData ? oldData.departamento : user['addresses.apartment']%>">
+                                    <% if(locals.errors && errors.departamento) { %>
+                                        <p class="abm-input-error"><%= errors.departamento.msg %> </p>
+                                    <% } %>   
+                                </div>
+                                <div class="abm-input-wrap">
+                                <label for="codigo_postal" class="abm-input-tit">Codigo Postal</label>
+                                <input type="text" name="codigo_postal" id="codigo_postal" placeholder="Codigo Postal" class="abm-input"value="<%=locals.oldData ? oldData.codigo_postal : user['addresses.zip_code']%>">
+                                <% if(locals.errors && errors.codigo_postal) { %>
+                                    <p class="abm-input-error"><%= errors.codigo_postal.msg %> </p>
+                                <% } %>   
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="barrio" class="abm-input-tit">Barrio</label>
+                                <input type="text" name="barrio" id="barrio" placeholder="Barrio" class="abm-input"value="<%=locals.oldData ? oldData.barrio : user['addresses.district']%>">
+                                <% if(locals.errors && errors.barrio) { %>
+                                    <p class="abm-input-error"><%= errors.barrio.msg %> </p>
+                                <% } %>   
+                            </div>
+                                <div class="abm-input-wrap">
+                                <label for="ciudad" class="abm-input-tit">Ciudad</label>
+                                <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" class="abm-input"value="<%=locals.oldData ? oldData.ciudad : user['addresses.city']%>">
+                                <% if(locals.errors && errors.ciudad) { %>
+                                    <p class="abm-input-error"><%= errors.ciudad.msg %> </p>
+                                <% } %>   
+                            </div>
+                                <div class="abm-input-wrap">
+                                <label for="provincia" class="abm-input-tit">Provincia</label>
+                                <input type="text" name="provincia" id="provincia" placeholder="Provincia" class="abm-input"value="<%=locals.oldData ? oldData.provincia : user['addresses.state']%>">
+                                <% if(locals.errors && errors.provincia) { %>
+                                    <p class="abm-input-error"><%= errors.provincia.msg %> </p>
+                                <% } %>   
+                            </div>
                     </div>
                     <div class="abm-button-wrap">
                         <button type="submit" class="abm-button-submit">ACTUALIZAR</button>

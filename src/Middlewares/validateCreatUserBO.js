@@ -3,8 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const { body } = require('express-validator');
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+const User = require('../models/User');
 
 const validationCreateFormUser = [
     body('first_name').notEmpty().withMessage('Tienes que completar con tu nombre').bail().isLength({ min:4, max: 20}).withMessage('Debe ser de entre 4 y 20 caracteres'),
@@ -12,9 +11,9 @@ const validationCreateFormUser = [
     body('email')
         .notEmpty().withMessage('Tienes que completar con tu correo electrónico').bail()
         .isEmail().withMessage('Tienes que completar con un  formato de correo electrónico válido')
-        .custom((value, {req}) => {
+        .custom(async(value, {req}) => {
 
-            let findUsername = users.find(user => user.email == req.body.email)
+            let findUsername = await User.findByEmail(req.body.email); // encuentra el usuario por su mail
             if (findUsername) {
                 throw new Error('Este usuario ya existe');
             }

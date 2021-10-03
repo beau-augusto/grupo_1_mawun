@@ -3,10 +3,6 @@ const path = require('path');
 const { validationResult } = require('express-validator');
 const bcryptjs = require("bcryptjs"); 
 
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
 //Sequelize Models//
 const User = require("../../src/models/User");
 
@@ -33,7 +29,7 @@ const usersController = {
             await User.create(userToCreate);
             req.session.usuarioLogeado = userToCreate  // Automaticamente logea al usuario y lo guarda en session
 
-            return res.redirect(303, '/admin/inventario-usuarios'); //Codigo 303, redirecciona a la ruta se desee
+            return res.redirect(303, 'products/index'); //Codigo 303, redirecciona a la ruta se desee
         } else {
             return res.render ('users/create-users', {
                 errors: resultValidation.mapped(),
@@ -58,7 +54,7 @@ const usersController = {
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
 
-            if (req.session.usuarioLogeado.role == "admin"){
+            if (req.session.usuarioLogeado.role_id == "1"){
                 if(req.body.remember){
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
                 }
@@ -85,10 +81,10 @@ const usersController = {
     },
     profile: async (req, res)=> {
 
-        if (res.locals.user != undefined){
+        if (res.locals.usuarioLogeado != undefined){
 
         try {
-            let userFound = await User.findPK(res.locals.user.id); // encuentra un usuario por su PK
+            let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
     
             if (userFound) {
                 return res.render('./users/user-profile', { user: userFound });
@@ -101,7 +97,7 @@ const usersController = {
     }
     },
     edit: async (req, res)=> {  
-        let PK = res.locals.user.id
+        let PK = res.locals.usuarioLogeado.id
         try {
             let userFound = await User.findPK(PK); // encuentra un usuario por su PK
             if (userFound) {
@@ -118,10 +114,10 @@ const usersController = {
 
 
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-        console.log(resultValidation.mapped());
+        let PK = res.locals.usuarioLogeado.id
 
         try {
-            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
+            let userData = await User.findPK(PK); // encuentra un usuario por su PK 
 
             if (resultValidation.isEmpty()) {
     
@@ -133,12 +129,9 @@ const usersController = {
                 email: req.body.email,
                 password: req.body.password === "" ? userData.password : bcryptjs.hashSync(req.body.password, 10), // logica de contrasenia
                 image: req.body.image, // si manda una imagen nueva, agregarla. si no, dejar la anterior
-                role_id: (req.body.role === "admin" ? 1 : 2), // si es admin guardar 1, sino 2. 
             }
-            
-             await User.update(userData, req.params.id);
-    
-            return res.redirect(303, './users/user-profile');
+             await User.update(userData, PK);
+           return res.redirect(303, '/usuarios/perfil');
             } else {
                 return res.render('./users/edit-user',{
                     errors: resultValidation.mapped(),
@@ -152,7 +145,7 @@ const usersController = {
 	},
     logout: (req, res) => {
         req.session.destroy();
-        res.locals.user = undefined
+        res.locals.usuarioLogeado = undefined
 
         let datosCookie= {
             email: req.cookies.recordame // Mandar el cookie a la pagina de login para popular el campo mail 

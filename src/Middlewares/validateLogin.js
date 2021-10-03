@@ -4,10 +4,7 @@ const fs = require('fs');
 const bcryptjs = require("bcryptjs");
 const { nextTick } = require('process');
 
-
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json'); // Ruta donde se encuentra la DB de Users
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Cambio el formato Json a un array de usuarios
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const User = require('../models/User');
 
 
 module.exports = [
@@ -15,8 +12,9 @@ module.exports = [
     .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
     .isLength({ min:4, max: 30}).withMessage('Debe ser de entre 4 y 30 caracteres')
     .isEmail().withMessage('Debe ser un mail válido')
-    .custom ((value, {req}) => {
-        let findUsername = users.find(user => user.email == req.body.name);
+    .custom (async (value, {req}) => {
+
+       let findUsername = await User.findByEmail(req.body.name); // encuentra el usuario por su mail
         if (!findUsername) {
             throw new Error('Este correo electrónico no está registrado');
         } else {
@@ -31,7 +29,7 @@ module.exports = [
     .isLength({ min:4, max: 60}).withMessage('Debe ser de entre 4 y 30 caracteres')
     .custom (async (value, {req}) => {
 
-        let findUsername = users.find(user => user.email == req.body.name);
+       let findUsername = await User.findByEmail(req.body.name); // encuentra el usuario por su mail
 
         if(!findUsername){
             return false
