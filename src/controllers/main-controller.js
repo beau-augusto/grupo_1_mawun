@@ -40,7 +40,7 @@ const mainController = {
         
         if (resultValidation.isEmpty()){
             db.Newsletter.create({
-                email: req.body //
+                email: req.body
             });
 
         return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 

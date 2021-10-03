@@ -30,10 +30,10 @@ module.exports = function (sequelize, dataTypes){
             timestamps: false
         })
 
-        /* Tag_type.hasMany(models.Product_tag,{
-            as: "products_tags",
-            foreignKey: "tag_id"
-        }) */
+        Tag_type.hasMany(models.Tag,{
+            as: "tags",
+            foreignKey: "tag_type_id"
+        })
     };
 
     return Tag_type;

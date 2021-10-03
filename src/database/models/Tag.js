@@ -30,10 +30,10 @@ module.exports = function (sequelize, dataTypes){
             timestamps: false
         })
 
-        /* Tag.hasMany(models.Product_tag,{
-            as: "products_tags",
-            foreignKey: "tag_id"
-        }) */
+        Tag.belongsTo(models.Tag_type,{
+            as: "tag_types",
+            foreignKey: "tag_type_id"
+        })
     };
     return Tag;
 }

@@ -1549,10 +1549,16 @@ option {
     justify-content: space-between;
     padding: 15px 10px;
 }
+.abm-button-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 10px;
+}
 .abm-button-submit {
     font-size: 13px;
     color: #ffffff;
     cursor: pointer;
+    font-weight: 500;
     padding: 10px 15px;
     border-radius: 3px;
     text-decoration: none;
@@ -1566,7 +1572,34 @@ option {
     color: #55394a;
     border: #55394a solid 1px;
 }
-
+.abm-button-cancel{
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 10px 15px;
+    margin-left: 15px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #fa2a00;
+    border: #fa2a00 solid 1px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+.abm-button-cancel:hover {
+    background-color: #ffffff;
+    color: #fa2a00;
+    border: solid 1px #fa2a00;
+}
+.green-submit{
+    background-color: #2ecc71;
+    border: #2ecc71 solid 1px;
+}
+.green-submit:hover{
+    background-color: #ffffff;
+    color: #2ecc71;
+    border: solid 1px #2ecc71;
+}
 .cambiarimagen-button {
     background-color:#faeeed;
     color: #55394a;
