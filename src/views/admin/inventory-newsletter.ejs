@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/bo-header') %>
+            <main>
+                <section class="abm-inventory container">
+                    <%- include('../partials/bo-nav') %>
+                    </div>
+                    <div class="abm-inventory-wrapper">
+                         <h2 class="abm-title-inv">Inventario de Newsletter</h2>
+                        <div class="search-crear-wrapper">
+                            <form action="/" method="POST" class="searchInventario">
+                                <input type="search" maxlength="256" placeholder="Buscar" class="searchFieldInventario">
+                                <button class="searchInven__submit"><i class="fa fa-search"></i></button>
+                            </form>
+                            <a href="/admin/crear" class="botonesInventarioCrear"> Crear</a>
+                        </div>
+
+                        <div class="grid-container">
+                            <div class="grid-item abm-title-tit">
+                                <label>ID</label><br>
+                            </div>
+                            <div class="grid-item abm-title-tit">Emails</div>
+                            <div class="grid-item abm-title-tit">Accion</div>
+
+                            //<% newsletter.forEach(newsletter=> { %>
+
+                                <div class="grid-item checkboxInventario">
+                                    <label> <%=newsletter.id%> </label>
+                                </div>
+                                <div class="grid-item itemInfo">
+                                    <%= newsletter.name %>
+                                </div>
+                                <div class="grid-item itemRecom">
+                                </div>
+                                <div class="grid-item botonesWrapper">
+                                </div>
+                                
+                                <% }) %>
+
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <%- include('../partials/bo-footer') %>
+    </body>
+
+</html>

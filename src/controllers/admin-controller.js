@@ -12,6 +12,7 @@ const bcryptjs = require("bcryptjs");
 //Sequelize Models//
 const db = require("../database/models");
 const User = require("../../src/models/User");
+const { trace } = require('console');
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -228,7 +229,19 @@ const adminController = {
 
         await User.delete(req.params.id);
         return res.redirect('/admin/inventario-usuarios');
+    },
+    inventoryNewsletter: async (req, res)=> {
+        try {
+            let newsletter = await db.Newsletter.findAll();
+            //return res.send({newsletter});
+            return res.render ('/admin/inventario-newsletter', {newsletter})
     }
+    catch(error){
+        console.error(error);
+    }
+}
+
+
 }
 
 module.exports = adminController;

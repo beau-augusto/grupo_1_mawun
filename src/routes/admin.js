@@ -25,6 +25,9 @@ router.get('/inventario-productos', adminController.inventoryProducts);
 /*** DETALLE BO ***/
 router.get('/inventario-usuarios', adminController.inventoryUsers);
 
+/*** DETALLE BO ***/
+router.get('/inventario-newsletter', adminController.inventoryNewsletter);
+
 /*** CREAR UN PRODUCTO ***/
 router.get('/crear', adminController.create);
 router.post('/', uploadProduct.single('image'), validateCreatProduct, adminController.store);
@@ -43,5 +46,9 @@ router.post('/crear-usuario', uploadUser.single('image'), validateCreatUserBO, a
 router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser, adminController.updateUser);
 router.delete('/:id/delete-usuario', adminController.deleteUser);
+
+/*** ELIMINAR EMAIL DEL NEWSLETTER ***/
+
+
 
 module.exports = router;
