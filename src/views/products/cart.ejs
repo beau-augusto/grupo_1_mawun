@@ -21,6 +21,8 @@
                             <div class="grid-item-carrito abm-input-tit-carrito">Cantidad</div>
                             <div class="grid-item-carrito abm-input-tit-carrito">Subtotal</div>
 
+
+                            <% orders.forEach(order=> { %>
                             <div class="grid-item-carrito">
                                 <div class="producto1Carrito">
                                     <img src="\upload\products/el-vino-del-capitan-malbec.jpg" alt="rose"
@@ -32,8 +34,8 @@
                                     </div>
                                 </div>
 
-
                             </div>
+
                             <div class="grid-item-carrito">
                                 <p class="precioCarrito">$480.-</p>
                             </div>
@@ -55,40 +57,7 @@
 
                             </div>
 
-
-
-                            <div class="grid-item-carrito">
-                                <div class="producto1Carrito">
-                                    <img src="\upload\products\stella-crinita-petit-verdot.jpeg" alt="rose"
-                                        class="imagenProductoCarrito">
-
-                                    <div class="nombreProductoCarrito">
-                                        <p class="vinoLineaCarrito">Stella Crinita Petit Verdot</p>
-                                        <p>Bodega Stella Crinita</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="grid-item-carrito">
-                                <p class="precioCarrito">$1370.-</p>
-                            </div>
-                            <div class="grid-item-carrito">
-                                <div class="cajaSumadoraCarrito">
-                                    <!--https://embed.plnkr.co/plunk/B5waxZ-->
-                                    <input type="button" value="-" class="minus"> <input type="tel" value="1"
-                                        name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input
-                                        type="button" value="+" class="plus">
-                                </div>
-                            </div>
-
-                            <div class="grid-item-carrito">
-                                <p class="precioCarrito">$1370.-
-                                    <span>
-                                        <i class="far fa-trash-alt"></i>
-                                    </span>
-                                </p>
-
-                            </div>
+                            <% }) %> 
 
 
                             <div class="grid-item-carrito grid-producto-carrito abm-input-tit-carrito-total">Total</div>
