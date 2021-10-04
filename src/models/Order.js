@@ -2,10 +2,19 @@ const db = require('../database/models'); // Llamo los models de la base de dato
 const { Op } = require("sequelize");
 
 const Order = {
-    all: function() {
-       return db.Order.findAll({
-           include: [{association: "users"}, {association: "items_carrito"}]
-        })
+    all: function(userID) {
+       return db.Order.findAll({ where: {user_id: userID},
+           include:[{association:'items_carrito', include:[{association:'products'}]}, {association: "users"} 
+    ]})
+},
+all1: function() {
+    return db.Order.findAll({limit: 1, order: [["date_created", "DESC"]], raw:true})
+},
+allbyUser: function(userID) {
+    return db.Order.findAll({
+        where: {user_id: userID},
+        include: [{association: "users"}, {association:'items_carrito', include:[{association:'products'}]}, {association: "products"}], raw:true
+     })
 },
     findPK: function (PK) {
          return   db.Order.findByPk(PK, {
@@ -14,6 +23,9 @@ const Order = {
             nested: true
         })
     },
+    findone: function () {
+        return   db.Order.findOne({order: [["date_created", "DESC"]], raw:true})  
+   },
     findByUser: function (userID) {
         return   db.Order.findOne({
             include: [{association: "products"}, {association: "users"}, {association: "items_carrito"}],

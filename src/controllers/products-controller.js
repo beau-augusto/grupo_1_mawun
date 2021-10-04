@@ -45,33 +45,37 @@ const productsController = {
     },
     cart: async (req, res)=> {
         try {
-            
-            let orders = await Order.all()
+            let orders = await Order.all(res.locals.usuarioLogeado.id)
+
             return res.send(orders)
+           // return res.render ('products/cart', {orders: orders});
         } catch (error) {
             
         }
 
-        //res.render ('products/cart');
     },
     addToCart: async (req, res)=> {
         try {
+
             let orderData = {
                 date_created: Date.now(),
-                status: 1,
-                user_id: 3
+                status: 0,
+                user_id: res.locals.usuarioLogeado.id // liga la orden creada con el usuario logeado
             }
-            let test = await Product.findPk(req.params.id)
-            console.log(test);
-            console.log("llega hasta aqui");
 
-            await Order.create(orderData)
-            let association = {
-                quantity: 2,
-                product_id: test.id,
-                order_id: 3
+            await Order.create(orderData);
+        
+
+            let selectedProduct = await Product.findPk(req.params.id); // encuentra el producto selectionado y pasado por params
+            let getOrderId = await Order.findone() // encuentra el id de la orden recien creada
+
+            let order_product = {
+                quantity: 10,
+                product_id: selectedProduct.id,
+                order_id: getOrderId.id
             }
-           await Order.createAssociation(association)
+
+           await Order.createAssociation(order_product)
             return res.redirect('/productos')
         } catch (error) {
             console.log(error);

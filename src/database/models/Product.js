@@ -49,7 +49,6 @@ module.exports = function (sequelize, dataTypes){
             through: "order_products",
             foreignKey: "product_id",
             otherKey: "order_id",
-            timestamps: false
         })
 
         Product.belongsToMany(models.Tag, {
