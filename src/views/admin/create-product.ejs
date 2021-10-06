@@ -21,21 +21,47 @@
                             <% } %>
                         </div>
                         <div class="abm-input-wrap">
-                            <label for="category" class="abm-input-tit">Categoria</label>
-                            <select name="category" id="category" class="abm-input">
-
-                                <option value="">Seleccione Categoría</option>
-                                <% for (let i = 0; i < categorie.length; i++) { %>
-                                    <option value="<%= categorie[i].id %>" >
-                                        <%= categorie[i] %>
+                            <label for="winery" class="abm-input-tit">Bodega</label>
+                            <select name="winery" id="winery" class="abm-input">
+                                <option value="">Seleccione Bodega</option>
+                                <% for (let i = 0; i < wineries.length; i++) { %>
+                                    <option value="<%= wineries[i].id %>" >
+                                        <%= wineries[i].name %>
                                     </option>
                                 <%}%>
-
+                            </select>
+                            <% if (locals.errors && errors.winery) { %>
+                                <p class="abm-input-error"><%= errors.winery.msg %></p>
+                            <% } %> 
+                        </div>
+                    </div>
+                    <div class="abm-input-container">
+                        <div class="abm-input-wrap">
+                            <label for="category" class="abm-input-tit">Categoria</label>
+                            <select name="category[]" id="category" multiple="multiple" class="abm-input">
+                                <% for (let i = 0; i < category.length; i++) { %>
+                                    <option value="<%= category[i].id %>" >
+                                        <%= category[i].name %>
+                                    </option>
+                                <%}%>
                             </select>
                             <% if (locals.errors && errors.category) { %>
                                 <p class="abm-input-error"><%= errors.category.msg %></p>
                             <% } %>
                         </div> 
+                        <div class="abm-input-wrap">
+                            <label for="varietal" class="abm-input-tit">Varietal</label>
+                            <select name="varietal[]" id="varietal" multiple="multiple" class="abm-input">
+                                <% for (let i = 0; i < varietal.length; i++) { %>
+                                    <option value="<%= varietal[i].id %>" >
+                                        <%= varietal[i].name %>
+                                    </option>
+                                <%}%>     
+                            </select>
+                            <% if (locals.errors && errors.varietal) { %>
+                                <p class="abm-input-error"><%= errors.varietal.msg %></p>
+                            <% } %>
+                        </div>
                     </div>
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
@@ -44,34 +70,6 @@
                             <% if (locals.errors && errors.price) { %>
                                 <p class="abm-input-error"><%= errors.price.msg %></p>
                             <% } %>
-                        </div>
-                        <div class="abm-input-wrap">
-                            <label for="varietal" class="abm-input-tit">Varietal</label>
-                            <select name="varietal" id="varietal" class="abm-input">
-                                <option value="">Seleccione Varietal</option>
-                                <% for (let i = 0; i < varietal.length; i++) { %>
-                                    <option value="<%= varietal[i] %>" >
-                                        <%= varietal[i] %>
-                                    </option>
-                                <%}%>     
-                            </select>
-                            <% if (locals.errors && errors.varietal) { %>
-                                <p class="abm-input-error"><%= errors.varietal.msg %></p>
-                            <% } %>
-                        </div>
-                        <div class="abm-input-wrap">
-                            <label for="winery" class="abm-input-tit">Bodega</label>
-                            <select name="winery" id="winery" class="abm-input">
-                                <option value="">Seleccione Bodega</option>
-                                <% for (let i = 0; i < wineries.length; i++) { %>
-                                    <option value="<%= wineries[i].id %>" >
-                                        <%= wineries[i] %>
-                                    </option>
-                                <%}%>
-                            </select>
-                            <% if (locals.errors && errors.winery) { %>
-                                <p class="abm-input-error"><%= errors.winery.msg %></p>
-                            <% } %> 
                         </div>
                         <div class="abm-input-wrap">
                             <label class="abm-input-tit">Recomendado</label>
