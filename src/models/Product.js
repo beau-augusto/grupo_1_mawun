@@ -1,8 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+
 const db = require("../database/models");
 
-const products = {
+const Product = {
 
     findAll: (req, res)=> {
         db.Product.findAll({raw:true})
@@ -20,10 +19,8 @@ const products = {
     
     },
 
-    findByPk: function(id){
-        let allUsers = dbUsers;
-        let userFound = allUsers.find (oneUser => oneUser.id === id);
-        return userFound;
+    findPk: function(id){
+        return db.Product.findByPk(id, {raw:true})
     },
 
     findByField: function(field, text){
@@ -51,4 +48,5 @@ const products = {
     }
 
 }
-module.exports = products;
+
+module.exports = Product;

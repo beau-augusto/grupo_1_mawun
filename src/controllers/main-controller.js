@@ -20,7 +20,7 @@ const mainController = {
                 const viewData = {
                     recommendeds: recommendedProducts
                     }
-                res.render ('index', viewData );
+              return  res.render ('index', viewData );
             })
 
         
@@ -34,17 +34,26 @@ const mainController = {
     newsletterCreate: async (req, res)=> {
         try{
             const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-            if (resultValidation.isEmpty()){
-                db.Newsletter.create({
-                    email: req.body.email
-                });
+console.log(resultValidation);
+
+if (resultValidation.isEmpty()){
+    db.Newsletter.create({
+        email: req.body.email
+    });
+return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
+} else {
+
+    db.Product.findAll({raw:true})
+    .then(function (products){
+        const recommendedProducts = products.filter((product) => product.recommended == 1);
+        
+        return res.render ('index', { 
+            errors: resultValidation.mapped(), 
+            recommendeds: recommendedProducts
+        });  
+        })
     
-            return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
-            } else {
-                return res.render ('/', { 
-                    errors: resultValidation.mapped(), 
-                }); 
-            };
+};
 
         } catch(error){
             console.error(error)
@@ -54,7 +63,7 @@ const mainController = {
         
         
         
-    },
+    }
 }
 
 module.exports = mainController;
