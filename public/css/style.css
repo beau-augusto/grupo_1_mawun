@@ -522,17 +522,18 @@ ul.hero-menu li a:hover {
     margin-top: 10px;
 }
 .precioDP {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 48px;
-    color:rgba(29, 14, 14, 0.8);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    color:#55394a;
+    margin: 15px 0px;
+    letter-spacing: 2px;
 }
 .descripcionDP {
     font-weight: normal;
     font-size: 13px;
-    line-height: 29px;
-    margin-bottom: 4px;
+    line-height: 24px;
+    margin-bottom: 15px;
 }
 /* Íconos en el texto de detalle de compra */
 .iconosProducto {
@@ -1606,11 +1607,11 @@ margin-top: 16px;
 }
 .abm-ratio-wrap {
     font-weight: 300;
-    padding: 10px 10px;
+    padding: 8px 7px;
     margin: 5px 0;
-    background-color: #faeeed;
-    border-radius: 3px;
+    border-radius: 2px;
     display: flex;
+    border: solid 1px rgb(118, 118, 118);
 }
 .abm-ratio-lavel {
         display: flex;
@@ -1626,8 +1627,15 @@ margin-top: 16px;
     font-size: 16px;
     font-weight: 500;
 }
+select{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+}
+select option {
+    color: #666666;
+}
 select:required:invalid {
-    color: gray;
+    color: #744b64;
 }
 option[value=""][disabled] {
     display: none;
