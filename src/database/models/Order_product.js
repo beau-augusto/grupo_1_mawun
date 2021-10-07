@@ -32,6 +32,8 @@ module.exports = function (sequelize, dataTypes){
     Order_product.associate = function (models) {
 
         Order_product.belongsTo(models.Order, {
+            onDelete: "CASCADE",
+            hooks: true,
             as: "orders",
             foreignKey: "order_id"
         }),

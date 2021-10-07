@@ -37,7 +37,7 @@
             <h2>Nuestros Recomendados</h2>
             <div class="divider"></div>
             <div class="product-grid">
-                <% recommendeds.forEach(product => { %>
+                <% product.forEach(product => { %>
                 <article class="product-grid-item">
                     <a href="/productos/detalle/<%= product.id %>">
                         <img src="/upload/products/<%= product.image %>" alt="<%= product.name %>" class="product-grid-img">
@@ -49,15 +49,6 @@
                 <% }) %>
             </div>
         </section>
-        <!-- <section id="ads-banner" class="container">
-            <div class="ads-banner-wrapper">
-                <img src="/images/vino-nr1-home.jpg" alt="Vinos Naturales">
-                <div>
-                    <p>CATENA ZAPATTA</p>
-                    <div class="button-wrap"><a href="#" class="product-grid-button">VER MÁS</a></div> 
-                </div>
-            </div>
-        </section> -->
     </main>
     <%- include('./partials/footer') %>
 </body>
