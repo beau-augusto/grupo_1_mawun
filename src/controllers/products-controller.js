@@ -5,6 +5,7 @@ const path = require('path');
 const db = require("../database/models");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
+const chalk = require('chalk');
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -45,10 +46,49 @@ const productsController = {
     },
     cart: async (req, res)=> {
         try {
-            let orders = await Order.all(res.locals.usuarioLogeado.id)
+            let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)
 
-            return res.send(orders)
-           // return res.render ('products/cart', {orders: orders});
+            
+         // let test = carrito.map(item => console.log(item.dataValues.order_product)) // agarro los items de order_products
+         
+         let carrito = ordenes.map(item => {return {
+             order_id: item.order_id,
+             quantity: item.quantity,
+             id: item.products.id,
+             name: item.products.name,
+             price: Number(item.products.price),
+             image: item.products.image,
+             winery: item.products.winery.name,
+             user_id: item.orders.user_id
+            }})
+
+            let quantities = ordenes.map(item =>  
+                item.quantity * Number(item.products.price) // multiplico la cantidad por el precio de cada producto y lo meto en un array
+               )
+
+            let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
+            
+       // let quantities = carrito.map(item => item.quantity)
+
+
+
+
+
+
+        //let quantity = itemsCarrito.map((item) => item.quantity)
+
+       // let product = itemsCarrito.map((item) => item.products)
+
+      //  let bodega = itemsCarrito.map((item) => item.products.winery.name)
+           // let products = itemsCarrito.map(((product) => product.products))
+
+           // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity}))
+           
+          // let datos = carrito.map(item => item.items_carrito.id)
+
+           // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
+//return res.send(carrito)
+         return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
         } catch (error) {
             
         }
@@ -57,30 +97,40 @@ const productsController = {
     addToCart: async (req, res)=> {
         try {
 
-            let orderData = {
-                date_created: Date.now(),
-                status: 0,
-                user_id: res.locals.usuarioLogeado.id // liga la orden creada con el usuario logeado
-            }
-
-            await Order.create(orderData);
+           let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
         
-
-            let selectedProduct = await Product.findPk(req.params.id); // encuentra el producto selectionado y pasado por params
-            let getOrderId = await Order.findone() // encuentra el id de la orden recien creada
-
-            let order_product = {
-                quantity: 10,
-                product_id: selectedProduct.id,
-                order_id: getOrderId.id
+            let associationData = { // arma el objeto para crear una fila en la table order_product
+                quantity: 2, 
+                product_id: req.params.id, // toma el id del producto
+                order_id: newOrder.id // toma el id del order recien creado 
             }
 
-           await Order.createAssociation(order_product)
-            return res.redirect('/productos')
+           await Order.createAssociation(associationData) // un metodo para crear en la table pivote
+          return res.redirect('/productos')
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+    deleteCart: async (req, res) => {
+        try {
+            await Order.deleteCarrito(req.params.id); // borra desde el id de la orden
+
+            return res.redirect('/productos/carrito')
+        } catch (error) {
+            
+        }
+
+    },
+    comprar: async (req, res) => {
+        try {
+            await Order.comprar1(req.params.id)
+            return res.render('products/thanks-purchase')
+        
+        } catch (error) {
+            
+        }
+        
+            },
 };
 
 module.exports = productsController;

@@ -2,13 +2,41 @@ const db = require('../database/models'); // Llamo los models de la base de dato
 const { Op } = require("sequelize");
 
 const Order = {
-    all: function(userID) {
+all: function(userID) {
        return db.Order.findAll({ where: {user_id: userID},
            include:[{association:'items_carrito', include:[{association:'products'}]}, {association: "users"} 
     ]})
 },
+carrito: function(userID) {
+    return db.Order_product.findAll({
+        include:[
+            {association:'products', include:[{association:'winery'}]}, {association:'orders',
+        where: {user_id: userID, status: 0}}
+        ]
+})
+},
+deleteCarrito: function (orderID){
+    return db.Order.destroy({
+        where: {id: orderID}}  
+)
+},
+comprar: function (userID){
+    return db.Order.findAll({
+        where: {user_id: userID, status: 0}
+})
+},
+comprar1: function(userID) {
+    return db.Order.update({status: 1},{
+          where: {user_id: userID, status: 0}
+     });
+    },
+changeState: function (userID){
+    return db.Order.findAll({
+        where: {user_id: userID, status: 0}
+})
+},
 all1: function() {
-    return db.Order.findAll({limit: 1, order: [["date_created", "DESC"]], raw:true})
+    return db.Order.findAll({limit: 1, order: [["created_at", "DESC"]], raw:true})
 },
 allbyUser: function(userID) {
     return db.Order.findAll({
@@ -24,7 +52,7 @@ allbyUser: function(userID) {
         })
     },
     findone: function () {
-        return   db.Order.findOne({order: [["date_created", "DESC"]], raw:true})  
+        return   db.Order.findOne({order: [["created_at", "DESC"]], raw:true})  
    },
     findByUser: function (userID) {
         return   db.Order.findOne({
@@ -55,10 +83,10 @@ allbyUser: function(userID) {
             })  
      },
     create: function(orderData) {
-        return db.Order.create(orderData, {include: [{association: "items_carrito"}]})
+        return db.Order.create(orderData)
     },
-    createAssociation: function(orderData) {
-        return db.Order_product.create(orderData)
+    createAssociation: function(data) {
+        return db.Order_product.create(data);
     },
     update: function(userData, ID) {
        return db.User.update(userData,

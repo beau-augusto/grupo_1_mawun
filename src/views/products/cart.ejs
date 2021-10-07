@@ -10,71 +10,93 @@
 
                     <h2 class="abm-title-inv">Carrito</h2>
 
-                    <div class="abm-inventory-wrapper">
+                    <div class="abm-inventory-wrapper carritoWrapper">
 
 
-                        <div class="carrito-grid-container">
+                
+                        <div class="carrito-product-container">
+                   <% if(orders == [] && sum == []) { %>
+                
+                 <h1>Tu carrito esta vacío!</h1>
 
-
-                            <div class="grid-item-carrito abm-input-tit-carrito grid-producto-carrito">Producto</div>
-                            <div class="grid-item-carrito abm-input-tit-carrito">Precio</div>
-                            <div class="grid-item-carrito abm-input-tit-carrito">Cantidad</div>
-                            <div class="grid-item-carrito abm-input-tit-carrito">Subtotal</div>
-
+                 <% } %> 
 
                             <% orders.forEach(order=> { %>
-                            <div class="grid-item-carrito">
-                                <div class="producto1Carrito">
-                                    <img src="\upload\products/el-vino-del-capitan-malbec.jpg" alt="rose"
+                                <div class="productoCarrito">
+                                    <img src="\upload\products/<%=order.image%>" alt="rose"
                                         class="imagenProductoCarrito">
 
                                     <div class="nombreProductoCarrito">
-                                        <p class="vinoLineaCarrito">El vino del Capitán Malbec</p>
-                                        <p>Bodega Vinecol</p>
+                                        <div>
+                                        <div class="vinoLineaCarrito"><%=order.name%></div>
+                                        <div class="wineryCarrito"><%=order.winery%></div>
+                                        <div class="precioCarrito">$<%=order.price%></div>
+                                        </div>
+
+                                        <div class="sumadorTrash">
+
+                                        <div class="cajaSumadoraCarrito">
+                                            <input type="button" value="-" class="minus"> <input type="tel" value="<%=order.quantity%>"
+                                                name="sumador" class="sumadorCarrito" maxlength="1" step="1" min="1" max=""><input
+                                                type="button" value="+" class="plus">
+                                            </div>
+                                                <div>
+                                                    <form action="/productos/carrito/<%=order.order_id%>/delete?_method=DELETE" method="POST">
+                                                    <input type="submit" name="trashIcon" id="trashIcon" class="trashButtonCarrito" style="display:none;">
+                                                    <label for="trashIcon"><i class="far fa-trash-alt"></i></label>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="grid-item-carrito">
-                                <p class="precioCarrito">$480.-</p>
-                            </div>
-                            <div class="grid-item-carrito">
-                                <div class="cajaSumadoraCarrito">
-                                    <!--https://embed.plnkr.co/plunk/B5waxZ-->
-                                    <input type="button" value="-" class="minus"> <input type="tel" value="3"
-                                        name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input
-                                        type="button" value="+" class="plus">
-                                </div>
-                            </div>
-
-                            <div class="grid-item-carrito">
-                                <p class="precioCarrito">$1440.-
-                                    <span>
-                                        <i class="far fa-trash-alt"></i>
-                                    </span>
-                                </p>
-
-                            </div>
-
                             <% }) %> 
 
+                        </div>
+                        <div class="sticky-total">
 
-                            <div class="grid-item-carrito grid-producto-carrito abm-input-tit-carrito-total">Total</div>
-                            <div class="grid-item-carrito"></div>
-                            <div class="grid-item-carrito"></div>
-                            <div class="grid-item-carrito total-carrito">$2810-</div>
+                            <div> <h2 class="resumenTitle">Resumen</h1></div>
 
+                                <% orders.forEach(order=> { %>
 
+                                <div class="itemResumen">
 
+                                    <div class="nombreCantidadResumen">
+                                    <div class="nombreResumen"><%=order.name%></div>
+                                    <div>Cantidad:<%=order.quantity%></div>
+                                    </div>
 
+                                    <div class="subtotalResumen">$<%= order.price * order.quantity%> %></div>
+
+                                </div>
+                                <div class="hrResumen">
+                                    <hr>
+                                </div>
+
+                                <% }) %> 
+
+                                
+                                <div class="itemResumenLast">
+
+                                    <div class="totalResumen">
+                                    Total
+                                    </div>
+
+         
+
+                                    <div class="totalResumen"><%= sum ? sum : "00-"%></div>
+                              
+                                </div>
+                            
+                            
+                            
+                            <section class="botones-carrito">
+                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : ""%>/comprar?_method=PUT" method="POST">
+                                <button class="finalizarCompra">Finalizar compra</button>
+                            </form>
+                            </section>
 
                         </div>
-                        <section class="botones-carrito">
-                            <div class="actualizarCarrito">Actualizar carrito</div>
-                            <div class="finalizarCompra">Finalizar compra</div>
-                        </section>
-
                     </div>
                 </section>
             </main>
