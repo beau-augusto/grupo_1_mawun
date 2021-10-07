@@ -13,17 +13,15 @@ const db = require("../database/models");
 //const emails = JSON.parse(fs.readFileSync(emailFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
 
 const mainController = {
-    index: (req, res)=> {
-        db.Product.findAll({raw:true})
-            .then(function (products){
-                const recommendedProducts = products.filter((product) => product.recommended == 1);
-                const viewData = {
-                    recommendeds: recommendedProducts
-                    }
-              return  res.render ('index', viewData );
-            })
+    index: async (req, res)=> {
+        try{
+            let product = await db.Product.findAll( {where: {recommended: 1}}) //Consulta a la Db listado de Productos
+             
+            return  res.render ('index', {product} );
 
-        
+        } catch (error) {
+            console.error(error);
+        } 
     },
     contact: (req, res)=> {
         res.render ('contact');
