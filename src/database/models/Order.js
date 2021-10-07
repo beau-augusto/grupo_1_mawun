@@ -7,13 +7,12 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        date_created: {
+        createdAt: {
+            field: 'created_at',
             type: dataTypes.DATE,
-            allowNull: false
         },
         status: {
             type: dataTypes.INTEGER,
-            allowNull: false
         },
         user_id:{
             type: dataTypes.INTEGER,
@@ -23,7 +22,7 @@ module.exports = (sequelize, dataTypes) => {
 
     let config = {
         tableName: "orders",
-        timestamps: false
+        updatedAt: false
     };
 
     const Order = sequelize.define(alias, cols, config);
@@ -42,7 +41,9 @@ module.exports = (sequelize, dataTypes) => {
         })
 
         Order.hasMany(models.Order_product,{
-            as: "items_carrito",   //** chequear **
+            onDelete: "CASCADE",
+            hooks: true,
+            as: "order_product",   //** chequear **
             foreignKey: "order_id"
         })
 
