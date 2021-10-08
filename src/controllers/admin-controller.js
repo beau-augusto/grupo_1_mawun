@@ -307,9 +307,19 @@ const adminController = {
     catch(error){
         console.error(error);
     }
+},
+deleteNewsletter: async (req, res) => {
+    try{
+        await db.Newsletter.destroy({where: {id: req.params.id}});
+        return res.redirect('/admin/inventario-newsletter');
+    }
+    catch(error){
+        console.error(error);
 }
 
+},
 
 }
+
 
 module.exports = adminController;
