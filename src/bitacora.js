@@ -4,6 +4,8 @@
 // 3. https://docs.sendgrid.com/for-developers/sending-email/v2-nodejs-code-example
 // 4. json2cvs json-2-csv
 
+// como funciona github en tu perfil cuando estas subiendo al repo de otra persona
+
 // Preguntas para Juan y Guido
 ////  por que no funciona order_products como alias en el modelo order
 
