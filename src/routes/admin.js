@@ -32,6 +32,7 @@ router.delete('/:id/delete', adminController.deleteProduct);
 router.get('/perfil/:id', adminController.profile); // Perfil de Usuario BO
 router.get('/crear-usuario', adminController.createUser);
 router.post('/crear-usuario', uploadUser.single('image'), validateCreatUserBO, adminController.storeUser);
+router.get('/buscar-usuario', adminController.searchUser);
 
 router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser, adminController.updateUser);
