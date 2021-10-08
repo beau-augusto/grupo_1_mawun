@@ -49,7 +49,7 @@
 // Agregar campo apartment number
 
 
-// cambie var 25 a 50 en imagen 
+
 
 
 

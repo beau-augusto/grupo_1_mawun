@@ -15,11 +15,8 @@
 
                 
                         <div class="carrito-product-container">
-                   <% if(orders == [] && sum == []) { %>
                 
-                 <h1>Tu carrito esta vacío!</h1>
-
-                 <% } %> 
+                 <h1 class="carritoVacio" <%if (sum) { %> style="display: none;" <% } %> >¡Tu carrito esta vacío!</h1>
 
                             <% orders.forEach(order=> { %>
                                 <div class="productoCarrito">
@@ -66,7 +63,7 @@
                                     <div>Cantidad:<%=order.quantity%></div>
                                     </div>
 
-                                    <div class="subtotalResumen">$<%= order.price * order.quantity%> %></div>
+                                    <div class="subtotalResumen">$<%= order.price * order.quantity%> </div>
 
                                 </div>
                                 <div class="hrResumen">
@@ -84,7 +81,7 @@
 
          
 
-                                    <div class="totalResumen"><%= sum ? sum : "00-"%></div>
+                                    <div class="totalResumen"><%= sum ? sum : "00.-"%></div>
                               
                                 </div>
                             
@@ -102,6 +99,7 @@
             </main>
             <main>
                 <%- include('../partials/footer') %>
+                <script src="/javascript/js-front.js" type="text/javascript"></script>
     </body>
 
 </html>

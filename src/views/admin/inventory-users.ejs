@@ -13,9 +13,9 @@
                         <h2 class="abm-title-inv">Inventario de Usuarios</h2>
                         <div class="search-crear-wrapper">
 
-                            <form action="/" method="POST" class="searchInventario">
-                                <input type="search" maxlength="256" placeholder="Buscar" class="searchFieldInventario">
-                                <button class="searchInven__submit"><i class="fa fa-search"></i></button>
+                            <form action="/admin/buscar-usuario" method="GET" class="searchInventario">
+                                <input type="text" maxlength="256" name="fuckingBug" placeholder="Buscar" class="searchFieldInventario">
+                                <button type="submit" class="searchInven__submit"><i class="fa fa-search"></i></button>
                             </form>
 
                             <a href="/admin/crear-usuario" class="botonesInventarioCrear"> Crear</a>
@@ -26,8 +26,7 @@
 
 
                             <div class="grid-item abm-input-tit">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                <label for="vehicle1"> ID</label><br>
+                                <label>ID</label><br>
                             </div>
                             <div class="grid-item abm-input-tit">Nombre</div>
                             <div class="grid-item abm-input-tit">Role</div>
@@ -37,8 +36,7 @@
 
                                 <div class="grid-item checkboxInventario">
 
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"
-                                        class="checkboxCheck">
+
                                     <label for="vehicle1">
                                         <%=user.id%>
                                     </label>
