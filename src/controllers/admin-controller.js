@@ -36,7 +36,7 @@ const adminController = {
                 console.error(error);
         }
     },
-    createProduct:  async (req, res) => {
+    createProduct: async (req, res) => {
         try{
             let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
             let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
@@ -94,7 +94,41 @@ const adminController = {
             console.error(error);
         } 
     },
-    editProduct: (req, res) => {
+    editProduct: async (req, res) => {
+        try{
+            let product = await db.Product.findByPk (req.params.id, { include:[{association:'product_tag', include:[{association:'tag_types'}, {association:'tags'}]} 
+            ]});
+
+            let productCategories = product.product_tag.filter((tag) => tag.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = categoria
+
+                productCategories = productCategories.map(v => v.tags.id) //Relaizó un map para obtener unicamente los nombres
+
+                let productVarietals = product.product_tag.filter((tag) => tag.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+                productVarietals = productVarietals.map(v => v.tags.id)//Relaizó un map para obtener unicamente los nombres 
+
+                product.dataValues.productCategories = productCategories; //sumo al array de productos la categorias previamente mapeada
+                product.dataValues.productVarietals  = productVarietals ; //sumo al array de productos la varietales previamente mapeada
+
+
+
+            let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
+            let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
+
+            let varietal = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+            varietal = varietal.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
+            let category = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = Categoria
+            category = category.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres  e id
+            wineries = wineries.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
+            //return res.send({product, varietal, wineries, category})
+             
+            return  res.render ('admin/edit-product', {product, varietal, wineries, category});
+
+        } catch (error) {
+            console.error(error);
+        } 
+
         const id = req.params.id; // Obtengo el parámetro para buscar el recurso
         const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
 

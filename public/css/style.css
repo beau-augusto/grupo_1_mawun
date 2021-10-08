@@ -1576,7 +1576,7 @@ margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 .abm-input-wrap{
     display: flex;
@@ -1604,6 +1604,17 @@ margin-top: 16px;
     font-weight: 300;
     padding: 10px 10px;
     margin: 5px 0;
+}
+.abm-img-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 50%;
+}
+.abm-img {
+    width: 140px;
+    box-shadow: 4px 4px 7px 0 rgb(0 0 0 / 15%);
 }
 .abm-ratio-wrap {
     font-weight: 300;
