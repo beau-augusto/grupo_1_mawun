@@ -1019,6 +1019,17 @@ margin-top: 16px;
     align-items: flex-start;
 }
 
+.carritoVacio {
+    margin-top: 101px;
+    font-size: 29px;
+    text-align: center;
+}
+
+.graciasCarrito {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
 .abm-input-tit-carrito {
     color: #412838;
     font-size: 19px;
@@ -1058,7 +1069,9 @@ margin-top: 16px;
     border-radius: 9px;
     padding: 0px 16px 16px 16px;
     margin: 41px 105px;
+    position: sticky;
 }
+
 
 .sticky-total hr {
     display: block; height: 1px;
@@ -1072,6 +1085,7 @@ margin-top: 16px;
     padding-left: 13px;
     padding-right: 13px;
 }
+
 
 
 .itemResumenLast {
@@ -1091,14 +1105,13 @@ margin-top: 16px;
 }
 
 .hrResumen:last-child {
-    margin: 12px 0px;
     display: none;
 }
 
 .resumenTitle {
     text-align: left;
     margin-bottom: 27px;
-    text-align: left
+    text-align: left;
 }
 
 .totalResumen {

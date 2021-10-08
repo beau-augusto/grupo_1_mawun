@@ -250,6 +250,20 @@ const adminController = {
         console.error(error);
     }
     },
+    searchUser: async (req, res) => {
+
+        try {
+            let userSearched = await User.search(req.query.fuckingBug); // encuentra un usuario por su PK
+            if (userSearched) {
+                return res.render('./admin/inventory-users', { users: userSearched });
+            } else {
+                res.send('El usuario que buscás no existe.')
+            }
+        } catch (error) {
+            console.error(error)
+        }
+        
+    },
     editUser: async (req, res) => {
 
         try {
@@ -330,9 +344,19 @@ const adminController = {
     catch(error){
         console.error(error);
     }
+},
+deleteNewsletter: async (req, res) => {
+    try{
+        await db.Newsletter.destroy({where: {id: req.params.id}});
+        return res.redirect('/admin/inventario-newsletter');
+    }
+    catch(error){
+        console.error(error);
 }
 
+},
 
 }
+
 
 module.exports = adminController;
