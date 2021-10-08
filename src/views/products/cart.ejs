@@ -7,19 +7,12 @@
 
             <main>
                 <section class="abm-inventory container">
-
                     <h2 class="abm-title-inv">Carrito</h2>
-
                     <div class="abm-inventory-wrapper carritoWrapper">
-
-
-                
                         <div class="carrito-product-container">
-                   <% if(orders == [] && sum == []) { %>
-                
-                 <h1>Tu carrito esta vacío!</h1>
-
-                 <% } %> 
+                            <% if(orders == [] && sum == []) { %>
+                            <h1>Tu carrito esta vacío!</h1>
+                            <% } %> 
 
                             <% orders.forEach(order=> { %>
                                 <div class="productoCarrito">
@@ -53,49 +46,51 @@
                             <% }) %> 
 
                         </div>
-                        <div class="sticky-total">
+                        <div style="position: relative;">
+                            <div class="sticky-total">
 
-                            <div> <h2 class="resumenTitle">Resumen</h1></div>
+                                <div> <h2 class="resumenTitle">Resumen</h1></div>
 
-                                <% orders.forEach(order=> { %>
+                                    <% orders.forEach(order=> { %>
 
-                                <div class="itemResumen">
+                                    <div class="itemResumen">
 
-                                    <div class="nombreCantidadResumen">
-                                    <div class="nombreResumen"><%=order.name%></div>
-                                    <div>Cantidad:<%=order.quantity%></div>
+                                        <div class="nombreCantidadResumen">
+                                        <div class="nombreResumen"><%=order.name%></div>
+                                        <div>Cantidad:<%=order.quantity%></div>
+                                        </div>
+
+                                        <div class="subtotalResumen">$<%= order.price * order.quantity%> %></div>
+
+                                    </div>
+                                    <div class="hrResumen">
+                                        <hr>
                                     </div>
 
-                                    <div class="subtotalResumen">$<%= order.price * order.quantity%> %></div>
+                                    <% }) %> 
 
-                                </div>
-                                <div class="hrResumen">
-                                    <hr>
-                                </div>
+                                    
+                                    <div class="itemResumenLast">
 
-                                <% }) %> 
+                                        <div class="totalResumen">
+                                        Total
+                                        </div>
 
+            
+
+                                        <div class="totalResumen"><%= sum ? sum : "00-"%></div>
                                 
-                                <div class="itemResumenLast">
-
-                                    <div class="totalResumen">
-                                    Total
                                     </div>
+                                
+                                
+                                
+                                <section class="botones-carrito">
+                                    <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : ""%>/comprar?_method=PUT" method="POST">
+                                    <button class="finalizarCompra">Finalizar compra</button>
+                                </form>
+                                </section>
 
-         
-
-                                    <div class="totalResumen"><%= sum ? sum : "00-"%></div>
-                              
-                                </div>
-                            
-                            
-                            
-                            <section class="botones-carrito">
-                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : ""%>/comprar?_method=PUT" method="POST">
-                                <button class="finalizarCompra">Finalizar compra</button>
-                            </form>
-                            </section>
-
+                            </div>
                         </div>
                     </div>
                 </section>

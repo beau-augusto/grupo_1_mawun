@@ -15,7 +15,7 @@ const productsController = {
             let products = await db.Product.findAll({ order:[['name','ASC']]})
             return res.render ('products/index', {products});
         } catch (error) {
-                console.error(error);
+            console.error(error);
         }
     },
     detail: async (req, res)=> {
@@ -46,51 +46,40 @@ const productsController = {
     },
     cart: async (req, res)=> {
         try {
-            let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)
-
-            
-         // let test = carrito.map(item => console.log(item.dataValues.order_product)) // agarro los items de order_products
+            let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)  
+            //let test = carrito.map(item => console.log(item.dataValues.order_product)) // agarro los items de order_products
          
-         let carrito = ordenes.map(item => {return {
-             order_id: item.order_id,
-             quantity: item.quantity,
-             id: item.products.id,
-             name: item.products.name,
-             price: Number(item.products.price),
-             image: item.products.image,
-             winery: item.products.winery.name,
-             user_id: item.orders.user_id
+        let carrito = ordenes.map(item => {return {
+            order_id: item.order_id,
+            quantity: item.quantity,
+            id: item.products.id,
+            name: item.products.name,
+            price: Number(item.products.price),
+            image: item.products.image,
+            winery: item.products.winery.name,
+            user_id: item.orders.user_id
             }})
 
-            let quantities = ordenes.map(item =>  
-                item.quantity * Number(item.products.price) // multiplico la cantidad por el precio de cada producto y lo meto en un array
-               )
+        let quantities = ordenes.map(item =>  
+            item.quantity * Number(item.products.price) // multiplico la cantidad por el precio de cada producto y lo meto en un array
+        )
 
-            let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
+        let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
             
-       // let quantities = carrito.map(item => item.quantity)
-
-
-
-
-
-
+        //let quantities = carrito.map(item => item.quantity)
         //let quantity = itemsCarrito.map((item) => item.quantity)
+        //let product = itemsCarrito.map((item) => item.products)
+        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
+        //let products = itemsCarrito.map(((product) => product.products))
+        //let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
+        //let datos = carrito.map(item => item.items_carrito.id)
+        //name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
+        //return res.send(carrito)
 
-       // let product = itemsCarrito.map((item) => item.products)
-
-      //  let bodega = itemsCarrito.map((item) => item.products.winery.name)
-           // let products = itemsCarrito.map(((product) => product.products))
-
-           // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity}))
-           
-          // let datos = carrito.map(item => item.items_carrito.id)
-
-           // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-//return res.send(carrito)
          return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
+
         } catch (error) {
-            
+            console.error(error);
         }
 
     },
@@ -117,7 +106,7 @@ const productsController = {
 
             return res.redirect('/productos/carrito')
         } catch (error) {
-            
+            console.log(error);
         }
 
     },
@@ -127,10 +116,10 @@ const productsController = {
             return res.render('products/thanks-purchase')
         
         } catch (error) {
-            
+            console.log(error);
         }
         
-            },
+    },
 };
 
 module.exports = productsController;

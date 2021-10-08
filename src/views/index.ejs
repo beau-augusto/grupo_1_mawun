@@ -43,8 +43,10 @@
                         <img src="/upload/products/<%= product.image %>" alt="<%= product.name %>" class="product-grid-img">
                         <h4><%= product.name %></h4>
                         <p class="product-grid-title">$<%= product.price %></p>
-                        <div class="button-wrap"><a href="/productos/carrito" class="product-grid-button">AGREGAR AL CARRITO</a></div>
-                    </a> 
+                    </a>
+                    <form action="/productos/carrito/<%=product.id%>" method="POST" class="button-wrap">
+                        <button class="product-grid-button">AGREGAR AL CARRITO</button>
+                    </form>
                 </article>
                 <% }) %>
             </div>
