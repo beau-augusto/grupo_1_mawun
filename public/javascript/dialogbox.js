@@ -41,7 +41,6 @@ $('#dialogbox').dialog({
 
     $('.borrarUsuario').on('click', function(event){
        var source = event.target.id;
-      console.log(source);
         $('#dialogbox').dialog("open");
        event.preventDefault();
     })

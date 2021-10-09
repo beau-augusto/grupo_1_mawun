@@ -32,7 +32,7 @@ const mainController = {
     newsletterCreate: async (req, res)=> {
         try{
             const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-console.log(resultValidation);
+ (resultValidation);
 
 if (resultValidation.isEmpty()){
     db.Newsletter.create({
