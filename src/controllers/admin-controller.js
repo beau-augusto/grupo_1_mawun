@@ -13,6 +13,7 @@ const bcryptjs = require("bcryptjs");
 const db = require("../database/models");
 const User = require("../../src/models/User");
 const { trace } = require('console');
+const Product = require('../models/Product');
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -58,7 +59,6 @@ const adminController = {
 
         try{
             const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
-        
             if (errors.isEmpty()) { // Si errores de express Validator viene vacio continuo
                 const productToCreate = {  //Obtengo la informacion del formulario y la creo 
                     name: req.body.product_name,
@@ -68,7 +68,6 @@ const adminController = {
                     description: req.body.description,
                     image: req.file.filename,
                 }
-
                 let varietalTags = {varietals: req.body.varietal};
                 let categoryTags = {categories: req.body.category};
     
@@ -76,9 +75,8 @@ const adminController = {
 
                 varietalTags = varietalTags.varietals.map(v => {return { product_id: productCreated.id, tag_type_id: 2, tag_id: Number(v)}});
                 categoryTags = categoryTags.categories.map(c => {return { product_id: productCreated.id, tag_type_id: 1, tag_id: Number(c)}});
-                
-                await db.Product_tag.bulkCreate(varietalTags);
 
+                await db.Product_tag.bulkCreate(varietalTags);
                 await db.Product_tag.bulkCreate(categoryTags);
 
                 return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
@@ -96,18 +94,18 @@ const adminController = {
     },
     editProduct: async (req, res) => {
         try{
+            
             let product = await db.Product.findByPk (req.params.id, { include:[{association:'product_tag', include:[{association:'tag_types'}, {association:'tags'}]} 
             ]});
 
             let productCategories = product.product_tag.filter((tag) => tag.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = categoria
+            productCategories = productCategories.map(v => v.tags.id) //Relaizó un map para obtener unicamente los nombres
 
-                productCategories = productCategories.map(v => v.tags.id) //Relaizó un map para obtener unicamente los nombres
+            let productVarietals = product.product_tag.filter((tag) => tag.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+            productVarietals = productVarietals.map(v => v.tags.id)//Relaizó un map para obtener unicamente los nombres 
 
-                let productVarietals = product.product_tag.filter((tag) => tag.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
-                productVarietals = productVarietals.map(v => v.tags.id)//Relaizó un map para obtener unicamente los nombres 
-
-                product.dataValues.productCategories = productCategories; //sumo al array de productos la categorias previamente mapeada
-                product.dataValues.productVarietals  = productVarietals ; //sumo al array de productos la varietales previamente mapeada
+            product.dataValues.productCategories = productCategories; //sumo al array de productos la categorias previamente mapeada
+            product.dataValues.productVarietals  = productVarietals ; //sumo al array de productos la varietales previamente mapeada
 
 
 
@@ -121,35 +119,60 @@ const adminController = {
             category = category.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres  e id
             wineries = wineries.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
 
-            //return res.send({product, varietal, wineries, category})
-             
+            //return res.send({product, varietal, wineries, category});
             return  res.render ('admin/edit-product', {product, varietal, wineries, category});
 
         } catch (error) {
             console.error(error);
-        } 
-
-        const id = req.params.id; // Obtengo el parámetro para buscar el recurso
-        const product = products.find((prod) => prod.id == id); // Busco si esta el pruducto
-
-        if (!product) {
-            return res.send('No pudimos encotrar ese Producto')
-        };
-
-        const viewData = { product };
-        return res.render('admin/edit-product', viewData);
+        }
+        
     },
-    updateProduct: (req, res) => {
-        const indexProduct = products.findIndex(product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
+    updateProduct: async (req, res) => {
+
+        try{
+            let productData = await db.Product.findByPk (req.params.id); // encuentra un Producto por id
+
+            req.body.image = req.file ? req.file.filename : productData.image;
+
+            const productToUpdate = {  //Obtengo la informacion del formulario y la creo 
+                name: req.body.product_name,
+                price: Number(req.body.price),
+                winery_id: Number(req.body.winery),
+                recommended: Number(req.body.recommended),
+                description: req.body.description,
+                image: req.body.image,
+            }
+            let varietalTags = {varietals: req.body.varietal};
+            let categoryTags = {categories: req.body.category};
+
+
+
+            let productUpdated = await db.Product.update(productToUpdate, { where: {id: req.params.id} });
+
+            return res.send(productUpdated)
+
+            varietalTags = varietalTags.varietals.map(v => {return { product_id: req.params.id, tag_type_id: 2, tag_id: Number(v)}});
+            categoryTags = categoryTags.categories.map(c => {return { product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
+
+            await db.Product_tag.bulkCreate(varietalTags);
+            await db.Product_tag.bulkCreate(categoryTags);
+
+            return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
+
+        } catch(error) {
+            console.error(error);
+        }
+
+       /*  const indexProduct = products.findIndex(product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
 
         req.body.image = req.file ? req.file.filename : req.file.filename;
 
         products[indexProduct] = { ...products[indexProduct], ...req.body };
         // si tengo req.file me estan enviando nvo archivo si no req.file.filename
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+        //fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
 
-        return res.redirect(303, '/admin/inventario-productos');
+        return res.redirect(303, '/admin/inventario-productos'); */
     },
     deleteProduct: (req, res) => {
 
@@ -332,9 +355,19 @@ const adminController = {
     catch(error){
         console.error(error);
     }
+},
+deleteNewsletter: async (req, res) => {
+    try{
+        await db.Newsletter.destroy({where: {id: req.params.id}});
+        return res.redirect('/admin/inventario-newsletter');
+    }
+    catch(error){
+        console.error(error);
 }
 
+},
 
 }
+
 
 module.exports = adminController;

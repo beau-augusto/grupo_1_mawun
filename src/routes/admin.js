@@ -39,6 +39,7 @@ router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser
 router.delete('/:id/delete-usuario', adminController.deleteUser);
 
 /*** ELIMINAR EMAIL DEL NEWSLETTER ***/
+router.delete('/:id/delete-email', adminController.deleteNewsletter);
 
 
 
