@@ -7,6 +7,16 @@ const methodOverride =  require('method-override'); // Para poder usar los méto
 const expressSession = require('express-session') // Para poder usar los Session
 const createError = require('http-errors');
 
+//***** Jquery and Jsdom *****//
+
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+const $ = require('jquery')(window);
+
+
 //***** Express *****//
 const app = express();
 

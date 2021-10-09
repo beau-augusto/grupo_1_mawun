@@ -200,7 +200,7 @@ const adminController = {
     },
     storeUser: async (req, res) => {
 
-        const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
+        const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error   
         try {
         req.body.image = req.file ? req.file.filename : "";
         if (resultValidation.isEmpty()) {
@@ -231,11 +231,22 @@ const adminController = {
 
         try {
             let userSearched = await User.search(req.query.fuckingBug); // encuentra un usuario por su PK
-            if (userSearched) {
-                return res.render('./admin/inventory-users', { users: userSearched });
-            } else {
-                res.send('El usuario que buscás no existe.')
+
+            if(userSearched.length === 0){ // logica cuando no se encuentra el usuario
+
+                let usernotFound = [];
+
+                let error = { notFound :{
+                    msg: "No hay un usuario con estas características"
+                }};
+
+                console.log(error);
+
+                return res.render('./admin/inventory-users', { users: usernotFound, errors: error});
             }
+
+                return res.render('./admin/inventory-users', { users: userSearched });
+
         } catch (error) {
             console.error(error)
         }
