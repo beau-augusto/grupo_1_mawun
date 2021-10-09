@@ -71,39 +71,30 @@ const usersController = {
                     const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
                     const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
                     const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
-                         (idVisitado);
-                         (url);
-                         ("req.session.redirect.admin");
-                
 
                 if(url == "carrito"){
-                     ("carrito esta admin");
+               
                     if(idVisitado){
-                         ("existe id visitado admin");
+                      
 
                         return res.redirect(`/productos/detalle/${idVisitado}`)
                     } else {
-                         ("no existe id admin");
                         return res.redirect('/productos/carrito')
                     }
                 }} else {
 
-                    console.log("carrito no esta");
 
                     return res.redirect ('/admin/dashboard')
                 }
                 }
                   else {
 
-                    console.log("visitante");
 
                 if(req.body.remember){
-                    console.log("cookie visitante");
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
 
                 }
                     if(req.session.redirect){
-                        console.log("req.session.redirect.visitante");
                     const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
                     const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
                     const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
@@ -113,21 +104,17 @@ const usersController = {
                     if(url == "carrito"){
                         if(idVisitado){
 
-                        console.log("carrito visitante con idVisitado");
                         return res.redirect(`/productos/detalle/${idVisitado}`)
                     } else {
 
-                        console.log("carrito visitante sin idVisitado");
                         return res.redirect("/productos");
                     }}
 
             } else {
-                console.log("carrito no esta visitante");
                 return res.redirect("/productos");
             }
 
         }} else {
-            console.log("errores");
 
             // Si hay errores, devuelvo la pagina de login con los errores en formato de JSON u objeto literal. 
 

@@ -31,15 +31,20 @@
                 
             </div>
             <div class="iconosProducto">
-                <div class="cajaSumadora">
-                    <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" class="sumador" maxlength="1" step="1" min="1" max=""><input type="button" value="+" class="plus">
-                </div>
+                <div>
                 <form action="/productos/carrito/<%=product.id%>" method="POST">
+                <div class="cajaSumadora">
+                <input type="button" value="-" class="minus"> <input type="tel" value="1" name="sumador" id="sumador" class="sumador" maxlength="2" step="1" min="1" max=""><input type="button" value="+" class="plus">
+                </div>
+                </div>
                 <button class="agregarCarrito">AGREGAR AL CARRITO</button>
                 </form>
         </article>
     </main>
     <%- include('../partials/footer') %>
+
+    <script src="/javascript/js-front.js" type="text/javascript"></script>
+
 
 </body>
 </html>

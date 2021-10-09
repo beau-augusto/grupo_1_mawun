@@ -81,7 +81,7 @@ const productsController = {
         // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
         // let datos = carrito.map(item => item.items_carrito.id)
         // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        // return res.send({orders:carrito})
+      //  return res.send(carrito)
          return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
 
         } catch (error) {
@@ -92,16 +92,31 @@ const productsController = {
     addToCart: async (req, res)=> {
         try {
 
-           let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
-        
-            let associationData = { // arma el objeto para crear una fila en la table order_product
-                quantity: 2, 
-                product_id: req.params.id, // toma el id del producto
-                order_id: newOrder.id // toma el id del order recien creado 
-            }
+            let previousOrder = await Order.all(res.locals.usuarioLogeado.id) // encuentro la orden previa no finalizada
 
-           await Order.createAssociation(associationData) // un metodo para crear en la table pivote
-          return res.redirect('/productos')
+            if (previousOrder){ // si existe creo una nueva associacion con ese numero de orden en la table pibote
+
+                let associationData = { // arma el objeto para crear una fila en la table order_product
+                    quantity: req.body.sumador ? req.body.sumador : 1, // si no tiene cantidad, se toma 1 por defecto
+                    product_id: req.params.id, // toma el id del producto
+                    order_id: previousOrder.id // toma el id del order recien creado 
+                }
+                
+             await Order.createAssociation(associationData) // un metodo para crear en la table pivote
+              return res.redirect('/productos')
+            } else { // si no hay una orden abierta se crea una nueva 
+                let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
+               
+                let associationData = { // arma el objeto para crear una fila en la table order_product
+                    quantity: req.body.sumador ? req.body.sumador : 1, // si no tiene cantidad, se toma 1 por defecto
+                    product_id: req.params.id, // toma el id del producto
+                    order_id: newOrder.id // toma el id del order recien creado 
+                }
+          await Order.createAssociation(associationData) // un metodo para crear en la table pivote          
+         return res.redirect('/productos')
+                
+            }
+    
         } catch (error) {
             console.log(error);
         }

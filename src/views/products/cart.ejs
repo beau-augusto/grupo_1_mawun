@@ -29,7 +29,7 @@
 
                                         <div class="cajaSumadoraCarrito">
                                             <input type="button" value="-" class="minus"> <input type="tel" value="<%=order.quantity%>"
-                                                name="sumador" class="sumadorCarrito" maxlength="1" step="1" min="1" max=""><input
+                                                name="sumador" class="sumadorCarrito" maxlength="2" id="sumador" step="1" min="1" max=""><input
                                                 type="button" value="+" class="plus">
                                             </div>
                                                 <div>
@@ -45,7 +45,6 @@
                             <% }) %> 
 
                         </div>
-                        <div style="position: relative;">
                             <div class="sticky-total">
 
                                 <div> <h2 class="resumenTitle">Resumen</h1></div>
@@ -90,7 +89,6 @@
                             </section>
 
                             </div>
-                        </div>
                     </div>
                 </section>
             </main>
