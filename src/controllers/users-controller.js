@@ -63,32 +63,27 @@ const usersController = {
 
             if (req.session.usuarioLogeado.role_id == "1"){
                 if(req.body.remember){
-                     ("cookies admin");
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
                 }
                 if(req.session.redirect){
-                    
                     const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
                     const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
                     const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
 
                 if(url == "carrito"){
-               
                     if(idVisitado){
-                      
 
                         return res.redirect(`/productos/detalle/${idVisitado}`)
                     } else {
                         return res.redirect('/productos/carrito')
                     }
-                }} else {
+                }} 
 
 
                     return res.redirect ('/admin/dashboard')
-                }
+                
                 }
                   else {
-
 
                 if(req.body.remember){
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
@@ -110,9 +105,9 @@ const usersController = {
                         return res.redirect("/productos");
                     }}
 
-            } else {
+            } 
                 return res.redirect("/productos");
-            }
+            
 
         }} else {
 

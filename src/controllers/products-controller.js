@@ -79,8 +79,18 @@ const productsController = {
 
             let previousOrder = await Order.all(res.locals.usuarioLogeado.id) // encuentro la orden previa no finalizada
 
-            if (previousOrder){ // si existe creo una nueva associacion con ese numero de orden en la table pibote
+            if (previousOrder){ // si existe creo una nueva associacion con ese numero de orden en la table pivote
 
+                let products = await Order.carrito(res.locals.usuarioLogeado.id) ;
+  
+                let productDuplicado = products.find(product => product.product_id === Number(req.params.id)) // busco si hay duplicado
+             //  return res.send(productDuplicado)
+
+              if(productDuplicado){
+                  let quantity = productDuplicado.quantity + Number(req.body.sumador ? req.body.sumador : 1);
+                  Order.updateQuantity(quantity, productDuplicado.id) 
+                  return res.redirect('/productos')
+              } else{
                 let associationData = { // arma el objeto para crear una fila en la table order_product
                     quantity: req.body.sumador ? req.body.sumador : 1, // si no tiene cantidad, se toma 1 por defecto
                     product_id: req.params.id, // toma el id del producto
@@ -89,6 +99,10 @@ const productsController = {
                 
              await Order.createAssociation(associationData) // un metodo para crear en la table pivote
               return res.redirect('/productos')
+
+              }
+
+
             } else { // si no hay una orden abierta se crea una nueva 
                 let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
                
