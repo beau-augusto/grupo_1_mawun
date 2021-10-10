@@ -129,6 +129,15 @@ const productsController = {
         }
         
     },
+    updateQuantity: async function (req, res) {
+        console.log("yeah")
+        console.log(req.params.id);
+        console.log(req.query.sumador);
+      let test = await Order.updateQuantity(req.query.sumador, req.params.id)
+       console.log(test);
+
+        return res.redirect('/productos/carrito');
+    }
 };
 
 module.exports = productsController;

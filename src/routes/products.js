@@ -10,5 +10,6 @@ router.get('/carrito', loggedoutRedirect, productsController.cart);
 router.post('/carrito/:id', loggedoutRedirect, productsController.addToCart); // agrega 
 router.delete('/carrito/:id/delete', loggedoutRedirect, productsController.deleteCart);
 router.put('/carrito/:id/comprar', loggedoutRedirect, productsController.comprar);
+router.get('/carrito/:id/actualizar', loggedoutRedirect, productsController.updateQuantity)
 
 module.exports = router;

@@ -15,20 +15,20 @@
 
                             <% orders.forEach(order=> { %>
                                 <div class="productoCarrito">
-                                    <img src="\upload\products/<%=order.image%>" alt="rose"
-                                        class="imagenProductoCarrito">
 
+                                  <img src="\upload\products/<%=order.image%>" alt="rose" class="imagenProductoCarrito">
+                                  
                                     <div class="nombreProductoCarrito">
                                         <div>
-                                        <div class="vinoLineaCarrito"><%=order.name%></div>
-                                        <div class="wineryCarrito"><%=order.winery%></div>
-                                        <div class="precioCarrito">$<%=order.price%></div>
+                                            <a name="link" href="/productos/detalle/<%=order.id%>" class="carritoLink"> <div class="vinoLineaCarrito"><%=order.name%></div></a>
+                                            <a name="link" href="/productos/detalle/<%=order.id%>" class="carritoLink"> <div class="wineryCarrito"><%=order.winery%></div></a>
+                                                <a name="link" href="/productos/detalle/<%=order.id%>" class="carritoLink"> <div class="precioCarrito">$<%=order.price%></div></a>
                                         </div>
 
                                         <div class="sumadorTrash">
 
                                         <div>
-                                            <form class="cajaSumadoraCarrito">
+                                            <form action="/productos/carrito/<%=order.association_id%>/actualizar" class="cajaSumadoraCarrito">
                                                 <input type="submit" value="-" class="minus"><input type="tel" value="<%=order.quantity%>" name="sumador" class="sumadorCarrito" maxlength="2" id="sumador" step="1" min="1"><input type="submit" value="+" class="plus"> 
 
                                             </form>

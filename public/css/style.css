@@ -1148,6 +1148,11 @@ margin-top: 16px;
     text-align: left;
 }
 
+.carritoLink {
+    text-decoration: none;
+    color: inherit;
+}
+
 .totalResumen {
     font-weight: bold;
     font-size: 21px;

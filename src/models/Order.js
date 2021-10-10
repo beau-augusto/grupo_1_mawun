@@ -24,12 +24,11 @@ comprar: function (userID){
         where: {user_id: userID, status: 0}
 })
 },
-updateQuantity: function (quantity){
-    return db.Order_product.upsert({
-
-    })
-
-},
+updateQuantity: function (number, associationID){
+    return db.Order_product.update(
+        {quantity: number},
+        {where: {id: associationID}})
+    },
 comprar1: function(userID) {
     return db.Order.update({status: 1},{
           where: {user_id: userID, status: 0}
