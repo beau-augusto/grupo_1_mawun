@@ -46,10 +46,10 @@ const productsController = {
     },
     cart: async (req, res)=> {
         try {
-            let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)  
-            //let test = carrito.map(item => console.log(item.dataValues.order_product)) // agarro los items de order_products
+           let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)  
          
         let carrito = ordenes.map(item => {return {
+            association_id: item.id,
             order_id: item.order_id,
             quantity: item.quantity,
             id: item.products.id,
@@ -65,24 +65,9 @@ const productsController = {
         )
 
         let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
-            
-        //let quantities = carrito.map(item => item.quantity)
-        //let quantity = itemsCarrito.map((item) => item.quantity)
-        //let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        //let products = itemsCarrito.map(((product) => product.products))
-        //let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        //let datos = carrito.map(item => item.items_carrito.id)
-        //name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        //return res.send(carrito)
-        // let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        // let products = itemsCarrito.map(((product) => product.products))
-        // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        // let datos = carrito.map(item => item.items_carrito.id)
-        // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-      //  return res.send(carrito)
-         return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
+        
+      // console.log({orders: carrito, sum:sum});  
+        return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
 
         } catch (error) {
             console.error(error);
@@ -123,9 +108,8 @@ const productsController = {
     },
     deleteCart: async (req, res) => {
         try {
-            await Order.deleteCarrito(req.params.id); // borra desde el id de la orden
-
-            return res.redirect('/productos/carrito')
+          await Order.deleteCarrito(req.params.id); // borra desde el id de la orden_product
+          return res.redirect('/productos/carrito')     
         } catch (error) {
             console.log(error);
         }
@@ -133,9 +117,13 @@ const productsController = {
     },
     comprar: async (req, res) => {
         try {
-            await Order.comprar1(req.params.id)
-            return res.render('products/thanks-purchase')
-        
+            if(req.params.id == " "){
+                return res.redirect('/productos/carrito')     
+            } else {
+                
+                await Order.comprar1(req.params.id)
+                return res.render('products/thanks-purchase')  
+            }  
         } catch (error) {
             console.log(error);
         }

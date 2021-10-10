@@ -14,9 +14,9 @@ carrito: function(userID) {
         ]
 })
 },
-deleteCarrito: function (orderID){
-    return db.Order.destroy({
-        where: {id: orderID}}  
+deleteCarrito: function (associationID){
+    return db.Order_product.destroy({
+        where: {id: associationID}}  
 )
 },
 comprar: function (userID){

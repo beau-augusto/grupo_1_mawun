@@ -586,6 +586,43 @@ ul.hero-menu li a:hover {
     height: 22px;
 }
 
+.trashIcon{
+    color: #414141c9;
+    background: white;
+    border: none;
+}
+
+.compraExitosa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 52px 0px;
+    flex-direction: column;
+}
+
+.recibirCompra{
+    margin-top: 31px;
+    text-align: center;
+}
+
+.mensajeConfirmacion{
+    font-size: 15px;
+    padding: 7px 0px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.muchasGracias{
+    margin-bottom: 5px;
+}
+
+.fa-check {
+    font-size: 38px;
+    color: #2ecc71;
+    border: black 4px;
+    margin-left: 27px;
+}
+
 .sumadorCarrito {
     background-color: white;
     border: none;
@@ -1020,15 +1057,12 @@ margin-top: 16px;
 }
 
 .carritoVacio {
-    margin-top: 101px;
-    font-size: 29px;
+    font-size: 26px;
     text-align: center;
+    margin-bottom: 45px;
+    margin-left: 142px;
 }
 
-.graciasCarrito {
-    text-align: center;
-    margin-bottom: 42px;
-}
 
 .abm-input-tit-carrito {
     color: #412838;

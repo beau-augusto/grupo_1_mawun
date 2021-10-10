@@ -27,25 +27,25 @@
 
                                         <div class="sumadorTrash">
 
-                                        <div class="cajaSumadoraCarrito">
-                                            <input type="button" value="-" class="minus"> <input type="tel" value="<%=order.quantity%>"
-                                                name="sumador" class="sumadorCarrito" maxlength="2" id="sumador" step="1" min="1" max=""><input
-                                                type="button" value="+" class="plus">
+                                        <div>
+                                            <form class="cajaSumadoraCarrito">
+                                                <input type="submit" value="-" class="minus"><input type="tel" value="<%=order.quantity%>" name="sumador" class="sumadorCarrito" maxlength="2" id="sumador" step="1" min="1"><input type="submit" value="+" class="plus"> 
+
+                                            </form>
                                             </div>
-                                                <div>
-                                                    <form action="/productos/carrito/<%=order.order_id%>/delete?_method=DELETE" method="POST">
-                                                    <input type="submit" name="trashIcon" id="trashIcon" class="trashButtonCarrito" style="display:none;">
-                                                    <label for="trashIcon"><i class="far fa-trash-alt"></i></label>
+                                                    <form action="/productos/carrito/<%=order.association_id%>/delete?_method=DELETE" method="POST">
+                                                    <button type="submit" class="trashIcon"><i class="far fa-trash-alt"></i></button>
                                                 </form>
-                                            </div>
+                                            
+
                                         </div>
                                     </div>
                                 </div>
 
                             <% }) %> 
-
                         </div>
-                            <div class="sticky-total">
+
+                            <div class="sticky-total" <%if (!sum) { %> style="display: none;" <% } %>>
 
                                 <div> <h2 class="resumenTitle">Resumen</h1></div>
 
@@ -83,7 +83,7 @@
                             
                             
                             <section class="botones-carrito">
-                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : ""%>/comprar?_method=PUT" method="POST">
+                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : " "%>/comprar?_method=PUT" method="POST">
                                 <button class="finalizarCompra">Finalizar compra</button>
                             </form>
                             </section>
@@ -94,7 +94,8 @@
             </main>
             <main>
                 <%- include('../partials/footer') %>
-                <script src="/javascript/js-front.js" type="text/javascript"></script>
+    <script src="/javascript/js-front.js"  type="text/javascript"></script>
+               
     </body>
 
 </html>
