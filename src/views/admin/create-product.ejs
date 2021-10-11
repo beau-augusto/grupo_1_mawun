@@ -25,7 +25,7 @@
                             <select name="winery" id="winery" class="abm-input">
                                 <option value="">Seleccione Bodega</option>
                                 <% for (let i = 0; i < wineries.length; i++) { %>
-                                    <option value="<%= wineries[i].id %>" >
+                                    <option value="<%= wineries[i].id %>" <% if (locals.oldInfo && oldInfo.winery == wineries[i].id) { %> selected <% } %> >
                                         <%= wineries[i].name %>
                                     </option>
                                 <%}%>
@@ -53,7 +53,7 @@
                             <label for="varietal" class="abm-input-tit">Varietal</label>
                             <select name="varietal[]" id="varietal" multiple="multiple" class="abm-input">
                                 <% for (let i = 0; i < varietal.length; i++) { %>
-                                    <option value="<%= varietal[i].id %>" >
+                                    <option value="<%= varietal[i].id %>">
                                         <%= varietal[i].name %>
                                     </option>
                                 <%}%>     
@@ -92,8 +92,8 @@
                     </div>
                     
                     <div class="abm-button-wrapper">
-                        <button type="submit" class="abm-button-submit green-submit"><i class="far fa-save"></i> GUARDAR</button>
                         <a href='/admin/inventario-productos' class="abm-button-cancel"><i class="fas fa-times"></i> CANCELAR</a>
+                        <button type="submit" class="abm-button-submit green-submit"><i class="far fa-save"></i> GUARDAR</button>
                     </div>
             </div>
         </section>
