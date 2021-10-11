@@ -41,43 +41,80 @@ const usersController = {
     }
     },
     login: (req, res)=> {
+        
+        let datosCookie= {
+            email: req.cookies.recordame
+            
+        }
 
-            let datosCookie= {
-                email: req.cookies.recordame
+        if(datosCookie){
 
-            }
+            return res.render ('users/login', datosCookie); 
+        } else {
+            return res.render ('users/login'); 
+        }
      
-        return res.render ('users/login', datosCookie); 
     
     },
-    submitLogin: (req, res) => {
+    submitLogin: (req, res) => { // esta logica es un quilombo pero funciona jaja
         let errors = validationResult(req); // Traigo los errores de Express Validator
         if (errors.isEmpty()) {
+
 
             if (req.session.usuarioLogeado.role_id == "1"){
                 if(req.body.remember){
                     res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
                 }
+                if(req.session.redirect){
+                    const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
+                    const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
+                    const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
 
-            
-                    return res.redirect ('/admin/dashboard');
-            
+                if(url == "carrito"){
+                    if(idVisitado){
+
+                        return res.redirect(`/productos/detalle/${idVisitado}`)
+                    } else {
+                        return res.redirect('/productos/carrito')
+                    }
+                }} 
+
+
+                    return res.redirect ('/admin/dashboard')
+                
                 }
-            else {
+                  else {
+
                 if(req.body.remember){
-                    res.cookie("recordame", { maxAge: 900000})
+                    res.cookie("recordame", req.body.name, { maxAge: 900000 * 1000})
+
                 }
-                return res.redirect("/productos");
+                    if(req.session.redirect){
+                    const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
+                    const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
+                    const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
+    console.log(url);
+    console.log(idVisitado);
+
+                    if(url == "carrito"){
+                        if(idVisitado){
+
+                        return res.redirect(`/productos/detalle/${idVisitado}`)
+                    } else {
+
+                        return res.redirect("/productos");
+                    }}
 
             } 
+                return res.redirect("/productos");
+            
 
-        } else {
+        }} else {
 
             // Si hay errores, devuelvo la pagina de login con los errores en formato de JSON u objeto literal. 
 
         res.render ('users/login', {errors: errors.mapped(), old: req.body});
         }
- 
     },
     profile: async (req, res)=> {
 

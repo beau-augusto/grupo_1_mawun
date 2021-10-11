@@ -15,7 +15,7 @@ const db = require("../database/models");
 const mainController = {
     index: async (req, res)=> {
         try{
-            let product = await db.Product.findAll( {where: {recommended: 1}}) //Consulta a la Db listado de Productos
+            let product = await db.Product.findAll( {where: {recommended: 1}, limit: 4}) //Consulta a la Db listado de Productos
              
             return  res.render ('index', {product} );
 
@@ -32,7 +32,7 @@ const mainController = {
     newsletterCreate: async (req, res)=> {
         try{
             const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-console.log(resultValidation);
+ (resultValidation);
 
 if (resultValidation.isEmpty()){
     db.Newsletter.create({
