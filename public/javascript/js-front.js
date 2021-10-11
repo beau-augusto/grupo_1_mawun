@@ -27,7 +27,7 @@ const sumadorCarrito = () => {
                     sumador[i].value++           
             }
             minus[i].onclick = function (event){
-            
+                event.preventDefault()   
                 if (sumador[i].value > 1){
                     sumador[i].value--
                  event.preventDefault()   
@@ -48,6 +48,8 @@ const sumadorDetalle = () => {
     let detalle = document.querySelector('.detalleProducto')
 
     if(sumador && detalle != null){ 
+        console.log(res.locals.usuarioLoggeado);
+
         sumador.value
         plus.onclick = function (){
             sumador.value++           

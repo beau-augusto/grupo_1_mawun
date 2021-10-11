@@ -6,9 +6,8 @@
         <div class="hero-search">
             <form action="/" method="POST" class="hero-menu-wrapper">
                 <input type="search" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
-                <button type="submit" id="test123" class="hero-search__submit"><i class="fa fa-search"></i></button>
+                <button type="submit" class="hero-search__submit"><i class="fa fa-search"></i></button>
             </form>
-            <div id="dialogbox" style="display: none">¿Seguro que querés borrar este usuario?</div>
         </div>
     </div>
     <div class="bgc-fw">
@@ -27,7 +26,7 @@
                     <a href="/usuarios/inicio" class="hero-cart-link"><i class="far fa-user"></i></a>
                     <% } %>
                     <% if (locals.usuarioLogeado) { %>
-                        <a href="/usuarios/perfil" class="hero-cart-link"><i class="far fa-user"></i></a>
+                        <a href="/usuarios/perfil" class="hero-cart-link"><i class="far fa-user">1</i></a>
                         <% } %> 
                 <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i></a>
             </div>
