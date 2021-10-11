@@ -4,6 +4,7 @@ const path = require('path');
 //Sequelize Models//
 const db = require("../database/models");
 const Order = require("../models/Order");
+const User = require("../models/User");
 const Product = require("../models/Product");
 const chalk = require('chalk');
 
@@ -66,7 +67,7 @@ const productsController = {
 
         let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
         
-      // console.log({orders: carrito, sum:sum});  
+     //  console.log({orders: carrito, sum:sum});  
         return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
 
         } catch (error) {
@@ -129,6 +130,38 @@ const productsController = {
         }
 
     },
+    continuar: async (req, res) => {
+
+        let orderId = (req.params.id)
+
+        let userData = await User.findByEmail(res.locals.usuarioLogeado.email)
+
+       return res.render('products/order-address', {user: userData, orderId: orderId})
+    },
+    alPago: async (req, res) => {
+        
+        let orderId = (req.params.id)
+        if(req.body.calle_numero != '' && req.body.codigo_postal != ''){
+        let newAddress = {
+            street: req.body.calle_numero,
+            apartment: req.body.departamento,
+            district: req.body.barrio,
+            zip_code: req.body.codigo_postal,
+            city: req.body.ciudad,
+            state: req.body.provincia
+        }
+
+            await User.createAddress(newAddress, 3); // crea una nueva fila en addresses que corresponde al usuario ya existente
+        } else {
+
+            let idAddress = req.body.address
+
+         
+        }
+        return res.render('products/payment')
+
+        
+    },
     comprar: async (req, res) => {
         try {
             if(req.params.id == " "){
@@ -144,12 +177,7 @@ const productsController = {
         
     },
     updateQuantity: async function (req, res) {
-        console.log("yeah")
-        console.log(req.params.id);
-        console.log(req.query.sumador);
-      let test = await Order.updateQuantity(req.query.sumador, req.params.id)
-       console.log(test);
-
+     await Order.updateQuantity(req.query.sumador, req.params.id)
         return res.redirect('/productos/carrito');
     }
 };

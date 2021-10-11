@@ -47,6 +47,7 @@ const usersController = {
             
         }
 
+
         if(datosCookie){
 
             return res.render ('users/login', datosCookie); 
@@ -93,8 +94,6 @@ const usersController = {
                     const url1 =  req.session.redirect.replace(/[0-9]/g, '') // 
                     const url = url1.replace(/\W/g, '') // expression regulares que sacan los numeros y las barras 
                     const idVisitado = req.session.redirect.replace( /^\D+/g, '') // Extraigo el numero de ID de producto del url visitado con un expression regular
-    console.log(url);
-    console.log(idVisitado);
 
                     if(url == "carrito"){
                         if(idVisitado){
@@ -121,10 +120,29 @@ const usersController = {
         if (res.locals.usuarioLogeado != undefined){
 
         try {
+           
             let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
+            let address = userFound.addresses
+            userData = {
+                id: userFound.id,
+                name: userFound.name,
+                last_name: userFound.last_name,
+                email: userFound.email,
+                password: userFound.password,
+                image: userFound.image,
+                role_id: userFound.role_id,
+                role: userFound.roles.name,
+                address_id: (address.length > 0) ? address[0].id : "",
+                street: (address.length > 0) ? address[0].street : "",
+                apartment: (address.length > 0)  ? address[0].apartment : "",
+                zip_code: (address.length > 0)  ? address[0].zip_code : "",
+                district: (address.length > 0) ? address[0].district : "",
+                city: (address.length > 0) ? address[0].city : "",
+                state: (address.length > 0) ? address[0].state : "",
+            }
     
             if (userFound) {
-                return res.render('./users/user-profile', { user: userFound });
+                return res.render('./users/user-profile', { user: userData });
             } else {
                 res.send('El usuario que buscás no existe.')
             }
@@ -134,11 +152,29 @@ const usersController = {
     }
     },
     edit: async (req, res)=> {  
-        let PK = res.locals.usuarioLogeado.id
         try {
-            let userFound = await User.findPK(PK); // encuentra un usuario por su PK
+            let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
+            let address = userFound.addresses
+            let userData = {
+                id: userFound.id,
+                name: userFound.name,
+                last_name: userFound.last_name,
+                email: userFound.email,
+                password: userFound.password,
+                image: userFound.image,
+                role_id: userFound.role_id,
+                role: userFound.roles.name,
+                address_id: (address.length > 0) ? address[0].id : "",
+                street: (address.length > 0) ? address[0].street : "",
+                apartment: (address.length > 0)  ? address[0].apartment : "",
+                zip_code: (address.length > 0)  ? address[0].zip_code : "",
+                district: (address.length > 0) ? address[0].district : "",
+                city: (address.length > 0) ? address[0].city : "",
+                state: (address.length > 0) ? address[0].state : "",
+            }
+
             if (userFound) {
-                return res.render('./users/edit-users', { user: userFound });
+                return res.render('./users/edit-users', { user: userData });
             } else {
                 res.send('No pudimos encontrar ese perfil.')
             }
@@ -154,6 +190,24 @@ const usersController = {
 
         try {
             let userData = await User.findPK(PK); // encuentra un usuario por su PK 
+            let address = userData.addresses
+            userData = {
+                id: userData.id,
+                name: userData.name,
+                last_name: userData.last_name,
+                email: userData.email,
+                password: userData.password,
+                image: userData.image,
+                role_id: userData.role_id,
+                role: userData.roles.name,
+                address_id: (address.length > 0) ? address[0].id : "",
+                street: (address.length > 0) ? address[0].street : "",
+                apartment: (address.length > 0)  ? address[0].apartment : "",
+                zip_code: (address.length > 0)  ? address[0].zip_code : "",
+                district: (address.length > 0) ? address[0].district : "",
+                city: (address.length > 0) ? address[0].city : "",
+                state: (address.length > 0) ? address[0].state : "",
+            }
 
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
@@ -173,7 +227,7 @@ const usersController = {
             }
 
           await User.update(NewUserData, PK); // actualizar el usuario con la data nueva del formulario 
-             if (userData['addresses.user_id'] != null){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+             if ((userData.address_id && req.body.calle_numero)){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
             
                 await User.updateAddress(NewUserData, PK); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
 

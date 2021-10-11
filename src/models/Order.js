@@ -29,9 +29,9 @@ updateQuantity: function (number, associationID){
         {quantity: number},
         {where: {id: associationID}})
     },
-comprar1: function(userID) {
+comprar1: function(orderID) {
     return db.Order.update({status: 1},{
-          where: {user_id: userID, status: 0}
+          where: {id: orderID}
      });
     },
 changeState: function (userID){

@@ -206,7 +206,6 @@ const adminController = {
         try {
 
         let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
-        let test = await User.findByEmail(userFound.email)
 
         if (userFound) {
             return res.render('./admin/user-profile-bo', { user: userFound });
@@ -253,7 +252,10 @@ const adminController = {
     searchUser: async (req, res) => {
 
         try {
+            return res.send('it works')
             let userSearched = await User.search(req.query.fuckingBug); // encuentra un usuario por su PK
+
+            let allUsers = await User.all(); // llama a todos los usuarios
 
             if(userSearched.length === 0){ // logica cuando no se encuentra el usuario
 
@@ -265,7 +267,7 @@ const adminController = {
 
                 console.log(error);
 
-                return res.render('./admin/inventory-users', { users: usernotFound, errors: error});
+                return res.render('./admin/inventory-users', {errors: error, users: allUsers});
             }
 
                 return res.render('./admin/inventory-users', { users: userSearched });
@@ -279,6 +281,7 @@ const adminController = {
 
         try {
             let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
+
             if (userFound) {
                 return res.render('./admin/edit-user', { user: userFound });
             } else {
@@ -291,13 +294,11 @@ const adminController = {
     },
     updateUser: async (req, res) => {
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-
         try {
-            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
-
+            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
-    
+
             let NewUserData = {
                 name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -312,24 +313,18 @@ const adminController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-
+console.log(req.body);
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
-          
-             if (userData['addresses.user_id'] === null){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
-            
-                let updateCreate = { // se le agrega el id y user_id para la table addresses
-                 ...NewUserData, // mantiene la informacion nueva a subir
-                 id: userData.id,
-                 user_id: userData.id
-             }
-                await User.createAddress(updateCreate); // crea una nueva fila en addresses que corresponde al usuario ya existente
+             if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+return res.send('fafaf')
+              // await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
             }
             else {
-             await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+         //    await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
             }
 
     
-            return res.redirect(303, '/admin/inventario-usuarios');
+            return res.redirect(303, 'perfil');
             } else {
                 return res.render('./admin/edit-user',{
                     errors: resultValidation.mapped(),

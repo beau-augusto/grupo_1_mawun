@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+
+            <main>
+                <section class="abm-inventory container"> 
+                    <h2 class="abm-title-inv">Dirección de envío</h2>
+                    <div class="abm-inventory-wrapper addressWrapper">
+                        
+
+                        <form action="/productos/carrito/<%=orderId%>/al-pago" method="POST">
+                            <div class="address-input-container">
+                             
+                                <% if (user.addresses.length > 0) { %> 
+                                   
+
+
+                                        <div class="abm-input-wrap selectorAddress invisibleSelector" >
+                                            <select name="address" id="address" class="abm-input">
+
+                                                <option value="">Seleccione dirección</option>
+                                                <% for (let i = 0; i < user.addresses.length; i++) { %>
+                                                    <option value="<%=user.addresses[i].id%>">
+                                                        <%=user.addresses[i].street %> <%=user.addresses[i].apartment %> <%=user.addresses[i].district %> <%=user.addresses[i].city %> <%=user.addresses[i].zip_code %> <%=user.addresses[i].state %>
+                                                    </option>
+                                                    <%}%>
+                                            </select>
+                                            <% if (locals.errors && errors.address) { %>
+                                                <p class="abm-input-error"><%= errors.address.msg %></p>
+                                            <% } %> 
+                                        </div>
+
+                                        <div class="abm-input-wrap cargarDireccion" style="width: 188px;">
+                                            <div class="abm-input-tit cursorAllign">Cargar dirección (+)</div>
+                                            </div>
+
+                                            </div>
+  
+                                    <% } %> 
+                                    <div class="addressInvisible">
+                                <div class="address-input-container">
+
+                                    <div class="abm-input-wrap">
+                                        <label for="calle_numero" class="abm-input-tit">Calle y numero</label>
+                                        <input type="text" name="calle_numero" id="calle_numero" placeholder="Calle y numero" class="abm-input"value="<%=locals.oldData ? oldData.calle_numero : "" %>">
+                                        <% if(locals.errors && errors.calle_numero) { %>
+                                            <p class="abm-input-error"><%= errors.calle_numero.msg %> </p>
+                                        <% } %>  
+                                    </div>
+                                        <div class="abm-input-wrap">
+                                            <label for="departamento" class="abm-input-tit">Departamento</label>
+                                            <input type="text" name="departamento" id="departamento" placeholder="Departamento" class="abm-input"value="<%=locals.oldData ? oldData.departamento : "" %>">
+                                            <% if(locals.errors && errors.departamento) { %>
+                                                <p class="abm-input-error"><%= errors.departamento.msg %> </p>
+                                            <% } %>   
+                                        </div>
+                                        <div class="abm-input-wrap">
+                                        <label for="codigo_postal" class="abm-input-tit">Codigo Postal</label>
+                                        <input type="text" name="codigo_postal" id="codigo_postal" placeholder="Codigo Postal" class="abm-input"value="<%=locals.oldData ? oldData.codigo_postal : "" %>">
+                                        <% if(locals.errors && errors.codigo_postal) { %>
+                                            <p class="abm-input-error"><%= errors.codigo_postal.msg %> </p>
+                                        <% } %>   
+                                    </div>
+                                    <div class="abm-input-wrap">
+                                        <label for="barrio" class="abm-input-tit">Barrio</label>
+                                        <input type="text" name="barrio" id="barrio" placeholder="Barrio" class="abm-input"value="<%=locals.oldData ? oldData.barrio : ""%>">
+                                        <% if(locals.errors && errors.barrio) { %>
+                                            <p class="abm-input-error"><%= errors.barrio.msg %> </p>
+                                        <% } %>   
+                                    </div>
+                                        <div class="abm-input-wrap">
+                                        <label for="ciudad" class="abm-input-tit">Ciudad</label>
+                                        <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" class="abm-input"value="<%=locals.oldData ? oldData.ciudad : ""%>">
+                                        <% if(locals.errors && errors.ciudad) { %>
+                                            <p class="abm-input-error"><%= errors.ciudad.msg %> </p>
+                                        <% } %>   
+                                    </div>
+                                    
+                                    
+                                    <div class="abm-input-wrap">
+                                    <label for="provincia" class="abm-input-tit">Provincia</label>
+                                    <input type="text" name="provincia" id="provincia" placeholder="Provincia" class="abm-input"value="<%=locals.oldData ? oldData.provincia : ""%>">
+                                    <% if(locals.errors && errors.provincia) { %>
+                                        <p class="abm-input-error"><%= errors.provincia.msg %> </p>
+                                    <% } %>   
+                                    </div>
+
+                                </div>
+                                </div>
+                            <div class="abm-button-continuar">
+                                <button type="submit" class="abm-button-submit">Continuar</button>
+                            </div>
+                        </form>
+                           
+                    </div>
+                </section>
+            </main>
+            <main>
+                <%- include('../partials/footer') %>
+    <script src="/javascript/js-front.js"  type="text/javascript"></script>
+               
+    </body>
+
+</html>

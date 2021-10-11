@@ -13,9 +13,7 @@ const User = {
         },
         {
             association: "addresses"
-    }],
-            raw: true,
-            nested: true
+    }]
         })
 },
     findPK: function (PK) {
@@ -27,16 +25,19 @@ const User = {
             },
             {
                 association: "addresses"
-        }],
-                raw: true,
-                nested: true
+        }]
             })  
     },
     findByEmail: function (email) {
         return   db.User.findOne({
             where: {email: email},
-               raw: true,
-               nested: true
+            include: [{
+                association: "roles",
+                attributes: ["name"]
+        },
+        {
+            association: "addresses"
+    }]
            })  
    },
     search: function(text) {
@@ -48,8 +49,6 @@ const User = {
         {
             association: "addresses"
     }],
-            raw: true,
-            nested: true,
             where: {
                 [Op.or]: [
                  {name: { [Op.like]: '%' + text + '%' }},
@@ -64,7 +63,7 @@ const User = {
     },
     update: function(userData, ID) {
        return db.User.update(userData,
-            { include: [{association: "roles"}],
+            { 
             where: {id: ID}
         });
     },
@@ -74,8 +73,8 @@ const User = {
              where: {user_id: ID}
          });
      },
-     createAddress:  function(userData) {
-        return db.Address.create(userData);
+     createAddress:  function(userData, userID) {
+        return db.Address.create({...userData, user_id: userID});
      },
     delete: function(ID) {
        return db.User.destroy({
@@ -86,6 +85,5 @@ const User = {
 
     }
 }
-
 
 module.exports = User

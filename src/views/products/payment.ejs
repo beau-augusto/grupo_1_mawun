@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+
+            <main>
+                <section class="abm-inventory container">
+                    <h2 class="abm-title-inv">Método de pago</h2>
+                    <div class="abm-inventory-wrapper carritoWrapper">
+                    <form action="/usuarios/editar" method="GET">
+
+                        <div>Que tipo de pago quieres usar <i class="far fa-credit-card"></i></div>
+                        <div class="abm-input-container">
+                            <div class="abm-input-wrap">
+                                <label for="first_name" class="abm-input-tit">Número de tarjeta</label>
+                                <input type="text" name="first_name" id="first_name" placeholder="1234 5678 9012 3456" class="abm-input" value="<%= locals.oldData ? oldData.first_name :"" %>">
+                                <% if(locals.errors && errors.first_name) { %> 
+                                    <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
+                                <% } %> 
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="last_name" class="abm-input-tit">Caducidad</label>
+                                <input type="text" name="last_name" id="last_name" placeholder="MM/YY" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
+                                <% if(locals.errors && errors.last_name) { %> 
+                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <% } %> 
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="last_name" class="abm-input-tit">Código de seguridad</label>
+                                <input type="text" name="last_name" id="last_name" placeholder="CVV" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
+                                <% if(locals.errors && errors.last_name) { %> 
+                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <% } %> 
+                            </div>
+                            <div class="abm-input-wrap">
+                                <label for="last_name" class="abm-input-tit">Titular</label>
+                                <input type="text" name="last_name" id="last_name" placeholder="Titular" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
+                                <% if(locals.errors && errors.last_name) { %> 
+                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <% } %> 
+                            </div>
+
+                            
+                            
+                            
+                            <section class="botones-carrito">
+                                <button type="submit" class="finalizarCompra">Continuar</button>
+                            
+                            </section>
+
+                            </div>
+                            </form>
+                        </div>
+                </section>
+            </main>
+            <main>
+                <%- include('../partials/footer') %>
+    <script src="/javascript/js-front.js"  type="text/javascript"></script>
+               
+    </body>
+
+</html>

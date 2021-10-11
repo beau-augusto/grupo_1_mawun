@@ -55,7 +55,7 @@
 
                                         <div class="nombreCantidadResumen">
                                         <div class="nombreResumen"><%=order.name%></div>
-                                        <div>Cantidad:<%=order.quantity%></div>
+                                        <div>Cantidad: <%=order.quantity%></div>
                                         </div>
 
                                     <div class="subtotalResumen">$<%= order.price * order.quantity%> </div>
@@ -76,15 +76,15 @@
 
             
 
-                                    <div class="totalResumen"><%= sum ? sum : "00.-"%></div>
+                                    <div class="totalResumen"><%= sum ? `$${sum}.-` : "00.-"%></div>
                               
                                 </div>
                             
                             
                             
                             <section class="botones-carrito">
-                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].user_id : " "%>/comprar?_method=PUT" method="POST">
-                                <button class="finalizarCompra">Finalizar compra</button>
+                                 <form action="/productos/carrito/<%= orders && sum ? orders[0].order_id : " "%>/continuar?_method=PUT" method="POST">
+                                <button class="finalizarCompra">Continuar</button>
                             </form>
                             </section>
 

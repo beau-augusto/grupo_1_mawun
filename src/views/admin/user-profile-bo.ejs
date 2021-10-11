@@ -11,7 +11,7 @@
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <p><%=user.name %></p>
+                            <p><%= user.name %></p>
                         </div>
                         <div class="abm-input-wrap">
                             <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
@@ -21,53 +21,43 @@
                             <label for="email" class="abm-input-tit">Email</label>
                             <p><%=user.email %></p>
                         </div>
-                        <div class="abm-input-wrap">
-                            <label for="role" class="abm-input-tit">Role</label>
-                            <p><%= user['roles.name'] %></p>
+                            <div class="abm-input-wrap">
+                                <label for="role" class="abm-input-tit">Role</label>
+                                <p><%= user.roles.name %></p>
+                            
                         </div>
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
-                            <p type="password">●●●●●●●●●●●●●●</p>
+                            <p type="password">●●●●●●●●●</p>
                         </div>     
-                        <!--<div class="abm-input-wrap">
-                            <label for="password" class="abm-input-tit"> Repetir Contraseña</label>
-                            <input type="password" id="password" placeholder="Contraseña" class="abm-input">
-                        </div>-->
+
                         <div class="abm-input-wrap">
                             <label for="image" class="abm-input-tit">Imagen</label>
                             <p class="foto-perfil foto-margin-right" id=""> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
                         </div>
-                        <% if (user['addresses.user_id'] != null) { %> 
 
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Calle y numero</label>
-                                <p><%= user['addresses.street'] %></p>
+                        <% if (user.addresses.length > 0) { %> 
+
+                            <div class="abm-input-wrap selectorAddress" >
+                                <label for="image" class="abm-input-tit">Direcciones</label>
+                                <select name="address" id="address" class="abm-input">
+                                    <% for (let i = 0; i < user.addresses.length; i++) { %>
+                                        <option value="<%=user.addresses[i].id%>">
+                                            <%=user.addresses[i].street %> <%=user.addresses[i].apartment %> <%=user.addresses[i].district %> <%=user.addresses[i].city %> <%=user.addresses[i].zip_code %> <%=user.addresses[i].state %>
+                                        </option>
+                                        <%}%>
+                                </select>
+                                <% if (locals.errors && errors.address) { %>
+                                    <p class="abm-input-error"><%= errors.address.msg %></p>
+                                <% } %> 
                             </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Departamento</label>
-                                <p><%= user['addresses.apartment'] %></p>
-                            </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Codigo Postal</label>
-                                <p><%= user['addresses.zip_code'] %></p>
-                            </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Barrio</label>
-                                <p><%= user['addresses.district'] %></p>
-                            </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Ciudad</label>
-                                <p><%= user['addresses.city'] %></p>
-                            </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Provincia</label>
-                                <p><%= user['addresses.state'] %></p>
-                            </div>
+
                         <% } %> 
 
                     </div>
-                    <div class="abm-button-wrap">
-                        <button type="submit" class="abm-button-submit">Editar</button>
+                    <div class="abm-button-wrapper">
+                        <a href='/admin/inventario-usuarios' class="abm-button-cancel"><i class="fas fa-times"></i> CANCELAR</a>
+                        <button type="submit" class="abm-button-submit botonesInventario2"><i class="far fa-save"></i> EDITAR</button>
                     </div>
                 </form>
             </div>

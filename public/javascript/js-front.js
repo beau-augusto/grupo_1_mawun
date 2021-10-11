@@ -61,11 +61,28 @@ const sumadorDetalle = () => {
 }
 
 
+const agregarDireccion = () => {
+    let direccion = document.querySelector('.cargarDireccion')
+    let nuevaDireccion = document.querySelector('.addressInvisible')
+    let selector = document.querySelector('.invisibleSelector')
+
+    if(direccion != null){ 
+        direccion.onclick = function (){
+            direccion.style.display = "none";
+            nuevaDireccion.style.display = "block";
+            selector.style.display = "none";
+        }
+
+
+    }
+}
+
 
 
 window.addEventListener("load", function () {
 
     sumadorCarrito();
     sumadorDetalle();
+    agregarDireccion();
 
 })

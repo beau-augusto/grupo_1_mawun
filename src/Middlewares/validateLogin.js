@@ -31,6 +31,25 @@ module.exports = [
 
        let findUsername = await User.findByEmail(req.body.name); // encuentra el usuario por su mail
 
+       let address = findUsername.addresses // ordeno la data para guardar en session 
+       let userData = {
+        id: findUsername.id,
+        name: findUsername.name,
+        last_name: findUsername.last_name,
+        email: findUsername.email,
+        password: findUsername.password,
+        image: findUsername.image,
+        role_id: findUsername.role_id,
+        role: findUsername.roles.name,
+        address_id: (address.length > 0) ? address[0].id : "",
+        street: (address.length > 0) ? address[0].street : "",
+        apartment: (address.length > 0)  ? address[0].apartment : "",
+        zip_code: (address.length > 0)  ? address[0].zip_code : "",
+        district: (address.length > 0) ? address[0].district : "",
+        city: (address.length > 0) ? address[0].city : "",
+        state: (address.length > 0) ? address[0].state : "",
+    }
+
         if(!findUsername){
             return false
 
@@ -38,7 +57,7 @@ module.exports = [
         let bcryptCompare = await bcryptjs.compare(req.body.password, findUsername.password)
         if (bcryptCompare == true) {
 
-            req.session.usuarioLogeado = findUsername  // Guarda usuario en session
+            req.session.usuarioLogeado = userData  // Guarda usuario en session
             return true;
         } else {
             

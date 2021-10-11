@@ -50,14 +50,14 @@
                                     <%= user.name %> <%= user.last_name %>
                                 </div>
                                 <div class="grid-item itemInfo">
-                                    <%= user['roles.name'] %>
+                                    <%= user.roles.name %>
                                 </div>
                                 <div class="grid-item botonesWrapper">
-                                    <a href="/admin/perfil/<%= user.id %>" class="botonesInventario1">Ver</a>
+                                    <a href="/admin/<%= user.id %>/perfil/" class="botonesInventario1">Ver</a>
                                     <a href="/admin/<%= user.id %>/editar-usuario/" class="botonesInventario2">Editar</a>
-                                    <form action="/admin/<%= user.id %>/delete-usuario?_method=DELETE" class="borrarUsuario" method="POST">
-                                        <input type="submit" class="botonesInventario3" value="Borrar">
+                                    <form action="/admin/<%= user.id %>/delete-usuario?_method=DELETE" class="borrarUsuario <%= user.id %>delete" method="POST">
                                     </form>
+                                    <button class="botonesInventario3" id="<%= user.id %>delete" value="Borrar">Borrar</button>
                                 </div>
                                 
                                 <% }) %>
