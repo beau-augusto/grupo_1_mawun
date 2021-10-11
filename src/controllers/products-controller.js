@@ -65,29 +65,8 @@ const productsController = {
         )
 
         let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
-<<<<<<< HEAD
-            
-        //let quantities = carrito.map(item => item.quantity)
-        //let quantity = itemsCarrito.map((item) => item.quantity)
-        //let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        //let products = itemsCarrito.map(((product) => product.products))
-        //let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        //let datos = carrito.map(item => item.items_carrito.id)
-        //name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        //return res.send(carrito)
-        // let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        // let products = itemsCarrito.map(((product) => product.products))
-        // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        // let datos = carrito.map(item => item.items_carrito.id)
-        // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        // return res.send({orders:carrito})
-        console.log({orders: carrito, sum:sum});
-=======
         
       // console.log({orders: carrito, sum:sum});  
->>>>>>> 538b61aa85fe459d72839e5b33f7360c259b1ea9
         return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
 
         } catch (error) {
