@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { Op } = require("sequelize");
 
 const { validationResult } = require('express-validator'); // Destructuracion pido resultdo de la validacion (Express-Validator)
 
@@ -58,6 +59,16 @@ const adminController = {
     storeProduct: async (req, res) => {
 
         try{
+            let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
+            let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
+
+            let varietal = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+            varietal = varietal.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
+            let category = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = Categoria
+            category = category.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres  e id
+            wineries = wineries.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
             const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
             if (errors.isEmpty()) { // Si errores de express Validator viene vacio continuo
                 const productToCreate = {  //Obtengo la informacion del formulario y la creo 
@@ -82,8 +93,13 @@ const adminController = {
                 return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
             } else {
+                console.log
                 return res.render('admin/create-product', {
+                    
                     errors: errors.mapped(),
+                    varietal: varietal,
+                    wineries: wineries,
+                    category: category,
                     oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
                 });
             };
@@ -107,8 +123,6 @@ const adminController = {
             product.dataValues.productCategories = productCategories; //sumo al array de productos la categorias previamente mapeada
             product.dataValues.productVarietals  = productVarietals ; //sumo al array de productos la varietales previamente mapeada
 
-
-
             let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
             let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
 
@@ -128,10 +142,9 @@ const adminController = {
         
     },
     updateProduct: async (req, res) => {
-
         try{
             let productData = await db.Product.findByPk (req.params.id); // encuentra un Producto por id
-
+            
             req.body.image = req.file ? req.file.filename : productData.image;
 
             const productToUpdate = {  //Obtengo la informacion del formulario y la creo 
@@ -146,16 +159,33 @@ const adminController = {
             let categoryTags = {categories: req.body.category};
 
 
+            await db.Product.update(productToUpdate, { where: {id: req.params.id} });
+            
+            let productVarietalTags = await db.Product_tag.findAll({where: { [Op.and]: [ {product_id: req.params.id}, { tag_type_id: 2 }]}});
+            
+            varietalTags = varietalTags.varietals.map(v => {return { product_id: Number(req.params.id), tag_type_id: 2, tag_id: Number(v)}});
+            //return res.send( {productVarietalTags, varietalTags})
 
-            let productUpdated = await db.Product.update(productToUpdate, { where: {id: req.params.id} });
+            let newVarietal = [];
+            for(i = 0; i < varietalTags.length; i++){
+                newVarietal.push({id: productVarietalTags[i].id, product_id: varietalTags[i].product_id, tag_type_id: varietalTags[i].tag_type_id ,tag_id: varietalTags[i].tag_id });
+            }
+            //return res.send(newVarietal);
+            await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
 
-            return res.send(productUpdated)
 
-            varietalTags = varietalTags.varietals.map(v => {return { product_id: req.params.id, tag_type_id: 2, tag_id: Number(v)}});
-            categoryTags = categoryTags.categories.map(c => {return { product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
 
-            await db.Product_tag.bulkCreate(varietalTags);
-            await db.Product_tag.bulkCreate(categoryTags);
+            /* for (i=0; i< varietalTags.length; i++){
+                db.Product_tag.update({tag_id: varietalTags[i].tag_id },
+                    {where: {id: productVarietalTags[i].id}} );
+            } */
+            
+            //varietalTags = productVarietalTags.map(v => {return { id:v.id, product_id: Number(req.params.id), tag_type_id: 2, tag_id: 5}});
+            //return res.send(varietalTags)
+            //await db.Product_tag.bulkCreate(varietalTags,{ fields:[ "product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
+            //Una vez que funciones varitel mismo para Categorias
+            //categoryTags = categoryTags.categories.map(c => {return {id: prductTags, product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
+            //await db.Product_tag.bulkCreate(categoryTags, { updateOnDuplicate: ["product_id","tag_type_id"] });
 
             return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
@@ -163,16 +193,6 @@ const adminController = {
             console.error(error);
         }
 
-       /*  const indexProduct = products.findIndex(product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
-
-        req.body.image = req.file ? req.file.filename : req.file.filename;
-
-        products[indexProduct] = { ...products[indexProduct], ...req.body };
-        // si tengo req.file me estan enviando nvo archivo si no req.file.filename
-
-        //fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-        return res.redirect(303, '/admin/inventario-productos'); */
     },
     deleteProduct: (req, res) => {
 
