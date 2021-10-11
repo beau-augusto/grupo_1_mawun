@@ -173,6 +173,7 @@ const adminController = {
             //return res.send(newVarietal);
             await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
 
+            return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
 
             /* for (i=0; i< varietalTags.length; i++){
@@ -187,7 +188,6 @@ const adminController = {
             //categoryTags = categoryTags.categories.map(c => {return {id: prductTags, product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
             //await db.Product_tag.bulkCreate(categoryTags, { updateOnDuplicate: ["product_id","tag_type_id"] });
 
-            return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
         } catch(error) {
             console.error(error);
