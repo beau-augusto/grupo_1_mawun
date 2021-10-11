@@ -194,18 +194,16 @@ const adminController = {
         }
 
     },
-    deleteProduct: (req, res) => {
+    deleteProduct: async (req, res) => {
+        try{
 
-        const indexProduct = products.findIndex(product => product.id == req.params.id);
+            await db.Product.destroy({ where: {id: req.params.id}})
+            return res.redirect(303, '/admin/inventario-productos');
 
-        if (indexProduct === -1) {
-            return res.send('El producto que buscás no existe.');
+
+        } catch(error) {
+            console.error(error);
         }
-        products.splice(indexProduct, 1);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-        return res.redirect('/admin/inventario');
     },
     inventoryUsers: async (req, res) => {
         try {
