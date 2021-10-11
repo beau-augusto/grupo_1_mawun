@@ -10,6 +10,9 @@ const createError = require('http-errors');
 //***** Express *****//
 const app = express();
 
+//****Sengrid API ****//
+const sendEmail = require ('../utils/sendEmail');
+
 //***** Template Engine *****//
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la carpeta de las Vistas
@@ -20,6 +23,36 @@ app.use(express.static(path.join(__dirname, '../public'))); // Necesario para lo
 app.use(express.urlencoded({ extended: false })); //Capturar informacion que se envia desde un formulario via post en lo que vendria siendo req.body
 app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
+
+app.get('/contacto', (req, res) => {
+  res.render('contact')
+});
+
+app.get('/sent', (req, res) => {
+  res.render('sent')
+});
+
+app.post('/sendemail', (req, res) => {
+  const { name, email, asunto, consulta } = req.body;
+  
+  const from = "mawuncompany@gmail.com";
+  const to = "miguel_ed_sand@hotmail.com";
+  const subject = "Nueva solicitud de contacto";
+
+
+  const output = `
+  <p>Tienes una nueva solicitud de contacto</p>
+  <h3>Detalles de Contacto</h3>
+  <ul>
+    <li>name: $(name)</li>
+    <li>name: $(email)</li>
+    <li>name: $(asunto)</li>
+    <li>name: $(consulta)</li>
+  </ul>`;
+
+  sendEmail(from, to, subject, output);
+  res.redirect('/sent');
+});
 
 //***** Session *****//
 app.use(expressSession({  
@@ -67,6 +100,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 //***** Exports app *****//
 module.exports = app; // Para poder usar nodemon bin/www 
