@@ -35,15 +35,18 @@
 
                            
                         <input type="checkbox" id="remember" name="remember" class="checkbox-login-input">
-                                    <label for="remember"> Recordar usuario </label>
+                                    <label for="remember"> Recordar usuario </label> 
+                                    <a href="/usuarios/registro" class="nuevoRegistro">¿No tenes una cuenta?</a>
                         </div>
 
-                        <button type="submit" class="abm-button-submit">CONTINUAR</button>
+                        <button type="submit" class="abm-button-submit" id="abm-button-submit-login">CONTINUAR</button>
                     </div>
                 </form>
             </div>
         </section>
     </main>
     <%- include('../partials/footer') %>
+    <script src="/javascript/js-front.js" type="text/javascript"></script>
+
 </body>
 </html>

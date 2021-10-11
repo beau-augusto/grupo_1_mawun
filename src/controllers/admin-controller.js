@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { Op } = require("sequelize");
 
 const { validationResult } = require('express-validator'); // Destructuracion pido resultdo de la validacion (Express-Validator)
 
@@ -58,6 +59,16 @@ const adminController = {
     storeProduct: async (req, res) => {
 
         try{
+            let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
+            let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
+
+            let varietal = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Varietal'); //Filtro la association de product tag por el nombre = Varietal
+            varietal = varietal.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
+            let category = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = Categoria
+            category = category.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres  e id
+            wineries = wineries.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
+
             const errors = validationResult(req); // Obtengo informacion del Express validator y la cargo en la variable error
             if (errors.isEmpty()) { // Si errores de express Validator viene vacio continuo
                 const productToCreate = {  //Obtengo la informacion del formulario y la creo 
@@ -82,8 +93,13 @@ const adminController = {
                 return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
             } else {
+                console.log
                 return res.render('admin/create-product', {
+                    
                     errors: errors.mapped(),
+                    varietal: varietal,
+                    wineries: wineries,
+                    category: category,
                     oldInfo: req.body //Si hay errores vuelvo a la vista con errores y campos ya completados por el cliente con oldInfo
                 });
             };
@@ -107,8 +123,6 @@ const adminController = {
             product.dataValues.productCategories = productCategories; //sumo al array de productos la categorias previamente mapeada
             product.dataValues.productVarietals  = productVarietals ; //sumo al array de productos la varietales previamente mapeada
 
-
-
             let wineries = await db.Winery.findAll( {order:[['name','ASC']]}); // Consulta a la Db listado de Bodegas con orden alfabetico
             let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]}); // Consulta a la Db listado de Varietales y Categorias con orden alfabetico
 
@@ -128,10 +142,9 @@ const adminController = {
         
     },
     updateProduct: async (req, res) => {
-
         try{
             let productData = await db.Product.findByPk (req.params.id); // encuentra un Producto por id
-
+            
             req.body.image = req.file ? req.file.filename : productData.image;
 
             const productToUpdate = {  //Obtengo la informacion del formulario y la creo 
@@ -146,46 +159,51 @@ const adminController = {
             let categoryTags = {categories: req.body.category};
 
 
+            await db.Product.update(productToUpdate, { where: {id: req.params.id} });
+            
+            let productVarietalTags = await db.Product_tag.findAll({where: { [Op.and]: [ {product_id: req.params.id}, { tag_type_id: 2 }]}});
+            
+            varietalTags = varietalTags.varietals.map(v => {return { product_id: Number(req.params.id), tag_type_id: 2, tag_id: Number(v)}});
+            //return res.send( {productVarietalTags, varietalTags})
 
-            let productUpdated = await db.Product.update(productToUpdate, { where: {id: req.params.id} });
-
-            return res.send(productUpdated)
-
-            varietalTags = varietalTags.varietals.map(v => {return { product_id: req.params.id, tag_type_id: 2, tag_id: Number(v)}});
-            categoryTags = categoryTags.categories.map(c => {return { product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
-
-            await db.Product_tag.bulkCreate(varietalTags);
-            await db.Product_tag.bulkCreate(categoryTags);
+            let newVarietal = [];
+            for(i = 0; i < varietalTags.length; i++){
+                newVarietal.push({id: productVarietalTags[i].id, product_id: varietalTags[i].product_id, tag_type_id: varietalTags[i].tag_type_id ,tag_id: varietalTags[i].tag_id });
+            }
+            //return res.send(newVarietal);
+            await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
 
             return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
+
+
+            /* for (i=0; i< varietalTags.length; i++){
+                db.Product_tag.update({tag_id: varietalTags[i].tag_id },
+                    {where: {id: productVarietalTags[i].id}} );
+            } */
+            
+            //varietalTags = productVarietalTags.map(v => {return { id:v.id, product_id: Number(req.params.id), tag_type_id: 2, tag_id: 5}});
+            //return res.send(varietalTags)
+            //await db.Product_tag.bulkCreate(varietalTags,{ fields:[ "product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
+            //Una vez que funciones varitel mismo para Categorias
+            //categoryTags = categoryTags.categories.map(c => {return {id: prductTags, product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
+            //await db.Product_tag.bulkCreate(categoryTags, { updateOnDuplicate: ["product_id","tag_type_id"] });
+
 
         } catch(error) {
             console.error(error);
         }
 
-       /*  const indexProduct = products.findIndex(product => product.id == req.params.id); //Busco el indice del pruducto en el array con el id recibido por el accion del formulario
-
-        req.body.image = req.file ? req.file.filename : req.file.filename;
-
-        products[indexProduct] = { ...products[indexProduct], ...req.body };
-        // si tengo req.file me estan enviando nvo archivo si no req.file.filename
-
-        //fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-        return res.redirect(303, '/admin/inventario-productos'); */
     },
-    deleteProduct: (req, res) => {
+    deleteProduct: async (req, res) => {
+        try{
 
-        const indexProduct = products.findIndex(product => product.id == req.params.id);
+            await db.Product.destroy({ where: {id: req.params.id}})
+            return res.redirect(303, '/admin/inventario-productos');
 
-        if (indexProduct === -1) {
-            return res.send('El producto que buscás no existe.');
+
+        } catch(error) {
+            console.error(error);
         }
-        products.splice(indexProduct, 1);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-        return res.redirect('/admin/inventario');
     },
     inventoryUsers: async (req, res) => {
         try {
@@ -206,7 +224,6 @@ const adminController = {
         try {
 
         let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
-        let test = await User.findByEmail(userFound.email)
 
         if (userFound) {
             return res.render('./admin/user-profile-bo', { user: userFound });
@@ -223,7 +240,7 @@ const adminController = {
     },
     storeUser: async (req, res) => {
 
-        const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
+        const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error   
         try {
         req.body.image = req.file ? req.file.filename : "";
         if (resultValidation.isEmpty()) {
@@ -253,12 +270,26 @@ const adminController = {
     searchUser: async (req, res) => {
 
         try {
+            return res.send('it works')
             let userSearched = await User.search(req.query.fuckingBug); // encuentra un usuario por su PK
-            if (userSearched) {
-                return res.render('./admin/inventory-users', { users: userSearched });
-            } else {
-                res.send('El usuario que buscás no existe.')
+
+            let allUsers = await User.all(); // llama a todos los usuarios
+
+            if(userSearched.length === 0){ // logica cuando no se encuentra el usuario
+
+                let usernotFound = [];
+
+                let error = { notFound :{
+                    msg: "No hay un usuario con estas características"
+                }};
+
+                console.log(error);
+
+                return res.render('./admin/inventory-users', {errors: error, users: allUsers});
             }
+
+                return res.render('./admin/inventory-users', { users: userSearched });
+
         } catch (error) {
             console.error(error)
         }
@@ -268,6 +299,7 @@ const adminController = {
 
         try {
             let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
+
             if (userFound) {
                 return res.render('./admin/edit-user', { user: userFound });
             } else {
@@ -280,13 +312,11 @@ const adminController = {
     },
     updateUser: async (req, res) => {
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-
         try {
-            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK 
-
+            let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
-    
+
             let NewUserData = {
                 name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -301,24 +331,18 @@ const adminController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-
+console.log(req.body);
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
-          
-             if (userData['addresses.user_id'] === null){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
-            
-                let updateCreate = { // se le agrega el id y user_id para la table addresses
-                 ...NewUserData, // mantiene la informacion nueva a subir
-                 id: userData.id,
-                 user_id: userData.id
-             }
-                await User.createAddress(updateCreate); // crea una nueva fila en addresses que corresponde al usuario ya existente
+             if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+return res.send('fafaf')
+              // await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
             }
             else {
-             await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+         //    await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
             }
 
     
-            return res.redirect(303, '/admin/inventario-usuarios');
+            return res.redirect(303, 'perfil');
             } else {
                 return res.render('./admin/edit-user',{
                     errors: resultValidation.mapped(),

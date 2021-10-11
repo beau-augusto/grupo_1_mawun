@@ -3,9 +3,8 @@ const { Op } = require("sequelize");
 
 const Order = {
 all: function(userID) {
-       return db.Order.findAll({ where: {user_id: userID},
-           include:[{association:'items_carrito', include:[{association:'products'}]}, {association: "users"} 
-    ]})
+       return db.Order.findOne({ where: {user_id: userID, status: 0}
+    })
 },
 carrito: function(userID) {
     return db.Order_product.findAll({
@@ -15,9 +14,9 @@ carrito: function(userID) {
         ]
 })
 },
-deleteCarrito: function (orderID){
-    return db.Order.destroy({
-        where: {id: orderID}}  
+deleteCarrito: function (associationID){
+    return db.Order_product.destroy({
+        where: {id: associationID}}  
 )
 },
 comprar: function (userID){
@@ -25,9 +24,14 @@ comprar: function (userID){
         where: {user_id: userID, status: 0}
 })
 },
-comprar1: function(userID) {
+updateQuantity: function (number, associationID){
+    return db.Order_product.update(
+        {quantity: number},
+        {where: {id: associationID}})
+    },
+comprar1: function(orderID) {
     return db.Order.update({status: 1},{
-          where: {user_id: userID, status: 0}
+          where: {id: orderID}
      });
     },
 changeState: function (userID){

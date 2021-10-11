@@ -4,6 +4,7 @@ const path = require('path');
 //Sequelize Models//
 const db = require("../database/models");
 const Order = require("../models/Order");
+const User = require("../models/User");
 const Product = require("../models/Product");
 const chalk = require('chalk');
 
@@ -46,10 +47,10 @@ const productsController = {
     },
     cart: async (req, res)=> {
         try {
-            let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)  
-            //let test = carrito.map(item => console.log(item.dataValues.order_product)) // agarro los items de order_products
+           let ordenes = await Order.carrito(res.locals.usuarioLogeado.id)  
          
         let carrito = ordenes.map(item => {return {
+            association_id: item.id,
             order_id: item.order_id,
             quantity: item.quantity,
             id: item.products.id,
@@ -65,25 +66,9 @@ const productsController = {
         )
 
         let sum = quantities.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)  // sumo todos los numeros en un array
-            
-        //let quantities = carrito.map(item => item.quantity)
-        //let quantity = itemsCarrito.map((item) => item.quantity)
-        //let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        //let products = itemsCarrito.map(((product) => product.products))
-        //let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        //let datos = carrito.map(item => item.items_carrito.id)
-        //name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        //return res.send(carrito)
-        // let product = itemsCarrito.map((item) => item.products)
-        //let bodega = itemsCarrito.map((item) => item.products.winery.name)
-        // let products = itemsCarrito.map(((product) => product.products))
-        // let test = itemsCarrito.map((item) => ({...item.products, quantity: item.quantity})) 
-        // let datos = carrito.map(item => item.items_carrito.id)
-        // name: item.items_carrito.products.name, price: item.items_carrito.products.price, image: item.items_carrito.products.image, winery_id: item.items_carrito.products.winery_id
-        // return res.send({orders:carrito})
-console.log({orders: carrito, sum:sum});
-         return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
+        
+     //  console.log({orders: carrito, sum:sum});  
+        return res.render ('products/cart', {orders: carrito, sum:sum}); // le paso los dato de cada producto y tambien la suma de todos los productos
 
         } catch (error) {
             console.error(error);
@@ -93,40 +78,108 @@ console.log({orders: carrito, sum:sum});
     addToCart: async (req, res)=> {
         try {
 
-           let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
-        
-            let associationData = { // arma el objeto para crear una fila en la table order_product
-                quantity: 2, 
-                product_id: req.params.id, // toma el id del producto
-                order_id: newOrder.id // toma el id del order recien creado 
-            }
+            let previousOrder = await Order.all(res.locals.usuarioLogeado.id) // encuentro la orden previa no finalizada
 
-           await Order.createAssociation(associationData) // un metodo para crear en la table pivote
-          return res.redirect('/productos')
+            if (previousOrder){ // si existe creo una nueva associacion con ese numero de orden en la table pivote
+
+                let products = await Order.carrito(res.locals.usuarioLogeado.id) ;
+  
+                let productDuplicado = products.find(product => product.product_id === Number(req.params.id)) // busco si hay duplicado
+             //  return res.send(productDuplicado)
+
+              if(productDuplicado){
+                  let quantity = productDuplicado.quantity + Number(req.body.sumador ? req.body.sumador : 1);
+                  Order.updateQuantity(quantity, productDuplicado.id) 
+                  return res.redirect('/productos')
+              } else{
+                let associationData = { // arma el objeto para crear una fila en la table order_product
+                    quantity: req.body.sumador ? req.body.sumador : 1, // si no tiene cantidad, se toma 1 por defecto
+                    product_id: req.params.id, // toma el id del producto
+                    order_id: previousOrder.id // toma el id del order recien creado 
+                }
+                
+             await Order.createAssociation(associationData) // un metodo para crear en la table pivote
+              return res.redirect('/productos')
+
+              }
+
+
+            } else { // si no hay una orden abierta se crea una nueva 
+                let newOrder = await Order.create({user_id: res.locals.usuarioLogeado.id}); // creo una nueva orden con el id de locals en user_id y guardo la orden nueva para luego sacar el ID
+               
+                let associationData = { // arma el objeto para crear una fila en la table order_product
+                    quantity: req.body.sumador ? req.body.sumador : 1, // si no tiene cantidad, se toma 1 por defecto
+                    product_id: req.params.id, // toma el id del producto
+                    order_id: newOrder.id // toma el id del order recien creado 
+                }
+          await Order.createAssociation(associationData) // un metodo para crear en la table pivote          
+         return res.redirect('/productos')
+                
+            }
+    
         } catch (error) {
             console.log(error);
         }
     },
     deleteCart: async (req, res) => {
         try {
-            await Order.deleteCarrito(req.params.id); // borra desde el id de la orden
-
-            return res.redirect('/productos/carrito')
+          await Order.deleteCarrito(req.params.id); // borra desde el id de la orden_product
+          return res.redirect('/productos/carrito')     
         } catch (error) {
             console.log(error);
         }
 
+    },
+    continuar: async (req, res) => {
+
+        let orderId = (req.params.id)
+
+        let userData = await User.findByEmail(res.locals.usuarioLogeado.email)
+
+       return res.render('products/order-address', {user: userData, orderId: orderId})
+    },
+    alPago: async (req, res) => {
+        
+        let orderId = (req.params.id)
+        if(req.body.calle_numero != '' && req.body.codigo_postal != ''){
+        let newAddress = {
+            street: req.body.calle_numero,
+            apartment: req.body.departamento,
+            district: req.body.barrio,
+            zip_code: req.body.codigo_postal,
+            city: req.body.ciudad,
+            state: req.body.provincia
+        }
+
+            await User.createAddress(newAddress, 3); // crea una nueva fila en addresses que corresponde al usuario ya existente
+        } else {
+
+            let idAddress = req.body.address
+
+         
+        }
+        return res.render('products/payment')
+
+        
     },
     comprar: async (req, res) => {
         try {
-            await Order.comprar1(req.params.id)
-            return res.render('products/thanks-purchase')
-        
+            if(req.params.id == " "){
+                return res.redirect('/productos/carrito')     
+            } else {
+                
+                await Order.comprar1(req.params.id)
+                return res.render('products/thanks-purchase')  
+            }  
         } catch (error) {
             console.log(error);
         }
         
     },
+    updateQuantity: async function (req, res) {
+     await Order.updateQuantity(req.query.sumador, req.params.id)
+        return res.redirect('/productos/carrito');
+    }
 };
 
 module.exports = productsController;
