@@ -270,7 +270,6 @@ const adminController = {
     searchUser: async (req, res) => {
 
         try {
-            return res.send('it works')
             let userSearched = await User.search(req.query.fuckingBug); // encuentra un usuario por su PK
 
             let allUsers = await User.all(); // llama a todos los usuarios

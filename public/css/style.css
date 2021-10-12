@@ -1126,6 +1126,16 @@ margin-top: 16px;
     border-radius: 0px;
     background-color: #412838;
 }
+
+.fa-times.submit {
+    margin-left: -24px;
+    color: #00000066;
+    display: none;
+}
+
+a.fa-times.submit {
+    text-decoration: none;
+}
 .searchFieldInventario {
     width: 100%;
     height: 31px;
