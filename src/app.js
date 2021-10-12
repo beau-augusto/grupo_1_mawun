@@ -34,78 +34,76 @@ app.use(express.urlencoded({ extended: false })); //Capturar informacion que se 
 app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
-app.get('/contacto', (req, res) => {
-  res.render('contact')
-});
 
-app.get('/sent', (req, res) => {
-  res.render('sent')
-});
 
-app.post('/sendemail', (req, res) => {
-  const { name, email, asunto, consulta } = req.body;
+// app.get('/sent', (req, res) => {
+//   res.render('sent')
+// });
+
+// app.post('/sendemail', (req, res) => {
+//   const { name, email, asunto, consulta } = req.body;
   
-  const from = "mawuncompany@gmail.com";
-  const to = "mawuncompany@gmail.com";
-  const subject = "Consulta formulario de contacto";
+//   const from = "mawuncompany@gmail.com";
+//   const to = "mawuncompany@gmail.com";
+//   const subject = "Consulta formulario de contacto";
 
 
-const output =
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
-        <thead>
-            <tr>
-                <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
-                    <img src="" height="100%" alt="Mawun E-commerce de Vinos">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-                    <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-                    <span style="font-size: 13px;"> ${asunto}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-                    <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-                    <span style="font-size: 13px;"> ${name}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px; font-weight: bold;">Email:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px;"> ${email}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px; font-weight: bold;">Consulta</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px;"> ${consulta}</span>
-                </td>
-            </tr>
+// const output =
+// `<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// </head>
+// <body>
+//     <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
+//         <thead>
+//             <tr>
+//                 <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
+//                     <img src="" height="100%" alt="Mawun E-commerce de Vinos">
+//                 </td>
+//             </tr>
+//             <tr>
+//                 <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+//                     <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
+//                 </td>
+//                 <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+//                     <span style="font-size: 13px;"> ${asunto}</span>
+//                 </td>
+//             </tr>
+//             <tr>
+//                 <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+//                     <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
+//                 </td>
+//                 <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+//                     <span style="font-size: 13px;"> ${name}</span>
+//                 </td>
+//             </tr>
+//             <tr>
+//                 <td style="text-align: left; padding: 5px 0px 5px 0px;">
+//                     <span style="font-size: 13px; font-weight: bold;">Email:</span>
+//                 </td>
+//                 <td style="text-align: left;padding: 5px 0px 5px 0px;">
+//                     <span style="font-size: 13px;"> ${email}</span>
+//                 </td>
+//             </tr>
+//             <tr>
+//                 <td style="text-align: left; padding: 5px 0px 5px 0px;">
+//                     <span style="font-size: 13px; font-weight: bold;">Consulta</span>
+//                 </td>
+//                 <td style="text-align: left;padding: 5px 0px 5px 0px;">
+//                     <span style="font-size: 13px;"> ${consulta}</span>
+//                 </td>
+//             </tr>
             
-        </thead>
-    </table>
-</body>
-</html>`
+//         </thead>
+//     </table>
+// </body>
+// </html>`
 
-  sendEmail(from, to, subject, output);
-  res.redirect('/sent');
-});
+//   sendEmail(from, to, subject, output);
+//   res.redirect('/sent');
+// });
 
 //***** Session *****//
 app.use(expressSession({  
@@ -143,6 +141,76 @@ app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
+
+app.get('/sent', (req, res) => {
+    res.render('sent')
+  });
+  
+  app.post('/sendemail', (req, res) => {
+    const { name, email, asunto, consulta } = req.body;
+    
+    const from = "mawuncompany@gmail.com";
+    const to = "mawuncompany@gmail.com";
+    const subject = "Consulta formulario de contacto";
+  
+  
+  const output =
+  `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+      <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
+          <thead>
+              <tr>
+                  <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
+                      <img src="" height="100%" alt="Mawun E-commerce de Vinos">
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                      <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
+                  </td>
+                  <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                      <span style="font-size: 13px;"> ${asunto}</span>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                      <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
+                  </td>
+                  <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                      <span style="font-size: 13px;"> ${name}</span>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                      <span style="font-size: 13px; font-weight: bold;">Email:</span>
+                  </td>
+                  <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                      <span style="font-size: 13px;"> ${email}</span>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                      <span style="font-size: 13px; font-weight: bold;">Consulta</span>
+                  </td>
+                  <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                      <span style="font-size: 13px;"> ${consulta}</span>
+                  </td>
+              </tr>
+              
+          </thead>
+      </table>
+  </body>
+  </html>`
+  
+    sendEmail(from, to, subject, output);
+    res.redirect('/sent');
+  });
+  
 
 
 // ************ catch 404 and forward to error handler ************

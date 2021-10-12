@@ -91,7 +91,6 @@ const borrarSearch = () => {
     }
     if(heroSearchField != null){
         heroSearchField.onfocus = () => {
-            console.log('works');
              ex.style.display = "block";
         }
     }
@@ -100,6 +99,9 @@ const borrarSearch = () => {
 
 
 window.addEventListener("load", function () {
+    console.log("anda");
+    let bubble = document.querySelector('div.cartNumber');
+    if(bubble != null){
 
     fetch('http://localhost:3000/api/orders') // llamar a la api para llenar la burbuja de carrito
     .then(function(response){
@@ -108,19 +110,16 @@ window.addEventListener("load", function () {
     .then(function(data){
         let productNumber = data.meta.total
         console.log(productNumber);
-        let bubble = document.querySelector('div.cartNumber');
     
-        if(bubble != null){
             bubble.innerHTML = productNumber;
         }
 
-    })
-    .catch(function(error){
+    )
+        .catch(function(error){
         console.log(error);
     })
 
-
-
+ }
     sumadorCarrito();
     sumadorDetalle();
     agregarDireccion();

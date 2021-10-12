@@ -7,21 +7,24 @@
         <div class="page-title">
             <img src="/images/page-title-img.jpg" alt="Tienda" class="page-title-img">
             <div class="container">
-                <div class="page-title-desc">
-                    <h1>TIENDA</h1>
+                <div class="page-title-header">
+                    <h1><% for (let i = 0; i < categoryTitle.length; i++) { %>
+                        Vinos <%= categoryTitle[i].name %>
+                    <%}%>    
+                    </h1>
                 </div>
             </div>
         </div>
         <section class="container">
             <div class="product-grid">
-                <% products.forEach(product => { %>
+                <% categorySelected.forEach(product => { %>
                 <article class="product-grid-item">
-                    <a href="/productos/detalle/<%= product.id %>">
-                        <img src="/upload/products/<%= product.image %>" alt="<%= product.name %>" class="product-grid-img">
+                    <a href="/productos/detalle/<%= product.products.id %>">
+                        <img src="/upload/products/<%= product.products.image %>" alt="<%= product.products.name %>" class="product-grid-img">
                         <h4><%= product.name %></h4>
-                        <p class="product-grid-title">$<%= product.price %></p>
+                        <p class="product-grid-title">$<%= product.products.price %></p>
                     </a>
-                    <form action="/productos/carrito/<%=product.id%>" method="POST" class="button-wrap">
+                    <form action="/productos/carrito/<%=product.products.id%>" method="POST" class="button-wrap">
                         <button class="product-grid-button">AGREGAR AL CARRITO</button>
                     </form>
                 </article>

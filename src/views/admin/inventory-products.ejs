@@ -12,13 +12,16 @@
                     <div class="abm-inventory-wrapper">
                          <h2 class="abm-title-inv">Inventario de Productos</h2>
                         <div class="search-crear-wrapper">
-                            <form action="/" method="POST" class="searchInventario">
-                                <input type="text" maxlength="256" placeholder="Buscar" class="searchFieldInventario">
+                            <form action="/admin/buscar-producto" method="GET" class="searchInventario">
+                                <input type="text" maxlength="256" name="productSearch" placeholder="Buscar" class="searchFieldInventario">
                                 <a href="/admin/inventario-productos" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
                                 <button class="searchInven__submit"><i class="fa fa-search"></i></button>
                             </form>
                             <a href="/admin/crear" class="botonesInventarioCrear"> Crear</a>
                         </div>
+                        <% if(locals.errors && errors.notFound) { %> 
+                            <p class="abm-input-error"><%= errors.notFound.msg %> </p> <br> 
+                        <% } %> 
                         <div class="grid-container">
                             <div class="grid-item abm-title-tit">
                                 <label>ID</label><br>
@@ -51,7 +54,6 @@
                 </section>
             </main>
             <%- include('../partials/bo-footer') %>
-            <script src="/javascript/js-front.js" type="text/javascript"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
             <script src="/javascript/dialogbox.js"  type="text/javascript"></script>

@@ -11,33 +11,29 @@
                     <div class="abm-inventory-wrapper">
                          <h2 class="abm-title-inv">Inventario de Newsletter</h2>
 
-                        <div class="grid-container">
-                            <div class="grid-item abm-title-tit">
-                                <label>ID</label><br>
+                        <div class="grid-container-newsletter">
+                            <div class="grid-item-newsletter abm-title-tit">
+                               ID
                             </div>
-                            <div class="grid-item abm-title-tit">Emails</div>
-                            <div class="grid-item abm-title-tit"></div>
-                            <div class="grid-item abm-title-tit">Accion</div>
-
+                            <div class="grid-item-newsletter abm-title-tit">Emails</div>
+                            <div class="grid-item-newsletter abm-title-tit">Accion</div>                            
                             <% newsletter.forEach(newsletter=> { %>
-
-                                <div class="grid-item checkboxInventario">
-                                    <label> <%=newsletter.id%> </label>
+                                
+                                <div class="grid-item-newsletter checkboxInventario">
+                                    <%=newsletter.id%> 
                                 </div>
-                                <div class="grid-item itemInfo">
+                                <div class="grid-item-newsletter itemInfo">
                                     <%= newsletter.email %>
                                 </div>
-                                <div class="grid-item itemRecom"></div>
-                                 <div class="grid-item botonesWrapper">
-                                <form action="/admin/<%= newsletter.id %>/delete-email?_method=DELETE" method="POST">
-                                    <input type="submit" class="botonesInventario3" value="Borrar">
-                                </form>
+                                <div class="grid-item-newsletter botonesWrapper">
+                                    <form action="/admin/<%= newsletter.id %>/delete-email?_method=DELETE" method="POST">
+                                        <input type="submit" class="botonesInventario3" value="Borrar">
+                                    </form>
                                 </div>
-
                                 
                                 <% }) %>
-
-                        </div>
+                                
+                            </div>
                     </div>
                 </section>
             </main>
