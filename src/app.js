@@ -51,57 +51,57 @@ app.post('/sendemail', (req, res) => {
 
 
 const output =
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
-        <thead>
-            <tr>
-                <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
-                    <img src="" height="100%" alt="Mawun E-commerce de Vinos">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-                    <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-                    <span style="font-size: 13px;"> ${asunto}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-                    <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-                    <span style="font-size: 13px;"> ${name}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px; font-weight: bold;">Email:</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px;"> ${email}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left; padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px; font-weight: bold;">Consulta</span>
-                </td>
-                <td style="text-align: left;padding: 5px 0px 5px 0px;">
-                    <span style="font-size: 13px;"> ${consulta}</span>
-                </td>
-            </tr>
-            
-        </thead>
-    </table>
-</body>
-</html>`
+    `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
+            <thead>
+                <tr>
+                    <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
+                        <img src="" height="100%" alt="Mawun E-commerce de Vinos">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                        <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                        <span style="font-size: 13px;"> ${asunto}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                        <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                        <span style="font-size: 13px;"> ${name}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px; font-weight: bold;">Email:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px;"> ${email}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px; font-weight: bold;">Consulta</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px;"> ${consulta}</span>
+                    </td>
+                </tr>
+                
+            </thead>
+        </table>
+    </body>
+    </html>`
 
   sendEmail(from, to, subject, output);
   res.redirect('/sent');

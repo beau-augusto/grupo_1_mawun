@@ -184,6 +184,7 @@ ul.hero-menu li a:hover {
     width: 35px;
     height: 35px;
     line-height: 0px;
+    border-radius: 50%;
 }
 .hero-logo {
     width: 200px;
@@ -233,6 +234,20 @@ ul.hero-menu li a:hover {
     height: 250px;
     object-fit: cover;
     object-position: 50% 50%;
+}
+.page-title-header {
+    position: absolute;
+    top: 20%;
+    color: #744b64;
+    max-width: 650px;
+}
+.page-title-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 64px;
+    letter-spacing: 1px;
+    font-weight: 400;
+
 }
 .page-title-desc {
     position: absolute;

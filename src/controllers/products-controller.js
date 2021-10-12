@@ -49,23 +49,25 @@ const productsController = {
     },
     categoryList: async (req, res)=> {
 
-        let selectedCategory = req.params.category
-
         try{
-            let categoryList = await db.Product.findAll({include:[
-                {association:'product_tag'}]});
 
-            return res.send ({categoryList, selectedCategory});
-
-            if (categoryList){
-                let categories = product.product_tag.filter((tag) => tag.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = categoria
-                categories = categories.map(v => v.tags.name) //Relaizó un map para obtener unicamente los nombres
-                product.dataValues.categories = categories; //sumo al array de productos la categorias previamente mapeada
-                res.render ('products/category-list', {categories});
-                }else{
-                res.send ('El producto que buscás no existe.');
-                }
+            let selectedCategory = Number(req.params.category);
+            let productsCategories = await db.Product_tag.findAll({ include:[{association:'products'} ]});
             
+            let tag_types = await db.Tag.findAll({ include:[{association:'tag_types'}]})
+            let category = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); 
+            
+            category = category.map(v => {return {name:v.name, id: v.id}})
+            let categoryTitle = category.filter((tag) => tag.id == selectedCategory);
+            
+            let categorySelected = productsCategories.filter((tag) => tag.tag_id == selectedCategory && tag.tag_type_id == 1);
+            
+            if (categorySelected.length !== 0){
+            return res.render ('products/category-list', {categorySelected, categoryTitle});
+            }else{
+            return res.send ('La categoria que buscás no existe.');
+            }
+
         } catch (error) {
             console.error(error);
         };
