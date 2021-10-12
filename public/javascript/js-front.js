@@ -79,6 +79,18 @@ const agregarDireccion = () => {
     }
 }
 
+const borrarSearch = () => {
+    let searchButton = document.querySelector('.searchInven__submit')
+    let searchField = document.querySelector('.searchFieldInventario')
+    let ex = document.querySelector('.fa-times.submit')
+
+    if(searchButton != null){
+        searchField.onfocus = () => {
+             ex.style.display = "block";
+        }
+    }
+}
+
 
 
 window.addEventListener("load", function () {
@@ -86,5 +98,6 @@ window.addEventListener("load", function () {
     sumadorCarrito();
     sumadorDetalle();
     agregarDireccion();
+    borrarSearch();
 
 })
