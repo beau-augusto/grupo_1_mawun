@@ -171,23 +171,7 @@ const adminController = {
             }
             //return res.send(newVarietal);
             await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
-
             return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
-
-
-            /* for (i=0; i< varietalTags.length; i++){
-                db.Product_tag.update({tag_id: varietalTags[i].tag_id },
-                    {where: {id: productVarietalTags[i].id}} );
-            } */
-            
-            //varietalTags = productVarietalTags.map(v => {return { id:v.id, product_id: Number(req.params.id), tag_type_id: 2, tag_id: 5}});
-            //return res.send(varietalTags)
-            //await db.Product_tag.bulkCreate(varietalTags,{ fields:[ "product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
-            //Una vez que funciones varitel mismo para Categorias
-            //categoryTags = categoryTags.categories.map(c => {return {id: prductTags, product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
-            //await db.Product_tag.bulkCreate(categoryTags, { updateOnDuplicate: ["product_id","tag_type_id"] });
-
-
         } catch(error) {
             console.error(error);
         }
@@ -195,14 +179,36 @@ const adminController = {
     },
     deleteProduct: async (req, res) => {
         try{
-
             await db.Product.destroy({ where: {id: req.params.id}})
             return res.redirect(303, '/admin/inventario-productos');
-
-
         } catch(error) {
             console.error(error);
         }
+    },
+    searchProduct: async (req, res) => {
+        try {
+            let productToSearch = req.query.productSearch;
+
+            let productSearched = await db.Product.findAll( {order:[['name','ASC']],
+                where: { [Op.or]: [ {name: { [Op.like]: '%' + productToSearch + '%' }}]}
+                });
+
+            let allProducts = await db.Product.findAll()
+
+            if(productSearched.length === 0){ // logica cuando no se encuentra el usuario
+                let notFound = [];
+                let error = { notFound :{
+                    msg: "No hay un productos con estas características"
+                }};
+                console.log(error);
+                return res.render('./admin/inventory-products', {errors: error, products: allProducts});
+            }
+                return res.render('./admin/inventory-products', { products: productSearched });
+
+        } catch (error) {
+            console.error(error)
+        }
+
     },
     inventoryUsers: async (req, res) => {
         try {
@@ -331,7 +337,7 @@ const adminController = {
             }
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
              if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
-return res.send('fafaf')
+                return res.send('fafaf')
               // await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
             }
             else {
@@ -364,18 +370,17 @@ return res.send('fafaf')
     }
     catch(error){
         console.error(error);
+        }
+    },
+    deleteNewsletter: async (req, res) => {
+        try{
+            await db.Newsletter.destroy({where: {id: req.params.id}});
+            return res.redirect('/admin/inventario-newsletter');
+        }
+        catch(error){
+            console.error(error);
+        }
     }
-},
-deleteNewsletter: async (req, res) => {
-    try{
-        await db.Newsletter.destroy({where: {id: req.params.id}});
-        return res.redirect('/admin/inventario-newsletter');
-    }
-    catch(error){
-        console.error(error);
-}
-
-},
 
 }
 
