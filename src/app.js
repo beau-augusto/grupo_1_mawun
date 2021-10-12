@@ -20,6 +20,9 @@ const $ = require('jquery')(window);
 //***** Express *****//
 const app = express();
 
+//****Sengrid API ****//
+const sendEmail = require ('../utils/sendEmail');
+
 //***** Template Engine *****//
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la carpeta de las Vistas
@@ -30,6 +33,79 @@ app.use(express.static(path.join(__dirname, '../public'))); // Necesario para lo
 app.use(express.urlencoded({ extended: false })); //Capturar informacion que se envia desde un formulario via post en lo que vendria siendo req.body
 app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
+
+app.get('/contacto', (req, res) => {
+  res.render('contact')
+});
+
+app.get('/sent', (req, res) => {
+  res.render('sent')
+});
+
+app.post('/sendemail', (req, res) => {
+  const { name, email, asunto, consulta } = req.body;
+  
+  const from = "mawuncompany@gmail.com";
+  const to = "mawuncompany@gmail.com";
+  const subject = "Consulta formulario de contacto";
+
+
+const output =
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
+        <thead>
+            <tr>
+                <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
+                    <img src="" height="100%" alt="Mawun E-commerce de Vinos">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                    <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
+                </td>
+                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                    <span style="font-size: 13px;"> ${asunto}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                    <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
+                </td>
+                <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                    <span style="font-size: 13px;"> ${name}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                    <span style="font-size: 13px; font-weight: bold;">Email:</span>
+                </td>
+                <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                    <span style="font-size: 13px;"> ${email}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                    <span style="font-size: 13px; font-weight: bold;">Consulta</span>
+                </td>
+                <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                    <span style="font-size: 13px;"> ${consulta}</span>
+                </td>
+            </tr>
+            
+        </thead>
+    </table>
+</body>
+</html>`
+
+  sendEmail(from, to, subject, output);
+  res.redirect('/sent');
+});
 
 //***** Session *****//
 app.use(expressSession({  
@@ -77,6 +153,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 //***** Exports app *****//
 module.exports = app; // Para poder usar nodemon bin/www 
