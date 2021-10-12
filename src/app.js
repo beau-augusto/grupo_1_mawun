@@ -141,6 +141,9 @@ app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
+app.get('/contacto', (req, res) => {
+    res.render('contact')
+  });
 
 app.get('/sent', (req, res) => {
     res.render('sent')
