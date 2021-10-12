@@ -108,6 +108,7 @@ input:focus {
 	justify-content: flex-end;
 	align-items: center;
 	align-content: center;
+    position: relative;
     
 }
 .hero-burger-wrap {
@@ -148,17 +149,22 @@ ul.hero-menu li a:hover {
 }
 .hero-cart {
     padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .hero-cart-link {
     color: #ffffff;
-    padding: 12px;
     font-size: 18px;
+    padding: 12px;
 }
+
 .hero-cart-link:hover {
     color: #faeeed;
 }
 .hero-logo {
-    width: 250px;
+    width: 200px;
+    color: white;
 }
 .hero-banner {
     position: relative;
@@ -1218,6 +1224,34 @@ margin-top: 16px;
 
 }
 
+.cartNumber{
+    color: black;
+    position: absolute;
+    top: 13px;
+    right: 24px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.mailLoggeado {
+    text-decoration: none;
+    color: inherit;
+}
+
+.numberFlex {
+    display: flex;
+}
+
+
+.fa-circle {
+    position: absolute;
+    color: #faeeed;
+    top: 13px;
+    right: 17px;
+    font-size: 21px;
+    text-shadow: 0 0 0px #000;
+}
+
 
 
 .itemResumenLast {
@@ -1678,6 +1712,22 @@ margin-top: 16px;
 .bo-profile{
     color: #412838;
     display: flex;   
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+}
+
+.foto-nav-logged {
+    color: #412838;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+}
+
+.picture-nav-bar {
+    color: #412838;
     font-size: 18px;
     width: 40px;
     height: 40px;
