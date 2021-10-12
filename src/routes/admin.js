@@ -27,6 +27,7 @@ router.post('/', uploadProduct.single('image'), validateCreatProduct, adminContr
 router.get('/:id/editar', adminController.editProduct);
 router.put('/:id', uploadProduct.single('image'), adminController.updateProduct);
 router.delete('/:id/delete', adminController.deleteProduct);
+router.get('/buscar-producto', adminController.searchProduct);
 
 /*** ADMINISTRAR UN USUARIO ***/
 router.get('/:id/perfil', adminController.profile); // Perfil de Usuario BO

@@ -185,6 +185,31 @@ const adminController = {
             console.error(error);
         }
     },
+    searchProduct: async (req, res) => {
+        try {
+            let productToSearch = req.query.productSearch;
+
+            let productSearched = await db.Product.findAll( {order:[['name','ASC']],
+                where: { [Op.or]: [ {name: { [Op.like]: '%' + productToSearch + '%' }}]}
+                });
+
+            let allProducts = await db.Product.findAll()
+
+            if(productSearched.length === 0){ // logica cuando no se encuentra el usuario
+                let notFound = [];
+                let error = { notFound :{
+                    msg: "No hay un productos con estas características"
+                }};
+                console.log(error);
+                return res.render('./admin/inventory-products', {errors: error, products: allProducts});
+            }
+                return res.render('./admin/inventory-products', { products: productSearched });
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    },
     inventoryUsers: async (req, res) => {
         try {
 
