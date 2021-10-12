@@ -164,6 +164,8 @@ const productsController = {
     },
     comprar: async (req, res) => {
         try {
+            return res.send('funciona')
+
             if(req.params.id == " "){
                 return res.redirect('/productos/carrito')     
             } else {
