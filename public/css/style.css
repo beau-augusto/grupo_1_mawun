@@ -952,7 +952,7 @@ margin-top: 16px;
     max-width: 135px;
 }
 /*ABM inventario*/
-.grid-container-123 {
+.grid-container {
     display: grid;
     grid-template-columns: 0.3fr 2.1fr 0.1fr 1.5fr; 
     grid-template-rows: 0.3fr 1.2fr; 
@@ -1004,28 +1004,25 @@ margin-top: 16px;
     border-top: 1px solid #412838;
     font-weight: 500;
 }
-.grid-item:nth-child(3n) {
+
+.grid-item:nth-child(4n) {
     border-right: 1px solid #412838;
 }
+.grid-item:nth-last-child(2) {
+    border-bottom: 1px solid #412838;
+}
 
-.grid-item1:nth-child(5n) {
+.grid-item:nth-last-child(3) {
     border-bottom: 1px solid #412838;
 }
-.grid-item1:nth-child(5n+6) {
+
+.grid-item:nth-last-child(4) {
     border-bottom: 1px solid #412838;
 }
-.grid-item1:nth-child(5n+7) {
+.grid-item:last-child {
     border-bottom: 1px solid #412838;
 }
-.grid-item1:nth-child(5n+8) {
-    border-bottom: 1px solid #412838;
-}
-.grid-item1:nth-child(5n+9) {
-    border-bottom: 1px solid #412838;
-}
-.grid-item1:nth-child(1n+9) {
-    border-top: none;
-}
+
 .abm-inventory-wrapper {
     background-color: #ffffff;
     width: 100%;
