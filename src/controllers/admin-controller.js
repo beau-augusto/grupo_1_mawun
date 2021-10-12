@@ -311,10 +311,10 @@ const adminController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-console.log(req.body);
+            console.log(req.body);
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
              if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
-return res.send('fafaf')
+                return res.send('fafaf')
               // await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
             }
             else {
@@ -347,18 +347,17 @@ return res.send('fafaf')
     }
     catch(error){
         console.error(error);
+        }
+    },
+    deleteNewsletter: async (req, res) => {
+        try{
+            await db.Newsletter.destroy({where: {id: req.params.id}});
+            return res.redirect('/admin/inventario-newsletter');
+        }
+        catch(error){
+            console.error(error);
+        }
     }
-},
-deleteNewsletter: async (req, res) => {
-    try{
-        await db.Newsletter.destroy({where: {id: req.params.id}});
-        return res.redirect('/admin/inventario-newsletter');
-    }
-    catch(error){
-        console.error(error);
-}
-
-},
 
 }
 
