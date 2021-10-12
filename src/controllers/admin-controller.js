@@ -172,23 +172,7 @@ const adminController = {
             }
             //return res.send(newVarietal);
             await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
-
             return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
-
-
-            /* for (i=0; i< varietalTags.length; i++){
-                db.Product_tag.update({tag_id: varietalTags[i].tag_id },
-                    {where: {id: productVarietalTags[i].id}} );
-            } */
-            
-            //varietalTags = productVarietalTags.map(v => {return { id:v.id, product_id: Number(req.params.id), tag_type_id: 2, tag_id: 5}});
-            //return res.send(varietalTags)
-            //await db.Product_tag.bulkCreate(varietalTags,{ fields:[ "product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
-            //Una vez que funciones varitel mismo para Categorias
-            //categoryTags = categoryTags.categories.map(c => {return {id: prductTags, product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
-            //await db.Product_tag.bulkCreate(categoryTags, { updateOnDuplicate: ["product_id","tag_type_id"] });
-
-
         } catch(error) {
             console.error(error);
         }
@@ -196,11 +180,8 @@ const adminController = {
     },
     deleteProduct: async (req, res) => {
         try{
-
             await db.Product.destroy({ where: {id: req.params.id}})
             return res.redirect(303, '/admin/inventario-productos');
-
-
         } catch(error) {
             console.error(error);
         }

@@ -36,7 +36,32 @@ const productsController = {
 
                 product.dataValues.categories = categories; //sumo al array de productos la categorias previamente mapeada
                 product.dataValues.varietals  = varietals ; //sumo al array de productos la varietales previamente mapeada
-                res.render ('products/detail', {product:product});
+
+                //return res.send ({product});
+                return res.render ('products/detail', {product});
+                }else{
+                return res.send ('El producto que buscás no existe.');
+                }
+            
+        } catch (error) {
+            console.error(error);
+        };
+    },
+    categoryList: async (req, res)=> {
+
+        let selectedCategory = req.params.category
+
+        try{
+            let categoryList = await db.Product.findAll({include:[
+                {association:'product_tag'}]});
+
+            return res.send ({categoryList, selectedCategory});
+
+            if (categoryList){
+                let categories = product.product_tag.filter((tag) => tag.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = categoria
+                categories = categories.map(v => v.tags.name) //Relaizó un map para obtener unicamente los nombres
+                product.dataValues.categories = categories; //sumo al array de productos la categorias previamente mapeada
+                res.render ('products/category-list', {categories});
                 }else{
                 res.send ('El producto que buscás no existe.');
                 }

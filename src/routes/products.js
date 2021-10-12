@@ -6,6 +6,7 @@ const productsController = require('../controllers/products-controller');
 
 router.get('/', productsController.list);
 router.get('/detalle/:id?', productsController.detail);
+router.get('/listado-categoria/:category?', productsController.categoryList);
 router.get('/carrito', loggedoutRedirect, productsController.cart);
 router.post('/carrito/:id', loggedoutRedirect, productsController.addToCart);
 router.get('/carrito/:id/actualizar', loggedoutRedirect, productsController.updateQuantity)
