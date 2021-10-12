@@ -24,19 +24,19 @@
                         <a href="mailto:dhschools@digitalhouse.com" class="contact-link"><p>info@mawun.wine</p></a>
                     </div>
                     <div class="contact-form">
-                        <form action="" class="contact-form-wrapper">
+                        <form method="POST" action="/sendemail" class="contact-form-wrapper">
                             <div class="contact-input-container">
                                 <div class="contact-input-wrap">
-                                    <input type="text" id="name" placeholder="NOMBRE COMPLETO" class="abm-input">
+                                    <input type="text" name="name" id="name" placeholder="Nombre Completo" class="abm-input">
                                 </div>
                                 <div class="contact-input-wrap-email">
-                                    <input type="email" id="email" placeholder="E-MAIL" class="abm-input">
+                                    <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input">
                                 </div> 
                                 <div class="contact-input-wrap-email">
-                                    <input type="text" id="text" placeholder="ASUNTO" class="abm-input">
+                                    <input type="text" name="asunto" id="text" placeholder="Asunto" class="abm-input">
                                 </div>   
                                 <div class="contact-input-wrap">
-                                    <textarea class="abm-input" rows="6" type="textarea" name="CONSULTA" id="description" placeholder="Escribi tu consulta"></textarea>
+                                    <textarea class="abm-input" rows="6" type="textarea" name="consulta" id="description" placeholder="Escribi tu consulta"></textarea>
                                 </div>  
                             </div>
                             <div class="contact-button-wrap">

@@ -108,6 +108,7 @@ input:focus {
 	justify-content: flex-end;
 	align-items: center;
 	align-content: center;
+    position: relative;
     
 }
 .hero-burger-wrap {
@@ -148,17 +149,22 @@ ul.hero-menu li a:hover {
 }
 .hero-cart {
     padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .hero-cart-link {
     color: #ffffff;
-    padding: 12px;
     font-size: 18px;
+    padding: 12px;
 }
+
 .hero-cart-link:hover {
     color: #faeeed;
 }
 .hero-logo {
-    width: 250px;
+    width: 200px;
+    color: white;
 }
 .hero-banner {
     position: relative;
@@ -1120,6 +1126,16 @@ margin-top: 16px;
     border-radius: 0px;
     background-color: #412838;
 }
+
+.fa-times.submit {
+    margin-left: -24px;
+    color: #00000066;
+    display: none;
+}
+
+a.fa-times.submit {
+    text-decoration: none;
+}
 .searchFieldInventario {
     width: 100%;
     height: 31px;
@@ -1209,6 +1225,41 @@ margin-top: 16px;
     justify-content: space-between;
     padding-left: 13px;
     padding-right: 13px;
+}
+
+.nuevoRegistro {
+    text-decoration: underline;
+    color: inherit;
+    margin-left: 53px;
+
+}
+
+.cartNumber{
+    color: black;
+    position: absolute;
+    top: 13px;
+    right: 24px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.mailLoggeado {
+    text-decoration: none;
+    color: inherit;
+}
+
+.numberFlex {
+    display: flex;
+}
+
+
+.fa-circle {
+    position: absolute;
+    color: #faeeed;
+    top: 13px;
+    right: 17px;
+    font-size: 21px;
+    text-shadow: 0 0 0px #000;
 }
 
 
@@ -1401,6 +1452,40 @@ margin-top: 16px;
     padding: 5px 0;
 }
 /** fin hoja de contacto**/
+
+/** hoja sent.ejs**/
+.sent_pageBox {
+    width: 30rem;
+    background: #666666;
+    margin: 5rem auto;
+    padding: 2rem;
+    box-shadow: 2px 2px 2px 2px #e7e7e7;
+}
+.sent_pageBox__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.sent_pageBox__Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #333;
+    color: #f4f4f4;
+    padding: 10px 17px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+.sent_pageBox__Link:hover {
+    background: #e9e9e9;
+    color: #333;
+    border: 1px solid #333;
+}
 /** Migue FIN**/
 
 /* MEDIA QUERIES */
@@ -1637,6 +1722,22 @@ margin-top: 16px;
 .bo-profile{
     color: #412838;
     display: flex;   
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+}
+
+.foto-nav-logged {
+    color: #412838;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+}
+
+.picture-nav-bar {
+    color: #412838;
     font-size: 18px;
     width: 40px;
     height: 40px;

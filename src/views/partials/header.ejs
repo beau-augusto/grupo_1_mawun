@@ -1,36 +1,42 @@
-<header>
+
+<header >
     <div class="hero-top">
         <div>
             <a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="hero-logo"></a>
         </div>
         <div class="hero-search">
             <form action="/" method="POST" class="hero-menu-wrapper">
-                <input type="search" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
-                <button type="submit" id="test123" class="hero-search__submit"><i class="fa fa-search"></i></button>
+                <input type="text" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
+                <a href="/" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
+                <button type="submit" class="hero-search__submit"><i class="fa fa-search"></i></button>
             </form>
-            <div id="dialogbox" style="display: none">¿Seguro que querés borrar este usuario?</div>
         </div>
     </div>
-    <div class="bgc-fw">
+    <div class="bgc-fw" style="position: sticky; top: 0px; z-index: 1;">
         <nav class="hero-menu-wrapper container">
             <div class="hero-burger-wrap"><i class="fas fa-bars"></i></div>
             <ul class="hero-menu">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/productos">Tienda</a></li>
                 <li><a href="/nosotros">Nosotros</a></li>
-                <!-- <li><a href="#">FAQ</a></li> -->
                 <li><a href="/contacto">Contacto</a></li>
             </ul> 
             <div class="hero-cart">
-
-                <% if (locals.usuarioLogeado == undefined) { %>
+                
+                <% if (locals.usuarioLogeado) { %>
+                    <a href="/usuarios/perfil/"><img src="/upload/profile-pictures/<%=locals.usuarioLogeado.image%>"  class="foto-nav-logged"></a>
+                    <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i> </a> <div class="fas fa-circle"></div> <div class="cartNumber">1</div>
+                   
+                    <% } else{  %> 
                     <a href="/usuarios/inicio" class="hero-cart-link"><i class="far fa-user"></i></a>
+                    <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i></a>
+                   
                     <% } %>
-                    <% if (locals.usuarioLogeado) { %>
-                        <a href="/usuarios/perfil" class="hero-cart-link"><i class="far fa-user"></i></a>
-                        <% } %> 
-                <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i></a>
-            </div>
+
+                    </div>
+              
+           
+
         </nav>
     </div>
 </header>

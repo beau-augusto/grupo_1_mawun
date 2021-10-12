@@ -10,7 +10,7 @@ $('.botonesInventario3').on('click', function(event){
                 title: "Confirmar borrado",
                 modal: true,
                 height: 200,
-                width: 367,
+                width: 400,
                // position: { my: 'top', at: 'top+150' },
                 open: function(event, ui) {
                 $(".ui-dialog-titlebar-close", ui.dialog || ui).hide();

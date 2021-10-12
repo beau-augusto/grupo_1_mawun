@@ -27,7 +27,7 @@ const sumadorCarrito = () => {
                     sumador[i].value++           
             }
             minus[i].onclick = function (event){
-            
+                event.preventDefault()   
                 if (sumador[i].value > 1){
                     sumador[i].value--
                  event.preventDefault()   
@@ -48,6 +48,8 @@ const sumadorDetalle = () => {
     let detalle = document.querySelector('.detalleProducto')
 
     if(sumador && detalle != null){ 
+        console.log(res.locals.usuarioLoggeado);
+
         sumador.value
         plus.onclick = function (){
             sumador.value++           
@@ -77,6 +79,25 @@ const agregarDireccion = () => {
     }
 }
 
+const borrarSearch = () => {
+    let searchButton = document.querySelector('.searchInven__submit')
+    let searchField = document.querySelector('.searchFieldInventario')
+    let heroSearchField = document.querySelector('.hero-search__field')
+    let ex = document.querySelector('.fa-times.submit')
+
+    if(searchButton != null){
+        searchField.onfocus = () => {
+             ex.style.display = "block";
+        }
+    }
+    if(heroSearchField != null){
+        heroSearchField.onfocus = () => {
+            console.log('works');
+             ex.style.display = "block";
+        }
+    }
+}
+
 
 
 window.addEventListener("load", function () {
@@ -84,5 +105,6 @@ window.addEventListener("load", function () {
     sumadorCarrito();
     sumadorDetalle();
     agregarDireccion();
+    borrarSearch();
 
 })
