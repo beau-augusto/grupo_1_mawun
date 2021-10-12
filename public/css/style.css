@@ -1162,6 +1162,12 @@ a.fa-times.submit {
     align-items: flex-start;
 }
 
+.carritoWrapper1 {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
 .carritoVacio {
     font-size: 26px;
     text-align: center;

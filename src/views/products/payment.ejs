@@ -7,14 +7,13 @@
 
             <main>
                 <section class="abm-inventory container">
-                    <h2 class="abm-title-inv">Método de pago</h2>
-                    <div class="abm-inventory-wrapper carritoWrapper">
-                    <form action="/usuarios/editar" method="GET">
+                    <h2 class="abm-title-inv">Pago</h2>
+                    <div class="abm-inventory-wrapper carritoWrapper1">
+                    <form action="/productos/carrito/comprar" method="GET">
 
-                        <div>Que tipo de pago quieres usar <i class="far fa-credit-card"></i></div>
                         <div class="abm-input-container">
                             <div class="abm-input-wrap">
-                                <label for="first_name" class="abm-input-tit">Número de tarjeta</label>
+                                <label for="first_name" class="abm-input-tit">Número de tarjeta<i class="far fa-credit-card" style="margin-left: 6px;"></i></label>
                                 <input type="text" name="first_name" id="first_name" placeholder="1234 5678 9012 3456" class="abm-input" value="<%= locals.oldData ? oldData.first_name :"" %>">
                                 <% if(locals.errors && errors.first_name) { %> 
                                     <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
@@ -28,29 +27,28 @@
                                 <% } %> 
                             </div>
                             <div class="abm-input-wrap">
-                                <label for="last_name" class="abm-input-tit">Código de seguridad</label>
-                                <input type="text" name="last_name" id="last_name" placeholder="CVV" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
-                                <% if(locals.errors && errors.last_name) { %> 
-                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
-                                <% } %> 
-                            </div>
-                            <div class="abm-input-wrap">
                                 <label for="last_name" class="abm-input-tit">Titular</label>
                                 <input type="text" name="last_name" id="last_name" placeholder="Titular" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
                                 <% if(locals.errors && errors.last_name) { %> 
                                     <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
                                 <% } %> 
                             </div>
-
-                            
-                            
-                            
-                            <section class="botones-carrito">
-                                <button type="submit" class="finalizarCompra">Continuar</button>
-                            
-                            </section>
-
+                            <div class="abm-input-wrap">
+                                <label for="last_name" class="abm-input-tit">Código de seguridad</label>
+                                <input type="text" name="last_name" id="last_name" placeholder="CVV" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
+                                <% if(locals.errors && errors.last_name) { %> 
+                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <% } %> 
                             </div>
+
+                            
+                            
+                            
+                            
+                        </div>
+                        <div class="abm-button-continuar">
+                            <button type="submit" class="abm-button-submit">Pagar</button>
+                        </div>
                             </form>
                         </div>
                 </section>
