@@ -93,7 +93,6 @@ const adminController = {
                 return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
 
             } else {
-                console.log
                 return res.render('admin/create-product', {
                     
                     errors: errors.mapped(),
@@ -330,7 +329,6 @@ const adminController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-console.log(req.body);
           await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
              if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
 return res.send('fafaf')

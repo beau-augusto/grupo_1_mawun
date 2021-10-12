@@ -132,40 +132,62 @@ const productsController = {
     },
     continuar: async (req, res) => {
 
-        let orderId = (req.params.id)
-
+        if(req.params.id == " "){
+            return res.redirect('/productos/carrito')     
+        } else {
+            
+            let orderId = (req.params.id)
+    try {
         let userData = await User.findByEmail(res.locals.usuarioLogeado.email)
 
        return res.render('products/order-address', {user: userData, orderId: orderId})
+        
+    } catch (error) {
+        
+    }
+
+        }  
+        
+
     },
     alPago: async (req, res) => {
         
-        let orderId = (req.params.id)
-        if(req.body.calle_numero != '' && req.body.codigo_postal != ''){
-        let newAddress = {
-            street: req.body.calle_numero,
-            apartment: req.body.departamento,
-            district: req.body.barrio,
-            zip_code: req.body.codigo_postal,
-            city: req.body.ciudad,
-            state: req.body.provincia
-        }
-
+        
+        try {
+            
+            
+            let orderId = (req.params.id);
+            if(req.body.calle_numero != '' && req.body.codigo_postal != ''){
+            let newAddress = {
+                street: req.body.calle_numero,
+                apartment: req.body.departamento,
+                district: req.body.barrio,
+                zip_code: req.body.codigo_postal,
+                city: req.body.ciudad,
+                state: req.body.provincia
+            }
             await User.createAddress(newAddress, 3); // crea una nueva fila en addresses que corresponde al usuario ya existente
+
         } else {
-
+    
             let idAddress = req.body.address
-
+    
          
         }
-        return res.render('products/payment')
+        return res.render('products/payment', {orderId: orderId})
+
+
+            
+        } catch (error) {
+            
+        }
+
 
         
     },
     comprar: async (req, res) => {
         try {
-            return res.send('funciona')
-
+            let orderId = (req.params.id)
             if(req.params.id == " "){
                 return res.redirect('/productos/carrito')     
             } else {

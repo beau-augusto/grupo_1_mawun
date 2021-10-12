@@ -25,7 +25,7 @@
                 
                 <% if (locals.usuarioLogeado) { %>
                     <a href="/usuarios/perfil/"><img src="/upload/profile-pictures/<%=locals.usuarioLogeado.image%>"  class="foto-nav-logged"></a>
-                    <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i> </a> <div class="fas fa-circle"></div> <div class="cartNumber">1</div>
+                    <a href="/productos/carrito" class="hero-cart-link"><i class="fas fa-shopping-cart"></i> </a> <div class="fas fa-circle"></div> <div class="cartNumber"></div>
                    
                     <% } else{  %> 
                     <a href="/usuarios/inicio" class="hero-cart-link"><i class="far fa-user"></i></a>

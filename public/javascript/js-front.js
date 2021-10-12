@@ -48,7 +48,6 @@ const sumadorDetalle = () => {
     let detalle = document.querySelector('.detalleProducto')
 
     if(sumador && detalle != null){ 
-        console.log(res.locals.usuarioLoggeado);
 
         sumador.value
         plus.onclick = function (){
@@ -101,6 +100,26 @@ const borrarSearch = () => {
 
 
 window.addEventListener("load", function () {
+
+    fetch('http://localhost:3000/api/orders') // llamar a la api para llenar la burbuja de carrito
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        let productNumber = data.meta.total
+        console.log(productNumber);
+        let bubble = document.querySelector('div.cartNumber');
+    
+        if(bubble != null){
+            bubble.innerHTML = productNumber;
+        }
+
+    })
+    .catch(function(error){
+        console.log(error);
+    })
+
+
 
     sumadorCarrito();
     sumadorDetalle();
