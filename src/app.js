@@ -118,6 +118,12 @@ app.use(expressSession({
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+//***** APIs *****//
+
+const apiOrdersRouter = require('./routes/apis/orders')
+app.use('/api/orders', apiOrdersRouter)
+
+
 //***** Route System  *****//
 const mainRouter = require('./routes/main'); // Rutas main
 const usersRouter = require('./routes/users'); // Rutas /usuarios
