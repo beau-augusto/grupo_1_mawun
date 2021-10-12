@@ -7,7 +7,7 @@ module.exports = {
     list:  (req, res) => {
 
             db.Order_product.findAll({
-                include: [{association: 'orders', where: {status: 0}}]
+                include: [{association: 'orders', where: {status: 0, user_id: req.session.usuarioLogeado.id}}]
             })
             .then(orders => {
                 let response = {
