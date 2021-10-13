@@ -23,9 +23,10 @@ const mainController = {
             console.error(error);
         } 
     },
-    contact: (req, res)=> {
-        res.render ('contact');
-    },
+    // contact: (req, res)=> {
+    //     console.log('por contralador');
+    //     res.render ('contact');
+    // },
     aboutUs: (req, res)=> {
         res.render ('about-us');
     },
