@@ -35,39 +35,6 @@ app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
 
-app.get('/contacto', (req, res) => {
-    res.render('contact');
-});
-
-const nodemailer = require('nodemailer');
-app.post('/sendemail', (req, res) => {
-let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    post: 465,
-    secure: true,
-    auth: {
-        user: 'mawuncompany@gmail.com',
-        pass: 'mawun123456'
-    }
-});
-
-let mailOptions = {
-    from: 'mawuncompany@gmail.com',
-    to: 'mawuncompany@gmail.com',
-    subject: req.body.asunto,
-    text: req.body.consulta
-};
-
-transporter.sendMail(mailOptions, (error, info) => {
-    if(error) {
-        res.status(500).send(error.message);
-    } else {
-        console.log('Email enviado.');
-            res.render("utils/sent");
-        }
-    });
-});
-
 //***** Session *****//
 app.use(expressSession({  
   secret: "secreta",
@@ -103,6 +70,87 @@ app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
+
+//***** Node Mailer ******//
+const nodemailer = require('nodemailer');
+app.post('/sendemail', (req, res) => {
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    post: 465,
+    secure: true,
+    auth: {
+        user: 'mawuncompany@gmail.com',
+        pass: 'mawun123456'
+    }
+});
+
+let mailOptions = {
+    from: 'mawuncompany@gmail.com',
+    to: 'mawuncompany@gmail.com',
+    subject: req.body.asunto ,
+    //text: req.body.consulta ,
+    html: `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table style="border: 1px solid #55394a; padding: 20px;width: 80%;">
+            <thead>
+                <tr>
+                    <td style="text-align: left; background: #faeeed; padding: 15px 0px 15px 20px;" colspan="2">
+                        <img src="https://clipit.com.ar/mawun/logo-mawun.png" height="100%" alt="MAWUN">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                        <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                        <span style="font-size: 13px;">${req.body.asunto}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
+                        <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
+                        <span style="font-size: 13px;">${req.body.name}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px; font-weight: bold;">Email:</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px;">${req.body.email}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px; font-weight: bold;">Consulta</span>
+                    </td>
+                    <td style="text-align: left;padding: 5px 0px 5px 0px;">
+                        <span style="font-size: 13px;">${req.body.consulta}</span>
+                    </td>
+                </tr>
+                
+            </thead>
+        </table>
+    </body>
+    </html>`,
+};
+
+transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+        res.status(500).send(error.message);
+    } else {
+        console.log('Email enviado.');
+            res.render("utils/sent");
+        }
+    });
+});
 
 // ************ catch 404 and forward to error handler ************
 app.use((req, res, next) => next(createError(404)));
