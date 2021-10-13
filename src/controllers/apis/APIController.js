@@ -4,7 +4,7 @@ const db = require('../../database/models');
 
 module.exports = {
 
-    list:  (req, res) => {
+    orders:  (req, res) => {
 
             db.Order_product.findAll({
                 include: [{association: 'orders', where: {status: 0, user_id: req.session.usuarioLogeado.id}}]
@@ -22,7 +22,25 @@ module.exports = {
             })
             
 
-    }
+    },
+    addresses:  (req, res) => {
+
+        db.Address.findAll({
+        })
+        .then(addresses => {
+            let response = {
+                meta: {
+                    status: 200,
+                    total: addresses.length,
+                    url: "api/addresses"
+                },
+                data: addresses
+            }
+            res.json(response)
+        })
+        
+
+}
 
 
 }

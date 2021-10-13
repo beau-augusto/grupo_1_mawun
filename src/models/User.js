@@ -73,8 +73,25 @@ const User = {
              where: {user_id: ID}
          });
      },
+     updateAddress1:  function(userData) {
+        return db.Address.update(userData);
+     },
+     updateAddressbyID:  function(userData, ID) {
+        return db.Address.update(userData,
+             {
+             where: {id: ID}
+         });
+     },
      createAddress:  function(userData, userID) {
         return db.Address.create({...userData, user_id: userID});
+     },
+     deleteAddress: function(ID, userID) {
+        return db.Address.destroy({
+             where: {
+                 id: ID,
+                 user_id: userID
+             }
+         });
      },
     delete: function(ID) {
        return db.User.destroy({

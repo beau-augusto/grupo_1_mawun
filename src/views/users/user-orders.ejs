@@ -7,11 +7,11 @@
         <section class="abm-productos container">
             <div  class="abm-inventory-nav-wrapper">
                 <div class="abm-inventory-nav">
-                    <a href="/usuarios/ordenes" class="abm-inventory-nav-link perfil">Ordenes</a>
+                    <a href="/usuarios/perfil" class="abm-inventory-nav-link orders">Perfil</a>
                 </div>
             </div>
             <div class="abm-producto-wrapper">
-                <h2 class="abm-title">Perfil de Usuario</h2>
+                <h2 class="abm-title">Ordenes</h2>
                 <form action="/usuarios/editar" method="GET" class="abm-form-wrapper">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
@@ -67,9 +67,7 @@
                         <% } %> 
                     </div>
                     <div class="abm-button-wrap-editUser">
-                        <button type="submit" class="abm-button-submit"><i class="far fa-save"></i> EDITAR</button></form>
-                        <form action="/usuarios/logout">
-                        <button type="submit" class="abm-button-submit front"><i class="fas fa-sign-out-alt"></i></i> LOGOUT</button></form>
+                        <a href="/usuarios/perfil" class="abm-button-submit">Volver</a>
                     </div> 
                 </form>
             </div>

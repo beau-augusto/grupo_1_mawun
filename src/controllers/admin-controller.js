@@ -305,7 +305,6 @@ const adminController = {
 
         try {
             let userFound = await User.findPK(req.params.id); // encuentra un usuario por su PK
-
             if (userFound) {
                 return res.render('./admin/edit-user', { user: userFound });
             } else {
@@ -319,6 +318,8 @@ const adminController = {
     updateUser: async (req, res) => {
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
         try {
+            
+             console.log(req.body);
             let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
@@ -337,14 +338,28 @@ const adminController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-          await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
-             if (req.body.address != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
-                return res.send('fafaf')
-              // await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
+            await User.update(NewUserData, req.params.id); // actualizar el usuario con la data nueva del formulario 
+          if (req.body.calle_numero != "" && req.body.ciudad != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+             console.log('create new address');
+            await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
             }
-            else {
-         //    await User.updateAddress(NewUserData, req.params.id); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+        if(req.body.address){
+            console.log('update user');
+
+            
+            updateData = {
+                street: req.body.calle_numero_edit,
+                apartment: req.body.departamento_edit,
+                district: req.body.barrio_edit,
+                zip_code: req.body.codigo_postal_edit,
+                city: req.body.ciudad_edit,
+                state: req.body.provincia_edit
             }
+            console.log(req.body);
+
+            await User.updateAddressbyID(updateData, req.body.address); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+        }
+            
 
     
             return res.redirect(303, 'perfil');
@@ -363,6 +378,17 @@ const adminController = {
 
         await User.delete(req.params.id);
         return res.redirect('/admin/inventario-usuarios');
+    },
+    deleteAddress:  async (req, res) => {
+        let userID = req.params.id;
+        let addressID = req.body.addressid;
+try {
+    await User.deleteAddress(addressID, userID);
+    return res.redirect(`/admin/${req.params.id}/editar-usuario`);
+    
+} catch (error) {
+    
+}
     },
     inventoryNewsletter: async (req, res)=> {
         try {
