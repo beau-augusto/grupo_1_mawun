@@ -21,7 +21,7 @@ const $ = require('jquery')(window);
 const app = express();
 
 //****Sengrid API ****//
-const sendEmail = require ('../utils/sendEmail');
+
 
 //***** Template Engine *****//
 app.set('view engine', 'ejs');
@@ -39,30 +39,33 @@ app.get('/contacto', (req, res) => {
     res.render('contact');
 });
 
-app.get('/sent', (req, res) => {
-res.render('sent')
+const nodemailer = require('nodemailer');
+app.post('/sendemail', (req, res) => {
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    post: 465,
+    secure: true,
+    auth: {
+        user: 'mawuncompany@gmail.com',
+        pass: 'mawun123456'
+    }
 });
 
-app.post('/sendemail', (req, res) => {
-  const { name, email, asunto, consulta } = req.body;
-  
-  const from = "mawuncompany@gmail.com";
-  const to = "mawuncompany@gmail.com";
-  const subject = "Consulta formulario de contacto";
+let mailOptions = {
+    from: 'mawuncompany@gmail.com',
+    to: 'mawuncompany@gmail.com',
+    subject: req.body.asunto,
+    text: req.body.consulta
+};
 
-
-const output =
-`<p> you have a new Contact Request<p>
-<h3>Contact Details</h3>
-<ul>
-<li>name: ${name}</li>
-<li>name: ${email}</li>
-<li>name: ${asunto}</li>
-<li>name: ${consulta}</li>
-</ul>`;
-
-sendEmail(from, to, subject, output);
-res.redirect('/sent');
+transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+        res.status(500).send(error.message);
+    } else {
+        console.log('Email enviado.');
+            res.render("utils/sent");
+        }
+    });
 });
 
 //***** Session *****//
