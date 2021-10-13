@@ -5,14 +5,7 @@ const { validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
 const { Op } = require("sequelize");
 
-//const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-//const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
 const db = require("../database/models");
-
-
-//const emailFilePath = path.join(__dirname, '../data/newsletterDataBase.json'); // Ruta donde se encuentra la DB
-//const emails = JSON.parse(fs.readFileSync(emailFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
 
 const mainController = {
     index: async (req, res)=> {
@@ -43,11 +36,9 @@ const mainController = {
                 return res.render('index', {errors: error, product});
             }
                 return res.render('wine-search', { products: productSearched, productToSearch });
-
         } catch (error) {
             console.error(error)
         }
-
     },
     contact: (req, res)=> {
         //console.log('por contralador');
@@ -82,12 +73,7 @@ const mainController = {
 
         } catch(error){
             console.error(error)
-        }
-
-
-        
-        
-        
+        }   
     }
 }
 
