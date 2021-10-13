@@ -2078,6 +2078,12 @@ option {
     justify-content: flex-end;
     padding: 15px 10px;
 }
+
+.abm-button-wrapper.edit-profile{
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 10px;
+}
 .abm-button-submit.front {
     font-size: 13px;
     cursor: pointer;
@@ -2129,6 +2135,8 @@ option {
     text-transform: uppercase;
 }
 
+
+
 .abm-button-cancel.address {
     margin-right: auto;
     background-color: #5c6370; 
@@ -2136,6 +2144,19 @@ option {
     display: none;
 
 }
+.abm-button-cancel.address1 {
+    margin-left: auto;
+    background-color: #5c6370; 
+    border: #5c6370 solid 1px;
+    display: none;
+}
+
+.abm-button-cancel.address1:hover {
+    background-color: #ffffff;
+    color: #5c6370;
+    border: solid 1px #5c6370;
+}
+
 
 .abm-button-cancel.address:hover {
     background-color: #ffffff;
