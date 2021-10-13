@@ -29,8 +29,8 @@
                             <label for="category" class="abm-input-tit">Categoria</label>
                             <select name="category[]" id="category" multiple="multiple" class="abm-input">
                                 <% for (let i = 0; i < category.length; i++) { %>
-                                    <option <% for (let j = 0; j < product.dataValues.productCategories.length ; j++){
-                                           if (product.dataValues.productCategories[j] == wineries[i].id){ %> selected <% }
+                                    <option <% for (let c = 0; c < product.dataValues.productCategories.length ; c++){
+                                           if (product.dataValues.productCategories[c] == category[i].id){ %> selected <% }
                                            }%> value="<%= category[i].id %>" >
                                         <%= category[i].name %>
                                     </option>
@@ -41,8 +41,8 @@
                             <label for="varietal" class="abm-input-tit">Varietal</label>
                             <select name="varietal[]" id="varietal" multiple="multiple" class="abm-input">
                                 <% for (let i = 0; i < varietal.length; i++) { %>
-                                    <option <% for (let j = 0; j < product.dataValues.productVarietals.length ; j++){
-                                           if (product.dataValues.productVarietals[j] == varietal[i].id){ %> selected <% }
+                                    <option <% for (let v = 0; v < product.dataValues.productVarietals.length ; v++){
+                                           if (product.dataValues.productVarietals[v] == varietal[i].id){ %> selected <% }
                                            }%> value="<%= varietal[i].id %>" >
                                         <%= varietal[i].name %>
                                     </option>

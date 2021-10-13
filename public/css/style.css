@@ -1965,6 +1965,7 @@ a.fa-times.submit {
     font-weight: 300;
     padding: 10px 10px;
     margin: 5px 0;
+    line-height: 16px;
 }
 .abm-img-wrap{
     display: flex;
