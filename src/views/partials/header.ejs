@@ -5,11 +5,16 @@
             <a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="hero-logo"></a>
         </div>
         <div class="hero-search">
-            <form action="/" method="POST" class="hero-menu-wrapper">
-                <input type="text" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
-                <a href="/" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
-                <button type="submit" class="hero-search__submit"><i class="fa fa-search"></i></button>
-            </form>
+            <div class="hero-search-wrapper">
+                <form action="/resultado-busqueda" method="GET" class="hero-menu-wrapper">
+                    <input type="text" name="wineSearch" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
+                    <a href="/" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
+                    <button type="submit" class="hero-search__submit"><i class="fa fa-search"></i></button>
+                </form>
+                <% if(locals.errors && errors.notFound) { %> 
+                    <p class="search-input-error"><%= errors.notFound.msg %> </p> <br> 
+                <% } %>
+            </div>
         </div>
     </div>
 </header>
