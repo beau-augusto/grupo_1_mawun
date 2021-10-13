@@ -12,16 +12,21 @@
                     <div class="abm-inventory-wrapper">
                          <h2 class="abm-title-inv">Inventario de Productos</h2>
                         <div class="search-crear-wrapper">
-                            <form action="/admin/buscar-producto" method="GET" class="searchInventario">
-                                <input type="text" maxlength="256" name="productSearch" placeholder="Buscar" class="searchFieldInventario">
-                                <a href="/admin/inventario-productos" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
-                                <button class="searchInven__submit"><i class="fa fa-search"></i></button>
-                            </form>
-                            <a href="/admin/crear" class="botonesInventarioCrear"> Crear</a>
+                            <div class="search-wrapper">
+                                <div class="search-wrap">
+                                    <form action="/admin/buscar-producto" method="GET" class="searchInventario">
+                                        <input type="text" maxlength="256" name="productSearch" placeholder="Buscar" class="searchFieldInventario">
+                                        <a href="/admin/inventario-productos" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
+                                        <button class="searchInven__submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                    <a href="/admin/inventario-productos" class="search-clear-btn"><i class="fas fa-times"></i></i></a>
+                                </div>
+                                <% if(locals.errors && errors.notFound) { %> 
+                                    <p class="abm-input-error"><%= errors.notFound.msg %> </p> <br> 
+                                <% } %> 
+                            </div>
+                            <a href="/admin/crear" class="botonesInventarioCrear"> Crear Producto</a>
                         </div>
-                        <% if(locals.errors && errors.notFound) { %> 
-                            <p class="abm-input-error"><%= errors.notFound.msg %> </p> <br> 
-                        <% } %> 
                         <div class="grid-container">
                             <div class="grid-item abm-title-tit">
                                 <label>ID</label><br>

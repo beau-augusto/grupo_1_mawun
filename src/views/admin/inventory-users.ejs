@@ -13,36 +13,32 @@
                     
                     <div class="abm-inventory-wrapper">
                         <h2 class="abm-title-inv">Inventario de Usuarios</h2>
+
                         <div class="search-crear-wrapper">
-
-                            <form action="/admin/buscar-usuario" method="GET" class="searchInventario" >
-                                <input type="text" maxlength="256" name="fuckingBug" placeholder="Buscar" class="searchFieldInventario">
-                                <a href="/admin/inventario-usuarios" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
-                                <button type="submit" class="searchInven__submit"><i class="fa fa-search"></i></button>
-                            </form>
-                            
-                            <a href="/admin/crear-usuario" class="botonesInventarioCrear"> Crear</a>
-                            
+                            <div class="search-wrapper">
+                                <div class="search-wrap">
+                                    <form action="/admin/buscar-usuario" method="GET" class="searchInventario">
+                                        <input type="text" maxlength="256" name="fuckingBug" placeholder="Buscar" class="searchFieldInventario">
+                                        <a href="/admin/inventario-usuarios" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
+                                        <button class="searchInven__submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                    <a href="/admin/inventario-usuarios" class="search-clear-btn"><i class="fas fa-times"></i></i></a>
+                                </div>
+                                <% if(locals.errors && errors.notFound) { %> 
+                                    <p class="abm-input-error"><%= errors.notFound.msg %> </p> <br> 
+                                <% } %> 
+                            </div>
+                            <a href="/admin/crear-usuario" class="botonesInventarioCrear"> Crear Usuario</a>
                         </div>
-                        
-                        <% if(locals.errors && errors.notFound) { %> 
-                            <p class="abm-input-error"><%= errors.notFound.msg %> </p> <br> 
-                        <% } %> 
                         <div class="grid-container">
-
-
                             <div class="grid-item abm-input-tit">
                                 <label>ID</label><br>
                             </div>
                             <div class="grid-item abm-input-tit">Nombre</div>
                             <div class="grid-item abm-input-tit">Role</div>
                             <div class="grid-item abm-input-tit">Acciones</div>
-
                             <% users.forEach(user => { %>
-
                                 <div class="grid-item checkboxInventario">
-
-
                                     <label for="vehicle1">
                                         <%=user.id%>
                                     </label>

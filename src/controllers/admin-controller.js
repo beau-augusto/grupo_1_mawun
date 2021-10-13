@@ -4,8 +4,7 @@ const { Op } = require("sequelize");
 
 const { validationResult } = require('express-validator'); // Destructuracion pido resultdo de la validacion (Express-Validator)
 
-//const productsFilePath = path.join(__dirname, '../data/productsDataBase.json'); // Ruta donde se encuentra la DB
-//const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Cambio el formato Json a un array de productos
+
 const chalk = require('chalk');
 
 const bcryptjs = require("bcryptjs");
@@ -130,9 +129,9 @@ const adminController = {
 
             let category = tag_types.filter((tag_types) => tag_types.tag_types.name == 'Categoria'); //Filtro la association de product tag por el nombre = Categoria
             category = category.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres  e id
+
             wineries = wineries.map(v => {return {name:v.name, id: v.id}})//Relaizó un map para obtener unicamente los nombres e id
 
-            //return res.send({product, varietal, wineries, category});
             return  res.render ('admin/edit-product', {product, varietal, wineries, category});
 
         } catch (error) {
@@ -143,7 +142,7 @@ const adminController = {
     updateProduct: async (req, res) => {
         try{
             let productData = await db.Product.findByPk (req.params.id); // encuentra un Producto por id
-            
+        
             req.body.image = req.file ? req.file.filename : productData.image;
 
             const productToUpdate = {  //Obtengo la informacion del formulario y la creo 
@@ -154,23 +153,26 @@ const adminController = {
                 description: req.body.description,
                 image: req.body.image,
             }
-            let varietalTags = {varietals: req.body.varietal};
-            let categoryTags = {categories: req.body.category};
-
-
             await db.Product.update(productToUpdate, { where: {id: req.params.id} });
-            
-            let productVarietalTags = await db.Product_tag.findAll({where: { [Op.and]: [ {product_id: req.params.id}, { tag_type_id: 2 }]}});
-            
-            varietalTags = varietalTags.varietals.map(v => {return { product_id: Number(req.params.id), tag_type_id: 2, tag_id: Number(v)}});
-            //return res.send( {productVarietalTags, varietalTags})
 
-            let newVarietal = [];
-            for(i = 0; i < varietalTags.length; i++){
-                newVarietal.push({id: productVarietalTags[i].id, product_id: varietalTags[i].product_id, tag_type_id: varietalTags[i].tag_type_id ,tag_id: varietalTags[i].tag_id });
-            }
-            //return res.send(newVarietal);
-            await db.Product_tag.bulkCreate(newVarietal,{ fields:[ "id","product_id", "tag_type_id","tag_id"] ,updateOnDuplicate:["tag_id"]});
+            let varietalTags = {varietals: req.body.varietal};
+            varietalTags = varietalTags.varietals.map(v => {return { product_id: req.params.id, tag_type_id: 2, tag_id: Number(v)}});
+            let productVarietalTags = await db.Product_tag.findAll({where: { [Op.and]: [ {product_id: req.params.id}, { tag_type_id: 2 }]}});
+            let oldVarietal = [];
+            for(i = 0; i < productVarietalTags.length; i++){ oldVarietal.push(productVarietalTags[i].id);}
+            
+            await db.Product_tag.destroy({ where: {id: oldVarietal}});
+            await db.Product_tag.bulkCreate(varietalTags);
+
+            let categoryTags = {categories: req.body.category};
+            categoryTags = categoryTags.categories.map(c => {return { product_id: req.params.id, tag_type_id: 1, tag_id: Number(c)}});
+            let productCategoryTags = await db.Product_tag.findAll({where: { [Op.and]: [ {product_id: req.params.id}, { tag_type_id: 1 }]}});
+            let oldCategory = [];
+            for(i = 0; i < productCategoryTags.length; i++){oldCategory.push(productCategoryTags[i].id);}
+
+            await db.Product_tag.destroy({ where: {id: oldCategory}});
+            await db.Product_tag.bulkCreate(categoryTags);
+            
             return res.redirect(303, '/admin/inventario-productos'); //Codigo 303, redirecciona a la ruta se desee
         } catch(error) {
             console.error(error);
