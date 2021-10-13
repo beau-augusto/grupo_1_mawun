@@ -2,6 +2,7 @@ const { raw } = require('express');
 const fs = require('fs');
 const path = require('path');
 const { validationResult } = require('express-validator');
+const nodemailer = require('nodemailer');
 
 //const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 //const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -23,10 +24,10 @@ const mainController = {
             console.error(error);
         } 
     },
-    // contact: (req, res)=> {
-    //     console.log('por contralador');
-    //     res.render ('contact');
-    // },
+    contact: (req, res)=> {
+        //console.log('por contralador');
+        res.render ('contact');
+    },
     aboutUs: (req, res)=> {
         res.render ('about-us');
     },
