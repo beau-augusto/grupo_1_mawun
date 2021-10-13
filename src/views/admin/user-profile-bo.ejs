@@ -9,52 +9,70 @@
                 <h2 class="abm-title">Perfil de Usuario</h2>
                 <form action="/admin/<%=user.id%>/editar-usuario" method="GET" class="abm-form-wrapper">
                     <div class="abm-input-container">
-                        <div class="abm-input-wrap">
-                            <label for="first_name" class="abm-input-tit">Nombre</label>
-                            <p><%= user.name %></p>
+                        <div class="abm-input-wrapper">
+                            <div class="abm-input-wrap full-width">
+                                <label for="first_name" class="abm-input-tit">Nombre</label>
+                                <p><%= user.name %></p>
+                            </div>
+                            <div class="abm-input-wrap full-width">
+                                <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
+                                <p><%=user.last_name %></p> 
+                            </div>
                         </div>
-                        <div class="abm-input-wrap">
-                            <label for="last_name" class="abm-input-tit" value="asdsa">Apellido</label>
-                            <p><%=user.last_name %></p>
+                        <div class="abm-input-wrapper right">
+                            <div class="abm-input-profile full-width">
+                                <div class="abm-img-user-wrap">
+                                    <img src="/upload/profile-pictures/<%=user.image %>" alt="<%= user.name %>" class="abm-img-profile">
+                                    <div class="flex-image-edituser"> 
+                                    <input type="file" name="image" id="image" class="abm-input" style="display:none;">
+                                    <label for="image" class="abm-button-submit cambiarimagen-button"> Cambiar imagen</label>
+                                    <% if(locals.errors && errors.image) { %>
+                                        <p class="abm-input-error"><%= errors.image.msg %> </p>
+                                    <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+                    </div>
+                    <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="email" class="abm-input-tit">Email</label>
                             <p><%=user.email %></p>
                         </div>
-                            <div class="abm-input-wrap">
-                                <label for="role" class="abm-input-tit">Role</label>
-                                <p><%= user.roles.name %></p>
-                            
-                        </div>
+                     
+                    
+
+
+                    
+                    <div class="abm-input-wrap">
+                        <label for="role" class="abm-input-tit">Role</label>
+                        <p><%= user.roles.name %></p>
+                    </div>
+                    </div>
+                    <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
                             <p type="password">●●●●●●●●●</p>
                         </div>     
-
-                        <div class="abm-input-wrap">
-                            <label for="image" class="abm-input-tit">Imagen</label>
-                            <p class="foto-perfil foto-margin-right" id=""> <img src="/upload/profile-pictures/<%=user.image %>"  class="bo-profile"></p> 
-                        </div> 
                         
-
                         <% if (user.addresses.length > 0) { %> 
+                        <div class="abm-input-wrap selectorAddress invisibleSelector" >
+                            <label for="address" class="abm-input-tit">Direcciones</label>
+                            <select name="address" id="address" class="abm-input direccionesPerfilFront"  style="border: none;">
+                                <% for (let i = 0; i < user.addresses.length; i++) { %>
+                                    <option style="border: none;" value="<%=user.addresses[i].id%>" class="edit-address-option" id="<%=`${user.addresses[i].id}edit`%>">
+                                         <%=user.addresses[i].street %> <%=user.addresses[i].apartment %> <%=user.addresses[i].district %> <%=user.addresses[i].city %> <%=user.addresses[i].zip_code %> <%=user.addresses[i].state %><i class="fas fa-female"></i>
+                                    </option>
+                                    <%}%>
+                            </select> 
+                            <% if (locals.errors && errors.address) { %>
+                                <p class="abm-input-error"><%= errors.address.msg %></p>
+                            <% } %> 
+                        </div>
+                        <%}%>
 
-                            <div class="abm-input-wrap selectorAddress" >
-                                <label for="image" class="abm-input-tit">Direcciones</label>
-                                <select name="address" id="address" class="abm-input">
-                                    <% for (let i = 0; i < user.addresses.length; i++) { %>
-                                        <option value="<%=user.addresses[i].id%>">
-                                            <%=user.addresses[i].street %> <%=user.addresses[i].apartment %> <%=user.addresses[i].district %> <%=user.addresses[i].city %> <%=user.addresses[i].zip_code %> <%=user.addresses[i].state %>
-                                        </option>
-                                        <%}%>
-                                </select>
-                                <% if (locals.errors && errors.address) { %>
-                                    <p class="abm-input-error"><%= errors.address.msg %></p>
-                                <% } %> 
-                            </div>
-
-                        <% } %> 
-
+                       
                     </div>
                     <div class="abm-button-wrapper">
                         <a href='/admin/inventario-usuarios' class="abm-button-cancel"><i class="fas fa-times"></i> CANCELAR</a>

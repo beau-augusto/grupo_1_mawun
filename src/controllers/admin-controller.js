@@ -319,7 +319,6 @@ const adminController = {
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
         try {
             
-             console.log(req.body);
             let userData = await User.findPK(req.params.id); // encuentra un usuario por su PK
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
