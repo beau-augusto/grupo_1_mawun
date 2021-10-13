@@ -108,7 +108,7 @@ window.addEventListener("load", function () {
         return response.json();
     })
     .then(function(data){
-        let productNumber = data.meta.total
+        let productNumber = data.meta.total // toma el length del array
         console.log(productNumber);
     
             bubble.innerHTML = productNumber;

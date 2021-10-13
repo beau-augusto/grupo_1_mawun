@@ -21,7 +21,7 @@ const $ = require('jquery')(window);
 const app = express();
 
 //****Sengrid API ****//
-const sendEmail = require ('../utils/sendEmail');
+
 
 //***** Template Engine *****//
 app.set('view engine', 'ejs');
@@ -35,75 +35,38 @@ app.use(express.json());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 
 
+app.get('/contacto', (req, res) => {
+    res.render('contact');
+});
 
-// app.get('/sent', (req, res) => {
-//   res.render('sent')
-// });
+const nodemailer = require('nodemailer');
+app.post('/sendemail', (req, res) => {
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    post: 465,
+    secure: true,
+    auth: {
+        user: 'mawuncompany@gmail.com',
+        pass: 'mawun123456'
+    }
+});
 
-// app.post('/sendemail', (req, res) => {
-//   const { name, email, asunto, consulta } = req.body;
-  
-//   const from = "mawuncompany@gmail.com";
-//   const to = "mawuncompany@gmail.com";
-//   const subject = "Consulta formulario de contacto";
+let mailOptions = {
+    from: 'mawuncompany@gmail.com',
+    to: 'mawuncompany@gmail.com',
+    subject: req.body.asunto,
+    text: req.body.consulta
+};
 
-
-// const output =
-// `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//     <meta charset="UTF-8">
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-// </head>
-// <body>
-//     <table style="border: 1px solid #666666; padding: 20px;width: 80%;">
-//         <thead>
-//             <tr>
-//                 <td style="text-align: center; background: #f2f2f2; padding: 7px 0px 7px 20px;" colspan="2">
-//                     <img src="" height="100%" alt="Mawun E-commerce de Vinos">
-//                 </td>
-//             </tr>
-//             <tr>
-//                 <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-//                     <span style="font-size: 13px; font-weight: bold;">Asunto:</span>
-//                 </td>
-//                 <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-//                     <span style="font-size: 13px;"> ${asunto}</span>
-//                 </td>
-//             </tr>
-//             <tr>
-//                 <td style="text-align: left; padding: 20px 0px 5px 0px; width: 35%;">
-//                     <span style="font-size: 13px; font-weight: bold;">Nombre Completo:</span>
-//                 </td>
-//                 <td style="text-align: left;padding: 5px 0px 5px 0px; width: 65%;">
-//                     <span style="font-size: 13px;"> ${name}</span>
-//                 </td>
-//             </tr>
-//             <tr>
-//                 <td style="text-align: left; padding: 5px 0px 5px 0px;">
-//                     <span style="font-size: 13px; font-weight: bold;">Email:</span>
-//                 </td>
-//                 <td style="text-align: left;padding: 5px 0px 5px 0px;">
-//                     <span style="font-size: 13px;"> ${email}</span>
-//                 </td>
-//             </tr>
-//             <tr>
-//                 <td style="text-align: left; padding: 5px 0px 5px 0px;">
-//                     <span style="font-size: 13px; font-weight: bold;">Consulta</span>
-//                 </td>
-//                 <td style="text-align: left;padding: 5px 0px 5px 0px;">
-//                     <span style="font-size: 13px;"> ${consulta}</span>
-//                 </td>
-//             </tr>
-            
-//         </thead>
-//     </table>
-// </body>
-// </html>`
-
-//   sendEmail(from, to, subject, output);
-//   res.redirect('/sent');
-// });
+transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+        res.status(500).send(error.message);
+    } else {
+        console.log('Email enviado.');
+            res.render("utils/sent");
+        }
+    });
+});
 
 //***** Session *****//
 app.use(expressSession({  
@@ -141,6 +104,9 @@ app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
+app.get('/contacto', (req, res) => {
+    res.render('contact')
+  });
 
 app.get('/sent', (req, res) => {
     res.render('sent')
