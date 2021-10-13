@@ -38,6 +38,7 @@ router.get('/buscar-usuario', adminController.searchUser);
 router.get('/:id/editar-usuario', adminController.editUser);
 router.put('/:id/editar-usuario', uploadUser.single('image'), validateUpdateUser, adminController.updateUser);
 router.delete('/:id/delete-usuario', adminController.deleteUser);
+router.post('/:id/borrar-direccion', adminController.deleteAddress);
 
 /*** ELIMINAR EMAIL DEL NEWSLETTER ***/
 router.delete('/:id/delete-email', adminController.deleteNewsletter);

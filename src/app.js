@@ -78,8 +78,8 @@ app.use(cookieParser());
 
 //***** APIs *****//
 
-const apiOrdersRouter = require('./routes/apis/orders')
-app.use('/api/orders', apiOrdersRouter)
+const apiOrdersRouter = require('./routes/apis/apis')
+app.use('/api', apiOrdersRouter)
 
 
 //***** Route System  *****//

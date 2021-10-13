@@ -151,6 +151,24 @@ const usersController = {
         }
     }
     },
+    orders: async (req, res)=> {
+
+        if (res.locals.usuarioLogeado != undefined){
+
+        try {
+           
+            let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
+            
+            if (userFound) {
+                return res.render('./users/user-orders', { user: userData });
+            } else {
+                res.send('El usuario que buscás no existe.')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    },
     edit: async (req, res)=> {  
         try {
             let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK

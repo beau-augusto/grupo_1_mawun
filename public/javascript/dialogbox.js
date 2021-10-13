@@ -30,7 +30,6 @@ $('.botonesInventario3').on('click', function(event){
                         click: function () {
                             $(this).dialog('close');
                             let deleteID = localStorage.deleteID
-                            console.log(`.${deleteID}`);
                             $(`.${deleteID}`).submit();
                      
                 }}

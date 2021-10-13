@@ -877,14 +877,15 @@ margin-top: 16px;
     display: none;
 }
 
-.cargarDireccion {
-    text-align: right;
-    margin-left: auto;
+.addressInvisible-edit{
+    display: none;
 }
+
 
 .cursorAllign {
     cursor: pointer;
     width: 100%;
+
 }
 
 
@@ -1850,6 +1851,31 @@ a.fa-times.submit {
     margin-right: 2px;
 }
 
+.abm-inventory-nav-link.orders {
+    color:#412838;
+    padding: 5px 10px;
+    text-decoration: none;
+    position: absolute;
+    margin-left: 202px;
+    margin-top: 8px;
+}
+
+.abm-inventory-nav-link.perfil {
+    color:#412838;
+    padding: 5px 10px;
+    text-decoration: none;
+    position: absolute;
+    margin-left: 333px;
+    margin-top: 8px;
+}
+
+.abm-inventory-nav-link.perfil {
+    color:#412838;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-right: 2px;  
+}
+
 .abm-inventory-nav-link:hover {
     color: #55394a;
 }
@@ -1896,6 +1922,15 @@ a.fa-times.submit {
     padding: 10px;
     width: 50%;
 }
+.abm-input-wrap-cargarDireccion {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    text-align: right;
+    margin-left: auto;
+}
+
 .abm-input-wrap-email {
     display: flex;
     flex-direction: column;
@@ -2031,6 +2066,20 @@ option {
     border: #fa2a00 solid 1px;
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
+}
+
+.abm-button-cancel.address {
+    margin-right: auto;
+    background-color: #5c6370; 
+    border: #5c6370 solid 1px;
+    display: none;
+
+}
+
+.abm-button-cancel.address:hover {
+    background-color: #ffffff;
+    color: #5c6370;
+    border: solid 1px #5c6370;
 }
 .abm-button-cancel:hover {
     background-color: #ffffff;

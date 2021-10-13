@@ -104,6 +104,9 @@
                         <a href='/usuarios/perfil' class="abm-button-submit front"><i class="fas fa-times"></i> CANCELAR</a>
                     </div>
                 </form>
+
+                <form action="/admin/<%=user.id%>/borrar-direccion" id="deleteAddressForm" method="post"><input type="text" id="sendAddressId" name="addressid" style="display: none;" value=""></form>
+      
             </div>
         </section>
     </main>

@@ -24,6 +24,7 @@ router.get('/logout', loggedoutRedirect, usersController.logout);
 
 /*** Perfil de usuario ***/
 router.get('/perfil', loggedoutRedirect, usersController.profile);
+router.get('/ordenes', loggedoutRedirect, usersController.orders);
 router.get('/editar', loggedoutRedirect, usersController.edit);
 router.put('/editar', loggedoutRedirect, uploadUser.single('image'), usersController.update);
 
