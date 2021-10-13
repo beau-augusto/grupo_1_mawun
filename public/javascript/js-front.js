@@ -18,7 +18,7 @@ const editSelectedAddress = () => {
     let codigo_postal = document.querySelector('input#codigo_postal_edit')
     let barrio = document.querySelector('input#barrio_edit')
     let ciudad = document.querySelector('input#ciudad_edit')
-    let userIdEjs = document.querySelector('.userID');
+    let userIdEjs = document.querySelector('#userID');
     let editUsuario = document.querySelector('.editUsuario');
     let botonBorrado = document.querySelector('.abm-button-cancel.address');
 
