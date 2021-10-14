@@ -23,7 +23,7 @@
                         <div class="abm-input-wrap">
                             <label for="password" class="abm-input-tit">Contraseña</label>
                             <input type="password" id="password" name="password" placeholder="Contraseña" class="abm-input" value="<%= locals.old && old.password ? old.password : '' %>">
-
+                            <p class="abm-input-error password"></p>
                             <% if (locals.errors && errors.password) { %>
                                 <p class="abm-input-error"><%= errors.password.msg %></p>
                             <% } %>
