@@ -9,35 +9,35 @@
                 <section class="abm-inventory container">
                     <h2 class="abm-title-inv">Pago</h2>
                     <div class="abm-inventory-wrapper carritoWrapper1">
-                    <form action="/productos/carrito/<%=orderId%>/comprar" method="GET">
+                    <form action="/productos/carrito/<%=orderId%>/comprar" method="POST">
 
                         <div class="abm-input-container">
                             <div class="abm-input-wrap">
-                                <label for="first_name" class="abm-input-tit">Número de tarjeta<i class="far fa-credit-card" style="margin-left: 6px;"></i></label>
-                                <input type="text" name="first_name" id="first_name" placeholder="1234 5678 9012 3456" class="abm-input" value="<%= locals.oldData ? oldData.first_name :"" %>">
-                                <% if(locals.errors && errors.first_name) { %> 
-                                    <p class="abm-input-error"><%= errors.first_name.msg %> </p> 
+                                <label for="tarjeta" class="abm-input-tit">Número de tarjeta<i class="far fa-credit-card" style="margin-left: 6px;"></i></label>
+                                <input type="text" name="tarjeta" id="tarjeta" placeholder="1234 5678 9012 3456" class="abm-input" value="<%= locals.oldData ? oldData.tarjeta :"" %>">
+                                <% if(locals.errors && errors.tarjeta) { %> 
+                                    <p class="abm-input-error"><%= errors.tarjeta.msg %> </p> 
                                 <% } %> 
                             </div>
                             <div class="abm-input-wrap">
-                                <label for="last_name" class="abm-input-tit">Caducidad</label>
-                                <input type="text" name="last_name" id="last_name" placeholder="MM/YY" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
-                                <% if(locals.errors && errors.last_name) { %> 
-                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <label for="caducidad" class="abm-input-tit">Caducidad</label>
+                                <input type="text" name="caducidad" id="caducidad" placeholder="MM/YY" class="abm-input" value="<%= locals.oldData ? oldData.caducidad : "" %>">
+                                <% if(locals.errors && errors.caducidad) { %> 
+                                    <p class="abm-input-error"><%= errors.caducidad.msg %> </p> 
                                 <% } %> 
                             </div>
                             <div class="abm-input-wrap">
-                                <label for="last_name" class="abm-input-tit">Titular</label>
-                                <input type="text" name="last_name" id="last_name" placeholder="Titular" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
-                                <% if(locals.errors && errors.last_name) { %> 
-                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <label for="titular" class="abm-input-tit">Titular</label>
+                                <input type="text" name="titular" id="titular" placeholder="Titular" class="abm-input" value="<%= locals.oldData ? oldData.titular : "" %>">
+                                <% if(locals.errors && errors.titular) { %> 
+                                    <p class="abm-input-error"><%= errors.titular.msg %> </p> 
                                 <% } %> 
                             </div>
                             <div class="abm-input-wrap">
-                                <label for="last_name" class="abm-input-tit">Código de seguridad</label>
-                                <input type="text" name="last_name" id="last_name" placeholder="CVV" class="abm-input" value="<%= locals.oldData ? oldData.last_name : "" %>">
-                                <% if(locals.errors && errors.last_name) { %> 
-                                    <p class="abm-input-error"><%= errors.last_name.msg %> </p> 
+                                <label for="seguridad" class="abm-input-tit">Código de seguridad</label>
+                                <input type="text" name="seguridad" id="seguridad" placeholder="CVV" class="abm-input" value="<%= locals.oldData ? oldData.seguridad : "" %>">
+                                <% if(locals.errors && errors.seguridad) { %> 
+                                    <p class="abm-input-error"><%= errors.seguridad.msg %> </p> 
                                 <% } %> 
                             </div>
 
