@@ -16,7 +16,7 @@
                             <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.email ? locals.email : '' %><%= locals.old && old.name ? old.name : '' %>"> 
                             <p class="abm-input-error name"></p>
                             <% if (locals.errors && errors.name) { %>
-                                <p class="abm-input-error"><%= errors.name.msg %></p>
+                                <p class="abm-input-error localsName"><%= errors.name.msg %></p>
                             <% } %>
   
                         </div>
@@ -25,7 +25,7 @@
                             <input type="password" id="password" name="password" placeholder="Contraseña" class="abm-input" value="<%= locals.old && old.password ? old.password : '' %>">
                             <p class="abm-input-error password"></p>
                             <% if (locals.errors && errors.password) { %>
-                                <p class="abm-input-error"><%= errors.password.msg %></p>
+                                <p class="abm-input-error localsPassword"><%= errors.password.msg %></p>
                             <% } %>
    
                         </div>      

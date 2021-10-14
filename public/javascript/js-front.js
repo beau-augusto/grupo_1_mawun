@@ -12,21 +12,40 @@ let username = document.querySelector('input#name')
 let password = document.querySelector('input#password')
 let errorName = document.querySelector('p.name')
 let errorPassword = document.querySelector('p.password')
+let localsName = document.querySelector('p.localsName')
+let localsPassword = document.querySelector('p.localsPassword')
+
 if(form != null){
+
+    if(localsPassword != null){
+        errorPassword.innerHTML = "";
+    }
+    if(localsName != null){
+        errorName.innerHTML = '';
+    }
+    console.log(localsName);
+    console.log(localsPassword);
     let timeout;
-    username.onclick = function (){
+    username.onfocus = function (){
         errorName.innerHTML = "";
         console.log('bitch');
         if(username.value == ""){
             timeout =  setTimeout(()=> { errorName.innerHTML = "Debes completar el nombre de usuario"
         }, 2000)
         }
+        if(localsName != null){
+            localsName.innerHTML = '';
+        }
 
 
     }
 
-    password.onclick = function (){
+    password.onfocus = function (){
         clearTimeout(timeout);
+    
+        if(localsPassword != null){
+            localsPassword.innerHTML = '';
+        }
         if(username.value == ""){
             errorName.innerHTML = "Debes completar el nombre de usuario";
         }
@@ -34,38 +53,38 @@ if(form != null){
 
             errorPassword.innerHTML =''
         }
+        
 
     }
 
     username.onkeyup = function (){
+        errorPassword.innerHTML = "";
         clearTimeout(timeout);
         console.log(username.value.length);
 
         if(username.value == ""){
+            errorName.innerHTML = "";
             timeout =  setTimeout(()=> { errorName.innerHTML = "Debes completar el nombre de usuario"
-        }, 300)
+        }, 1000)
         }
-if(username.value.length < 4 && username.value.length > 0){
+if(username.value.length < 4 && username.value.length > 0|| username.value.length > 30){
+    clearTimeout(timeout);
     console.log('works');
          timeout =  setTimeout(()=> { errorName.innerHTML = "Debe ser de entre 4 y 30 caracteres"
-        }, 500)
+        }, 200)
         }
-        if(username.value.length == 4){
-            console.log('erase');
-            errorName.innerHTML = "";
-        }
-        if(username.value.length >= 4){
+
+        if(username.value.length >= 4 && username.value.length <= 30){
+            clearTimeout(timeout);
             console.log('testing123');
+            errorName.innerHTML = "";
+
             timeout =  setTimeout(()=> { errorPassword.innerHTML = "Debes completar la contraseña";
         }, 2000)
         }
         if(username.value.length > 30){
            errorName.innerHTML = "Debe ser de entre 4 y 30 caracteres";
         
-        }
-        if(username.value.length == 30){
-            console.log('erase');
-            errorName.innerHTML = "";
         }
     }
 username.onblur = function(){
@@ -89,6 +108,10 @@ password.onkeyup = function (){
     clearTimeout(timeout);
     console.log(password.value.length);
 
+    if(password.value == "" && username.value == ""){
+      errorName.innerHTML = "Debe ser de entre 4 y 30 caracteres";
+    }
+
     if(password.value == ""){
         timeout =  setTimeout(()=> { errorPassword.innerHTML = "Debes completar la contraseña"
     }, 1000)
@@ -96,8 +119,19 @@ password.onkeyup = function (){
 if(password.value.length < 4 && password.value.length > 0){
 console.log('works');
      timeout =  setTimeout(()=> { errorPassword.innerHTML = "Debe ser de entre 4 y 30 caracteres"
-    }, 500)
+    }, 200)
     }
+
+    if(password.value.length >= 4 && password.value.length <= 30){
+        clearTimeout(timeout);
+        console.log('testing123');
+        errorPassword.innerHTML = "";
+
+        timeout =  setTimeout(()=> { errorPassword.innerHTML = "Debes completar la contraseña";
+    }, 2000)
+    }
+
+
     if(password.value.length == 4){
         console.log('erase');
         errorPassword.innerHTML = "";
@@ -114,8 +148,9 @@ console.log('works');
     if(password.value.length == 30){
         console.log('erase');
         errorPassword.innerHTML = "";
+    } 
+
     }
-}
 
 
 
