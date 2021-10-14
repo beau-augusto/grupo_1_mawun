@@ -226,6 +226,51 @@ if (direccionesPerfilFront != null){
 
 
 }
+const validationFormContact = () => {
+    let formulario = document.getElementById('formulario');
+
+    formulario.addEventListener("submit", function(evento){
+    
+        let errores = [];
+
+        let campoNombre = document.querySelector("#name");
+        
+        if(campoNombre.value == ""){
+            errores.push('el campo de nombre tiene que estar completo');
+        } else if (campoNombre.value.length < 3) {
+            errores.push('el campo de nombre debe tener al menos 3 caracteres');
+        }
+        
+        let campoEmail = document.querySelector("#email");
+        
+        if(campoEmail.value == ""){
+        errores.push('el campo de email tiene que estar completo');
+        }
+        
+        let campoAsunto = document.querySelector("#asunto");
+        
+        if(campoAsunto.value == ""){
+            errores.push('el campo de asunto tiene que estar completo');
+        }
+        
+        let campoConsulta = document.querySelector("#description");
+        
+        if(campoConsulta.value == ""){
+            errores.push('el campo de consulta tiene que estar completo');
+        }
+        
+        if(errores.length > 0) {
+            evento.preventDefault();
+        
+            let ulErrores = document.querySelector("div.errores ul");
+            for (let i = 0; i < errores.length; i++){
+        
+                ulErrores.innerHTML += "<li>" + errores[i] + "</li>" 
+            };
+        }
+        
+        });
+}
 
 window.addEventListener("load", function () {
     let bubble = document.querySelector('div.cartNumber');
@@ -255,9 +300,6 @@ window.addEventListener("load", function () {
     agregarDireccion();
     editSelectedAddress();
     borrarDireccion();
-<<<<<<< HEAD
-=======
     unfocusDireccciones();
-
->>>>>>> c82c80c156ec40377c1a1361a302d4584c32d0d8
-})
+    validationFormContact()
+});
