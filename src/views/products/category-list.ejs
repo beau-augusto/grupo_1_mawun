@@ -21,7 +21,7 @@
                 <article class="product-grid-item">
                     <a href="/productos/detalle/<%= product.products.id %>">
                         <img src="/upload/products/<%= product.products.image %>" alt="<%= product.products.name %>" class="product-grid-img">
-                        <h4><%= product.name %></h4>
+                        <h4><%= product.products.name %></h4>
                         <p class="product-grid-title">$<%= product.products.price %></p>
                     </a>
                     <form action="/productos/carrito/<%=product.products.id%>" method="POST" class="button-wrap">

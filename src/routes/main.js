@@ -7,7 +7,7 @@ const validateNewsletter = require("../middlewares/validateNewsletter.js");
 router.get('/', mainController.index);
 router.get('/contacto', mainController.contact);
 router.get('/nosotros', mainController.aboutUs);
-
+router.get('/resultado-busqueda', mainController.wineSearch);
 
 /** Newsletter*/
 router.post('/', validateNewsletter, mainController.newsletterCreate);

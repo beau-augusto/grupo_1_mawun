@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const methodOverride =  require('method-override'); // Para poder usar los métodos PUT y DELETE
+const nodemailer = require('nodemailer');
 
 const expressSession = require('express-session') // Para poder usar los Session
 const createError = require('http-errors');
@@ -63,7 +64,6 @@ app.use(function(req, res, next) { // middleware para usar los datos de user en 
   next();
 });
 
-
 const adminRedirect = require('./Middlewares/adminRedirect'); // El middleware asegurar de que estés logeado en las rutas admin
 const { closeSync } = require('fs');
 app.use ('/', mainRouter);
@@ -72,7 +72,6 @@ app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
 
 //***** Node Mailer ******//
-const nodemailer = require('nodemailer');
 app.post('/sendemail', (req, res) => {
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

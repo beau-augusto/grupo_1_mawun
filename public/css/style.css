@@ -75,8 +75,12 @@ input:focus {
     display: flex;
     justify-content: center;
 	align-items: center;
-    /* height: 30px; */
     margin-bottom: 0px;
+}
+.hero-search-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .hero-search-wrap {
     display: flex;
@@ -1999,6 +2003,12 @@ div.errores {
     margin: 0;
     color: #fa2a00;
 }
+.search-input-error{
+    margin: 0;
+    color: #fa2a00;
+    padding: 6px 0px 0px;
+    line-height: 13px;
+}
 .abm-input {
     font-weight: 300;
     padding: 10px 10px;
@@ -2081,6 +2091,12 @@ option {
     justify-content: flex-end;
     padding: 15px 10px;
 }
+
+.abm-button-wrapper.edit-profile{
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 10px;
+}
 .abm-button-submit.front {
     font-size: 13px;
     cursor: pointer;
@@ -2132,6 +2148,8 @@ option {
     text-transform: uppercase;
 }
 
+
+
 .abm-button-cancel.address {
     margin-right: auto;
     background-color: #5c6370; 
@@ -2139,6 +2157,19 @@ option {
     display: none;
 
 }
+.abm-button-cancel.address1 {
+    margin-left: auto;
+    background-color: #5c6370; 
+    border: #5c6370 solid 1px;
+    display: none;
+}
+
+.abm-button-cancel.address1:hover {
+    background-color: #ffffff;
+    color: #5c6370;
+    border: solid 1px #5c6370;
+}
+
 
 .abm-button-cancel.address:hover {
     background-color: #ffffff;

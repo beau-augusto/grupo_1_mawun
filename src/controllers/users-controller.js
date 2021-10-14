@@ -122,27 +122,8 @@ const usersController = {
         try {
            
             let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
-            let address = userFound.addresses
-            userData = {
-                id: userFound.id,
-                name: userFound.name,
-                last_name: userFound.last_name,
-                email: userFound.email,
-                password: userFound.password,
-                image: userFound.image,
-                role_id: userFound.role_id,
-                role: userFound.roles.name,
-                address_id: (address.length > 0) ? address[0].id : "",
-                street: (address.length > 0) ? address[0].street : "",
-                apartment: (address.length > 0)  ? address[0].apartment : "",
-                zip_code: (address.length > 0)  ? address[0].zip_code : "",
-                district: (address.length > 0) ? address[0].district : "",
-                city: (address.length > 0) ? address[0].city : "",
-                state: (address.length > 0) ? address[0].state : "",
-            }
-    
             if (userFound) {
-                return res.render('./users/user-profile', { user: userData });
+                return res.render('./users/user-profile', { user: userFound });
             } else {
                 res.send('El usuario que buscás no existe.')
             }
@@ -160,7 +141,7 @@ const usersController = {
             let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
             
             if (userFound) {
-                return res.render('./users/user-orders', { user: userData });
+                return res.render('./users/user-orders', { user: userFound });
             } else {
                 res.send('El usuario que buscás no existe.')
             }
@@ -172,27 +153,9 @@ const usersController = {
     edit: async (req, res)=> {  
         try {
             let userFound = await User.findPK(res.locals.usuarioLogeado.id); // encuentra un usuario por su PK
-            let address = userFound.addresses
-            let userData = {
-                id: userFound.id,
-                name: userFound.name,
-                last_name: userFound.last_name,
-                email: userFound.email,
-                password: userFound.password,
-                image: userFound.image,
-                role_id: userFound.role_id,
-                role: userFound.roles.name,
-                address_id: (address.length > 0) ? address[0].id : "",
-                street: (address.length > 0) ? address[0].street : "",
-                apartment: (address.length > 0)  ? address[0].apartment : "",
-                zip_code: (address.length > 0)  ? address[0].zip_code : "",
-                district: (address.length > 0) ? address[0].district : "",
-                city: (address.length > 0) ? address[0].city : "",
-                state: (address.length > 0) ? address[0].state : "",
-            }
 
             if (userFound) {
-                return res.render('./users/edit-users', { user: userData });
+                return res.render('./users/edit-users', { user: userFound });
             } else {
                 res.send('No pudimos encontrar ese perfil.')
             }
@@ -203,53 +166,49 @@ const usersController = {
     },
     update: async (req, res) => {
 
+
         const resultValidation = validationResult(req); //Esta variable junto con las validacion, me entraga los campos que tiran un error
-        let PK = res.locals.usuarioLogeado.id // saca el PK del usuario desde locals
-
         try {
-            let userData = await User.findPK(PK); // encuentra un usuario por su PK 
-            let address = userData.addresses
-            userData = {
-                id: userData.id,
-                name: userData.name,
-                last_name: userData.last_name,
-                email: userData.email,
-                password: userData.password,
-                image: userData.image,
-                role_id: userData.role_id,
-                role: userData.roles.name,
-                address_id: (address.length > 0) ? address[0].id : "",
-                street: (address.length > 0) ? address[0].street : "",
-                apartment: (address.length > 0)  ? address[0].apartment : "",
-                zip_code: (address.length > 0)  ? address[0].zip_code : "",
-                district: (address.length > 0) ? address[0].district : "",
-                city: (address.length > 0) ? address[0].city : "",
-                state: (address.length > 0) ? address[0].state : "",
-            }
-
+        let PK = res.locals.usuarioLogeado.id // saca el PK del usuario desde locals
+            
+            let userData = await User.findPK(PK); // encuentra un usuario por su PK
             if (resultValidation.isEmpty()) {
             req.body.image = req.file ? req.file.filename : userData.image; // si hay una nueva imagen se agrega al body, si no, se agrega la anterior
-    
+
             let NewUserData = {
                 name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,
                 password: req.body.password === "" ? userData.password : bcryptjs.hashSync(req.body.password, 10), // logica de contrasenia
                 image: req.body.image, // si manda una imagen nueva, agregarla. si no, dejar la anterior
-                street: req.body.calle_numero != '' ? req.body.calle_numero : userData.street,
-                apartment: req.body.departamento != '' ? req.body.departamento : userData.apartment,
-                district: req.body.barrio != '' ? req.body.barrio : userData.district,
-                zip_code: req.body.codigo_postal != '' ? req.body.codigo_postal : userData.zip_code,
-                city: req.body.ciudad != '' ? req.body.ciudad : userData.city,
-                state: req.body.provincia != '' ? req.body.provincia : userData.state
+                street: req.body.calle_numero,
+                apartment: req.body.departamento,
+                district: req.body.barrio,
+                zip_code: req.body.codigo_postal,
+                city: req.body.ciudad,
+                state: req.body.provincia
+            }
+            await User.update(NewUserData, PK); // actualizar el usuario con la data nueva del formulario 
+          if (req.body.calle_numero != "" && req.body.ciudad != ""){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+             console.log('create new address');
+            await User.createAddress(NewUserData, userData.id); // crea una nueva fila en addresses que corresponde al usuario ya existente
+            }
+        if(req.body.address){
+            console.log('update user');
+
+            
+            updateData = {
+                street: req.body.calle_numero_edit,
+                apartment: req.body.departamento_edit,
+                district: req.body.barrio_edit,
+                zip_code: req.body.codigo_postal_edit,
+                city: req.body.ciudad_edit,
+                state: req.body.provincia_edit
             }
 
-          await User.update(NewUserData, PK); // actualizar el usuario con la data nueva del formulario 
-             if ((userData.address_id && req.body.calle_numero)){ // si el usuario no tiene una fila de direccion creada, pasa la logica por aca
+            await User.updateAddressbyID(updateData, req.body.address); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
+        }
             
-                await User.updateAddress(NewUserData, PK); // si pasa por aca es porque ya existe una fila en addresses y simplemente la actualiza
-
-             }
 
     
             return res.redirect(303, '/usuarios/perfil');
@@ -264,7 +223,18 @@ const usersController = {
             console.error(error)
         }
 
-	},
+    },
+    deleteAddress:  async (req, res) => {
+        let userID = req.params.id;
+        let addressID = req.body.addressid;
+try {
+    await User.deleteAddress(addressID, userID);
+    return res.redirect('/usuarios/perfil');
+    
+} catch (error) {
+    
+}
+    },
     logout: (req, res) => {
         req.session.destroy();
         res.locals.usuarioLogeado = undefined

@@ -20,7 +20,7 @@ const editSelectedAddress = () => {
     let ciudad = document.querySelector('input#ciudad_edit')
     let userIdEjs = document.querySelector('#userID');
     let editUsuario = document.querySelector('.editUsuario');
-    let botonBorrado = document.querySelector('.abm-button-cancel.address');
+    let botonBorrado = document.querySelector('#borrarDireccionButon');
 
     if(cargarTexto !=  null){
         let clickCounter = 0;
@@ -210,7 +210,22 @@ const borrarSearch = () => { // por ahora no esta activo
     }
 }
 
+const unfocusDireccciones = () => {
+let direccionesPerfilFront = document.querySelector('.direccionesPerfilFront')
+if (direccionesPerfilFront != null){
+    let clickCounter = 0
+    direccionesPerfilFront.onclick =function(){
+        clickCounter++;
+    if (clickCounter % 2 == 0) {
 
+            direccionesPerfilFront.blur()
+
+    }
+    }
+}
+
+
+}
 
 window.addEventListener("load", function () {
     let bubble = document.querySelector('div.cartNumber');
@@ -240,4 +255,9 @@ window.addEventListener("load", function () {
     agregarDireccion();
     editSelectedAddress();
     borrarDireccion();
+<<<<<<< HEAD
+=======
+    unfocusDireccciones();
+
+>>>>>>> c82c80c156ec40377c1a1361a302d4584c32d0d8
 })
