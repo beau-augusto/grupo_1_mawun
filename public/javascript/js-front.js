@@ -240,5 +240,4 @@ window.addEventListener("load", function () {
     agregarDireccion();
     editSelectedAddress();
     borrarDireccion();
-
 })

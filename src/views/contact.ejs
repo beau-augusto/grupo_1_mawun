@@ -23,20 +23,23 @@
                         <p>Si necesitas comprar para tu restaurant o almacén, envianos un mail a:</p>
                         <a href="mailto:dhschools@digitalhouse.com" class="contact-link"><p>info@mawun.wine</p></a>
                     </div>
+                    <div class="errores">
+                        <ul></ul>
+                    </div>
                     <div class="contact-form">
-                        <form method="POST" action="/sendemail" class="contact-form-wrapper">
+                        <form method="POST" action="/sendemail" id="reservation" class="contact-form-wrapper">
                             <div class="contact-input-container">
                                 <div class="contact-input-wrap">
-                                    <input type="text" name="name" id="name" placeholder="Nombre Completo" class="abm-input">
+                                    <input type="text" name="name" id="name" placeholder="Nombre Completo" class="abm-input name">
                                 </div>
                                 <div class="contact-input-wrap-email">
-                                    <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input">
+                                    <input type="email" name="email" id="email" placeholder="E-mail" class="abm-input email">
                                 </div> 
                                 <div class="contact-input-wrap">
-                                    <input type="text" name="asunto" id="text" placeholder="Asunto" class="abm-input">
+                                    <input type="text" name="asunto" id="text" placeholder="Asunto" class="abm-input asunto">
                                 </div>   
                                 <div class="contact-input-wrap">
-                                    <textarea class="abm-input" rows="6" type="textarea" name="consulta" id="description" placeholder="Escribi tu consulta"></textarea>
+                                    <textarea class="abm-input consulta" rows="6" type="textarea" name="consulta" id="description" placeholder="Escribi tu consulta"></textarea>
                                 </div>  
                             </div>
                             <div class="contact-button-wrap">
@@ -48,5 +51,6 @@
             </section>
     </main>
     <%- include('./partials/footer') %>
+    <script src="javascript/codigo.js"></script>
 </body>
 </html>
