@@ -47,10 +47,7 @@ app.use(expressSession({
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-//***** APIs *****//
-const loggedoutRedirect = require("./middlewares/loggedoutRedirect.js");
-const apiOrdersRouter = require('./routes/apis/apis')
-app.use('/api', loggedoutRedirect, apiOrdersRouter)
+
 
 
 //***** Route System  *****//
@@ -70,6 +67,11 @@ app.use ('/', mainRouter);
 app.use ('/usuarios', usersRouter);
 app.use ('/productos', productsRouter);
 app.use ('/admin', adminRedirect, adminRouter); // Primer chequea si hay una cookie, luego si no te redirecciona al login.
+
+//***** APIs *****//
+const loggedoutRedirect = require("./middlewares/loggedoutRedirect.js");
+const apiOrdersRouter = require('./routes/apis/apis')
+app.use('/api', loggedoutRedirect, apiOrdersRouter)
 
 //***** Node Mailer ******//
 app.post('/sendemail', (req, res) => {

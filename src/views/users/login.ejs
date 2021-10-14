@@ -9,12 +9,12 @@
                 <h2 class="abm-title">INICIAR SESIÓN</h2>
 
                 
-                <form action="/usuarios/inicio" class="abm-form-wrapper" method="POST">
+                <form action="/usuarios/inicio" class="abm-form-wrapper" method="POST" id="userLogin">
                     <div class="abm-input-container">
                         <div class="abm-input-wrap">
                             <label for="name" class="abm-input-tit">Usuario</label> 
                             <input type="text" id="name" name="name" placeholder="Usuario" class="abm-input" value="<%= locals.email ? locals.email : '' %><%= locals.old && old.name ? old.name : '' %>"> 
-
+                            <p class="abm-input-error name"></p>
                             <% if (locals.errors && errors.name) { %>
                                 <p class="abm-input-error"><%= errors.name.msg %></p>
                             <% } %>

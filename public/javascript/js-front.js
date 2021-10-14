@@ -6,6 +6,57 @@
 /* Augusto  */
 
 
+const validateLogin = () => {
+let form = document.querySelector('#userLogin')
+let username = document.querySelector('input#name')
+let password = document.querySelector('input#password')
+let errorText = document.querySelector('p.name')
+if(form != null){
+    username.onclick = function (){
+        errorText.innerHTML = "";
+        console.log('bitch');
+        password.onkeypress = function (){
+            if(username.value == ""){
+                errorText.innerHTML = "Debes completar el nombre de usuario";
+            }
+        }
+
+    }
+
+    password.onclick = function (){
+        if(username.value == ""){
+            errorText.innerHTML = "Debes completar el nombre de usuario";
+        }
+        if(password.value == ""){
+
+        }
+    }
+    let timeout;
+    username.onkeyup = function (){
+        clearTimeout(timeout);
+        console.log(username.value.length);
+if(username.value.length < 4){
+    console.log('works');
+         timeout =  setTimeout(()=> { errorText.innerHTML = "Debe ser de entre 4 y 30 caracteres"
+        }, 500)
+        }
+        if(username.value.length == 4){
+            console.log('erase');
+            errorText.innerHTML = "";
+        }
+        if(username.value.length > 30){
+            timeout =  setTimeout(()=> { errorText.innerHTML = "Debe ser de entre 4 y 30 caracteres"
+        }, 500)
+        }
+        if(username.value.length == 30){
+            console.log('erase');
+            errorText.innerHTML = "";
+        }
+    }
+
+}
+}
+
 const editSelectedAddress = () => {
     let optionAddress = document.querySelector('#address')
     let nuevaDireccion = document.querySelector('.addressInvisible')
@@ -252,6 +303,8 @@ if (direccionesPerfilFront != null){
 const validationFormContact = () => {
     let formulario = document.getElementById('formulario');
 
+    if(formulario != null){
+
     formulario.addEventListener("submit", function(evento){
     
         let errores = [];
@@ -293,6 +346,7 @@ const validationFormContact = () => {
         }
         
         });
+    }
 }
 
 window.addEventListener("load", function () {
@@ -328,4 +382,5 @@ window.addEventListener("load", function () {
     borrarDireccion();
     unfocusDireccciones();
     validationFormContact()
+    validateLogin();
 });
