@@ -20,7 +20,7 @@
                             <div class="abm-input-wrap-email selectorAddress invisibleSelector" >
                                 <label for="address" class="abm-input-tit">Direcciones</label>
                                 <select name="address" id="address" class="abm-input">
-                                    <option value="">Seleccione dirección para editar</option>
+                                    <option value="">Selecciona dirección</option>
                                     <% for (let i = 0; i < user.addresses.length; i++) { %>
                                         <option value="<%=user.addresses[i].id%>" class="edit-address-option" id="<%=`${user.addresses[i].id}edit`%>">
                                             <%=user.addresses[i].street %> <%=user.addresses[i].apartment %> <%=user.addresses[i].district %> <%=user.addresses[i].city %> <%=user.addresses[i].zip_code %> <%=user.addresses[i].state %>
@@ -32,53 +32,6 @@
                                 <% } %> 
                             </div>
                             <%}%>
-                            <div class="addressInvisible-edit">
-                                <div class="address-input-container">
-                               
-                                <div class="abm-input-wrap">
-                                    <label for="calle_numero_edit" class="abm-input-tit">Calle y numero</label>
-                                    <input type="text" name="calle_numero_edit" id="calle_numero_edit" placeholder="Calle y numero" class="abm-input">
-                                    <% if(locals.errors && errors.calle_numero_edit) { %>
-                                        <p class="abm-input-error"><%= errors.calle_numero_edit.msg %> </p>
-                                    <% } %>  
-                                </div>
-                                    <div class="abm-input-wrap">
-                                        <label for="departamento_edit" class="abm-input-tit">Departamento</label>
-                                        <input type="text" name="departamento_edit" id="departamento_edit" placeholder="Departamento" class="abm-input"value="<%=locals.oldData ? oldData.departamento_edit : "" %>">
-                                        <% if(locals.errors && errors.departamento_edit) { %>
-                                            <p class="abm-input-error"><%= errors.departamento_edit.msg %> </p>
-                                        <% } %>   
-                                    </div>
-                                    <div class="abm-input-wrap">
-                                    <label for="codigo_postal_edit" class="abm-input-tit">Codigo Postal</label>
-                                    <input type="text" name="codigo_postal_edit" id="codigo_postal_edit" placeholder="Codigo Postal" class="abm-input"value="<%=locals.oldData ? oldData.codigo_postal_edit : ""%>">
-                                    <% if(locals.errors && errors.codigo_postal_edit) { %>
-                                        <p class="abm-input-error"><%= errors.codigo_postal_edit.msg %> </p>
-                                    <% } %>   
-                                </div>
-                                <div class="abm-input-wrap">
-                                    <label for="barrio_edit" class="abm-input-tit">Barrio</label>
-                                    <input type="text" name="barrio_edit" id="barrio_edit" placeholder="Barrio" class="abm-input"value="<%=locals.oldData ? oldData.barrio_edit : ""%>">
-                                    <% if(locals.errors && errors.barrio_edit) { %>
-                                        <p class="abm-input-error"><%= errors.barrio_edit.msg %> </p>
-                                    <% } %>   
-                                </div>
-                                    <div class="abm-input-wrap">
-                                    <label for="ciudad_edit" class="abm-input-tit">Ciudad</label>
-                                    <input type="text" name="ciudad_edit" id="ciudad_edit" placeholder="Ciudad" class="abm-input"value="<%=locals.oldData ? oldData.ciudad_edit : ""%>">
-                                    <% if(locals.errors && errors.ciudad_edit) { %>
-                                        <p class="abm-input-error"><%= errors.ciudad_edit.msg %> </p>
-                                    <% } %>   
-                                </div>
-                                    <div class="abm-input-wrap">
-                                    <label for="provincia_edit" class="abm-input-tit">Provincia</label>
-                                    <input type="text" name="provincia_edit" id="provincia_edit" placeholder="Provincia" class="abm-input"value="<%=locals.oldData ? oldData.provincia_edit : ""%>">
-                                    <% if(locals.errors && errors.provincia_edit) { %>
-                                        <p class="abm-input-error"><%= errors.provincia_edit.msg %> </p>
-                                    <% } %>   
-                                </div>
-                                </div>
-                            </div>
     
                             <div class="abm-input-wrap cargarDireccion" style="width: 250px;">
                                 <div class="abm-input-tit cursorAllign">Cargar nueva dirección (+)</div>
@@ -132,8 +85,10 @@
                                     </div>
                                     </div>
                                 </div>
+                                <input type="text" style="display: none;" id="userID" value="<%=user.id%>">
                                 <div class="abm-button-continuar">
-                                    <button type="submit" class="abm-button-submit">Continuar</button>
+                                    <button type="submit" class="abm-button-submit continuarDireccion">Continuar</button>
+                                    <button type="submit" class="abm-button-submit subirDireccion" style="display: none;">Agregar Dirección</button>
                                 </div>
                             </div>
                         </form>

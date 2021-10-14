@@ -13,7 +13,7 @@ router.get('/carrito/:id/actualizar', loggedoutRedirect, productsController.upda
 router.delete('/carrito/:id/delete', loggedoutRedirect, productsController.deleteCart);
 router.put('/carrito/:id/continuar', loggedoutRedirect, productsController.continuar);
 router.post('/carrito/:id/al-pago', loggedoutRedirect, productsController.alPago);
-router.get('/carrito/:id/comprar', loggedoutRedirect, productsController.comprar);
+router.post('/carrito/:id/comprar', loggedoutRedirect, productsController.comprar);
 
 
 module.exports = router;

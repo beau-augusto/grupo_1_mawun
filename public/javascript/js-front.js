@@ -21,31 +21,54 @@ const editSelectedAddress = () => {
     let userIdEjs = document.querySelector('#userID');
     let editUsuario = document.querySelector('.editUsuario');
     let botonBorrado = document.querySelector('#borrarDireccionButon');
+    let butonSubirDire = document.querySelector('.subirDireccion');
+    let continuarDireccion = document.querySelector('.continuarDireccion');
 
     if(cargarTexto !=  null){
         let clickCounter = 0;
 
         cargarTexto.onclick = function (){ // si no exiten direcciones
             cargarTexto.style.display = "none";
-            botonBorrado.style.display = 'none'; 
-            optionAddress.value = "";
-            editAddress.style.display = "none";
+            if(butonSubirDire != null){
+                butonSubirDire.style.display = 'block'; 
+                continuarDireccion.style.display = 'none'; 
+
+            }
+
+
+            if(botonBorrado != null){
+
+                botonBorrado.style.display = 'none'; 
+            }
+            if(optionAddress != null){
+                optionAddress.value = "";
+            }
+            if(editAddress != null){
+
+                editAddress.style.display = "none";
+            }
  if(nuevaDireccion.style.display == "block"){
     nuevaDireccion.style.display = "none";
  } else {
     nuevaDireccion.style.display = "block"
 
-
- }
 }
-
+        }
         if(optionAddress != null){ // si existen direcciones ya
         optionAddress.onmouseup = function (){
             clickCounter++;
-
+            
             if (clickCounter % 2 == 0) {
-                cargarTexto.style.display = 'block';
+                if(nuevaDireccion.style.display == "block"){
+                    nuevaDireccion.style.display = 'none';
+                    butonSubirDire.style.display = 'none'; 
+                    continuarDireccion.style.display = 'block'; 
+                }
                 let idAddress = optionAddress.value;
+                if(idAddress){
+
+                    cargarTexto.style.display = 'block';
+                }
                 console.log(idAddress);
                 optionAddress.blur();
 
@@ -274,6 +297,7 @@ const validationFormContact = () => {
 
 window.addEventListener("load", function () {
     let bubble = document.querySelector('div.cartNumber');
+    let counter = document.querySelector('.hero-cart-counter')
     if(bubble != null){
 
     fetch('http://localhost:3000/api/orders') // llamar a la api para llenar la burbuja de carrito
@@ -282,7 +306,9 @@ window.addEventListener("load", function () {
     })
     .then(function(data){
         let productNumber = data.meta.total // toma el length del array
-    
+            if (productNumber == 0){
+                counter.style.display = 'none';
+            }
             bubble.innerHTML = productNumber;
         }
 
@@ -291,7 +317,7 @@ window.addEventListener("load", function () {
         console.log(error);
     })
 
- }
+}
 
 
 

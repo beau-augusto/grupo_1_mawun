@@ -178,12 +178,11 @@ const productsController = {
 
     },
     alPago: async (req, res) => {
-        
-        
+        console.log(req.body);
         try {
             
-            
-            let orderId = (req.params.id);
+            let userID = res.locals.usuarioLogeado.id;
+            let orderId = req.params.id;
             if(req.body.calle_numero != '' && req.body.codigo_postal != ''){
             let newAddress = {
                 street: req.body.calle_numero,
@@ -193,33 +192,32 @@ const productsController = {
                 city: req.body.ciudad,
                 state: req.body.provincia
             }
-            await User.createAddress(newAddress, 3); // crea una nueva fila en addresses que corresponde al usuario ya existente
-
+            await User.createAddress(newAddress, userID); // crea una nueva fila en addresses que corresponde al usuario ya existente
+            let userData = await User.findByEmail(res.locals.usuarioLogeado.email)
+            return res.render('products/order-address', {user: userData, orderId: orderId})
         } else {
-    
-            let idAddress = req.body.address
-    
-         
-        }
-        return res.render('products/payment', {orderId: orderId})
 
-
+            if(req.body.address != ''){
+             return res.render('products/payment', {orderId: orderId, userID: userID})
+            } 
+    
+         }
             
         } catch (error) {
             
         }
 
-
         
     },
     comprar: async (req, res) => {
         try {
+            let datosTarjeta = req.body
             let orderId = (req.params.id)
-            if(req.params.id == " "){
+            if(orderId == " "){
                 return res.redirect('/productos/carrito')     
             } else {
                 
-                await Order.comprar1(req.params.id)
+                await Order.comprar1(orderId)
                 return res.render('products/thanks-purchase')  
             }  
         } catch (error) {
