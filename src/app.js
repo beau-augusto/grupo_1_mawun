@@ -48,9 +48,9 @@ var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 //***** APIs *****//
-
+const loggedoutRedirect = require("./middlewares/loggedoutRedirect.js");
 const apiOrdersRouter = require('./routes/apis/apis')
-app.use('/api', apiOrdersRouter)
+app.use('/api', loggedoutRedirect, apiOrdersRouter)
 
 
 //***** Route System  *****//
