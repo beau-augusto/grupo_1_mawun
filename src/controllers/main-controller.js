@@ -59,13 +59,14 @@ const mainController = {
             return res.redirect (303, '/'); //Codigo 303, redirecciona a la ruta se desee 
             } else {
 
-                db.Product.findAll({raw:true})
+                db.Product.findAll({raw:true}, {limit: 4})
                 .then(function (products){
+
                     const recommendedProducts = products.filter((product) => product.recommended == 1);
                     
                     return res.render ('index', { 
                         errors: resultValidation.mapped(), 
-                        recommendeds: recommendedProducts
+                        product: recommendedProducts
                     });  
                     })
                 

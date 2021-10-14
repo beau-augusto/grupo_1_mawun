@@ -4,7 +4,7 @@
 <body>
     <%- include('../partials/bo-header') %>
     <main>
-        <section class="abm-productos container">
+        <section class="abm-productos container full-height">
             <div class="abm-producto-wrapper">
                 <h2 class="abm-title">Perfil de Usuario</h2>
                 <form action="/admin/<%=user.id%>/editar-usuario" method="GET" class="abm-form-wrapper">
@@ -24,11 +24,7 @@
                                 <div class="abm-img-user-wrap">
                                     <img src="/upload/profile-pictures/<%=user.image %>" alt="<%= user.name %>" class="abm-img-profile">
                                     <div class="flex-image-edituser"> 
-                                    <input type="file" name="image" id="image" class="abm-input" style="display:none;">
-                                    <label for="image" class="abm-button-submit cambiarimagen-button"> Cambiar imagen</label>
-                                    <% if(locals.errors && errors.image) { %>
-                                        <p class="abm-input-error"><%= errors.image.msg %> </p>
-                                    <% } %>
+
                                     </div>
                                 </div>
                             </div>
