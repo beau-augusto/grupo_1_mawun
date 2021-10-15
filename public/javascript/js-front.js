@@ -473,8 +473,6 @@ window.addEventListener("load", function () {
 
 }
 
-
-
     sumadorCarrito();
     sumadorDetalle();
     agregarDireccion();
@@ -482,5 +480,4 @@ window.addEventListener("load", function () {
     borrarDireccion();
     unfocusDireccciones();
     validationFormContact()
-    validateLogin();
 });

@@ -10,7 +10,7 @@ const db = require("../database/models");
 const mainController = {
     index: async (req, res)=> {
         try{
-            let product = await db.Product.findAll( {where: {recommended: 1}, limit: 4}) //Consulta a la Db listado de Productos
+            let product = await db.Product.findAll( {order:[['id','DESC']], where: {recommended: 1}, limit: 4}) //Consulta a la Db listado de Productos
              
             return  res.render ('index', {product} );
 

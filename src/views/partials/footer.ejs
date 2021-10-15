@@ -17,11 +17,11 @@
             <h5>SUSCRIBITE AL NEWSLETTER</h5>
             <form action="/" method="POST" class="footer-news-form">
                 <input type="email" name="email" placeholder="Tu e-mail" required class="footer-news__field <%= locals.errors && errors.email ? 'is-invalid' : null %>" >
-                <% if(locals.errors && errors.email) { %> 
-                    <p class="abm-input-error"><%= errors.email.msg %></p>
-                <% } %>
                 <button type="submit" class="footer-news__submit">SUSCRIBIRSE</button>
             </form>
+            <% if(locals.errors && errors.email) { %> 
+                <p class="abm-input-error"><%= errors.email.msg %></p>
+            <% } %>
             <div class="footer-news">
                 <% if (locals.usuarioLogeado == undefined) { %>
                 <a href="/usuarios/registro">Registrate</a>
