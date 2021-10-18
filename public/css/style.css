@@ -87,8 +87,9 @@ input:focus {
     align-items: center;
 }
 .hero-search__field {
-    width: 250px;
-    height: 40px;
+    width: 198px;
+    height: 33px;
+    border-radius: 6px;
     border-width: 0px;
     padding: 10px;
 }
@@ -99,16 +100,14 @@ input:focus {
 }
 .hero-search__submit {
     font-size: 16px;
-    color: #ffffff;
+    color: #1d1a1c85;
     border: none;
+    background: white;
     cursor: pointer;
-    height: 40px;
-    padding: 0 10px;
-    border-radius: 0px;
-    background-color: #412838;
+    margin-left: -36px;
 }
-.hero-search__submit:hover {
-    background-color: #55394a;
+.fa-search:hover {
+ color: #55394a;
 }
 .hero-menu-wrapper {
     display: flex;
@@ -196,6 +195,7 @@ ul.hero-menu li a:hover {
 .hero-logo {
     width: 200px;
     color: white;
+    margin-right: auto;
 }
 .hero-banner {
     position: relative;
@@ -1726,6 +1726,9 @@ div.errores {
     }
     .hero-logo {
         width: 200px;
+    }
+    .hero-logo-div {
+        margin-right: auto;
     }
     .hero-search {
         display: none;

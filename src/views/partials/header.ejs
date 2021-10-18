@@ -1,14 +1,11 @@
 
-<header >
-    <div class="hero-top" >
-        <div>
-            <a href="/"><img src="/images/mawun-logo.svg" alt="MAWUN" class="hero-logo"></a>
-        </div>
+<header class="bgc-fw" style="position: sticky; top: 0; z-index: 1;">
+    <nav class="hero-menu-wrapper container" >
+        <div class="hero-logo-div"> <a href="/"><img src="/images/mawun-logo-w.svg" alt="MAWUN" class="hero-logo"></a></div>
         <div class="hero-search">
             <div class="hero-search-wrapper">
                 <form action="/resultado-busqueda" method="GET" class="hero-menu-wrapper">
                     <input type="text" name="wineSearch" maxlength="256" placeholder="Buscar Vinos" class="hero-search__field">
-                    <a href="/" style="text-decoration: none"><i class="fas fa-times submit"></i></a>
                     <button type="submit" class="hero-search__submit"><i class="fa fa-search"></i></button>
                 </form>
                 <% if(locals.errors && errors.notFound) { %> 
@@ -16,13 +13,8 @@
                 <% } %>
             </div>
         </div>
-    </div>
-</header>
-<div class="bgc-fw" style="position: sticky; top: 0; z-index: 1;">
-    <nav class="hero-menu-wrapper container" >
         <div class="hero-burger-wrap"><i class="fas fa-bars"></i></div>
         <ul class="hero-menu">
-            <li><a href="/">Inicio</a></li>
             <li><a href="/productos">Tienda</a></li>
             <li><a href="/nosotros">Nosotros</a></li>
             <li><a href="/contacto">Contacto</a></li>
@@ -51,4 +43,4 @@
        
 
     </nav>
-</div>
+</header>
