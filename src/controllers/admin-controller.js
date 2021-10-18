@@ -200,7 +200,7 @@ const adminController = {
             if(productSearched.length === 0){ // logica cuando no se encuentra el usuario
                 let notFound = [];
                 let error = { notFound :{
-                    msg: "No hay un productos con estas características"
+                    msg: "No hay productos con estas características"
                 }};
                 console.log(error);
                 return res.render('./admin/inventory-products', {errors: error, products: allProducts});

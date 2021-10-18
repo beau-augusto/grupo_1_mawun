@@ -80,14 +80,14 @@ let transporter = nodemailer.createTransport({
     post: 465,
     secure: true,
     auth: {
-        user: 'mawuncompany@gmail.com',
+        user: 'mawunvinos@gmail.com',
         pass: 'mawun123456'
     }
 });
 
 let mailOptions = {
-    from: 'mawuncompany@gmail.com',
-    to: 'mawuncompany@gmail.com',
+    from: 'mawunvinos@gmail.com',
+    to: 'mawunvinos@gmail.com',
     subject: req.body.asunto ,
     //text: req.body.consulta ,
     html: `<!DOCTYPE html>
