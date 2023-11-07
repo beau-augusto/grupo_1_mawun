@@ -111,7 +111,7 @@ input:focus {
 }
 .hero-menu-wrapper {
     display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	align-content: center;
     position: relative;

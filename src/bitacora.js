@@ -1,3 +1,18 @@
+/* Things to do 
+1. Fix header on site 
+2. Fix footer on the pages 
+3. Send authentication email 
+4. Authentication in the forms
+
+
+
+Challenges from Digital House. 
+1. React challenges
+*/
+
+
+
+
 // Notas de Juan
 // 1. Twilio sendgrid, mails, dispara un WhatsApp al hacer una compra, NodeMailer
 // 2. Hooks, Sequelize ya baja un al stock, if en la vista para decir no disponible 
