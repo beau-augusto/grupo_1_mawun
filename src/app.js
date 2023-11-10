@@ -77,11 +77,11 @@ app.use('/api', loggedoutRedirect, apiOrdersRouter)
 app.post('/sendemail', (req, res) => {
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    post: 465,
-    secure: true,
+    post: 587, // 465
+    secure: false, //true
     auth: {
         user: 'mawunvinos@gmail.com',
-        pass: 'mawun123456'
+        pass: 'mqzw ohsv axsb ppjp'
     }
 });
 
